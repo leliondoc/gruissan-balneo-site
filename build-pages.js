@@ -98,10 +98,6 @@ function footer(root) {
       <div class="footer-grid">
         <div class="footer-logo">
           <a href="${p}/index.html" class="footer-wordmark">${logoNav(p)}</a>
-          <p class="footer-brand">Un équipement de</p>
-          <a href="https://www.gruissan-mediterranee.com" target="_blank" rel="noopener">
-            <img class="gt-logo" src="${p}/assets/gruissan-tourisme.svg" alt="Gruissan Tourisme">
-          </a>
         </div>
         <nav class="footer-nav">
           <a href="${p}/index.html">Accueil</a>
@@ -228,6 +224,9 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
         <a href="pages/balneo.html" class="text-link text-link--light">Horaires &amp; tarifs <span>→</span></a>
       </div>
     </div>
+    <div class="hero-seals" aria-label="Informations saison 2026">
+      <div class="brand-seal brand-seal--open"><strong>Ouvert</strong><span>7j/7</span></div>
+    </div>
     <a class="hero__scroll" href="#bienvenue"><span></span>Découvrir</a>
   </section>
 
@@ -283,6 +282,59 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
     </div>
   </section>
 
+  <section class="seasonal-section" aria-labelledby="seasonal-title" data-seasonal>
+    <div class="container seasonal-heading fade-in">
+      <p class="section__label">Au fil des saisons</p>
+      <h2 class="display-title" id="seasonal-title">Une envie pour chaque saison</h2>
+    </div>
+    <div class="seasonal-slider">
+      <div class="seasonal-slider__track">
+        <article class="seasonal-slide seasonal-slide--spring" data-season="spring">
+          <img src="assets/photos/aquagym.jpg" alt="Cours d'aquagym dans le bassin extérieur">
+          <span class="seasonal-slide__veil"></span>
+          <div class="seasonal-slide__content">
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">✿</span></div>
+            <h3>Au printemps,<br>je retrouve mon rythme</h3>
+            <a href="pages/activites-annee-adultes.html" class="btn btn--on-photo">Bouger dans l'eau</a>
+          </div>
+        </article>
+        <article class="seasonal-slide seasonal-slide--summer" data-season="summer">
+          <img src="assets/photos/parc-ete-upright.png" alt="Familles profitant du parc aquatique en été">
+          <span class="seasonal-slide__veil"></span>
+          <div class="seasonal-slide__content">
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">☀</span></div>
+            <h3>En été,<br>toute la famille se jette à l'eau</h3>
+            <a href="pages/parc-ete.html" class="btn btn--on-photo">Profiter du parc aquatique</a>
+          </div>
+        </article>
+        <article class="seasonal-slide seasonal-slide--fall" data-season="fall">
+          <img src="assets/photos/balneo-73.jpg" alt="Massage bien-être à l'Espace Balnéo">
+          <span class="seasonal-slide__veil"></span>
+          <div class="seasonal-slide__content">
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">◆</span></div>
+            <h3>En automne,<br>je relâche les tensions</h3>
+            <a href="pages/massages.html" class="btn btn--on-photo">Découvrir les massages</a>
+          </div>
+        </article>
+        <article class="seasonal-slide seasonal-slide--winter" data-season="winter">
+          <img src="assets/photos/balneo-188.jpg" alt="Bassin chaud et jets massants de la Balnéo">
+          <span class="seasonal-slide__veil"></span>
+          <div class="seasonal-slide__content">
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">❄</span></div>
+            <h3>En hiver,<br>je plonge dans la chaleur</h3>
+            <a href="pages/balneo.html" class="btn btn--on-photo">Explorer l'espace Balnéo</a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="seasonal-tabs" role="tablist" aria-label="Choisir une saison">
+      <button class="seasonal-tab seasonal-tab--spring" type="button" role="tab" data-season-target="spring" aria-label="Afficher le printemps"><span aria-hidden="true">✿</span><strong>Printemps</strong></button>
+      <button class="seasonal-tab seasonal-tab--summer" type="button" role="tab" data-season-target="summer" aria-label="Afficher l'été"><span aria-hidden="true">☀</span><strong>Été</strong></button>
+      <button class="seasonal-tab seasonal-tab--fall" type="button" role="tab" data-season-target="fall" aria-label="Afficher l'automne"><span aria-hidden="true">◆</span><strong>Automne</strong></button>
+      <button class="seasonal-tab seasonal-tab--winter" type="button" role="tab" data-season-target="winter" aria-label="Afficher l'hiver"><span aria-hidden="true">❄</span><strong>Hiver</strong></button>
+    </div>
+  </section>
+
   <section class="manifesto section">
     <div class="manifesto__photo media-fill"><img src="assets/photos/balneo-188.jpg" alt="Jets et bassin de la Balnéo"></div>
     <div class="manifesto__content fade-in">
@@ -307,7 +359,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
       <div class="news-grid">
         <article class="news-card fade-in">
           <div class="news-card__media media-fill">
-            <img src="assets/photos/parc-ete.jpg" alt="Ouverture du parc été">
+            <img src="assets/photos/dsc-0451.jpg" alt="Ouverture du parc été">
           </div>
           <div class="news-card__body">
             <p class="news-card__date">3 juin</p>
@@ -434,7 +486,7 @@ ${ctaBand('Réservez votre entrée Balnéo en ligne')}
 // MASSAGES
 pages['pages/massages.html'] = page('Massages', 'Carte des massages bien-être — réservation sur rendez-vous.', `
 <main>
-${pageHero('Soins bien-être', 'Massages', '../assets/photos/balneo-60.jpg')}
+${pageHero('Soins bien-être', 'Massages', '../assets/photos/balneo-73.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p>Accordez-vous une parenthèse hors du temps, où chaque geste est pensé pour vous offrir une profonde relaxation, une harmonie intérieure et un véritable moment de lâcher-prise.</p>
@@ -485,7 +537,7 @@ ${ctaBand('Réservez par téléphone au 04 68 75 60 50')}
 // HYDROMASSAGES
 pages['pages/hydromassages.html'] = page('Hydromassages', 'Séances d\'hydromassage et Rituel Océan Relax sur rendez-vous.', `
 <main>
-${pageHero('Soins bien-être', 'Hydromassages', '../assets/photos/balneo-73.jpg')}
+${pageHero('Soins bien-être', 'Hydromassages', '../assets/photos/balneo-188.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p>Accordez-vous un Rituel Océan Relax ou une séance d'hydromassage, installé confortablement sur une table à jets d'eau chaude.</p>
@@ -521,7 +573,7 @@ ${ctaBand('Réservez par téléphone au 04 68 75 60 50')}
 // SOINS VISAGE
 pages['pages/soins-visage.html'] = page('Soins du visage', 'Soin visage Phytocéane 60 min sur rendez-vous.', `
 <main>
-${pageHero('Soins bien-être', 'Soins du visage', '../assets/photos/balneo-37.jpg')}
+${pageHero('Soins bien-être', 'Soins du visage', '../assets/photos/dsc-0930.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p>Offrez-vous un moment de détente dédié à votre peau pour nettoyer, hydrater et révéler l'éclat naturel du teint.</p>
@@ -545,7 +597,7 @@ ${ctaBand('Réservez par téléphone au 04 68 75 60 50')}
 // FAUTEUILS MASSANTS
 pages['pages/fauteuils-massants.html'] = page('Fauteuils massants', 'Fauteuils relaxants 30 min sur rendez-vous.', `
 <main>
-${pageHero('Soins bien-être', 'Fauteuils massants', '../assets/photos/balneo-60.jpg')}
+${pageHero('Soins bien-être', 'Fauteuils massants', '../assets/photos/balneo-73.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p>Accordez-vous une pause sur un fauteuil massant, confortablement installé et habillé.</p>
@@ -568,7 +620,7 @@ ${ctaBand('Réservez par téléphone au 04 68 75 60 50')}
 // PISCINE
 pages['pages/piscine.html'] = page('Piscine', 'Bassin de 25m, pataugeoire, tarifs et abonnements piscine.', `
 <main>
-${pageHero('Aquatique', 'Piscine', '../assets/photos/dsc-0930.jpg')}
+${pageHero('Aquatique', 'Piscine', '../assets/photos/balneo-60.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <div class="info-box">
@@ -605,7 +657,7 @@ ${ctaBand('Achetez vos entrées en ligne')}
 // SALLE DE SPORT
 pages['pages/salle-de-sport.html'] = page('Salle For.Me', 'Salle de cardio-musculation Technogym — tarifs et abonnements.', `
 <main>
-${pageHero('For.Me', 'S\'entraîner / Se dépasser', '../assets/photos/sport.jpg')}
+${pageHero('For.Me', 'S\'entraîner / Se dépasser', '../assets/photos/balneo-37.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p>Cet espace est doté de machines dernière génération Wellness® développées par Technogym®. Que vous ayez un objectif précis ou que vous souhaitiez pratiquer une activité physique régulière, vous trouverez votre programme et votre rythme grâce au système Wellness®.</p>
@@ -800,13 +852,13 @@ ${pageHero('Activités été', 'Bébés nageurs &amp; Jardin aquatique', '../ass
 // ACTUALITES
 pages['pages/actualites.html'] = page('Actualités', 'Dernières nouvelles de l\'Espace Balnéo de Gruissan.', `
 <main>
-${pageHero('Informations', 'Actualités', '../assets/photos/parc-ete.jpg')}
+${pageHero('Informations', 'Actualités', '../assets/photos/dsc-0451.jpg')}
 <section class="section section--light">
   <div class="container">
     <div class="news-grid">
       <article class="news-card fade-in">
         <div class="news-card__media media-fill">
-          <img src="../assets/photos/parc-ete.jpg" alt="Ouverture du parc été">
+          <img src="../assets/photos/dsc-0451.jpg" alt="Ouverture du parc été">
         </div>
         <div class="news-card__body">
           <p class="news-card__date">3 juin</p>
@@ -862,7 +914,7 @@ ${pageHero('Actualité — ' + date, title, img)}
 </div></section></main>`);
 }
 
-pages['pages/article-parc-ete.html'] = articlePage('Ouverture du parc été', '3 juin', '../assets/photos/parc-ete.jpg', `
+pages['pages/article-parc-ete.html'] = articlePage('Ouverture du parc été', '3 juin', '../assets/photos/dsc-0451.jpg', `
 <p>L'été arrive ! À partir du samedi 27 juin et jusqu'au dimanche 30 août inclus, le parc aqualudique vous accueille tous les jours de 11h à 18h.</p>
 <p>Venez profiter de nos bassins, toboggans et espaces de détente tout l'été, en famille ou entre amis ! Toute l'équipe se réjouit de vous accueillir.</p>
 <p><a href="parc-ete.html">Découvrir le parc été →</a></p>`);
