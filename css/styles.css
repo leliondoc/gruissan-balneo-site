@@ -464,7 +464,7 @@ th { color: var(--white); background: var(--green); font-size: .78rem; font-weig
   .hero { min-height: 800px; }
   .hero__media img { object-position: 64% center; }
   .hero__veil { background: linear-gradient(0deg, rgba(5,20,29,.87), rgba(5,20,29,.22) 78%); }
-  .hero__content { width: calc(100% - 2rem); padding: 12rem 0 5.5rem; }
+  .hero__content { width: calc(100% - 2rem); padding: 10.5rem 0 9rem; }
   .hero__title { font-size: clamp(3.9rem, 18vw, 5.3rem); }
   .hero__scroll { display: none; }
   .hero-seals { top: 10.5rem; right: .8rem; bottom: auto; gap: .35rem; }
@@ -505,11 +505,15 @@ th { color: var(--white); background: var(--green); font-size: .78rem; font-weig
   .save-button--page { right: 1rem; bottom: 7.2rem; }
   .page-hero__title { padding-right: 1rem; font-size: clamp(3.4rem, 17vw, 5rem); }
   .contact-section { background: var(--green-light); }
-  .footer-bottom { align-items: flex-start; flex-direction: column; }
+  .footer-grid { justify-items: center; gap: 2rem; text-align: center; }
+  .footer-wordmark { margin: 0 auto; }
+  .footer-nav { width: 100%; }
+  .footer-nav a { text-align: center; }
+  .footer-bottom { align-items: center; flex-direction: column; text-align: center; }
   .back-to-top { right: 1rem; bottom: 1rem; width: 58px; height: 58px; gap: .42rem; }
   .back-to-top span { font-size: 1rem; }
   .back-to-top small { font-size: .62rem; }
-  .cta-orb { width: 98px; height: 98px; right: .55rem; top: calc(var(--header-height) + .7rem); bottom: auto; font-size: 1.02rem; }
+  .cta-orb { width: 98px; height: 98px; right: .55rem; top: var(--mobile-booking-top, calc(var(--header-height) + 5.5rem)); bottom: auto; font-size: 1.02rem; }
   .cta-orb { font-size: 1.24rem; }
   .cta-orb span { font-size: .72rem; }
   .site-panel__dialog { padding: 3.7rem 1.25rem 2rem; }

@@ -53,6 +53,7 @@
   if (bannerClose && infoBanner) {
     bannerClose.addEventListener('click', function () {
       infoBanner.classList.add('hidden');
+      window.dispatchEvent(new Event('resize'));
       try { sessionStorage.setItem('banner-closed', '1'); } catch (e) {}
     });
     try {
@@ -61,6 +62,21 @@
       }
     } catch (e) {}
   }
+
+  var positionBookingOrb = function () {
+    var bookingOrb = document.querySelector('.cta-orb');
+    if (!bookingOrb) return;
+    if (window.innerWidth > 760) {
+      document.documentElement.style.removeProperty('--mobile-booking-top');
+      return;
+    }
+    var mobileHeader = document.querySelector('.site-header');
+    var alertIsVisible = infoBanner && !infoBanner.classList.contains('hidden');
+    var lowerEdge = alertIsVisible ? infoBanner.getBoundingClientRect().bottom : (mobileHeader ? mobileHeader.getBoundingClientRect().bottom : 84);
+    document.documentElement.style.setProperty('--mobile-booking-top', Math.ceil(lowerEdge + 12) + 'px');
+  };
+  positionBookingOrb();
+  window.addEventListener('resize', positionBookingOrb);
 
   // Place seasonal highlights directly below quick access
   var seasonalSection = document.querySelector('[data-seasonal]');
