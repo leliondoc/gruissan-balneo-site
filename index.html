@@ -3,55 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil | la balnéo.</title>
+  <title>Accueil | Espace Balnéo Gruissan</title>
   <meta name="description" content="Espace Balnéo de Gruissan — bien-être, piscine, activités aquatiques et salle de sport à Gruissan.">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body class="is-home">
   <header class="site-header">
+    <div class="utility-bar">
+      <div class="utility-bar__inner">
+        <p>Au cœur de Gruissan, entre mer et lagune</p>
+        <nav aria-label="Liens pratiques">
+          <a href="tel:+33468756050">04 68 75 60 50</a>
+          <a href="./pages/contact.html">Contact</a>
+          <a href="https://www.gruissan-mediterranee.com" target="_blank" rel="noopener">Gruissan Tourisme</a>
+        </nav>
+      </div>
+    </div>
     <div class="site-header__inner">
-      <a href="./index.html" class="site-logo">
-        <svg class="logo-svg" viewBox="0 0 280 56" role="img" aria-label="la balnéo.">
-    <g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8 42 C10 20 26 8 44 12 C56 15 60 28 50 36 C44 42 36 38 38 26 C40 14 56 10 70 20"/>
-    <path d="M78 10 C96 28 98 44 80 54 C64 44 66 28 78 10Z"/>
-  </g>
-    <text x="112" y="36" fill="currentColor" font-family="Montserrat, sans-serif" font-size="22" font-weight="400" letter-spacing="3.4">la balnéo.</text>
-  </svg>
+      <a href="./index.html" class="site-logo" aria-label="Accueil — Espace Balnéo Gruissan">
+        <img class="logo-img" src="./assets/logo-balneo-officiel.png" alt="Espace Balnéo Gruissan">
       </a>
-      <button class="nav-toggle" aria-label="Menu">
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="main-nav">
-        <li><a href="./index.html">Accueil</a></li>
-        <li><a href="./pages/balneo.html">Balnéo</a></li>
         <li class="has-dropdown">
-          <button class="nav-link" type="button">Soins</button>
-          <div class="dropdown">
-            <a href="./pages/massages.html">Massages</a>
-            <a href="./pages/hydromassages.html">Hydromassages</a>
-            <a href="./pages/soins-visage.html">Soins du visage</a>
-            <a href="./pages/fauteuils-massants.html">Fauteuils massants</a>
+          <button class="nav-link" type="button" aria-expanded="false">Découvrir</button>
+          <div class="dropdown dropdown--wide">
+            <div class="dropdown__intro">
+              <span>Découvrir</span>
+              <strong>Choisissez votre parenthèse</strong>
+              <p>De l'eau chaude aux soins, composez votre moment à Gruissan.</p>
+            </div>
+            <div class="dropdown__links">
+              <a href="./pages/balneo.html"><small>01</small> L'espace Balnéo</a>
+              <a href="./pages/massages.html"><small>02</small> Massages &amp; soins</a>
+              <a href="./pages/piscine.html"><small>03</small> La piscine</a>
+            </div>
           </div>
         </li>
-        <li><a href="./pages/piscine.html">Piscine</a></li>
         <li class="has-dropdown">
-          <button class="nav-link" type="button">Activités</button>
+          <button class="nav-link" type="button" aria-expanded="false">Bouger</button>
           <div class="dropdown">
-            <span class="dropdown__label">Sept. au 25 juin</span>
+            <span class="dropdown__label">Activités aquatiques</span>
             <a href="./pages/activites-annee-adultes.html">Activités adultes</a>
-            <a href="./pages/activites-annee-bebe-jardin.html">Bébés nageurs &amp; Jardin aquatique</a>
             <a href="./pages/activites-annee-natation.html">Cours de natation</a>
-            <span class="dropdown__label">Été</span>
-            <a href="./pages/activites-ete-adultes.html">Activités adultes été</a>
+            <a href="./pages/salle-de-sport.html">Salle de sport For.Me</a>
+            <span class="dropdown__label">Saison estivale</span>
+            <a href="./pages/activites-ete-adultes.html">Programme été</a>
             <a href="./pages/activites-ete-stages.html">Stages de natation</a>
-            <a href="./pages/activites-ete-bebe-jardin.html">Bébés nageurs &amp; Jardin aquatique été</a>
           </div>
         </li>
-        <li><a href="./pages/salle-de-sport.html">For.Me</a></li>
-        <li><a href="./pages/parc-ete.html">Parc été</a></li>
+        <li class="has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">En famille</button>
+          <div class="dropdown">
+            <a href="./pages/parc-ete.html">Le parc été</a>
+            <a href="./pages/activites-annee-bebe-jardin.html">Bébés nageurs</a>
+            <a href="./pages/activites-annee-bebe-jardin.html">Jardin aquatique</a>
+            <a href="./pages/activites-ete-bebe-jardin.html">Activités famille été</a>
+          </div>
+        </li>
         <li><a href="./pages/actualites.html">Actualités</a></li>
-        <li><a href="./pages/contact.html">Contact</a></li>
+        <li class="has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">Pratique</button>
+          <div class="dropdown dropdown--right">
+            <a href="./pages/balneo.html">Horaires &amp; tarifs</a>
+            <a href="./pages/contact.html">Accès &amp; contact</a>
+            <a href="./pages/reglement.html">Préparer ma venue</a>
+          </div>
+        </li>
+        <li class="main-nav__booking"><a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Réserver</a></li>
       </ul>
     </div>
   </header>
@@ -64,79 +85,93 @@
 <main>
   <section class="hero">
     <div class="hero__media media-fill">
-      <img src="assets/photos/riviere.jpg" alt="Rivière extérieure — Espace Balnéo de Gruissan">
+      <img src="assets/photos/balneo-188.jpg" alt="Bassin intérieur de l’Espace Balnéo de Gruissan">
     </div>
     <div class="hero__veil"></div>
     <div class="hero__content fade-in">
-      <p class="hero__kicker">Espace Balnéo de Gruissan</p>
-      <h1 class="hero__title">L'eau, le sel, la lumière.</h1>
-      <p class="hero__tagline">Saunas, hammam, spas et massages face à la Méditerranée.</p>
-      <a href="#univers" class="btn btn--on-photo">Découvrir</a>
+      <p class="hero__kicker">Balnéo · Piscine · Soins · Sport</p>
+      <h1 class="hero__title">Entrez dans<br>votre <em>parenthèse.</em></h1>
+      <p class="hero__tagline">L'eau, la lumière et la douceur méditerranéenne réunies dans un même lieu.</p>
+      <div class="btn-group">
+        <a href="#experiences" class="btn btn--on-photo btn--filled">Explorer les espaces</a>
+        <a href="pages/balneo.html" class="text-link text-link--light">Horaires &amp; tarifs <span>→</span></a>
+      </div>
+    </div>
+    <a class="hero__scroll" href="#bienvenue"><span></span>Découvrir</a>
+  </section>
+
+  <nav class="quick-access" aria-label="Accès rapides">
+    <a href="pages/balneo.html"><span>01</span><strong>Horaires &amp; tarifs</strong><small>Préparer ma visite</small></a>
+    <a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span>02</span><strong>Billetterie &amp; cadeaux</strong><small>Réserver en ligne</small></a>
+    <a href="pages/contact.html"><span>03</span><strong>Venir à la Balnéo</strong><small>Accès &amp; contact</small></a>
+  </nav>
+
+  <section class="welcome section" id="bienvenue">
+    <div class="container welcome__grid fade-in">
+      <div>
+        <p class="section__label">Bienvenue à Gruissan</p>
+        <h2 class="display-title">Un rêve où se mêlent l'eau, le bois, la lumière et le sel.</h2>
+      </div>
+      <div class="welcome__copy">
+        <p>À quelques pas de la Méditerranée, l'Espace Balnéo invite à ralentir. Des bassins chauffés à 32°C, des soins enveloppants et des activités pensées pour retrouver son rythme.</p>
+        <p>Seul, à deux ou en famille, venez respirer, bouger et vous laisser porter.</p>
+        <a href="pages/balneo.html" class="text-link">Découvrir la Balnéo <span>→</span></a>
+      </div>
     </div>
   </section>
 
-  <section class="section section--light">
-    <div class="container editorial fade-in">
-      <p class="section__label">Bienvenue</p>
-      <h2 class="section__title">Un royaume du bien-être, entre mer et lagune.</h2>
-      <p>L'Espace Balnéoludique offre une palette d'activités ludiques et sportives. Programmes taillés sur mesure : convivialité, sensations, détente.</p>
-      <p>Saunas, hammam, spas, massages. L'Espace For.Me et les aquasports pour une hygiène de vie, au quotidien.</p>
+  <section class="experience-section" id="experiences">
+    <div class="container section-heading fade-in">
+      <div>
+        <p class="section__label">Nos expériences</p>
+        <h2 class="display-title">À chacun son horizon</h2>
+      </div>
+      <p>Des univers complémentaires, réunis autour d'une même envie : prendre soin de soi.</p>
+    </div>
+    <div class="experience-grid">
+      <a href="pages/balneo.html" class="experience-card experience-card--large fade-in">
+        <img src="assets/photos/balneo-37.jpg" alt="Massage à l’Espace Balnéo">
+        <span class="experience-card__veil"></span>
+        <div class="experience-card__content"><small>Se délasser</small><h3>Les bains &amp; la Balnéo</h3><p>Bassins à 32°C, spas, hammam, saunas et rivière à courant.</p><span class="circle-arrow">→</span></div>
+      </a>
+      <a href="pages/massages.html" class="experience-card fade-in">
+        <img src="assets/photos/balneo-73.jpg" alt="Massage bien-être">
+        <span class="experience-card__veil"></span>
+        <div class="experience-card__content"><small>Se retrouver</small><h3>Soins &amp; massages</h3><p>Des gestes enveloppants pour une profonde détente.</p><span class="circle-arrow">→</span></div>
+      </a>
+      <a href="pages/salle-de-sport.html" class="experience-card fade-in">
+        <img src="assets/photos/balneo-tgn.jpg" alt="Salle de sport For.Me">
+        <span class="experience-card__veil"></span>
+        <div class="experience-card__content"><small>Se dépasser</small><h3>Sport &amp; aquasports</h3><p>Cardio, renforcement et activités aquatiques à votre rythme.</p><span class="circle-arrow">→</span></div>
+      </a>
+      <a href="pages/parc-ete.html" class="experience-card experience-card--wide fade-in">
+        <img src="assets/photos/riviere.jpg" alt="Parc aquatique extérieur">
+        <span class="experience-card__veil"></span>
+        <div class="experience-card__content"><small>Partager</small><h3>Le parc été en famille</h3><p>Toboggans, rivière et jeux d'eau sous le soleil de Gruissan.</p><span class="circle-arrow">→</span></div>
+      </a>
     </div>
   </section>
 
-  <div class="spaces" id="univers">
-    <a href="pages/balneo.html" class="space-panel">
-      <div class="space-panel__media"><img src="assets/photos/balneo-73.jpg" alt="Balnéo"></div>
-      <div class="space-panel__copy">
-        <p class="space-panel__index">01 — Balnéo</p>
-        <h2>Bassins, saunas, hammam</h2>
-        <p>Eau à 32°C, jets, rivière, cascades. L'escale gruissanaise, du bain lavande au bain vino.</p>
-        <span class="space-panel__link">Découvrir</span>
+  <section class="manifesto section">
+    <div class="manifesto__photo media-fill"><img src="assets/photos/balneo-188.jpg" alt="Jets et bassin de la Balnéo"></div>
+    <div class="manifesto__content fade-in">
+      <p class="section__label">L'expérience Balnéo</p>
+      <h2 class="display-title">Le corps s'apaise.<br>L'esprit s'évade.</h2>
+      <p>Jets massants, chaleur sèche ou vapeur parfumée : laissez chaque sensation vous ramener à l'essentiel.</p>
+      <div class="manifesto__numbers">
+        <div><strong>32°</strong><span>L'eau des bassins</span></div>
+        <div><strong>5</strong><span>Univers à explorer</span></div>
+        <div><strong>7j/7</strong><span>La salle For.Me</span></div>
       </div>
-    </a>
-    <a href="pages/massages.html" class="space-panel space-panel--flip">
-      <div class="space-panel__media"><img src="assets/photos/balneo-60.jpg" alt="Soins"></div>
-      <div class="space-panel__copy">
-        <p class="space-panel__index">02 — Soins</p>
-        <h2>Massages &amp; rituels</h2>
-        <p>Cabines, hydromassage, soin visage Phytocéane. Un rendez-vous avec soi.</p>
-        <span class="space-panel__link">Découvrir</span>
-      </div>
-    </a>
-    <a href="pages/piscine.html" class="space-panel">
-      <div class="space-panel__media"><img src="assets/photos/dsc-0930.jpg" alt="Piscine"></div>
-      <div class="space-panel__copy">
-        <p class="space-panel__index">03 — Piscine</p>
-        <h2>Bassin de 25 mètres</h2>
-        <p>Nage, pataugeoire, cours. Le bassin au rythme de Gruissan.</p>
-        <span class="space-panel__link">Découvrir</span>
-      </div>
-    </a>
-    <a href="pages/salle-de-sport.html" class="space-panel space-panel--flip">
-      <div class="space-panel__media"><img src="assets/photos/sport.jpg" alt="For.Me"></div>
-      <div class="space-panel__copy">
-        <p class="space-panel__index">04 — For.Me</p>
-        <h2>S'entraîner / se dépasser</h2>
-        <p>Machines Technogym Wellness. Ouvert 7j/7, de 6h à 23h.</p>
-        <span class="space-panel__link">Découvrir</span>
-      </div>
-    </a>
-    <a href="pages/parc-ete.html" class="space-panel">
-      <div class="space-panel__media"><img src="assets/photos/parc-aquatique.jpg" alt="Parc été"></div>
-      <div class="space-panel__copy">
-        <p class="space-panel__index">05 — Parc été</p>
-        <h2>Toboggans &amp; rivière</h2>
-        <p>Ouvert juillet et août. Bassins chauffés, grignoterie, journée en famille.</p>
-        <span class="space-panel__link">Découvrir</span>
-      </div>
-    </a>
-  </div>
+      <a href="pages/balneo.html" class="btn">Entrer dans l'univers</a>
+    </div>
+  </section>
 
-  <section class="section section--cream">
+  <section class="section news-section">
     <div class="container">
-      <div class="section__header fade-in">
-        <p class="section__label">En ce moment</p>
-        <h2 class="section__title">Actualités</h2>
+      <div class="section-heading fade-in">
+        <div><p class="section__label">En ce moment</p><h2 class="display-title">Les nouvelles de la Balnéo</h2></div>
+        <a href="pages/actualites.html" class="text-link">Toutes les actualités <span>→</span></a>
       </div>
       <div class="news-grid">
         <article class="news-card fade-in">
@@ -173,7 +208,6 @@
           </div>
         </article>
       </div>
-      <p style="margin-top:var(--space-lg)"><a href="pages/actualites.html" class="btn">Toutes les actualités</a></p>
     </div>
   </section>
 
@@ -223,13 +257,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-logo">
-          <a href="./index.html" class="footer-wordmark"><svg class="logo-svg" viewBox="0 0 280 56" role="img" aria-label="la balnéo.">
-    <g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8 42 C10 20 26 8 44 12 C56 15 60 28 50 36 C44 42 36 38 38 26 C40 14 56 10 70 20"/>
-    <path d="M78 10 C96 28 98 44 80 54 C64 44 66 28 78 10Z"/>
-  </g>
-    <text x="112" y="36" fill="currentColor" font-family="Montserrat, sans-serif" font-size="22" font-weight="400" letter-spacing="3.4">la balnéo.</text>
-  </svg></a>
+          <a href="./index.html" class="footer-wordmark"><img class="logo-img" src="./assets/logo-balneo-officiel.png" alt="Espace Balnéo Gruissan"></a>
           <p class="footer-brand">Un équipement de</p>
           <a href="https://www.gruissan-mediterranee.com" target="_blank" rel="noopener">
             <img class="gt-logo" src="./assets/gruissan-tourisme.svg" alt="Gruissan Tourisme">
