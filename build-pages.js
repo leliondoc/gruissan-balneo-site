@@ -25,9 +25,9 @@ function header(root, isHome) {
       <div class="utility-bar__inner">
         <p>Au cœur de Gruissan, entre mer et lagune</p>
         <nav aria-label="Liens pratiques">
-          <a href="tel:+33468756050">04 68 75 60 50</a>
-          <a href="${p}/pages/contact.html">Contact</a>
-          <a href="https://www.gruissan-mediterranee.com" target="_blank" rel="noopener">Gruissan Tourisme</a>
+          <a href="tel:+33468756050"><i class="fa-solid fa-phone context-icon" aria-hidden="true"></i>04 68 75 60 50</a>
+          <a href="${p}/pages/contact.html"><i class="fa-solid fa-envelope context-icon" aria-hidden="true"></i>Contact</a>
+          <a href="https://www.gruissan-mediterranee.com" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square context-icon" aria-hidden="true"></i>Gruissan Tourisme</a>
         </nav>
       </div>
     </div>
@@ -104,18 +104,18 @@ function footer(root) {
           </nav>
         </div>
         <nav class="footer-nav">
-          <a href="${p}/pages/salle-de-sport.html">Espace For.Me</a>
-          <a href="${p}/pages/balneo.html">Espace Balnéo</a>
-          <a href="${p}/pages/massages.html">Massages</a>
-          <a href="${p}/pages/aquagym.html">Aquagym</a>
-          <a href="${p}/pages/parc-ete.html">Parc été</a>
+          <a href="${p}/pages/salle-de-sport.html"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i>Espace For.Me</a>
+          <a href="${p}/pages/balneo.html"><i class="fa-solid fa-hot-tub-person" aria-hidden="true"></i>Espace Balnéo</a>
+          <a href="${p}/pages/massages.html"><i class="fa-solid fa-spa" aria-hidden="true"></i>Massages</a>
+          <a href="${p}/pages/aquagym.html"><i class="fa-solid fa-person-swimming" aria-hidden="true"></i>Aquagym</a>
+          <a href="${p}/pages/parc-ete.html"><i class="fa-solid fa-sun" aria-hidden="true"></i>Parc été</a>
         </nav>
         <nav class="footer-nav">
-          <a href="${p}/pages/infos-pratiques.html">Infos pratiques</a>
-          <a href="${p}/pages/tarifs.html">Tarifs</a>
-          <a href="${p}/pages/horaires.html">Horaires</a>
-          <a href="${p}/pages/acces-parking.html">Accès &amp; parking</a>
-          <a href="${p}/pages/contact.html">Contact</a>
+          <a href="${p}/pages/infos-pratiques.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Infos pratiques</a>
+          <a href="${p}/pages/tarifs.html"><i class="fa-solid fa-tag" aria-hidden="true"></i>Tarifs</a>
+          <a href="${p}/pages/horaires.html"><i class="fa-solid fa-clock" aria-hidden="true"></i>Horaires</a>
+          <a href="${p}/pages/acces-parking.html"><i class="fa-solid fa-route" aria-hidden="true"></i>Accès &amp; parking</a>
+          <a href="${p}/pages/contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a>
         </nav>
       </div>
       <div class="footer-bottom">
@@ -145,10 +145,10 @@ function infoBanner(text) {
 }
 
 function pageHero(label, title, img) {
-  const photo = img || '../assets/photos/gruissan-050.jpg';
+  if (!img) throw new Error(`Photo obligatoire pour la page « ${title} »`);
   return `<section class="page-hero">
     <div class="page-hero__media media-fill">
-      <img src="${photo}" alt="">
+      <img src="${img}" alt="">
     </div>
     <div class="page-hero__veil"></div>
     <div class="page-hero__content">
@@ -162,7 +162,7 @@ function pageHero(label, title, img) {
 function ctaBand(text) {
   return `<div class="cta-band">
     <p>${text}</p>
-    <a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie &amp; cadeaux</a>
+    <a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie &amp; cadeaux<i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
     <p style="margin-top:0.75rem;font-size:0.75rem;opacity:0.7">Les e-billets ne sont pas nominatifs</p>
   </div>`;
 }
@@ -203,7 +203,7 @@ function contactSection(root) {
             <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" required></div>
             <div class="form-group"><label for="cp">Code postal</label><input type="text" id="cp" name="cp"></div>
             <div class="form-group"><label for="ville">Ville</label><input type="text" id="ville" name="ville"></div>
-            <button type="submit" class="btn">S'inscrire</button>
+            <button type="submit" class="btn">S'inscrire<i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
           </form>
         </div>
       </div>
@@ -228,7 +228,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
       <h1 class="hero__title">Entrez dans<br>votre <em>parenthèse.</em></h1>
       <p class="hero__tagline">L'eau, la lumière et la douceur méditerranéenne réunies dans un même lieu.</p>
       <div class="btn-group">
-        <a href="#experiences" class="btn btn--on-photo btn--filled">Explorer les espaces</a>
+        <a href="#experiences" class="btn btn--on-photo btn--filled">Explorer les espaces<i class="fa-solid fa-compass" aria-hidden="true"></i></a>
         <a href="pages/horaires.html" class="text-link text-link--light">Voir les horaires <span>→</span></a>
       </div>
     </div>
@@ -303,7 +303,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
           <div class="seasonal-slide__content">
             <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-seedling"></i></span></div>
             <h3>Au printemps,<br>je retrouve mon rythme</h3>
-            <a href="pages/aquagym.html" class="btn btn--on-photo">Bouger dans l'eau</a>
+            <a href="pages/aquagym.html" class="btn btn--on-photo">Bouger dans l'eau<i class="fa-solid fa-person-swimming" aria-hidden="true"></i></a>
           </div>
         </article>
         <article class="seasonal-slide seasonal-slide--summer" data-season="summer">
@@ -312,7 +312,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
           <div class="seasonal-slide__content">
             <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-sun"></i></span></div>
             <h3>En été,<br>toute la famille se jette à l'eau</h3>
-            <a href="pages/parc-ete.html" class="btn btn--on-photo">Profiter du parc aquatique</a>
+            <a href="pages/parc-ete.html" class="btn btn--on-photo">Profiter du parc aquatique<i class="fa-solid fa-sun" aria-hidden="true"></i></a>
           </div>
         </article>
         <article class="seasonal-slide seasonal-slide--fall" data-season="fall">
@@ -321,7 +321,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
           <div class="seasonal-slide__content">
             <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-leaf"></i></span></div>
             <h3>En automne,<br>je relâche les tensions</h3>
-            <a href="pages/massages.html" class="btn btn--on-photo">Découvrir les massages</a>
+            <a href="pages/massages.html" class="btn btn--on-photo">Découvrir les massages<i class="fa-solid fa-spa" aria-hidden="true"></i></a>
           </div>
         </article>
         <article class="seasonal-slide seasonal-slide--winter" data-season="winter">
@@ -330,7 +330,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
           <div class="seasonal-slide__content">
             <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-snowflake"></i></span></div>
             <h3>En hiver,<br>je plonge dans la chaleur</h3>
-            <a href="pages/balneo.html" class="btn btn--on-photo">Explorer l'espace Balnéo</a>
+            <a href="pages/balneo.html" class="btn btn--on-photo">Explorer l'espace Balnéo<i class="fa-solid fa-hot-tub-person" aria-hidden="true"></i></a>
           </div>
         </article>
       </div>
@@ -354,7 +354,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
         <div><strong>5</strong><span>Univers à explorer</span></div>
         <div><strong>7j/7</strong><span>La salle For.Me</span></div>
       </div>
-      <a href="pages/balneo.html" class="btn">Entrer dans l'univers</a>
+      <a href="pages/balneo.html" class="btn">Entrer dans l'univers<i class="fa-solid fa-hot-tub-person" aria-hidden="true"></i></a>
     </div>
   </section>
 
@@ -870,7 +870,7 @@ ${pageHero('Se dépasser', 'Récupération', '../assets/photos/sport.jpg')}
       <a class="link-card" href="massages.html"><i class="fa-solid fa-hands" aria-hidden="true"></i><h2>Massage décontractant</h2><p>Une approche tonique et personnalisée pour délier les zones sollicitées.</p><span>Voir les massages →</span></a>
     </div>
     <div class="info-box"><p class="info-box__title">Composer sa récupération</p><ul><li>Choisissez une intensité adaptée à votre état de forme</li><li>Hydratez-vous avant et après les espaces de chaleur</li><li>Les soins et hydromassages sont proposés sur rendez-vous</li></ul></div>
-    <p><a class="btn" href="contact.html">Nous demander conseil</a></p>
+    <p><a class="btn" href="contact.html">Nous demander conseil<i class="fa-solid fa-envelope" aria-hidden="true"></i></a></p>
   </div>
 </section>
 </main>`);
@@ -888,7 +888,7 @@ ${pageHero('Pratiquer', 'Aquagym', '../assets/photos/aquagym.jpg')}
     <p><a href="aquabike.html">Découvrir aussi l'Aquabike →</a></p>
   </div>
 </section>
-<div class="cta-band"><p>Réservez votre séance d'Aquagym par téléphone.</p><a class="btn" href="tel:+33468756050">Appeler le 04 68 75 60 50</a></div>
+<div class="cta-band"><p>Réservez votre séance d'Aquagym par téléphone.</p><a class="btn" href="tel:+33468756050">Appeler le 04 68 75 60 50<i class="fa-solid fa-phone" aria-hidden="true"></i></a></div>
 </main>`);
 
 // AQUABIKE
@@ -904,7 +904,7 @@ ${pageHero('Pratiquer', 'Aquabike', '../assets/photos/balneo-37.jpg')}
     <p><a href="aquagym.html">Découvrir aussi l'Aquagym →</a></p>
   </div>
 </section>
-<div class="cta-band"><p>Réservez votre séance d'Aquabike par téléphone.</p><a class="btn" href="tel:+33468756050">Appeler le 04 68 75 60 50</a></div>
+<div class="cta-band"><p>Réservez votre séance d'Aquabike par téléphone.</p><a class="btn" href="tel:+33468756050">Appeler le 04 68 75 60 50<i class="fa-solid fa-phone" aria-hidden="true"></i></a></div>
 </main>`);
 
 // BEBES NAGEURS
@@ -962,7 +962,7 @@ ${pageHero('Préparer', 'Tarifs', '../assets/photos/gruissan-050.jpg')}
   <h2>Espace Balnéo</h2><div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>Entrée 2h30 — 6 ans et plus</td><td>23 €</td></tr><tr><td>Entrée 2h30 — 3 à moins de 6 ans</td><td>11 €</td></tr><tr><td>Pass sans limite de temps — 6 ans et plus</td><td>29 €</td></tr><tr><td>Dernière heure</td><td>11 €</td></tr></table></div><p><a href="balneo.html">Voir tous les tarifs Balnéo et abonnements →</a></p>
   <h2>Activités</h2><div class="table-wrap"><table><tr><th>Activité</th><th>À partir de</th></tr><tr><td>Aquagym</td><td>9 € la séance</td></tr><tr><td>Aquabike</td><td>11 € la séance</td></tr><tr><td>Bébés nageurs</td><td>9 € par parent accompagnateur</td></tr><tr><td>Natation adultes</td><td>126 € les 10 séances</td></tr></table></div>
   <h2>Autres univers</h2><div class="link-grid"><a class="link-card" href="salle-de-sport.html"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i><h2>Espace For.Me</h2><p>Séances et abonnements.</p><span>Voir les tarifs →</span></a><a class="link-card" href="massages.html"><i class="fa-solid fa-spa" aria-hidden="true"></i><h2>Massages</h2><p>Prestations avec ou sans Balnéo.</p><span>Voir la carte →</span></a><a class="link-card" href="parc-ete.html"><i class="fa-solid fa-water-ladder" aria-hidden="true"></i><h2>Parc été</h2><p>Pass journée et tarifs enfants.</p><span>Voir les tarifs →</span></a></div>
-  <p><a class="btn btn--filled" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Billetterie en ligne</a></p>
+  <p><a class="btn btn--filled" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Billetterie en ligne<i class="fa-solid fa-ticket" aria-hidden="true"></i></a></p>
 </div></section>
 </main>`);
 
@@ -978,7 +978,7 @@ ${pageHero('Préparer', 'Brochures', '../assets/photos/bassins-exterieurs.jpg')}
     <a class="link-card" href="parc-ete.html"><i class="fa-solid fa-sun" aria-hidden="true"></i><h2>Guide Parc été</h2><p>Espaces, services, règles et tarifs de la saison estivale.</p><span>Préparer sa journée →</span></a>
   </div>
   <div class="info-box"><p class="info-box__title">Besoin d'un document imprimable ?</p><p>Contactez l'accueil : l'équipe vous transmettra la documentation disponible pour votre demande.</p></div>
-  <p><a class="btn" href="contact.html">Demander une brochure</a></p>
+  <p><a class="btn" href="contact.html">Demander une brochure<i class="fa-solid fa-file-lines" aria-hidden="true"></i></a></p>
 </div></section>
 </main>`);
 
@@ -988,9 +988,9 @@ pages['pages/horaires.html'] = page('Horaires', 'Horaires d’ouverture de l’E
 ${pageHero('Préparer', 'Horaires', '../assets/photos/balneo-188.jpg')}
 <section class="section section--light"><div class="container content-block fade-in">
   <p>Les horaires évoluent selon les espaces et les périodes de l'année. Retrouvez ici les repères essentiels avant votre venue.</p>
-  <div class="pricing-grid"><div class="pricing-card"><p class="pricing-card__name">Espace For.Me</p><p class="pricing-card__price">6h–23h</p><p class="pricing-card__desc">7j/7 — dernier accès à 22h.</p></div><div class="pricing-card"><p class="pricing-card__name">Espace Balnéo — été</p><p class="pricing-card__price">10h–19h</p><p class="pricing-card__desc">Évacuation des bassins 15 minutes avant la fermeture.</p></div><div class="pricing-card"><p class="pricing-card__name">Parc été</p><p class="pricing-card__price">11h–18h</p><p class="pricing-card__desc">Ouverture saisonnière en juillet et août.</p></div></div>
+  <div class="pricing-grid"><div class="pricing-card"><p class="pricing-card__name">Espace For.Me</p><p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>6h–23h</p><p class="pricing-card__desc">7j/7 — dernier accès à 22h.</p></div><div class="pricing-card"><p class="pricing-card__name">Espace Balnéo — été</p><p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>10h–19h</p><p class="pricing-card__desc">Évacuation des bassins 15 minutes avant la fermeture.</p></div><div class="pricing-card"><p class="pricing-card__name">Parc été</p><p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>11h–18h</p><p class="pricing-card__desc">Ouverture saisonnière en juillet et août.</p></div></div>
   <div class="info-box"><p class="info-box__title">Horaires du jour</p><p>Pour les horaires hors saison, les jours fériés, les activités encadrées ou une fermeture technique, vérifiez auprès de l'accueil au <a href="tel:+33468756050">04 68 75 60 50</a>.</p></div>
-  <p><a class="btn" href="contact.html">Contacter l'accueil</a></p>
+  <p><a class="btn" href="contact.html">Contacter l'accueil<i class="fa-solid fa-envelope" aria-hidden="true"></i></a></p>
 </div></section>
 </main>`);
 
@@ -1002,7 +1002,7 @@ ${pageHero('Préparer', 'Privatisation', '../assets/photos/bassins-exterieurs.jp
   <p>Vous préparez un moment pour un groupe, une association, un club ou une entreprise ? L'équipe étudie avec vous les possibilités d'accueil selon votre projet, la période et les espaces disponibles.</p>
   <div class="link-grid"><div class="link-card"><i class="fa-solid fa-users" aria-hidden="true"></i><h2>Groupes</h2><p>Une demande adaptée au nombre de participants et au rythme souhaité.</p></div><div class="link-card"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><h2>Entreprises</h2><p>Un cadre différent pour un temps d'équipe ou une parenthèse bien-être.</p></div><div class="link-card"><i class="fa-solid fa-medal" aria-hidden="true"></i><h2>Clubs</h2><p>Des pistes autour de l'activité, de la récupération et de la détente.</p></div></div>
   <h2>Construisons votre demande</h2><p>Indiquez la date envisagée, le nombre de participants, les espaces souhaités et vos contraintes horaires. L'équipe vous répondra sur la faisabilité et les conditions.</p>
-  <p><a class="btn btn--filled" href="contact.html">Demander une privatisation</a></p>
+  <p><a class="btn btn--filled" href="contact.html">Demander une privatisation<i class="fa-solid fa-users" aria-hidden="true"></i></a></p>
 </div></section>
 </main>`);
 
@@ -1014,7 +1014,7 @@ ${pageHero('Préparer', 'Accès &amp; parking', '../assets/photos/gruissan-050.j
   <p>L'Espace Balnéo se situe avenue des Bains à Gruissan, à proximité immédiate des espaces sportifs et de loisirs.</p>
   <div class="info-box"><p class="info-box__title">Adresse</p><p><strong>Espace Balnéo de Gruissan</strong><br>Avenue des Bains<br>11430 Gruissan</p></div>
   <h2>Venir sur place</h2><div class="link-grid"><div class="link-card"><i class="fa-solid fa-car" aria-hidden="true"></i><h2>En voiture</h2><p>Suivez la direction de l'Espace Balnéo. Le stationnement se fait sur les zones prévues autour du site.</p></div><div class="link-card"><i class="fa-solid fa-person-walking" aria-hidden="true"></i><h2>À pied ou à vélo</h2><p>Rejoignez l'équipement par les cheminements locaux depuis les secteurs proches.</p></div></div>
-  <p><a class="btn btn--filled" href="https://maps.google.fr/?saddr=&amp;daddr=43.1182048,3.11328202" target="_blank" rel="noopener">Ouvrir l'itinéraire</a></p>
+  <p><a class="btn btn--filled" href="https://maps.google.fr/?saddr=&amp;daddr=43.1182048,3.11328202" target="_blank" rel="noopener">Ouvrir l'itinéraire<i class="fa-solid fa-route" aria-hidden="true"></i></a></p>
   <p>Pour une question d'accessibilité ou de dépose, contactez l'accueil avant votre venue.</p>
 </div></section>
 </main>`);
@@ -1033,7 +1033,7 @@ ${pageHero('Préparer', 'Questions fréquentes', '../assets/photos/riviere.jpg')
     <details><summary>Où consulter les horaires et les tarifs ?</summary><p>Consultez les pages <a href="horaires.html">Horaires</a> et <a href="tarifs.html">Tarifs</a>. Pour une information du jour, appelez l'accueil au <a href="tel:+33468756050">04 68 75 60 50</a>.</p></details>
     <details><summary>Comment venir et où stationner ?</summary><p>Retrouvez l'adresse, l'itinéraire et les informations de stationnement sur la page <a href="acces-parking.html">Accès &amp; parking</a>.</p></details>
   </div>
-  <p><a class="btn" href="contact.html">Une autre question ?</a></p>
+  <p><a class="btn" href="contact.html">Une autre question ?<i class="fa-solid fa-circle-question" aria-hidden="true"></i></a></p>
 </div></section>
 </main>`);
 
@@ -1098,7 +1098,7 @@ function articlePage(title, date, img, content) {
 <main>
 ${pageHero('Actualité — ' + date, title, img)}
 <section class="section section--light"><div class="container content-block fade-in">${content}
-<p style="margin-top:var(--space-lg)"><a href="actualites.html" class="btn">← Toutes les actualités</a></p>
+<p style="margin-top:var(--space-lg)"><a href="actualites.html" class="btn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Toutes les actualités</a></p>
 </div></section></main>`);
 }
 
@@ -1132,7 +1132,7 @@ ${pageHero('Nous contacter', 'Contact', '../assets/photos/gruissan-050.jpg')}
       <p class="contact-info__label" style="margin-top:var(--space-md)">Adresse</p>
       <p>Avenue des Bains — 11430 Gruissan</p>
     </div>
-    <a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie en ligne</a>
+    <a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie en ligne<i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
   </div>
 </section>
 ${contactSection(true)}

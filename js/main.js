@@ -69,7 +69,8 @@
   // Persistent practical shortcuts
   if (!document.querySelector('.practical-rail')) {
     var mainScript = document.querySelector('script[src$="/js/main.js"], script[src$="js/main.js"]');
-    var siteRoot = mainScript ? new URL('../', mainScript.src) : new URL('./', window.location.href);
+    if (!mainScript) throw new Error('Le script principal doit avoir une URL explicite.');
+    var siteRoot = new URL('../', mainScript.src);
     var practicalRail = document.createElement('nav');
     practicalRail.className = 'practical-rail';
     practicalRail.setAttribute('aria-label', 'Accès pratiques');
@@ -125,8 +126,9 @@
       return;
     }
     var mobileHeader = document.querySelector('.site-header');
+    if (!mobileHeader) throw new Error('Le header mobile requis est absent.');
     var alertIsVisible = infoBanner && !infoBanner.classList.contains('hidden');
-    var headerBottom = mobileHeader ? Math.max(0, mobileHeader.getBoundingClientRect().bottom) : 84;
+    var headerBottom = Math.max(0, mobileHeader.getBoundingClientRect().bottom);
     var bannerBottom = alertIsVisible ? Math.max(0, infoBanner.getBoundingClientRect().bottom) : 0;
     var lowerEdge = Math.max(headerBottom, bannerBottom);
     document.documentElement.style.setProperty('--mobile-booking-top', Math.ceil(lowerEdge + 12) + 'px');
@@ -178,7 +180,8 @@
   toolsBar.appendChild(savedTool);
   var headerInner = document.querySelector('.site-header__inner');
   var navToggleButton = document.querySelector('.nav-toggle');
-  if (headerInner) headerInner.insertBefore(toolsBar, navToggleButton || null);
+  if (!headerInner || !navToggleButton) throw new Error('Structure du header incomplète.');
+  headerInner.insertBefore(toolsBar, navToggleButton);
 
   var overlay = document.createElement('div');
   overlay.className = 'site-panel';
@@ -324,7 +327,8 @@
   savedTool.addEventListener('click', renderSavedPanel);
 
   var addSaveButton = function (host, url, title, image, variant) {
-    if (!host || host.querySelector(':scope > .save-button')) return;
+    if (!host || !url || !title || !image) throw new Error('Données de favori incomplètes.');
+    if (host.querySelector(':scope > .save-button')) return;
     var isInsideLink = host.tagName === 'A';
     var button = document.createElement(isInsideLink ? 'span' : 'button');
     if (isInsideLink) {
@@ -340,7 +344,7 @@
       event.preventDefault();
       event.stopPropagation();
       var existingIndex = savedItems.findIndex(function (item) { return item.url === url; });
-      if (existingIndex === -1) savedItems.push({ url: url, title: title, image: image || '' });
+      if (existingIndex === -1) savedItems.push({ url: url, title: title, image: image });
       else savedItems.splice(existingIndex, 1);
       saveItems();
       updateSavedUi();
@@ -358,25 +362,27 @@
   document.querySelectorAll('.experience-card').forEach(function (card) {
     var image = card.querySelector('img');
     var title = card.querySelector('h3');
-    addSaveButton(card, card.href, title ? title.textContent.trim() : document.title, image ? image.src : '', 'overlay');
+    addSaveButton(card, card.href, title && title.textContent.trim(), image && image.src, 'overlay');
   });
   document.querySelectorAll('.news-card').forEach(function (card) {
     var link = card.querySelector('.news-card__link');
     var image = card.querySelector('img');
     var title = card.querySelector('h3');
-    if (link) addSaveButton(card, link.href, title ? title.textContent.trim() : document.title, image ? image.src : '', 'overlay');
+    if (!link) throw new Error('Lien requis absent sur une actualité.');
+    addSaveButton(card, link.href, title && title.textContent.trim(), image && image.src, 'overlay');
   });
   document.querySelectorAll('.seasonal-slide').forEach(function (card) {
     var link = card.querySelector('a');
     var image = card.querySelector('img');
     var title = card.querySelector('h3');
-    if (link) addSaveButton(card, link.href, title ? title.textContent.replace(/\s+/g, ' ').trim() : document.title, image ? image.src : '', 'overlay');
+    if (!link) throw new Error('Lien requis absent sur une saison.');
+    addSaveButton(card, link.href, title && title.textContent.replace(/\s+/g, ' ').trim(), image && image.src, 'overlay');
   });
   var pageHero = document.querySelector('.page-hero');
   if (pageHero) {
     var heroImage = pageHero.querySelector('img');
     var heroTitle = pageHero.querySelector('h1');
-    addSaveButton(pageHero, window.location.href, heroTitle ? heroTitle.textContent.trim() : document.title, heroImage ? heroImage.src : '', 'page');
+    addSaveButton(pageHero, window.location.href, heroTitle && heroTitle.textContent.trim(), heroImage && heroImage.src, 'page');
   }
   updateSavedUi();
 
@@ -391,7 +397,7 @@
 
   var quickAccessIcons = ['fa-clock', 'fa-ticket', 'fa-route'];
   document.querySelectorAll('.quick-access > a').forEach(function (link, index) {
-    if (!quickAccessIcons[index]) return;
+    if (!quickAccessIcons[index]) throw new Error('Icône explicite absente pour un accès rapide.');
     var icon = document.createElement('i');
     icon.className = 'fa-solid ' + quickAccessIcons[index] + ' quick-access__icon';
     icon.setAttribute('aria-hidden', 'true');
@@ -401,24 +407,12 @@
   var contactIcons = { 'téléphone': 'fa-phone', 'e-mail': 'fa-envelope', 'adresse': 'fa-location-dot' };
   document.querySelectorAll('.contact-info__label').forEach(function (label) {
     var name = label.textContent.trim().toLocaleLowerCase('fr');
-    if (!contactIcons[name] || label.querySelector('i')) return;
+    if (!contactIcons[name]) throw new Error('Icône explicite absente pour « ' + name + ' ».');
+    if (label.querySelector('i')) return;
     var icon = document.createElement('i');
     icon.className = 'fa-solid ' + contactIcons[name] + ' context-icon';
     icon.setAttribute('aria-hidden', 'true');
     label.prepend(icon);
-  });
-
-  document.querySelectorAll('a.btn').forEach(function (button) {
-    if (button.querySelector('i') || button.textContent.trim().charAt(0) === '←') return;
-    var buttonHref = button.getAttribute('href') || '';
-    var iconName = buttonHref.indexOf('horanet.com') !== -1 ? 'fa-ticket' : buttonHref.indexOf('tel:') === 0 ? 'fa-phone' : 'fa-arrow-right';
-    button.insertAdjacentHTML('beforeend', '<i class="fa-solid ' + iconName + '" aria-hidden="true"></i>');
-  });
-
-  document.querySelectorAll('a.btn').forEach(function (button) {
-    if (button.textContent.trim().charAt(0) !== '←') return;
-    button.textContent = button.textContent.trim().slice(1).trim();
-    prependContextIcon(button, 'fa-arrow-left');
   });
 
   document.querySelectorAll('.info-banner .container').forEach(function (banner) {
@@ -431,28 +425,6 @@
 
   document.querySelectorAll('.service-item__duration').forEach(function (duration) {
     prependContextIcon(duration, 'fa-clock');
-  });
-
-  document.querySelectorAll('.pricing-card__price').forEach(function (price) {
-    prependContextIcon(price, 'fa-tag');
-  });
-
-  document.querySelectorAll('.utility-bar nav a').forEach(function (link) {
-    var href = link.getAttribute('href') || '';
-    var iconName = href.indexOf('tel:') === 0 ? 'fa-phone' : href.indexOf('contact') !== -1 ? 'fa-envelope' : 'fa-arrow-up-right-from-square';
-    prependContextIcon(link, iconName);
-  });
-
-  document.querySelectorAll('.footer-nav a').forEach(function (link) {
-    var href = link.getAttribute('href') || '';
-    var iconName = 'fa-arrow-right';
-    if (href.indexOf('index.html') !== -1) iconName = 'fa-house';
-    else if (href.indexOf('contact') !== -1) iconName = 'fa-envelope';
-    else if (href.indexOf('reglement') !== -1) iconName = 'fa-shield-halved';
-    else if (href.indexOf('mentions-legales') !== -1) iconName = 'fa-scale-balanced';
-    else if (href.indexOf('donnees-personnelles') !== -1) iconName = 'fa-user-shield';
-    else if (href.indexOf('horanet.com') !== -1) iconName = 'fa-ticket';
-    prependContextIcon(link, iconName);
   });
 
   // Fade-in on scroll
