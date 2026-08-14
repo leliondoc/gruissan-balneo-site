@@ -224,7 +224,7 @@ body:not(.is-home) .main-nav > li > a.active { color: var(--green); }
 
 /* Persistent practical rail */
 .practical-rail { --rail-size: 54px; position: fixed; z-index: 280; top: 50%; right: auto; left: 0; width: var(--rail-size); display: flex; flex-direction: column; color: var(--white); background: rgba(0,110,96,.46); border-right: 1px solid rgba(255,255,255,.14); border-radius: 0 18px 18px 0; box-shadow: none; -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); transform: translateY(-50%); transition: background var(--transition); }
-.practical-rail:hover, .practical-rail:focus-within { background: rgba(0,110,96,.64); }
+.practical-rail:hover, .practical-rail:focus-within { background: rgb(0,110,96); }
 .practical-rail__link { position: relative; width: var(--rail-size); height: var(--rail-size); display: grid; place-items: center; color: rgba(255,255,255,.84); background: transparent; border-top: 1px solid rgba(255,255,255,.16); transition: color var(--transition), background var(--transition); }
 .practical-rail__link:first-child { border-top: 0; border-radius: 0 18px 0 0; }
 .practical-rail__link:last-child { border-radius: 0 0 18px 0; }
