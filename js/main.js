@@ -5,6 +5,25 @@
   const navToggle = document.querySelector('.nav-toggle');
   const mainNav = document.querySelector('.main-nav');
 
+  if (mainNav) {
+    var menuIcons = [
+      '<i class="fa-solid fa-dumbbell" aria-hidden="true"></i>',
+      '<i class="fa-solid fa-spa" aria-hidden="true"></i>',
+      '<i class="fa-solid fa-person-swimming" aria-hidden="true"></i>',
+      '<i class="fa-solid fa-water-ladder" aria-hidden="true"></i>',
+      '<i class="fa-solid fa-book-open" aria-hidden="true"></i>'
+    ];
+    Array.from(mainNav.children).slice(0, 5).forEach(function (item, index) {
+      var control = item.querySelector(':scope > a, :scope > .nav-link');
+      if (!control) return;
+      var icon = document.createElement('span');
+      icon.className = 'main-nav__icon main-nav__icon--' + (index + 1);
+      icon.setAttribute('aria-hidden', 'true');
+      icon.innerHTML = menuIcons[index];
+      control.prepend(icon);
+    });
+  }
+
   if (navToggle && mainNav) {
     navToggle.addEventListener('click', function () {
       mainNav.classList.toggle('open');
@@ -19,7 +38,7 @@
   // Mobile dropdown toggles
   document.querySelectorAll('.has-dropdown > .nav-link').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
-      if (window.innerWidth <= 900) {
+      if (window.innerWidth <= 1080) {
         e.preventDefault();
         var parent = btn.parentElement;
         document.querySelectorAll('.has-dropdown.open').forEach(function (item) {
@@ -47,6 +66,41 @@
     });
   });
 
+  // Persistent practical shortcuts
+  if (!document.querySelector('.practical-rail')) {
+    var mainScript = document.querySelector('script[src$="/js/main.js"], script[src$="js/main.js"]');
+    var siteRoot = mainScript ? new URL('../', mainScript.src) : new URL('./', window.location.href);
+    var practicalRail = document.createElement('nav');
+    practicalRail.className = 'practical-rail';
+    practicalRail.setAttribute('aria-label', 'Accès pratiques');
+    practicalRail.innerHTML = '<span class="practical-rail__heading" aria-hidden="true">Préparer</span>';
+
+    var practicalLinks = [
+      { href: 'https://gruissan-balneo.horanet.com/', label: 'Réserver en ligne', icon: 'fa-solid fa-ticket', tone: 'booking', external: true },
+      { href: new URL('pages/horaires.html', siteRoot).href, label: 'Horaires', icon: 'fa-solid fa-clock', tone: 'hours' },
+      { href: 'tel:+33468756050', label: 'Appeler la Balnéo', icon: 'fa-solid fa-phone', tone: 'phone' },
+      { href: 'https://maps.google.fr/?saddr=&daddr=43.1182048,3.11328202', label: 'Venir à la Balnéo', icon: 'fa-solid fa-route', tone: 'route', external: true },
+      { href: new URL('pages/contact.html', siteRoot).href, label: 'Nous contacter', icon: 'fa-solid fa-envelope', tone: 'contact' },
+      { href: 'https://www.instagram.com/gruissan_espacebalneo/', label: 'Instagram Balnéo', icon: 'fa-brands fa-instagram', tone: 'instagram', external: true },
+      { href: 'https://www.facebook.com/espacebalneoludiquegruissan.omt', label: 'Facebook Balnéo', icon: 'fa-brands fa-facebook-f', tone: 'facebook', external: true }
+    ];
+
+    practicalLinks.forEach(function (item) {
+      var link = document.createElement('a');
+      link.className = 'practical-rail__link practical-rail__link--' + item.tone;
+      link.href = item.href;
+      link.setAttribute('aria-label', item.label);
+      link.innerHTML = '<i class="' + item.icon + ' fa-fw" aria-hidden="true"></i><span class="practical-rail__label">' + item.label + '</span>';
+      if (item.external) {
+        link.target = '_blank';
+        link.rel = 'noopener';
+      }
+      practicalRail.appendChild(link);
+    });
+
+    document.body.appendChild(practicalRail);
+  }
+
   // Close info banner
   var bannerClose = document.querySelector('.info-banner__close');
   var infoBanner = document.querySelector('.info-banner');
@@ -72,11 +126,23 @@
     }
     var mobileHeader = document.querySelector('.site-header');
     var alertIsVisible = infoBanner && !infoBanner.classList.contains('hidden');
-    var lowerEdge = alertIsVisible ? infoBanner.getBoundingClientRect().bottom : (mobileHeader ? mobileHeader.getBoundingClientRect().bottom : 84);
+    var headerBottom = mobileHeader ? Math.max(0, mobileHeader.getBoundingClientRect().bottom) : 84;
+    var bannerBottom = alertIsVisible ? Math.max(0, infoBanner.getBoundingClientRect().bottom) : 0;
+    var lowerEdge = Math.max(headerBottom, bannerBottom);
     document.documentElement.style.setProperty('--mobile-booking-top', Math.ceil(lowerEdge + 12) + 'px');
+  };
+  var bookingPositionQueued = false;
+  var scheduleBookingOrbPosition = function () {
+    if (bookingPositionQueued) return;
+    bookingPositionQueued = true;
+    window.requestAnimationFrame(function () {
+      positionBookingOrb();
+      bookingPositionQueued = false;
+    });
   };
   positionBookingOrb();
   window.addEventListener('resize', positionBookingOrb);
+  window.addEventListener('scroll', scheduleBookingOrbPosition, { passive: true });
 
   // Place seasonal highlights directly below quick access
   var seasonalSection = document.querySelector('[data-seasonal]');
@@ -90,9 +156,9 @@
   var savedItems = [];
   try { savedItems = JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch (e) { savedItems = []; }
 
-  var iconSearch = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>';
-  var iconHeart = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.5 5.5 0 0 0-7.8 0L12 5.8l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.5a5.5 5.5 0 0 0 0-7.8Z"></path></svg>';
-  var iconClose = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 14 14M19 5 5 19"></path></svg>';
+  var iconSearch = '<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>';
+  var iconHeart = '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
+  var iconClose = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
 
   var createToolButton = function (kind, label, icon) {
     var button = document.createElement('button');
@@ -180,16 +246,25 @@
   document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closePanel(); });
 
   var searchEntries = [
-    ['Espace Balnéo, horaires et tarifs', 'pages/balneo.html'],
-    ['Massages et soins', 'pages/massages.html'],
-    ['Piscine', 'pages/piscine.html'],
-    ['Salle de sport', 'pages/salle-de-sport.html'],
+    ['Espace For.Me, sport et fitness', 'pages/salle-de-sport.html'],
+    ['Récupération', 'pages/recuperation.html'],
+    ['Massages', 'pages/massages.html'],
+    ['Hydromassages', 'pages/hydromassages.html'],
+    ['Espace Balnéo', 'pages/balneo.html'],
+    ['Aquagym', 'pages/aquagym.html'],
+    ['Aquabike', 'pages/aquabike.html'],
+    ['Bébés nageurs', 'pages/bebes-nageurs.html'],
+    ['Natation et stages', 'pages/natation.html'],
     ['Parc aquatique été', 'pages/parc-ete.html'],
-    ['Activités aquatiques adultes', 'pages/activites-annee-adultes.html'],
-    ['Cours de natation', 'pages/activites-annee-natation.html'],
-    ['Bébés nageurs et jardin aquatique', 'pages/activites-annee-bebe-jardin.html'],
+    ['Infos pratiques', 'pages/infos-pratiques.html'],
+    ['Tarifs', 'pages/tarifs.html'],
+    ['Brochures', 'pages/brochures.html'],
+    ['Horaires', 'pages/horaires.html'],
+    ['Privatisation', 'pages/privatisation.html'],
+    ['Accès et parking', 'pages/acces-parking.html'],
+    ['Questions fréquentes, FAQ', 'pages/faq.html'],
     ['Actualités', 'pages/actualites.html'],
-    ['Contact et accès', 'pages/contact.html']
+    ['Contact', 'pages/contact.html']
   ];
   var pathPrefix = window.location.pathname.indexOf('/pages/') !== -1 ? '../' : '';
 
@@ -200,7 +275,7 @@
     var renderResults = function () {
       var query = input.value.trim().toLocaleLowerCase('fr');
       var matches = searchEntries.filter(function (entry) { return !query || entry[0].toLocaleLowerCase('fr').indexOf(query) !== -1; });
-      results.innerHTML = matches.length ? matches.map(function (entry) { return '<a href="' + pathPrefix + entry[1] + '"><span>' + entry[0] + '</span><strong>→</strong></a>'; }).join('') : '<p>Aucun résultat. Essayez un autre terme.</p>';
+      results.innerHTML = matches.length ? matches.map(function (entry) { return '<a href="' + pathPrefix + entry[1] + '"><span>' + entry[0] + '</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>'; }).join('') : '<p>Aucun résultat. Essayez un autre terme.</p>';
     };
     input.addEventListener('input', renderResults);
     renderResults();
@@ -213,9 +288,19 @@
   var updateSavedUi = function () {
     var count = toolsBar.querySelector('.site-tool__count');
     if (count) count.textContent = String(savedItems.length);
+    var savedToolHeart = savedTool.querySelector('i');
+    if (savedToolHeart) {
+      savedToolHeart.classList.toggle('fa-solid', savedItems.length > 0);
+      savedToolHeart.classList.toggle('fa-regular', savedItems.length === 0);
+    }
     document.querySelectorAll('[data-save-url]').forEach(function (button) {
       var isSaved = savedItems.some(function (item) { return item.url === button.getAttribute('data-save-url'); });
       button.classList.toggle('is-saved', isSaved);
+      var heart = button.querySelector('i');
+      if (heart) {
+        heart.classList.toggle('fa-solid', isSaved);
+        heart.classList.toggle('fa-regular', !isSaved);
+      }
       button.setAttribute('aria-pressed', String(isSaved));
       button.setAttribute('aria-label', isSaved ? 'Retirer des favoris' : 'Ajouter aux favoris');
       button.setAttribute('data-tooltip', isSaved ? 'Retirer des favoris' : 'Ajouter aux favoris');
@@ -294,6 +379,81 @@
     addSaveButton(pageHero, window.location.href, heroTitle ? heroTitle.textContent.trim() : document.title, heroImage ? heroImage.src : '', 'page');
   }
   updateSavedUi();
+
+  // Contextual Font Awesome icons
+  var prependContextIcon = function (element, iconName) {
+    if (!element || !iconName || element.querySelector(':scope > .context-icon')) return;
+    var icon = document.createElement('i');
+    icon.className = 'fa-solid ' + iconName + ' context-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    element.prepend(icon);
+  };
+
+  var quickAccessIcons = ['fa-clock', 'fa-ticket', 'fa-route'];
+  document.querySelectorAll('.quick-access > a').forEach(function (link, index) {
+    if (!quickAccessIcons[index]) return;
+    var icon = document.createElement('i');
+    icon.className = 'fa-solid ' + quickAccessIcons[index] + ' quick-access__icon';
+    icon.setAttribute('aria-hidden', 'true');
+    link.appendChild(icon);
+  });
+
+  var contactIcons = { 'téléphone': 'fa-phone', 'e-mail': 'fa-envelope', 'adresse': 'fa-location-dot' };
+  document.querySelectorAll('.contact-info__label').forEach(function (label) {
+    var name = label.textContent.trim().toLocaleLowerCase('fr');
+    if (!contactIcons[name] || label.querySelector('i')) return;
+    var icon = document.createElement('i');
+    icon.className = 'fa-solid ' + contactIcons[name] + ' context-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    label.prepend(icon);
+  });
+
+  document.querySelectorAll('a.btn').forEach(function (button) {
+    if (button.querySelector('i') || button.textContent.trim().charAt(0) === '←') return;
+    var buttonHref = button.getAttribute('href') || '';
+    var iconName = buttonHref.indexOf('horanet.com') !== -1 ? 'fa-ticket' : buttonHref.indexOf('tel:') === 0 ? 'fa-phone' : 'fa-arrow-right';
+    button.insertAdjacentHTML('beforeend', '<i class="fa-solid ' + iconName + '" aria-hidden="true"></i>');
+  });
+
+  document.querySelectorAll('a.btn').forEach(function (button) {
+    if (button.textContent.trim().charAt(0) !== '←') return;
+    button.textContent = button.textContent.trim().slice(1).trim();
+    prependContextIcon(button, 'fa-arrow-left');
+  });
+
+  document.querySelectorAll('.info-banner .container').forEach(function (banner) {
+    prependContextIcon(banner, 'fa-circle-exclamation');
+  });
+
+  document.querySelectorAll('.info-box__title').forEach(function (title) {
+    prependContextIcon(title, 'fa-circle-info');
+  });
+
+  document.querySelectorAll('.service-item__duration').forEach(function (duration) {
+    prependContextIcon(duration, 'fa-clock');
+  });
+
+  document.querySelectorAll('.pricing-card__price').forEach(function (price) {
+    prependContextIcon(price, 'fa-tag');
+  });
+
+  document.querySelectorAll('.utility-bar nav a').forEach(function (link) {
+    var href = link.getAttribute('href') || '';
+    var iconName = href.indexOf('tel:') === 0 ? 'fa-phone' : href.indexOf('contact') !== -1 ? 'fa-envelope' : 'fa-arrow-up-right-from-square';
+    prependContextIcon(link, iconName);
+  });
+
+  document.querySelectorAll('.footer-nav a').forEach(function (link) {
+    var href = link.getAttribute('href') || '';
+    var iconName = 'fa-arrow-right';
+    if (href.indexOf('index.html') !== -1) iconName = 'fa-house';
+    else if (href.indexOf('contact') !== -1) iconName = 'fa-envelope';
+    else if (href.indexOf('reglement') !== -1) iconName = 'fa-shield-halved';
+    else if (href.indexOf('mentions-legales') !== -1) iconName = 'fa-scale-balanced';
+    else if (href.indexOf('donnees-personnelles') !== -1) iconName = 'fa-user-shield';
+    else if (href.indexOf('horanet.com') !== -1) iconName = 'fa-ticket';
+    prependContextIcon(link, iconName);
+  });
 
   // Fade-in on scroll
   var fadeEls = document.querySelectorAll('.fade-in');
@@ -394,7 +554,7 @@
   backToTop.setAttribute('aria-label', 'Retour en haut de la page');
   backToTop.setAttribute('aria-hidden', 'true');
   backToTop.tabIndex = -1;
-  backToTop.innerHTML = '<span aria-hidden="true">↑</span><small aria-hidden="true">Haut</small>';
+  backToTop.innerHTML = '<i class="fa-solid fa-arrow-up" aria-hidden="true"></i><small aria-hidden="true">Haut</small>';
   document.body.appendChild(backToTop);
 
   var toggleBackToTop = function () {

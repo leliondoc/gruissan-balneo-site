@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil | Espace Balnéo Gruissan</title>
   <meta name="description" content="Espace Balnéo de Gruissan — bien-être, piscine, activités aquatiques et salle de sport à Gruissan.">
+  <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body class="is-home">
@@ -28,48 +29,46 @@
       </button>
       <ul class="main-nav">
         <li class="has-dropdown">
-          <button class="nav-link" type="button" aria-expanded="false">Découvrir</button>
-          <div class="dropdown dropdown--wide">
-            <div class="dropdown__intro">
-              <span>Découvrir</span>
-              <strong>Choisissez votre parenthèse</strong>
-              <p>De l'eau chaude aux soins, composez votre moment à Gruissan.</p>
-            </div>
-            <div class="dropdown__links">
-              <a href="./pages/balneo.html"><small>01</small> L'espace Balnéo</a>
-              <a href="./pages/massages.html"><small>02</small> Massages &amp; soins</a>
-              <a href="./pages/piscine.html"><small>03</small> La piscine</a>
-            </div>
-          </div>
-        </li>
-        <li class="has-dropdown">
-          <button class="nav-link" type="button" aria-expanded="false">Bouger</button>
+          <button class="nav-link" type="button" aria-expanded="false">Se dépasser</button>
           <div class="dropdown">
-            <span class="dropdown__label">Activités aquatiques</span>
-            <a href="./pages/activites-annee-adultes.html">Activités adultes</a>
-            <a href="./pages/activites-annee-natation.html">Cours de natation</a>
-            <a href="./pages/salle-de-sport.html">Salle de sport For.Me</a>
-            <span class="dropdown__label">Saison estivale</span>
-            <a href="./pages/activites-ete-adultes.html">Programme été</a>
-            <a href="./pages/activites-ete-stages.html">Stages de natation</a>
+            <a href="./pages/salle-de-sport.html">Espace For.Me</a>
+            <a href="./pages/recuperation.html">Récupération</a>
           </div>
         </li>
         <li class="has-dropdown">
-          <button class="nav-link" type="button" aria-expanded="false">En famille</button>
+          <button class="nav-link" type="button" aria-expanded="false">Lâcher-prise</button>
           <div class="dropdown">
-            <a href="./pages/parc-ete.html">Le parc été</a>
-            <a href="./pages/activites-annee-bebe-jardin.html">Bébés nageurs</a>
-            <a href="./pages/activites-annee-bebe-jardin.html">Jardin aquatique</a>
-            <a href="./pages/activites-ete-bebe-jardin.html">Activités famille été</a>
+            <a href="./pages/massages.html">Massages</a>
+            <a href="./pages/hydromassages.html">Hydromassages</a>
+            <a href="./pages/balneo.html">Espace Balnéo</a>
           </div>
         </li>
-        <li><a href="./pages/actualites.html">Actualités</a></li>
         <li class="has-dropdown">
-          <button class="nav-link" type="button" aria-expanded="false">Pratique</button>
-          <div class="dropdown dropdown--right">
-            <a href="./pages/balneo.html">Horaires &amp; tarifs</a>
-            <a href="./pages/contact.html">Accès &amp; contact</a>
-            <a href="./pages/reglement.html">Préparer ma venue</a>
+          <button class="nav-link" type="button" aria-expanded="false">Pratiquer</button>
+          <div class="dropdown">
+            <a href="./pages/aquagym.html">Aquagym</a>
+            <a href="./pages/aquabike.html">Aquabike</a>
+            <a href="./pages/bebes-nageurs.html">Bébés nageurs</a>
+            <a href="./pages/natation.html">Natation</a>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">S'amuser</button>
+          <div class="dropdown">
+            <a href="./pages/parc-ete.html">Parc été</a>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false">Préparer</button>
+          <div class="dropdown dropdown--right dropdown--practical">
+            <a href="./pages/infos-pratiques.html">Infos pratiques</a>
+            <a href="./pages/tarifs.html">Tarifs</a>
+            <a href="./pages/brochures.html">Brochures</a>
+            <a href="./pages/horaires.html">Horaires</a>
+            <a href="./pages/privatisation.html">Privatisation</a>
+            <a href="./pages/acces-parking.html">Accès &amp; parking</a>
+            <a href="./pages/faq.html">FAQ</a>
+            <a href="./pages/contact.html">Contact</a>
           </div>
         </li>
         <li class="main-nav__booking"><a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Réserver</a></li>
@@ -77,7 +76,7 @@
     </div>
   </header>
 <div class="info-banner">
-    <div class="container"><strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 juin au dimanche 30 août inclus, les mineurs sont admis toute la journée en Balnéo.
+    <div class="container"><span class="info-banner__message"><strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 juin au dimanche 30 août inclus, les mineurs sont admis toute la journée en Balnéo.</span>
       <button class="info-banner__close" aria-label="Fermer">&times;</button>
     </div>
   </div>
@@ -94,7 +93,7 @@
       <p class="hero__tagline">L'eau, la lumière et la douceur méditerranéenne réunies dans un même lieu.</p>
       <div class="btn-group">
         <a href="#experiences" class="btn btn--on-photo btn--filled">Explorer les espaces</a>
-        <a href="pages/balneo.html" class="text-link text-link--light">Horaires &amp; tarifs <span>→</span></a>
+        <a href="pages/horaires.html" class="text-link text-link--light">Voir les horaires <span>→</span></a>
       </div>
     </div>
     <div class="hero-seals" aria-label="Informations saison 2026">
@@ -104,9 +103,9 @@
   </section>
 
   <nav class="quick-access" aria-label="Accès rapides">
-    <a href="pages/balneo.html"><span>01</span><strong>Horaires &amp; tarifs</strong><small>Préparer ma visite</small></a>
+    <a href="pages/horaires.html"><span>01</span><strong>Horaires</strong><small>Préparer ma visite</small></a>
     <a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span>02</span><strong>Billetterie &amp; cadeaux</strong><small>Réserver en ligne</small></a>
-    <a href="pages/contact.html"><span>03</span><strong>Venir à la Balnéo</strong><small>Accès &amp; contact</small></a>
+    <a href="pages/acces-parking.html"><span>03</span><strong>Venir à la Balnéo</strong><small>Accès &amp; parking</small></a>
   </nav>
 
   <section class="welcome section" id="bienvenue">
@@ -133,7 +132,7 @@
     </div>
     <div class="experience-grid">
       <a href="pages/balneo.html" class="experience-card experience-card--large fade-in">
-        <img src="assets/photos/balneo-37.jpg" alt="Massage à l’Espace Balnéo">
+        <img src="assets/photos/riviere.jpg" alt="Rivière extérieure et bassins de l’Espace Balnéo">
         <span class="experience-card__veil"></span>
         <div class="experience-card__content"><small>Se délasser</small><h3>Les bains &amp; la Balnéo</h3><p>Bassins à 32°C, spas, hammam, saunas et rivière à courant.</p><span class="circle-arrow">→</span></div>
       </a>
@@ -148,7 +147,7 @@
         <div class="experience-card__content"><small>Se dépasser</small><h3>Sport &amp; aquasports</h3><p>Cardio, renforcement et activités aquatiques à votre rythme.</p><span class="circle-arrow">→</span></div>
       </a>
       <a href="pages/parc-ete.html" class="experience-card experience-card--wide fade-in">
-        <img src="assets/photos/riviere.jpg" alt="Parc aquatique extérieur">
+        <img src="assets/photos/parc-aquatique.jpg" alt="Parc aquatique paysager de Gruissan">
         <span class="experience-card__veil"></span>
         <div class="experience-card__content"><small>Partager</small><h3>Le parc été en famille</h3><p>Toboggans, rivière et jeux d'eau sous le soleil de Gruissan.</p><span class="circle-arrow">→</span></div>
       </a>
@@ -166,34 +165,34 @@
           <img src="assets/photos/aquagym.jpg" alt="Cours d'aquagym dans le bassin extérieur">
           <span class="seasonal-slide__veil"></span>
           <div class="seasonal-slide__content">
-            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">✿</span></div>
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-seedling"></i></span></div>
             <h3>Au printemps,<br>je retrouve mon rythme</h3>
-            <a href="pages/activites-annee-adultes.html" class="btn btn--on-photo">Bouger dans l'eau</a>
+            <a href="pages/aquagym.html" class="btn btn--on-photo">Bouger dans l'eau</a>
           </div>
         </article>
         <article class="seasonal-slide seasonal-slide--summer" data-season="summer">
           <img src="assets/photos/parc-ete-upright.png" alt="Familles profitant du parc aquatique en été">
           <span class="seasonal-slide__veil"></span>
           <div class="seasonal-slide__content">
-            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">☀</span></div>
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-sun"></i></span></div>
             <h3>En été,<br>toute la famille se jette à l'eau</h3>
             <a href="pages/parc-ete.html" class="btn btn--on-photo">Profiter du parc aquatique</a>
           </div>
         </article>
         <article class="seasonal-slide seasonal-slide--fall" data-season="fall">
-          <img src="assets/photos/balneo-73.jpg" alt="Massage bien-être à l'Espace Balnéo">
+          <img src="assets/photos/dsc-0930.jpg" alt="Massage relaxant à l'Espace Balnéo">
           <span class="seasonal-slide__veil"></span>
           <div class="seasonal-slide__content">
-            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">◆</span></div>
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-leaf"></i></span></div>
             <h3>En automne,<br>je relâche les tensions</h3>
             <a href="pages/massages.html" class="btn btn--on-photo">Découvrir les massages</a>
           </div>
         </article>
         <article class="seasonal-slide seasonal-slide--winter" data-season="winter">
-          <img src="assets/photos/balneo-188.jpg" alt="Bassin chaud et jets massants de la Balnéo">
+          <img src="assets/photos/gruissan-050.jpg" alt="Espace Balnéo illuminé au crépuscule en hiver">
           <span class="seasonal-slide__veil"></span>
           <div class="seasonal-slide__content">
-            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon">❄</span></div>
+            <div class="seasonal-emblem" aria-hidden="true"><span class="seasonal-emblem__orbit"></span><span class="seasonal-emblem__icon"><i class="fa-solid fa-snowflake"></i></span></div>
             <h3>En hiver,<br>je plonge dans la chaleur</h3>
             <a href="pages/balneo.html" class="btn btn--on-photo">Explorer l'espace Balnéo</a>
           </div>
@@ -201,15 +200,15 @@
       </div>
     </div>
     <div class="seasonal-tabs" role="tablist" aria-label="Choisir une saison">
-      <button class="seasonal-tab seasonal-tab--spring" type="button" role="tab" data-season-target="spring" aria-label="Afficher le printemps"><span aria-hidden="true">✿</span><strong>Printemps</strong></button>
-      <button class="seasonal-tab seasonal-tab--summer" type="button" role="tab" data-season-target="summer" aria-label="Afficher l'été"><span aria-hidden="true">☀</span><strong>Été</strong></button>
-      <button class="seasonal-tab seasonal-tab--fall" type="button" role="tab" data-season-target="fall" aria-label="Afficher l'automne"><span aria-hidden="true">◆</span><strong>Automne</strong></button>
-      <button class="seasonal-tab seasonal-tab--winter" type="button" role="tab" data-season-target="winter" aria-label="Afficher l'hiver"><span aria-hidden="true">❄</span><strong>Hiver</strong></button>
+      <button class="seasonal-tab seasonal-tab--spring" type="button" role="tab" data-season-target="spring" aria-label="Afficher le printemps"><span aria-hidden="true"><i class="fa-solid fa-seedling"></i></span><strong>Printemps</strong></button>
+      <button class="seasonal-tab seasonal-tab--summer" type="button" role="tab" data-season-target="summer" aria-label="Afficher l'été"><span aria-hidden="true"><i class="fa-solid fa-sun"></i></span><strong>Été</strong></button>
+      <button class="seasonal-tab seasonal-tab--fall" type="button" role="tab" data-season-target="fall" aria-label="Afficher l'automne"><span aria-hidden="true"><i class="fa-solid fa-leaf"></i></span><strong>Automne</strong></button>
+      <button class="seasonal-tab seasonal-tab--winter" type="button" role="tab" data-season-target="winter" aria-label="Afficher l'hiver"><span aria-hidden="true"><i class="fa-solid fa-snowflake"></i></span><strong>Hiver</strong></button>
     </div>
   </section>
 
-  <section class="manifesto section">
-    <div class="manifesto__photo media-fill"><img src="assets/photos/balneo-188.jpg" alt="Jets et bassin de la Balnéo"></div>
+  <section class="manifesto section" id="experience-balneo">
+    <div class="manifesto__photo media-fill"><img src="assets/photos/bassins-exterieurs.jpg" alt="Bassins extérieurs et jets massants de l'Espace Balnéo"></div>
     <div class="manifesto__content fade-in">
       <p class="section__label">L'expérience Balnéo</p>
       <h2 class="display-title">Le corps s'apaise.<br>L'esprit s'évade.</h2>
@@ -254,7 +253,7 @@
         </article>
         <article class="news-card fade-in">
           <div class="news-card__media media-fill">
-            <img src="assets/photos/balneo-188.jpg" alt="Espace balnéo">
+            <img src="assets/photos/sport.jpg" alt="Rivière extérieure de l’Espace Balnéo">
           </div>
           <div class="news-card__body">
             <p class="news-card__date">1 avril</p>
@@ -314,16 +313,25 @@
       <div class="footer-grid">
         <div class="footer-logo">
           <a href="./index.html" class="footer-wordmark"><img class="logo-img" src="./assets/logo-balneo-officiel.png" alt="Espace Balnéo Gruissan"></a>
+          <nav class="footer-legal" aria-label="Informations légales">
+            <a href="./pages/mentions-legales.html">Mentions légales</a>
+            <a href="./pages/donnees-personnelles.html">Données personnelles</a>
+            <a href="./pages/reglement.html">Règlement intérieur</a>
+          </nav>
         </div>
         <nav class="footer-nav">
-          <a href="./index.html">Accueil</a>
-          <a href="./pages/contact.html">Contact</a>
-          <a href="./pages/reglement.html">Règlement intérieur</a>
+          <a href="./pages/salle-de-sport.html">Espace For.Me</a>
+          <a href="./pages/balneo.html">Espace Balnéo</a>
+          <a href="./pages/massages.html">Massages</a>
+          <a href="./pages/aquagym.html">Aquagym</a>
+          <a href="./pages/parc-ete.html">Parc été</a>
         </nav>
         <nav class="footer-nav">
-          <a href="./pages/mentions-legales.html">Mentions légales</a>
-          <a href="./pages/donnees-personnelles.html">Données personnelles</a>
-          <a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Billetterie en ligne</a>
+          <a href="./pages/infos-pratiques.html">Infos pratiques</a>
+          <a href="./pages/tarifs.html">Tarifs</a>
+          <a href="./pages/horaires.html">Horaires</a>
+          <a href="./pages/acces-parking.html">Accès &amp; parking</a>
+          <a href="./pages/contact.html">Contact</a>
         </nav>
       </div>
       <div class="footer-bottom">
