@@ -506,6 +506,41 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* Large-screen readability */
+@media (min-width: 1280px) {
+  body { font-size: 1.4rem; }
+  .utility-bar { font-size: .9rem; }
+  .main-nav > li > a, .main-nav > li > .nav-link { font-size: 1rem; }
+  .dropdown a { font-size: 1.08rem; }
+  .dropdown__label, .dropdown__intro span { font-size: .9rem; }
+  .dropdown__intro p { font-size: 1rem; }
+  .btn { font-size: .95rem; }
+  .text-link { font-size: 1.05rem; }
+  .hero__kicker { font-size: 1rem; }
+  .hero__scroll { font-size: .78rem; }
+  .quick-access small { font-size: 1.2rem; }
+  .experience-card__content p { font-size: 1.2rem; }
+  .seasonal-tab strong { font-size: .95rem; }
+  .manifesto__content > p:not(.section__label) { font-size: 1.2rem; }
+  .manifesto__numbers span { font-size: 1rem; }
+  .news-card__date { font-size: .9rem; }
+  .news-card__excerpt { font-size: 1.2rem; }
+  .news-card__link { font-size: .9rem; }
+  table { font-size: 1.3rem; }
+  th { font-size: 1.05rem; }
+  .service-item__duration { font-size: 1.05rem; }
+  .service-item__desc { font-size: 1.2rem; }
+  .pricing-card__name { font-size: 1.25rem; }
+  .pricing-card__desc { font-size: 1.2rem; }
+  .link-card p { font-size: 1.2rem; }
+  .link-card span { font-size: 1rem; }
+  .contact-info__label, .form-group label { font-size: .95rem; }
+  .contact-info__value { font-size: 1.2rem; }
+  .footer-legal a { font-size: .9rem; }
+  .footer-nav a { font-size: 1rem; }
+  .footer-bottom { font-size: .85rem; }
+}
+
 @media (max-width: 1080px) {
   :root { --header-height: 84px; }
   .site-header:has(.main-nav.open) { z-index: 400; }
