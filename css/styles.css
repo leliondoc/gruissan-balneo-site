@@ -603,11 +603,11 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .hero__content { width: calc(100% - 2rem); padding: 10.5rem 0 9rem; }
   .hero__title { font-size: clamp(3.9rem, 18vw, 5.3rem); }
   .hero__scroll { display: none; }
-  .hero-seals { top: 10.5rem; right: .8rem; bottom: auto; gap: .35rem; }
+  .hero-seals { top: calc(var(--mobile-booking-top, calc(var(--header-height) + 5.5rem)) - var(--header-height)); right: auto; left: .55rem; bottom: auto; gap: .35rem; }
   .brand-seal--experience { width: 94px; }
   .brand-seal--experience small { font-size: .48rem; }
   .brand-seal--experience strong { font-size: 1.1rem; }
-  .brand-seal--open { width: 80px; transform: translateX(-93px) rotate(-6deg); }
+  .brand-seal--open { width: 98px; transform: none; }
   .brand-seal--open strong, .brand-seal--open span { font-size: 1.1rem; }
   .btn-group { align-items: flex-start; flex-direction: column; gap: 1.2rem; }
   .quick-access { width: calc(100% - 2rem); margin-top: -1.5rem; grid-template-columns: 1fr; }
