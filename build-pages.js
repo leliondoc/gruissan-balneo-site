@@ -17,7 +17,7 @@ function header(root, isHome) {
   <title>{{TITLE}} | Espace Balnéo Gruissan</title>
   <meta name="description" content="{{DESC}}">
   <link rel="stylesheet" href="${p}/assets/vendor/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="${p}/css/styles.css?v=20260815-3">
+  <link rel="stylesheet" href="${p}/css/styles.css?v=20260817-16">
 </head>
 <body class="${isHome ? 'is-home' : ''}">
   <header class="site-header">
@@ -91,7 +91,7 @@ function header(root, isHome) {
 function footer(root) {
   const p = root ? '..' : '.';
   return `
-  <a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Réserver<br><span>en ligne</span></a>
+  <a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span class="cta-orb__label"><span>Réserver</span><small>en ligne</small></span></a>
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -124,7 +124,7 @@ function footer(root) {
       </div>
     </div>
   </footer>
-  <script src="${p}/js/main.js"></script>
+  <script src="${p}/js/main.js?v=20260817-2"></script>
 </body>
 </html>`;
 }

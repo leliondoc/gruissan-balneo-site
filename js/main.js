@@ -9,7 +9,7 @@
     var menuIcons = [
       '<i class="fa-solid fa-dumbbell" aria-hidden="true"></i>',
       '<i class="fa-solid fa-spa" aria-hidden="true"></i>',
-      '<i class="fa-solid fa-person-swimming" aria-hidden="true"></i>',
+      '<i class="fa-solid fa-person-swimming" aria-hidden="true"></i><i class="fa-solid fa-person-swimming main-nav__icon-water" aria-hidden="true"></i>',
       '<i class="fa-solid fa-water-ladder" aria-hidden="true"></i>',
       '<i class="fa-solid fa-book-open" aria-hidden="true"></i>'
     ];
@@ -68,7 +68,7 @@
 
   // Persistent practical shortcuts
   if (!document.querySelector('.practical-rail')) {
-    var mainScript = document.querySelector('script[src$="/js/main.js"], script[src$="js/main.js"]');
+    var mainScript = document.querySelector('script[src*="js/main.js"]');
     if (!mainScript) throw new Error('Le script principal doit avoir une URL explicite.');
     var siteRoot = new URL('../', mainScript.src);
     var practicalRail = document.createElement('nav');
