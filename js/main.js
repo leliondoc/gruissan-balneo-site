@@ -76,7 +76,7 @@
     practicalRail.setAttribute('aria-label', 'Accès pratiques');
 
     var practicalLinks = [
-      { href: 'https://gruissan-balneo.horanet.com/', label: 'Réserver en ligne', icon: 'fa-solid fa-cart-shopping', tone: 'booking', external: true },
+      { href: 'https://gruissan-balneo.horanet.com/', label: 'Acheter en ligne', icon: 'fa-solid fa-cart-shopping', tone: 'booking', external: true },
       { href: new URL('pages/horaires.html', siteRoot).href, label: 'Horaires', icon: 'fa-solid fa-clock', tone: 'hours' },
       { href: 'tel:+33468756050', label: 'Appeler la Balnéo', icon: 'fa-solid fa-phone', tone: 'phone' },
       { href: 'https://maps.google.fr/?saddr=&daddr=43.1182048,3.11328202', label: 'Venir à la Balnéo', icon: 'fa-solid fa-route', tone: 'route', external: true },

@@ -17,7 +17,7 @@ function header(root, isHome) {
   <title>{{TITLE}} | Espace Balnéo Gruissan</title>
   <meta name="description" content="{{DESC}}">
   <link rel="stylesheet" href="${p}/assets/vendor/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="${p}/css/styles.css?v=20260817-16">
+  <link rel="stylesheet" href="${p}/css/styles.css?v=20260819-25">
 </head>
 <body class="${isHome ? 'is-home' : ''}">
   <header class="site-header">
@@ -48,10 +48,34 @@ function header(root, isHome) {
         </li>
         <li class="has-dropdown">
           <button class="nav-link" type="button" aria-expanded="false">Lâcher-prise</button>
-          <div class="dropdown">
-            <a href="${p}/pages/massages.html">Massages</a>
-            <a href="${p}/pages/hydromassages.html">Hydromassages</a>
-            <a href="${p}/pages/balneo.html">Espace Balnéo</a>
+          <div class="dropdown dropdown--mega">
+            <a class="mega-menu__card mega-menu__card--massages" href="${p}/pages/massages.html">
+              <img src="${p}/assets/photos/dsc-0930.jpg" alt="">
+              <span class="mega-menu__veil" aria-hidden="true"></span>
+              <span class="mega-menu__content">
+                <small>Soin du corps</small>
+                <strong>Massages</strong>
+                <span class="mega-menu__meta"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i>Sur rendez-vous</span>
+              </span>
+            </a>
+            <a class="mega-menu__card mega-menu__card--hydromassages" href="${p}/pages/hydromassages.html">
+              <img src="${p}/assets/photos/balneo-73.jpg" alt="">
+              <span class="mega-menu__veil" aria-hidden="true"></span>
+              <span class="mega-menu__content">
+                <small>Rituels &amp; hydrojets</small>
+                <strong>Hydromassages</strong>
+                <span class="mega-menu__meta"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i>Sur rendez-vous</span>
+              </span>
+            </a>
+            <a class="mega-menu__card mega-menu__card--balneo" href="${p}/pages/balneo.html">
+              <img src="${p}/assets/photos/balneo-188.jpg" alt="">
+              <span class="mega-menu__veil" aria-hidden="true"></span>
+              <span class="mega-menu__content">
+                <small>Bains &amp; chaleur</small>
+                <strong>Espace Balnéo</strong>
+                <span class="mega-menu__meta"><i class="fa-regular fa-clock" aria-hidden="true"></i>Accès libre</span>
+              </span>
+            </a>
           </div>
         </li>
         <li class="has-dropdown">
@@ -82,7 +106,7 @@ function header(root, isHome) {
             <a href="${p}/pages/contact.html">Contact</a>
           </div>
         </li>
-        <li class="main-nav__booking"><a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Réserver</a></li>
+        <li class="main-nav__booking"><a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Acheter</a></li>
       </ul>
     </div>
   </header>`;
@@ -91,7 +115,7 @@ function header(root, isHome) {
 function footer(root) {
   const p = root ? '..' : '.';
   return `
-  <a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span class="cta-orb__label"><span>Réserver</span><small>en ligne</small></span></a>
+  <a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span class="cta-orb__label"><span>Acheter</span><small>en ligne</small></span></a>
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -124,7 +148,7 @@ function footer(root) {
       </div>
     </div>
   </footer>
-  <script src="${p}/js/main.js?v=20260817-2"></script>
+  <script src="${p}/js/main.js?v=20260819-3"></script>
 </body>
 </html>`;
 }
@@ -240,7 +264,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
 
   <nav class="quick-access" aria-label="Accès rapides">
     <a href="pages/horaires.html"><span>01</span><strong>Horaires</strong><small>Préparer ma visite</small></a>
-    <a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span>02</span><strong>Billetterie &amp; cadeaux</strong><small>Réserver en ligne</small></a>
+    <a href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span>02</span><strong>Billetterie &amp; cadeaux</strong><small>Acheter en ligne</small></a>
     <a href="pages/acces-parking.html"><span>03</span><strong>Venir à la Balnéo</strong><small>Accès &amp; parking</small></a>
   </nav>
 
@@ -488,7 +512,7 @@ ${pageHero('Espace bien-être', 'Accès à la Balnéo sans réservation', '../as
     <p>Bain lavande, bain vino, en clin d'œil aux Vignerons de Gruissan.</p>
   </div>
 </section>
-${ctaBand('Réservez votre entrée Balnéo en ligne')}
+${ctaBand('Achetez votre entrée Balnéo en ligne')}
 </main>`);
 
 // MASSAGES
