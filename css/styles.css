@@ -108,16 +108,15 @@ p + p { margin-top: 1rem; }
 .main-nav__booking > a { height: 46px !important; margin-left: .35rem; padding: 0 1.25rem !important; border: 0 !important; color: var(--ink) !important; background: var(--yellow); transform: rotate(-1deg); }
 .main-nav__booking > a:hover, .main-nav__booking > a:focus-visible { background: var(--white); color: var(--ink-deep) !important; animation: bookingHello .58s cubic-bezier(.2,.8,.3,1) both; }
 
-.dropdown { position: absolute; top: calc(100% - 10px); left: 0; min-width: 260px; padding: .7rem; color: var(--ink); background: var(--white); border-top: 5px solid var(--green); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity var(--transition), transform var(--transition), visibility var(--transition); }
+.dropdown { --dropdown-x: 0%; position: absolute; top: calc(100% - 10px); left: 0; min-width: 260px; padding: .7rem; color: var(--ink); background: var(--white); border-top: 5px solid var(--green); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translate(var(--dropdown-x), 12px) scale(.985); transform-origin: top center; transition: opacity .24s ease, transform .28s cubic-bezier(.2,.75,.25,1), visibility 0s linear .28s; }
 .dropdown--right { left: auto; right: 0; }
 .dropdown--practical { width: 420px; display: grid; grid-template-columns: 1fr 1fr; }
-.has-dropdown:hover > .dropdown, .has-dropdown.open > .dropdown, .has-dropdown:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.has-dropdown:hover > .dropdown, .has-dropdown.open > .dropdown, .has-dropdown:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translate(var(--dropdown-x), 0) scale(1); transition-delay: 0s; }
 .dropdown a { display: block; padding: .78rem .9rem; border-bottom: 1px solid var(--line); color: var(--ink); font-size: .93rem; font-weight: 600; }
 .dropdown a:last-child { border-bottom: 0; }
 .dropdown a:hover { color: var(--blue); background: var(--sand-light); }
 .dropdown__label { display: block; padding: .8rem .9rem .35rem; color: var(--green); font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-.dropdown--wide { left: 50%; width: 570px; padding: 0; display: grid; grid-template-columns: .88fr 1.12fr; transform: translate(-50%, 12px); }
-.has-dropdown:hover > .dropdown--wide, .has-dropdown.open > .dropdown--wide { transform: translate(-50%, 0); }
+.dropdown--wide { --dropdown-x: -50%; left: 50%; width: 570px; padding: 0; display: grid; grid-template-columns: .88fr 1.12fr; }
 .dropdown__intro { padding: 1.6rem; color: var(--white); background: var(--green); }
 .dropdown__intro span { color: var(--yellow); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 .dropdown__intro strong { display: block; margin: .7rem 0; font-family: 'Buttercy', 'Arial Narrow', sans-serif; font-size: 1.75rem; font-weight: 400; line-height: .95; text-transform: uppercase; }
@@ -125,9 +124,8 @@ p + p { margin-top: 1rem; }
 .dropdown__links { padding: .7rem; }
 .dropdown__links a { display: flex; align-items: center; justify-content: center; gap: .7rem; text-align: center; }
 .dropdown__links small { flex: 0 0 1.4rem; display: inline-flex; align-items: center; justify-content: center; color: var(--clay); line-height: 1; text-align: center; }
-.dropdown--mega { left: 50%; width: min(850px, calc(100vw - 3rem)); min-width: 0; padding: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; border-top: 0; border-radius: 14px; transform: translate(-50%, 12px); }
+.dropdown--mega { --dropdown-x: -50%; left: 50%; width: min(850px, calc(100vw - 3rem)); min-width: 0; padding: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; border-top: 0; border-radius: 14px; }
 .dropdown--mega::before { content: ''; position: absolute; top: 0; left: 50%; width: min(260px, calc(100% - 2rem)); height: 5px; background: var(--pink); border-radius: 0 0 3px 3px; transform: translateX(-50%); }
-.has-dropdown:hover > .dropdown--mega, .has-dropdown.open > .dropdown--mega, .has-dropdown:focus-within > .dropdown--mega { transform: translate(-50%, 0); }
 .dropdown .mega-menu__card { position: relative; height: 285px; padding: 0; overflow: hidden; color: var(--white); background: var(--ink-deep); border: 0; border-radius: 10px; isolation: isolate; }
 .mega-menu__card > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; transition: transform .75s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
 .mega-menu__card--massages > img { object-position: 55% center; }
