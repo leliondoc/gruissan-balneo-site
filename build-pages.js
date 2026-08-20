@@ -17,7 +17,7 @@ function header(root, isHome) {
   <title>{{TITLE}} | Espace Balnéo Gruissan</title>
   <meta name="description" content="{{DESC}}">
   <link rel="stylesheet" href="${p}/assets/vendor/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="${p}/css/styles.css?v=20260820-2">
+  <link rel="stylesheet" href="${p}/css/styles.css?v=20260820-3">
 </head>
 <body class="${isHome ? 'is-home' : ''}">
   <header class="site-header">
