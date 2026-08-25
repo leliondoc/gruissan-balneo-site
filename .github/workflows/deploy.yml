@@ -1,0 +1,51 @@
+name: Build & Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Commit ou branche a publier
+        required: true
+        default: master
+
+# Lecture seule : le deploiement passe par FTP, pas par GITHUB_TOKEN.
+permissions:
+  contents: read
+
+# Evite deux publications concurrentes qui corrompraient l'etat FTP.
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le site
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Valider les fichiers
+        run: |
+          node --check js/main.js
+          node check-links.js
+
+      - name: Publier via FTP
+        uses: SamKirkland/FTP-Deploy-Action@cfcb39fa3cdf2ff98ac1a7fbfa539d20526d474d # 4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          state-name: .ftp-deploy-sync-state.json
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            build-pages.js
+            check-links.js
+            **/*.md
