@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "balneo/container",
+  "version": "1.0.0",
+  "title": "Conteneur Balnéo",
+  "category": "design",
+  "icon": "layout",
+  "description": "Conserve la structure visuelle de la maquette tout en rendant ses blocs internes déplaçables.",
+  "textdomain": "balneo-v2",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "htmlAttributes": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

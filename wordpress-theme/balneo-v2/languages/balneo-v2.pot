@@ -37,11 +37,11 @@ msgstr ""
 msgid "Au cœur de Gruissan, entre mer et lagune"
 msgstr ""
 
-#: index.php:23
+#: index.php:20
 msgid "Aucun contenu"
 msgstr ""
 
-#: search.php:22
+#: search.php:14
 msgid "Aucun résultat."
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Commentaires"
 msgstr ""
 
-#: footer.php:33 header.php:23
+#: header.php:23
 msgid "Contact"
 msgstr ""
 
@@ -153,11 +153,11 @@ msgstr ""
 msgid "Merci pour votre inscription !"
 msgstr ""
 
-#: functions.php:48
+#: functions.php:49
 msgid "Navigation de pied de page"
 msgstr ""
 
-#: functions.php:47
+#: functions.php:48
 msgid "Navigation principale"
 msgstr ""
 

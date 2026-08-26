@@ -6,5 +6,9 @@
 .editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3{color:#024360;font-family:"Barlow Condensed",sans-serif;font-weight:400}
 .editor-styles-wrapper h1{font-size:clamp(2.4rem,6vw,5rem)}
 .editor-styles-wrapper a{color:#006392}
-.editor-styles-wrapper .wp-block-freeform{border:1px dashed #AACCDE;padding:1.25rem}
-.editor-styles-wrapper .wp-block-freeform:before{content:"Contenu fidèle à la maquette Balnéo V2 — cliquez pour modifier";display:block;margin:-1.25rem -1.25rem 1.25rem;padding:.5rem 1rem;color:#fff;background:#009885;font-size:.85rem;letter-spacing:.04em}
+.editor-styles-wrapper .balneo-editor-container{position:relative;margin-block:.75rem;padding:1.25rem;border:1px dashed #AACCDE;background:rgba(255,255,255,.7)}
+.editor-styles-wrapper .balneo-editor-container__label{display:block;margin:-1.25rem -1.25rem 1rem;padding:.35rem .7rem;color:#fff;background:#009885;font-size:.72rem;letter-spacing:.04em}
+.editor-styles-wrapper .balneo-editor-rich-text{padding:.5rem;border:1px dashed rgba(0,152,133,.35)}
+.editor-styles-wrapper .balneo-editor-rich-text__label{display:block;color:#006392;font-size:.7rem;text-transform:uppercase}
+.editor-styles-wrapper .balneo-editor-image img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
+.editor-styles-wrapper .balneo-editor-image .components-button{margin:.5rem .5rem .5rem 0}

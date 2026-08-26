@@ -117,33 +117,30 @@
     } catch (e) {}
   }
 
+  var bookingOrb = document.querySelector('.cta-orb');
+  var mobileHeader = document.querySelector('.site-header');
+  var lastMobileBookingTop = '';
   var positionBookingOrb = function () {
-    var bookingOrb = document.querySelector('.cta-orb');
     if (!bookingOrb) return;
     if (window.innerWidth > 760) {
-      document.documentElement.style.removeProperty('--mobile-booking-top');
+      if (lastMobileBookingTop) {
+        document.documentElement.style.removeProperty('--mobile-booking-top');
+        lastMobileBookingTop = '';
+      }
       return;
     }
-    var mobileHeader = document.querySelector('.site-header');
     if (!mobileHeader) throw new Error('Le header mobile requis est absent.');
     var alertIsVisible = infoBanner && !infoBanner.classList.contains('hidden');
     var headerBottom = Math.max(0, mobileHeader.getBoundingClientRect().bottom);
     var bannerBottom = alertIsVisible ? Math.max(0, infoBanner.getBoundingClientRect().bottom) : 0;
     var lowerEdge = Math.max(headerBottom, bannerBottom);
-    document.documentElement.style.setProperty('--mobile-booking-top', Math.ceil(lowerEdge + 12) + 'px');
-  };
-  var bookingPositionQueued = false;
-  var scheduleBookingOrbPosition = function () {
-    if (bookingPositionQueued) return;
-    bookingPositionQueued = true;
-    window.requestAnimationFrame(function () {
-      positionBookingOrb();
-      bookingPositionQueued = false;
-    });
+    var nextMobileBookingTop = Math.ceil(lowerEdge + 12) + 'px';
+    if (nextMobileBookingTop !== lastMobileBookingTop) {
+      document.documentElement.style.setProperty('--mobile-booking-top', nextMobileBookingTop);
+      lastMobileBookingTop = nextMobileBookingTop;
+    }
   };
   positionBookingOrb();
-  window.addEventListener('resize', positionBookingOrb);
-  window.addEventListener('scroll', scheduleBookingOrbPosition, { passive: true });
 
   // Place seasonal highlights directly below quick access
   var seasonalSection = document.querySelector('[data-seasonal]');
@@ -224,7 +221,6 @@
   document.addEventListener('focusout', function (event) {
     if (event.target.closest('.save-button[data-tooltip]')) hideFloatingTooltip();
   });
-  window.addEventListener('scroll', hideFloatingTooltip, { passive: true });
 
   var closePanel = function () {
     overlay.classList.remove('is-open');
@@ -432,7 +428,13 @@
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('is-animating');
+          window.requestAnimationFrame(function () {
+            entry.target.classList.add('visible');
+          });
+          entry.target.addEventListener('transitionend', function () {
+            entry.target.classList.remove('is-animating');
+          }, { once: true });
           observer.unobserve(entry.target);
         }
       });
@@ -456,6 +458,17 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!track || !slides.length || !tabs.length) return;
+
+    if ('IntersectionObserver' in window) {
+      var seasonalVisibilityObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle('is-in-view', entry.isIntersecting);
+        });
+      }, { rootMargin: '100px 0px' });
+      seasonalVisibilityObserver.observe(seasonal);
+    } else {
+      seasonal.classList.add('is-in-view');
+    }
 
     var showSeason = function (index) {
       seasonIndex = (index + slides.length) % slides.length;
@@ -528,8 +541,11 @@
   backToTop.innerHTML = '<i class="fa-solid fa-arrow-up" aria-hidden="true"></i><small aria-hidden="true">Haut</small>';
   document.body.appendChild(backToTop);
 
+  var backToTopVisible = null;
   var toggleBackToTop = function () {
     var isVisible = window.scrollY > 600;
+    if (isVisible === backToTopVisible) return;
+    backToTopVisible = isVisible;
     backToTop.classList.toggle('is-visible', isVisible);
     backToTop.setAttribute('aria-hidden', String(!isVisible));
     backToTop.tabIndex = isVisible ? 0 : -1;
@@ -540,21 +556,31 @@
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
 
-  toggleBackToTop();
-  window.addEventListener('scroll', toggleBackToTop, { passive: true });
-
-  // Header on scroll
+  // Header state. Sur la page d'accueil, la version lisible est permanente.
   var header = document.querySelector('.site-header');
   if (header) {
     var forceReadableHeader = document.body.classList.contains('is-home');
-    var onScroll = function () {
-      var isScrolled = forceReadableHeader || window.scrollY > 40;
-      header.classList.toggle('is-scrolled', isScrolled);
-      document.body.classList.toggle('is-scrolled', isScrolled);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    header.classList.toggle('is-scrolled', forceReadableHeader);
+    document.body.classList.toggle('is-scrolled', forceReadableHeader);
   }
+
+  // Une seule mise à jour par frame pour tous les effets dépendant du scroll.
+  var scrollEffectsQueued = false;
+  var updateScrollEffects = function () {
+    toggleBackToTop();
+    hideFloatingTooltip();
+    if (window.innerWidth <= 760 || lastMobileBookingTop) positionBookingOrb();
+    scrollEffectsQueued = false;
+  };
+  var scheduleScrollEffects = function () {
+    if (scrollEffectsQueued) return;
+    scrollEffectsQueued = true;
+    window.requestAnimationFrame(updateScrollEffects);
+  };
+
+  updateScrollEffects();
+  window.addEventListener('scroll', scheduleScrollEffects, { passive: true });
+  window.addEventListener('resize', scheduleScrollEffects, { passive: true });
   var currentPath = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.main-nav a').forEach(function (link) {
     var href = link.getAttribute('href');

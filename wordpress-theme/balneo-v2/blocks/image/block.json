@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "balneo/image",
+  "version": "1.0.0",
+  "title": "Image Balnéo",
+  "category": "media",
+  "icon": "format-image",
+  "description": "Image remplaçable qui conserve exactement la structure visuelle de la maquette.",
+  "textdomain": "balneo-v2",
+  "attributes": {
+    "src": {
+      "type": "string",
+      "default": ""
+    },
+    "alt": {
+      "type": "string",
+      "default": ""
+    },
+    "htmlAttributes": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

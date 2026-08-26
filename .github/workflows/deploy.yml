@@ -34,6 +34,9 @@ jobs:
         with:
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.sha }}
 
+      - name: Installer les dependances de validation
+        run: npm ci --ignore-scripts
+
       - name: Valider le theme et le plugin
         run: |
           node --check build-wordpress-theme.js

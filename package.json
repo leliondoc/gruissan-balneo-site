@@ -10,6 +10,9 @@
     "i18n:pot": "node scripts/build-pot.js"
   },
   "devDependencies": {
-    "sharp": "^0.34.3"
+    "@wordpress/block-library": "^10.4.0",
+    "@wordpress/blocks": "^15.26.0",
+    "jsdom": "^29.1.1",
+    "sharp": "^0.35.4"
   }
 }

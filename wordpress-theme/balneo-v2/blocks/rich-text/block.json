@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "balneo/rich-text",
+  "version": "1.0.0",
+  "title": "Texte Balnéo",
+  "category": "text",
+  "icon": "editor-textcolor",
+  "description": "Texte éditable qui conserve la balise et les classes prévues par la maquette.",
+  "textdomain": "balneo-v2",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "span"
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "htmlAttributes": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}
