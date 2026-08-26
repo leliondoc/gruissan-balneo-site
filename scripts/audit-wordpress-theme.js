@@ -24,6 +24,8 @@ const required = [
   'blocks/rich-text/block.json', 'blocks/image/block.json',
   'inc/class-balneo-v2-primary-menu-walker.php',
   'inc/redirects.php', 'inc/seo.php', 'inc/ai-discovery.php', 'inc/admin-branding.php',
+  'assets/fonts/BarlowCondensed-Regular.woff2', 'assets/fonts/Buttercy.woff2',
+  'assets/fonts/BrandonSmithStamp.woff2',
   'languages/balneo-v2.pot',
 ];
 required.forEach(read);
@@ -32,6 +34,12 @@ const functionsPhp = read('functions.php');
 assert(functionsPhp.includes("add_theme_support( 'editor-styles' )"), 'Support des styles Gutenberg absent.');
 assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/content.php' )"), 'Module de contenu non chargé.');
 assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/blocks.php' )"), 'Blocs Gutenberg Balnéo non chargés.');
+assert(functionsPhp.includes('balneo_v2_preload_critical_fonts'), 'Préchargement des polices critiques absent.');
+
+const publicCss = read('css/styles.css');
+assert(!publicCss.includes('cursive'), 'Une police cursive système peut encore provoquer un flash Comic Sans.');
+assert(!publicCss.includes('BrandonSmithStamp.woff\''), 'L’ancienne police Brandon WOFF lourde est encore chargée.');
+assert(!publicCss.includes('Buttercy.ttf'), 'L’ancienne police Buttercy TTF est encore chargée.');
 
 const header = read('header.php');
 assert(header.includes('balneo_v2_primary_navigation()'), 'Navigation principale encore codée en dur.');

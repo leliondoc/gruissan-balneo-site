@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.4.0' );
+define( 'BALNEO_V2_VERSION', '1.4.2' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/blocks.php' );
@@ -81,6 +81,25 @@ function balneo_v2_assets() {
     wp_script_add_data( 'balneo-v2', 'strategy', 'defer' );
 }
 add_action( 'wp_enqueue_scripts', 'balneo_v2_assets' );
+
+/**
+ * Précharge les trois polices utilisées dès le premier écran.
+ */
+function balneo_v2_preload_critical_fonts() {
+    $fonts = array(
+        'BarlowCondensed-Regular.woff2',
+        'Buttercy.woff2',
+        'BrandonSmithStamp.woff2',
+    );
+
+    foreach ( $fonts as $font ) {
+        printf(
+            '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+            esc_url( get_theme_file_uri( '/assets/fonts/' . $font ) )
+        );
+    }
+}
+add_action( 'wp_head', 'balneo_v2_preload_critical_fonts', 1 );
 
 /**
  * Ajoute les classes de contexte nécessaires à la maquette.

@@ -1,19 +1,37 @@
 @font-face {
   font-family: 'Buttercy';
-  src: url('../assets/fonts/Buttercy.ttf') format('truetype');
+  src: url('../assets/fonts/Buttercy.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Brandon Smith Stamp';
-  src: url('../assets/fonts/BrandonSmithStamp.woff') format('woff');
+  src: url('../assets/fonts/BrandonSmithStamp.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('../assets/fonts/BarlowCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Barlow Condensed';
-  src: url('../assets/fonts/BarlowCondensed-Regular.ttf') format('truetype');
-  font-weight: 400;
+  src: url('../assets/fonts/BarlowCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('../assets/fonts/BarlowCondensed-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
   font-display: swap;
 }
 
@@ -133,7 +151,7 @@ p + p { margin-top: 1rem; }
 .mega-menu__card--balneo > img { object-position: 67% center; }
 .mega-menu__veil { position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(1,52,75,.9) 0, rgba(1,52,75,.32) 58%, rgba(1,52,75,.08) 100%); transition: background .4s ease; }
 .mega-menu__content { position: absolute; inset: auto 0 0; z-index: 2; padding: 1.25rem; display: flex; align-items: flex-start; flex-direction: column; text-align: left; }
-.mega-menu__content small { margin-bottom: .25rem; color: var(--yellow); font-family: 'Brandon Smith Stamp', cursive; font-size: 1.05rem; font-weight: 400; line-height: 1; }
+.mega-menu__content small { margin-bottom: .25rem; color: var(--yellow); font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: 1.05rem; font-weight: 400; line-height: 1; }
 .mega-menu__content strong { max-width: 12ch; color: var(--white); font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 1.55rem; font-weight: 800; line-height: .95; letter-spacing: 0; text-transform: none; }
 .mega-menu__meta { margin-top: .7rem; display: inline-flex; align-items: center; gap: .38rem; color: rgba(255,255,255,.86); font-size: .72rem; font-weight: 600; line-height: 1; }
 .mega-menu__meta i { color: var(--yellow); font-size: .68rem; }
@@ -328,7 +346,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 /* Type and buttons */
 .display-title { position: relative; max-width: 15ch; font-size: clamp(3rem, 5.6vw, 5.8rem); letter-spacing: -.02em; }
 .display-title::after { content: ''; display: block; width: min(210px, 58%); height: 13px; margin-top: .45rem; background: var(--aqua); clip-path: polygon(0 32%, 13% 18%, 28% 36%, 44% 17%, 61% 40%, 77% 20%, 100% 42%, 100% 70%, 81% 58%, 63% 79%, 46% 55%, 29% 76%, 13% 56%, 0 69%); }
-.section__label { margin-bottom: .65rem; color: var(--green); font-family: 'Brandon Smith Stamp', cursive; font-size: clamp(1.25rem, 2.2vw, 1.8rem); font-weight: 400; letter-spacing: .01em; line-height: 1; text-transform: none; }
+.section__label { margin-bottom: .65rem; color: var(--green); font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: clamp(1.25rem, 2.2vw, 1.8rem); font-weight: 400; letter-spacing: .01em; line-height: 1; text-transform: none; }
 .section__title { font-size: clamp(2.8rem, 4.8vw, 4.6rem); letter-spacing: -.01em; }
 .section__header { margin-bottom: 3rem; text-align: center; }
 .title-rule { display: block; width: 68px; height: 1px; margin-top: 1.5rem; background: currentColor; }
@@ -356,7 +374,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 .hero__content { position: relative; z-index: 2; width: min(100% - 4rem, var(--max-width)); margin: 0 auto; padding: calc(var(--utility-height) + var(--header-height) + 4rem) 0 clamp(4.5rem, 8vh, 6.5rem); }
 .hero__kicker { margin-bottom: 1rem; color: var(--yellow); font-size: .8rem; font-weight: 700; letter-spacing: .23em; text-transform: uppercase; }
 .hero__title { max-width: 830px; margin-bottom: 1.4rem; font-size: clamp(4.2rem, 8.5vw, 8.8rem); letter-spacing: -.02em; text-shadow: 0 4px 28px rgba(1,52,75,.25); }
-.hero__title em { display: inline-block; margin-top: .05em; color: var(--aqua); font-family: 'Brandon Smith Stamp', cursive; font-size: .58em; font-style: normal; font-weight: 400; letter-spacing: 0; line-height: .9; text-transform: none; transform: rotate(-2deg); }
+.hero__title em { display: inline-block; margin-top: .05em; color: var(--aqua); font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: .58em; font-style: normal; font-weight: 400; letter-spacing: 0; line-height: .9; text-transform: none; transform: rotate(-2deg); }
 .hero__tagline { max-width: 520px; margin: 0 0 2rem; color: rgba(255,255,255,.86); font-size: clamp(1.05rem, 1.55vw, 1.3rem); }
 .hero__scroll { position: absolute; right: max(2rem, calc((100vw - var(--max-width))/2)); bottom: 3.4rem; z-index: 2; display: flex; align-items: center; gap: .8rem; font-size: .61rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; writing-mode: vertical-rl; }
 .hero__scroll span { width: 1px; height: 52px; background: rgba(255,255,255,.55); }
@@ -408,7 +426,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 .experience-card:hover img { transform: scale(1.045); }
 .experience-card__veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(2,67,96,.9), rgba(0,152,133,.04) 68%); }
 .experience-card__content { position: absolute; inset: auto 0 0; padding: clamp(1.5rem, 3vw, 2.6rem); }
-.experience-card__content small { color: var(--yellow); font-family: 'Brandon Smith Stamp', cursive; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.experience-card__content small { color: var(--yellow); font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
 .experience-card__content h3 { max-width: 12ch; margin: .55rem 0; font-size: clamp(2rem, 3.3vw, 3.5rem); letter-spacing: 0; }
 .experience-card__content p { max-width: 36ch; color: rgba(255,255,255,.82); font-size: .95rem; }
 .circle-arrow { position: absolute; right: 2rem; bottom: 2rem; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; display: block; overflow: hidden; font-size: 0; transition: color var(--transition), background var(--transition); }
@@ -435,7 +453,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 [data-seasonal].is-in-view .seasonal-slide[aria-hidden="false"] .seasonal-emblem__orbit { animation-play-state: running; }
 .seasonal-emblem__icon { width: 72px; height: 72px; display: grid; place-items: center; color: var(--white); background: var(--season-color); clip-path: polygon(50% 0%,62% 7%,75% 4%,83% 17%,95% 24%,92% 38%,100% 50%,93% 62%,96% 76%,83% 83%,75% 96%,62% 93%,50% 100%,38% 93%,25% 96%,17% 83%,4% 76%,7% 62%,0 50%,7% 38%,4% 24%,17% 17%,25% 4%,38% 7%); font-family: Arial, sans-serif; font-size: 2rem; line-height: 1; }
 @keyframes seasonalOrbit { to { transform: rotate(360deg); } }
-.seasonal-slide__content h3 { max-width: 17ch; margin-bottom: 1.8rem; font-family: 'Brandon Smith Stamp', cursive; font-size: clamp(2.8rem, 5vw, 4.7rem); font-weight: 400; line-height: .98; text-transform: none; text-shadow: 0 3px 22px rgba(1,52,75,.48); }
+.seasonal-slide__content h3 { max-width: 17ch; margin-bottom: 1.8rem; font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: clamp(2.8rem, 5vw, 4.7rem); font-weight: 400; line-height: .98; text-transform: none; text-shadow: 0 3px 22px rgba(1,52,75,.48); }
 .seasonal-slide__content .btn { color: var(--white); border-color: var(--white); background: rgba(1,52,75,.18); backdrop-filter: blur(5px); }
 .seasonal-slide__content .btn:hover { color: var(--ink); border-color: var(--yellow); background: var(--yellow); }
 .seasonal-tabs { min-height: 142px; padding: 1.5rem; display: flex; align-items: center; justify-content: center; gap: clamp(.8rem, 3vw, 2.8rem); background: var(--sand-light); }
@@ -491,7 +509,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 .page-hero__media img { object-position: center; }
 .page-hero__veil { background: linear-gradient(0deg, rgba(2,67,96,.92), rgba(0,152,133,.06) 72%); }
 .page-hero__content { position: relative; z-index: 2; width: min(100% - 3rem, var(--max-width)); margin: 0 auto; padding: 4rem 180px clamp(4rem, 7vh, 5.5rem) 0; }
-.page-hero__label { margin-bottom: .7rem; color: var(--yellow); font-family: 'Brandon Smith Stamp', cursive; font-size: clamp(1.45rem, 2.6vw, 2.25rem); font-weight: 400; letter-spacing: 0; text-transform: none; }
+.page-hero__label { margin-bottom: .7rem; color: var(--yellow); font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: clamp(1.45rem, 2.6vw, 2.25rem); font-weight: 400; letter-spacing: 0; text-transform: none; }
 .page-hero__title { max-width: 15ch; font-size: clamp(4rem, 7.5vw, 7.5rem); letter-spacing: -.01em; }
 .section--light { background: var(--sand-light); }
 .section--cream { background: var(--sand); }

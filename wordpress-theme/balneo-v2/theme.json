@@ -53,6 +53,37 @@
       "fontFamilies": [
         {
           "slug": "barlow",
+          "name": "Barlow",
+          "fontFamily": "\"Barlow\", sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Barlow",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "file:./assets/fonts/Barlow-Regular.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Barlow",
+              "fontStyle": "normal",
+              "fontWeight": "500",
+              "src": [
+                "file:./assets/fonts/Barlow-Medium.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Barlow",
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "src": [
+                "file:./assets/fonts/Barlow-SemiBold.woff2"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "barlow-condensed",
           "name": "Barlow Condensed",
           "fontFamily": "\"Barlow Condensed\", sans-serif",
           "fontFace": [
@@ -61,7 +92,23 @@
               "fontStyle": "normal",
               "fontWeight": "400",
               "src": [
-                "file:./assets/fonts/BarlowCondensed-Regular.ttf"
+                "file:./assets/fonts/BarlowCondensed-Regular.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Barlow Condensed",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": [
+                "file:./assets/fonts/BarlowCondensed-Bold.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Barlow Condensed",
+              "fontStyle": "normal",
+              "fontWeight": "800",
+              "src": [
+                "file:./assets/fonts/BarlowCondensed-ExtraBold.woff2"
               ]
             }
           ]
@@ -69,14 +116,14 @@
         {
           "slug": "buttercy",
           "name": "Buttercy",
-          "fontFamily": "Buttercy, sans-serif",
+          "fontFamily": "Buttercy, \"Barlow Condensed\", sans-serif",
           "fontFace": [
             {
               "fontFamily": "Buttercy",
               "fontStyle": "normal",
               "fontWeight": "400",
               "src": [
-                "file:./assets/fonts/Buttercy.ttf"
+                "file:./assets/fonts/Buttercy.woff2"
               ]
             }
           ]
@@ -84,14 +131,14 @@
         {
           "slug": "brandon",
           "name": "Brandon Smith Stamp",
-          "fontFamily": "\"Brandon Smith Stamp\", cursive",
+          "fontFamily": "\"Brandon Smith Stamp\", \"Barlow Condensed\", sans-serif",
           "fontFace": [
             {
               "fontFamily": "Brandon Smith Stamp",
               "fontStyle": "normal",
               "fontWeight": "400",
               "src": [
-                "file:./assets/fonts/BrandonSmithStamp.woff"
+                "file:./assets/fonts/BrandonSmithStamp.woff2"
               ]
             }
           ]

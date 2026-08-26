@@ -1,6 +1,11 @@
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Regular.ttf") format("truetype");font-display:swap}
-@font-face{font-family:Buttercy;src:url("../assets/fonts/Buttercy.ttf") format("truetype");font-display:swap}
-.editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow Condensed",sans-serif;font-size:18px;line-height:1.55}
+@font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-Medium.woff2") format("woff2");font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-SemiBold.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Bold.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-ExtraBold.woff2") format("woff2");font-style:normal;font-weight:800;font-display:swap}
+@font-face{font-family:Buttercy;src:url("../assets/fonts/Buttercy.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+.editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow",sans-serif;font-size:17px;line-height:1.55}
 .editor-styles-wrapper .wp-block{max-width:1120px}
 .editor-styles-wrapper .wp-block[data-align="wide"]{max-width:1440px}
 .editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3{color:#024360;font-family:"Barlow Condensed",sans-serif;font-weight:400}

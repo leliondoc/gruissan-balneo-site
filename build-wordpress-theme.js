@@ -331,7 +331,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.4.0' );
+define( 'BALNEO_V2_VERSION', '1.4.2' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/blocks.php' );
@@ -403,6 +403,25 @@ function balneo_v2_assets() {
     wp_script_add_data( 'balneo-v2', 'strategy', 'defer' );
 }
 add_action( 'wp_enqueue_scripts', 'balneo_v2_assets' );
+
+/**
+ * Précharge les trois polices utilisées dès le premier écran.
+ */
+function balneo_v2_preload_critical_fonts() {
+    $fonts = array(
+        'BarlowCondensed-Regular.woff2',
+        'Buttercy.woff2',
+        'BrandonSmithStamp.woff2',
+    );
+
+    foreach ( $fonts as $font ) {
+        printf(
+            '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\\n",
+            esc_url( get_theme_file_uri( '/assets/fonts/' . $font ) )
+        );
+    }
+}
+add_action( 'wp_head', 'balneo_v2_preload_critical_fonts', 1 );
 
 /**
  * Ajoute les classes de contexte nécessaires à la maquette.
@@ -661,7 +680,7 @@ Theme Name: Balnéo V2
 Theme URI: https://balneov2.gruissan-balneo.com/
 Author: Gruissan Méditerranée
 Description: Thème sur mesure de l'Espace Balnéo de Gruissan, issu de la maquette Balnéo V2 validée.
-Version: 1.4.0
+Version: 1.4.2
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.1
@@ -842,9 +861,18 @@ get_header();
       typography: {
         fluid: true,
         fontFamilies: [
-          { slug: 'barlow', name: 'Barlow Condensed', fontFamily: '"Barlow Condensed", sans-serif', fontFace: [{ fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/BarlowCondensed-Regular.ttf'] }] },
-          { slug: 'buttercy', name: 'Buttercy', fontFamily: 'Buttercy, sans-serif', fontFace: [{ fontFamily: 'Buttercy', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/Buttercy.ttf'] }] },
-          { slug: 'brandon', name: 'Brandon Smith Stamp', fontFamily: '"Brandon Smith Stamp", cursive', fontFace: [{ fontFamily: 'Brandon Smith Stamp', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/BrandonSmithStamp.woff'] }] },
+          { slug: 'barlow', name: 'Barlow', fontFamily: '"Barlow", sans-serif', fontFace: [
+            { fontFamily: 'Barlow', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/Barlow-Regular.woff2'] },
+            { fontFamily: 'Barlow', fontStyle: 'normal', fontWeight: '500', src: ['file:./assets/fonts/Barlow-Medium.woff2'] },
+            { fontFamily: 'Barlow', fontStyle: 'normal', fontWeight: '600', src: ['file:./assets/fonts/Barlow-SemiBold.woff2'] },
+          ] },
+          { slug: 'barlow-condensed', name: 'Barlow Condensed', fontFamily: '"Barlow Condensed", sans-serif', fontFace: [
+            { fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/BarlowCondensed-Regular.woff2'] },
+            { fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '700', src: ['file:./assets/fonts/BarlowCondensed-Bold.woff2'] },
+            { fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '800', src: ['file:./assets/fonts/BarlowCondensed-ExtraBold.woff2'] },
+          ] },
+          { slug: 'buttercy', name: 'Buttercy', fontFamily: 'Buttercy, "Barlow Condensed", sans-serif', fontFace: [{ fontFamily: 'Buttercy', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/Buttercy.woff2'] }] },
+          { slug: 'brandon', name: 'Brandon Smith Stamp', fontFamily: '"Brandon Smith Stamp", "Barlow Condensed", sans-serif', fontFace: [{ fontFamily: 'Brandon Smith Stamp', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/BrandonSmithStamp.woff2'] }] },
         ],
         fontSizes: [
           { slug: 'small', size: '0.875rem', name: 'Petit' },
@@ -856,9 +884,14 @@ get_header();
     },
   }, null, 2));
 
-  write('css/editor.css', `@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Regular.ttf") format("truetype");font-display:swap}
-@font-face{font-family:Buttercy;src:url("../assets/fonts/Buttercy.ttf") format("truetype");font-display:swap}
-.editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow Condensed",sans-serif;font-size:18px;line-height:1.55}
+  write('css/editor.css', `@font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-Medium.woff2") format("woff2");font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-SemiBold.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Bold.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-ExtraBold.woff2") format("woff2");font-style:normal;font-weight:800;font-display:swap}
+@font-face{font-family:Buttercy;src:url("../assets/fonts/Buttercy.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+.editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow",sans-serif;font-size:17px;line-height:1.55}
 .editor-styles-wrapper .wp-block{max-width:1120px}
 .editor-styles-wrapper .wp-block[data-align="wide"]{max-width:1440px}
 .editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3{color:#024360;font-family:"Barlow Condensed",sans-serif;font-weight:400}
@@ -873,7 +906,7 @@ get_header();
 
   write('languages/balneo-v2.pot', `msgid ""
 msgstr ""
-"Project-Id-Version: Balnéo V2 1.3.0\\n"
+"Project-Id-Version: Balnéo V2 1.4.2\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 "Language: fr_FR\\n"
