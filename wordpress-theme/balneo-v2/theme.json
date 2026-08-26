@@ -1,0 +1,150 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "1120px",
+      "wideSize": "1440px"
+    },
+    "color": {
+      "custom": false,
+      "customGradient": false,
+      "palette": [
+        {
+          "slug": "marine",
+          "color": "#024360",
+          "name": "Marine Balnéo"
+        },
+        {
+          "slug": "mer",
+          "color": "#006392",
+          "name": "Bleu mer"
+        },
+        {
+          "slug": "ciel",
+          "color": "#AACCDE",
+          "name": "Bleu ciel"
+        },
+        {
+          "slug": "vert",
+          "color": "#009885",
+          "name": "Vert Balnéo"
+        },
+        {
+          "slug": "corail",
+          "color": "#E94740",
+          "name": "Corail"
+        },
+        {
+          "slug": "soleil",
+          "color": "#FFED42",
+          "name": "Jaune soleil"
+        },
+        {
+          "slug": "blanc",
+          "color": "#FFFFFF",
+          "name": "Blanc"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "barlow",
+          "name": "Barlow Condensed",
+          "fontFamily": "\"Barlow Condensed\", sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Barlow Condensed",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "file:./assets/fonts/BarlowCondensed-Regular.ttf"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "buttercy",
+          "name": "Buttercy",
+          "fontFamily": "Buttercy, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Buttercy",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "file:./assets/fonts/Buttercy.ttf"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "brandon",
+          "name": "Brandon Smith Stamp",
+          "fontFamily": "\"Brandon Smith Stamp\", cursive",
+          "fontFace": [
+            {
+              "fontFamily": "Brandon Smith Stamp",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "file:./assets/fonts/BrandonSmithStamp.woff"
+              ]
+            }
+          ]
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "size": "0.875rem",
+          "name": "Petit"
+        },
+        {
+          "slug": "medium",
+          "size": "1.125rem",
+          "name": "Courant"
+        },
+        {
+          "slug": "large",
+          "size": "1.75rem",
+          "name": "Grand"
+        },
+        {
+          "slug": "x-large",
+          "size": "clamp(2.4rem, 6vw, 5rem)",
+          "name": "Titre Balnéo"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "text": "#024360",
+      "background": "#FFFFFF"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--barlow)",
+      "lineHeight": "1.55"
+    },
+    "elements": {
+      "heading": {
+        "color": {
+          "text": "#024360"
+        },
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--barlow)",
+          "fontWeight": "400"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "#006392"
+        }
+      }
+    }
+  }
+}

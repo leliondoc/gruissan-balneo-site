@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Balneo V2">
+  <description>Contrôle du thème Balnéo V2 avec les règles officielles WordPress.</description>
+  <file>wordpress-theme/balneo-v2</file>
+  <arg name="extensions" value="php" />
+  <arg value="sp" />
+  <exclude-pattern>*/inc/content-seeds.php</exclude-pattern>
+  <rule ref="WordPress" />
+</ruleset>

@@ -1,0 +1,266 @@
+@font-face {
+  font-family: "Balneo Barlow Condensed";
+  src: url("../assets/fonts/BarlowCondensed-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Balneo Buttercy";
+  src: url("../assets/fonts/Buttercy.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+body.balneo-admin-branded {
+  --balneo-navy: #024360;
+  --balneo-sea: #006392;
+  --balneo-sky: #aaccde;
+  --balneo-green: #009885;
+  --balneo-red: #e94740;
+  --balneo-yellow: #ffed42;
+  --balneo-surface: #f2f7f9;
+  --balneo-border: #c7dce6;
+  color: var(--balneo-navy);
+  background: var(--balneo-surface);
+}
+
+body.balneo-admin-branded,
+body.balneo-admin-branded input,
+body.balneo-admin-branded select,
+body.balneo-admin-branded textarea,
+body.balneo-admin-branded button {
+  font-family: "Balneo Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  font-size: 15px;
+}
+
+body.balneo-admin-branded #wpcontent,
+body.balneo-admin-branded #wpfooter {
+  background: var(--balneo-surface);
+}
+
+body.balneo-admin-branded #wpadminbar {
+  background: var(--balneo-navy);
+  box-shadow: 0 3px 0 var(--balneo-yellow);
+}
+
+body.balneo-admin-branded #wpadminbar .ab-item,
+body.balneo-admin-branded #wpadminbar a.ab-item,
+body.balneo-admin-branded #wpadminbar > #wp-toolbar span.ab-label,
+body.balneo-admin-branded #wpadminbar > #wp-toolbar span.noticon {
+  color: #fff;
+}
+
+body.balneo-admin-branded #wpadminbar .ab-top-menu > li.hover > .ab-item,
+body.balneo-admin-branded #wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus,
+body.balneo-admin-branded #wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item,
+body.balneo-admin-branded #wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus {
+  color: var(--balneo-yellow);
+  background: var(--balneo-sea);
+}
+
+body.balneo-admin-branded #adminmenuback,
+body.balneo-admin-branded #adminmenuwrap,
+body.balneo-admin-branded #adminmenu {
+  background: var(--balneo-navy);
+}
+
+body.balneo-admin-branded #adminmenu a {
+  color: #fff;
+}
+
+body.balneo-admin-branded #adminmenu div.wp-menu-image::before {
+  color: var(--balneo-sky);
+}
+
+body.balneo-admin-branded #adminmenu li.menu-top:hover,
+body.balneo-admin-branded #adminmenu li.opensub > a.menu-top,
+body.balneo-admin-branded #adminmenu li > a.menu-top:focus {
+  color: #fff;
+  background: var(--balneo-sea);
+}
+
+body.balneo-admin-branded #adminmenu li.current a.menu-top,
+body.balneo-admin-branded #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+  color: #fff;
+  background: var(--balneo-green);
+  box-shadow: inset 4px 0 0 var(--balneo-yellow);
+}
+
+body.balneo-admin-branded #adminmenu .wp-submenu {
+  background: #01344b;
+}
+
+body.balneo-admin-branded #adminmenu .wp-submenu a:focus,
+body.balneo-admin-branded #adminmenu .wp-submenu a:hover,
+body.balneo-admin-branded #adminmenu .wp-submenu li.current a {
+  color: var(--balneo-yellow);
+}
+
+body.balneo-admin-branded #collapse-button,
+body.balneo-admin-branded #collapse-button:hover,
+body.balneo-admin-branded #collapse-button:focus {
+  color: var(--balneo-sky);
+}
+
+body.balneo-admin-branded .wrap h1,
+body.balneo-admin-branded .wrap h2,
+body.balneo-admin-branded .wrap h3,
+body.balneo-admin-branded .wp-heading-inline {
+  color: var(--balneo-navy);
+  font-family: "Balneo Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: .025em;
+}
+
+body.balneo-admin-branded .wrap h1,
+body.balneo-admin-branded .wp-heading-inline {
+  text-transform: uppercase;
+}
+
+body.balneo-admin-branded .wrap h1::after,
+body.balneo-admin-branded .wp-heading-inline::after {
+  display: block;
+  width: 52px;
+  height: 5px;
+  margin-top: 7px;
+  content: "";
+  background: linear-gradient(90deg, var(--balneo-green) 0 64%, var(--balneo-yellow) 64% 100%);
+}
+
+body.balneo-admin-branded .page-title-action,
+body.balneo-admin-branded .wrap .page-title-action {
+  color: var(--balneo-sea);
+  border-color: var(--balneo-sea);
+  border-radius: 4px;
+  background: #fff;
+}
+
+body.balneo-admin-branded .page-title-action:hover,
+body.balneo-admin-branded .wrap .page-title-action:hover {
+  color: #fff;
+  border-color: var(--balneo-green);
+  background: var(--balneo-green);
+}
+
+body.balneo-admin-branded.wp-core-ui .button-primary {
+  color: #fff;
+  border-color: var(--balneo-sea);
+  background: var(--balneo-sea);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+body.balneo-admin-branded.wp-core-ui .button-primary:hover,
+body.balneo-admin-branded.wp-core-ui .button-primary:focus {
+  color: #fff;
+  border-color: var(--balneo-navy);
+  background: var(--balneo-navy);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--balneo-sky);
+}
+
+body.balneo-admin-branded.wp-core-ui .button-secondary,
+body.balneo-admin-branded.wp-core-ui .button {
+  color: var(--balneo-sea);
+  border-color: var(--balneo-sea);
+}
+
+body.balneo-admin-branded input[type="text"]:focus,
+body.balneo-admin-branded input[type="email"]:focus,
+body.balneo-admin-branded input[type="url"]:focus,
+body.balneo-admin-branded input[type="password"]:focus,
+body.balneo-admin-branded input[type="search"]:focus,
+body.balneo-admin-branded input[type="number"]:focus,
+body.balneo-admin-branded select:focus,
+body.balneo-admin-branded textarea:focus {
+  border-color: var(--balneo-green);
+  box-shadow: 0 0 0 1px var(--balneo-green);
+}
+
+body.balneo-admin-branded a {
+  color: var(--balneo-sea);
+}
+
+body.balneo-admin-branded a:hover,
+body.balneo-admin-branded a:focus {
+  color: var(--balneo-green);
+}
+
+body.balneo-admin-branded .postbox,
+body.balneo-admin-branded .card,
+body.balneo-admin-branded .stuffbox {
+  border-color: var(--balneo-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgb(2 67 96 / 7%);
+}
+
+body.balneo-admin-branded .postbox-header {
+  border-bottom-color: var(--balneo-border);
+  box-shadow: inset 0 3px 0 var(--balneo-sky);
+}
+
+body.balneo-admin-branded .welcome-panel-header {
+  color: #fff;
+  background: var(--balneo-navy);
+}
+
+body.balneo-admin-branded .welcome-panel-header-image {
+  opacity: .22;
+}
+
+body.balneo-admin-branded .welcome-panel-header h2,
+body.balneo-admin-branded .welcome-panel-header p {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+body.balneo-admin-branded .welcome-panel-header a,
+body.balneo-admin-branded .welcome-panel-header a:focus {
+  color: var(--balneo-sky);
+}
+
+body.balneo-admin-branded .welcome-panel-header a:hover {
+  color: var(--balneo-yellow);
+}
+
+body.balneo-admin-branded .notice-success {
+  border-left-color: var(--balneo-green);
+}
+
+body.balneo-admin-branded .notice-error {
+  border-left-color: var(--balneo-red);
+}
+
+body.balneo-admin-branded .notice-warning {
+  border-left-color: var(--balneo-yellow);
+}
+
+body.balneo-admin-branded .nav-tab-active,
+body.balneo-admin-branded .nav-tab-active:focus,
+body.balneo-admin-branded .nav-tab-active:hover {
+  color: var(--balneo-navy);
+  border-bottom-color: var(--balneo-surface);
+  box-shadow: inset 0 4px 0 var(--balneo-green);
+}
+
+body.balneo-admin-branded .balneo-admin-signature {
+  color: var(--balneo-navy);
+  font-weight: 600;
+}
+
+@media (max-width: 782px) {
+  body.balneo-admin-branded #wpadminbar {
+    box-shadow: 0 2px 0 var(--balneo-yellow);
+  }
+
+  body.balneo-admin-branded,
+  body.balneo-admin-branded input,
+  body.balneo-admin-branded select,
+  body.balneo-admin-branded textarea,
+  body.balneo-admin-branded button {
+    font-size: 16px;
+  }
+}

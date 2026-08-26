@@ -765,3 +765,8 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .fade-in { opacity: 1; transform: none; }
 }
+
+/* Formulaire newsletter WordPress */
+.form-error { display: none; margin-bottom: 1rem; padding: .9rem 1rem; color: #7b1f1b; background: #fde8e7; }
+.form-error.visible { display: block; }
+.balneo-honeypot { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }

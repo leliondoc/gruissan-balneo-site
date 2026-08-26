@@ -1,0 +1,10 @@
+@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Regular.ttf") format("truetype");font-display:swap}
+@font-face{font-family:Buttercy;src:url("../assets/fonts/Buttercy.ttf") format("truetype");font-display:swap}
+.editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow Condensed",sans-serif;font-size:18px;line-height:1.55}
+.editor-styles-wrapper .wp-block{max-width:1120px}
+.editor-styles-wrapper .wp-block[data-align="wide"]{max-width:1440px}
+.editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3{color:#024360;font-family:"Barlow Condensed",sans-serif;font-weight:400}
+.editor-styles-wrapper h1{font-size:clamp(2.4rem,6vw,5rem)}
+.editor-styles-wrapper a{color:#006392}
+.editor-styles-wrapper .wp-block-freeform{border:1px dashed #AACCDE;padding:1.25rem}
+.editor-styles-wrapper .wp-block-freeform:before{content:"Contenu fidèle à la maquette Balnéo V2 — cliquez pour modifier";display:block;margin:-1.25rem -1.25rem 1.25rem;padding:.5rem 1rem;color:#fff;background:#009885;font-size:.85rem;letter-spacing:.04em}

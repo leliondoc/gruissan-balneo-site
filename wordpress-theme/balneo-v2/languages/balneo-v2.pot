@@ -1,0 +1,259 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Balnéo V2 1.3.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
+
+#: footer.php:37
+msgid "® D.B.G — Espace Balnéo de Gruissan"
+msgstr ""
+
+#: footer.php:32
+msgid "Accès & parking"
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:89
+msgid "Accès libre"
+msgstr ""
+
+#: inc/navigation.php:116
+msgid "Accueil — Espace Balnéo Gruissan"
+msgstr ""
+
+#: footer.php:9 inc/navigation.php:77
+msgid "Acheter"
+msgstr ""
+
+#: inc/admin-branding.php:64
+msgid "Administration"
+msgstr ""
+
+#: footer.php:25
+msgid "Aquagym"
+msgstr ""
+
+#: header.php:20
+msgid "Au cœur de Gruissan, entre mer et lagune"
+msgstr ""
+
+#: index.php:23
+msgid "Aucun contenu"
+msgstr ""
+
+#: search.php:22
+msgid "Aucun résultat."
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:89
+msgid "Bains & chaleur"
+msgstr ""
+
+#: 404.php:13
+msgid "Cette page n’existe pas"
+msgstr ""
+
+#: inc/forms.php:38
+msgid "Code postal"
+msgstr ""
+
+#: inc/forms.php:83
+msgid "Code postal : %s"
+msgstr ""
+
+#: comments.php:15
+msgid "Commentaires"
+msgstr ""
+
+#: footer.php:33 header.php:23
+msgid "Contact"
+msgstr ""
+
+#: footer.php:17
+msgid "Données personnelles"
+msgstr ""
+
+#: inc/forms.php:37
+msgid "E-mail"
+msgstr ""
+
+#: inc/forms.php:82
+msgid "E-mail : %s"
+msgstr ""
+
+#: footer.php:9
+msgid "en ligne"
+msgstr ""
+
+#: 404.php:12
+msgid "Erreur 404"
+msgstr ""
+
+#: footer.php:23 inc/class-balneo-v2-primary-menu-walker.php:89
+msgid "Espace Balnéo"
+msgstr ""
+
+#: inc/admin-branding.php:66
+msgid "Espace Balnéo de Gruissan"
+msgstr ""
+
+#: inc/navigation.php:122
+msgid "Espace Balnéo Gruissan"
+msgstr ""
+
+#: footer.php:22
+msgid "Espace For.Me"
+msgstr ""
+
+#: header.php:24
+msgid "Gruissan Tourisme"
+msgstr ""
+
+#: footer.php:31
+msgid "Horaires"
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:88
+msgid "Hydromassages"
+msgstr ""
+
+#: footer.php:15
+msgid "Informations légales"
+msgstr ""
+
+#: footer.php:29
+msgid "Infos pratiques"
+msgstr ""
+
+#: inc/forms.php:88
+msgid "Inscription newsletter Balnéo"
+msgstr ""
+
+#: inc/forms.php:27
+msgid "L’inscription n’a pas pu être envoyée. Vérifiez votre adresse e-mail ou réessayez."
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:31 inc/class-balneo-v2-primary-menu-walker.php:85 inc/navigation.php:32
+msgid "Lâcher-prise"
+msgstr ""
+
+#: header.php:21
+msgid "Liens pratiques"
+msgstr ""
+
+#: footer.php:24 inc/class-balneo-v2-primary-menu-walker.php:87
+msgid "Massages"
+msgstr ""
+
+#: footer.php:16
+msgid "Mentions légales"
+msgstr ""
+
+#: inc/forms.php:24
+msgid "Merci pour votre inscription !"
+msgstr ""
+
+#: functions.php:48
+msgid "Navigation de pied de page"
+msgstr ""
+
+#: functions.php:47
+msgid "Navigation principale"
+msgstr ""
+
+#: inc/navigation.php:21 inc/navigation.php:23
+msgid "Navigation principale Balnéo"
+msgstr ""
+
+#: inc/forms.php:36
+msgid "Nom"
+msgstr ""
+
+#: inc/forms.php:81
+msgid "Nom : %s"
+msgstr ""
+
+#: inc/forms.php:78
+msgid "Nouvelle demande d’inscription à la newsletter Balnéo V2"
+msgstr ""
+
+#: header.php:30
+msgid "Ouvrir le menu"
+msgstr ""
+
+#: footer.php:26
+msgid "Parc été"
+msgstr ""
+
+#: footer.php:38
+msgid "Photos : J.B. Roubinet"
+msgstr ""
+
+#: inc/navigation.php:33
+msgid "Pratiquer"
+msgstr ""
+
+#: inc/forms.php:35
+msgid "Prénom"
+msgstr ""
+
+#: inc/forms.php:80
+msgid "Prénom : %s"
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:32 inc/navigation.php:35
+msgid "Préparer"
+msgstr ""
+
+#: footer.php:18
+msgid "Règlement intérieur"
+msgstr ""
+
+#: search.php:11
+msgid "Résultats pour « %s »"
+msgstr ""
+
+#: 404.php:14
+msgid "Retour à l’accueil"
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:88
+msgid "Rituels & hydrojets"
+msgstr ""
+
+#: inc/navigation.php:34
+msgid "S’amuser"
+msgstr ""
+
+#: inc/forms.php:40
+msgid "S’inscrire"
+msgstr ""
+
+#: inc/navigation.php:31
+msgid "Se dépasser"
+msgstr ""
+
+#: inc/forms.php:33
+msgid "Site web"
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:87
+msgid "Soin du corps"
+msgstr ""
+
+#: inc/class-balneo-v2-primary-menu-walker.php:87 inc/class-balneo-v2-primary-menu-walker.php:88
+msgid "Sur rendez-vous"
+msgstr ""
+
+#: footer.php:30
+msgid "Tarifs"
+msgstr ""
+
+#: inc/forms.php:39
+msgid "Ville"
+msgstr ""
+
+#: inc/forms.php:84
+msgid "Ville : %s"
+msgstr ""
+

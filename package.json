@@ -1,0 +1,15 @@
+{
+  "name": "gruissan-balneo-site",
+  "private": true,
+  "scripts": {
+    "build:static": "node build-pages.js",
+    "images:webp": "node scripts/convert-images-webp.js",
+    "build:wordpress": "npm run images:webp && node build-wordpress-theme.js && node scripts/build-pot.js",
+    "check:links": "node check-links.js",
+    "audit:wordpress": "node scripts/audit-wordpress-theme.js",
+    "i18n:pot": "node scripts/build-pot.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.3"
+  }
+}
