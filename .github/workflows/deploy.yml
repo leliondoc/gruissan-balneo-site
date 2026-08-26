@@ -1,6 +1,13 @@
-name: Build & Deploy
+name: Deploy WordPress Balneo V2
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - "wordpress-theme/balneo-v2/**"
+      - "wordpress-plugin/balneo-media/**"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
     inputs:
       ref:
@@ -8,44 +15,52 @@ on:
         required: true
         default: master
 
-# Lecture seule : le deploiement passe par FTP, pas par GITHUB_TOKEN.
+# Le jeton GitHub ne sert qu'a lire le depot.
 permissions:
   contents: read
 
-# Evite deux publications concurrentes qui corrompraient l'etat FTP.
+# Une seule synchronisation FTP a la fois afin de proteger son fichier d'etat.
 concurrency:
-  group: deploy-prod
+  group: deploy-balneo-wordpress
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  validate-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Recuperer le site
+      - name: Recuperer le depot
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.sha }}
 
-      - name: Valider les fichiers
+      - name: Valider le theme et le plugin
         run: |
-          node --check js/main.js
-          node check-links.js
+          node --check build-wordpress-theme.js
+          node --check scripts/audit-wordpress-theme.js
+          node --check scripts/build-pot.js
+          npm run check:links
+          npm run audit:wordpress
+          find wordpress-theme/balneo-v2 wordpress-plugin/balneo-media -type f -name '*.php' -print0 | xargs -0 -n1 php -l
 
-      - name: Publier via FTP
+      - name: Publier le theme WordPress via FTP
         uses: SamKirkland/FTP-Deploy-Action@cfcb39fa3cdf2ff98ac1a7fbfa539d20526d474d # 4.3.3
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: ./
-          state-name: .ftp-deploy-sync-state.json
+          server-dir: ${{ format('{0}wp-content/themes/balneo-v2/', secrets.FTP_SERVER_DIR) }}
+          local-dir: ./wordpress-theme/balneo-v2/
+          state-name: .ftp-deploy-sync-state-balneo-theme.json
           dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            build-pages.js
-            check-links.js
-            **/*.md
+
+      - name: Publier le plugin medias via FTP
+        uses: SamKirkland/FTP-Deploy-Action@cfcb39fa3cdf2ff98ac1a7fbfa539d20526d474d # 4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ format('{0}wp-content/plugins/balneo-media/', secrets.FTP_SERVER_DIR) }}
+          local-dir: ./wordpress-plugin/balneo-media/
+          state-name: .ftp-deploy-sync-state-balneo-media.json
+          dangerous-clean-slate: false

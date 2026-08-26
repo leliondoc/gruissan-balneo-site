@@ -297,7 +297,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.3.0' );
+define( 'BALNEO_V2_VERSION', '1.3.2' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/class-balneo-v2-primary-menu-walker.php' );
@@ -626,7 +626,7 @@ Theme Name: Balnéo V2
 Theme URI: https://balneov2.gruissan-balneo.com/
 Author: Gruissan Méditerranée
 Description: Thème sur mesure de l'Espace Balnéo de Gruissan, issu de la maquette Balnéo V2 validée.
-Version: 1.3.0
+Version: 1.3.2
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.1
@@ -818,11 +818,6 @@ get_header();
           { slug: 'x-large', size: 'clamp(2.4rem, 6vw, 5rem)', name: 'Titre Balnéo' },
         ],
       },
-    },
-    styles: {
-      color: { text: '#024360', background: '#FFFFFF' },
-      typography: { fontFamily: 'var(--wp--preset--font-family--barlow)', lineHeight: '1.55' },
-      elements: { heading: { color: { text: '#024360' }, typography: { fontFamily: 'var(--wp--preset--font-family--barlow)', fontWeight: '400' } }, link: { color: { text: '#006392' } } },
     },
   }, null, 2));
 

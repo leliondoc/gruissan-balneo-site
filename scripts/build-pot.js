@@ -39,7 +39,7 @@ walk(theme).forEach((file) => {
 const header = [
   'msgid ""',
   'msgstr ""',
-  '"Project-Id-Version: Balnéo V2 1.3.0\\n"',
+  '"Project-Id-Version: Balnéo V2 1.3.2\\n"',
   '"Content-Type: text/plain; charset=UTF-8\\n"',
   '"Content-Transfer-Encoding: 8bit\\n"',
   '"Language: fr_FR\\n"',

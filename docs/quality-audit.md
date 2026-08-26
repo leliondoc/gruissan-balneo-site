@@ -1,4 +1,4 @@
-# Audit qualité — Balnéo V2 1.3.0
+# Audit qualité — Balnéo V2 1.3.2
 
 Audit réalisé le 26 août 2026 sur le thème privé `balneo-v2`.
 
@@ -20,4 +20,4 @@ vendor/bin/phpcs
 npx --yes pa11y@latest http://127.0.0.1:4173/ --standard WCAG2AA
 ```
 
-Theme Check doit être exécuté dans l’administration WordPress après installation de la version 1.3.0. Le thème est privé et conserve volontairement ses fonctions SEO, redirections et formulaires dans des modules internes, conformément au choix de ne jamais changer de thème. Cette architecture n’est donc pas destinée à une publication dans l’annuaire public WordPress.org, qui impose de placer ces fonctions dans une extension.
+Theme Check doit être exécuté dans l’administration WordPress après installation de la version 1.3.2. Le thème est privé et conserve volontairement ses fonctions SEO, redirections et formulaires dans des modules internes, conformément au choix de ne jamais changer de thème. Cette architecture n’est donc pas destinée à une publication dans l’annuaire public WordPress.org, qui impose de placer ces fonctions dans une extension.

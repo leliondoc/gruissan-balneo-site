@@ -297,6 +297,7 @@ body:not(.is-home) .main-nav > li > a.active { color: var(--green); }
 .info-banner { --banner-bg: #b55770; position: relative; z-index: 90; padding: .8rem 0; overflow: hidden; color: var(--white); background-color: var(--banner-bg); text-align: center; font-size: 1rem; font-weight: 600; letter-spacing: .03em; }
 .info-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, rgba(255,255,255,.24) 0 .55px, transparent .75px) 0 0 / 7px 7px, radial-gradient(circle, rgba(1,52,75,.2) 0 .45px, transparent .7px) 3px 4px / 9px 9px; opacity: .22; pointer-events: none; }
 .is-home .info-banner { --banner-bg: rgba(181,87,112,.96); position: absolute; top: calc(var(--utility-height) + var(--header-height)); left: 0; right: 0; backdrop-filter: blur(8px); }
+body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--header-height) + var(--wp-admin--admin-bar--height, 32px)); }
 .info-banner .container { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
 .info-banner__message { min-width: 0; line-height: 1.35; }
 .info-banner strong { font-weight: 600; }
@@ -667,6 +668,7 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .site-header:has(.main-nav.open) .nav-toggle { color: var(--ink); }
   .menu-open .cta-orb { display: none !important; opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.82); }
   .is-home .info-banner { top: var(--header-height); }
+  body.admin-bar.is-home .info-banner { top: calc(var(--header-height) + var(--wp-admin--admin-bar--height, 32px)); }
   .hero__content { width: calc(100% - 3rem); padding-top: 10rem; }
   .hero-seals { top: 10.5rem; right: 1.5rem; bottom: auto; }
   .brand-seal--experience { width: 112px; }
@@ -697,6 +699,7 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   [data-tooltip]::before, [data-tooltip]::after { display: none; }
   .info-banner { padding-inline: .6rem; font-size: .82rem; line-height: 1.45; }
   .is-home .info-banner { top: var(--header-height); }
+  body.admin-bar.is-home .info-banner { top: calc(var(--header-height) + var(--wp-admin--admin-bar--height, 46px)); }
   .hero { min-height: 800px; }
   .hero__media img { object-position: 64% center; }
   .hero__veil { background: linear-gradient(0deg, rgba(5,20,29,.87), rgba(5,20,29,.22) 78%); }

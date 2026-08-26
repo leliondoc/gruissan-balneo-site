@@ -120,31 +120,5 @@
         }
       ]
     }
-  },
-  "styles": {
-    "color": {
-      "text": "#024360",
-      "background": "#FFFFFF"
-    },
-    "typography": {
-      "fontFamily": "var(--wp--preset--font-family--barlow)",
-      "lineHeight": "1.55"
-    },
-    "elements": {
-      "heading": {
-        "color": {
-          "text": "#024360"
-        },
-        "typography": {
-          "fontFamily": "var(--wp--preset--font-family--barlow)",
-          "fontWeight": "400"
-        }
-      },
-      "link": {
-        "color": {
-          "text": "#006392"
-        }
-      }
-    }
   }
 }

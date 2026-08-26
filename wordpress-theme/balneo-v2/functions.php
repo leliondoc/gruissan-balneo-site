@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.3.0' );
+define( 'BALNEO_V2_VERSION', '1.3.2' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/class-balneo-v2-primary-menu-walker.php' );
