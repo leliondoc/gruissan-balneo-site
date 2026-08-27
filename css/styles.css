@@ -691,10 +691,17 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 .footer-cookie-manager:hover { color: var(--white); }
 
 @media (max-width: 760px) {
-  .cookie-consent__card { left: .65rem; bottom: calc(60px + env(safe-area-inset-bottom)); width: calc(100% - 1.3rem); max-height: calc(100dvh - 72px - env(safe-area-inset-bottom)); padding: 2.55rem 1rem .9rem; border-radius: 18px 18px 18px 6px; }
-  .cookie-consent__label { left: 1rem; }
-  .cookie-consent h2 { font-size: clamp(1.75rem, 9vw, 2.25rem); }
-  .cookie-consent__view > p:not(.cookie-consent__eyebrow) { font-size: .82rem; }
+  /* Sur mobile, le premier choix devient un bandeau bas compact et immédiatement actionnable. */
+  .cookie-consent__card { left: .5rem; bottom: max(.5rem, env(safe-area-inset-bottom)); width: calc(100% - 1rem); max-height: calc(100dvh - 1rem - env(safe-area-inset-bottom)); padding: .85rem; border-radius: 14px 14px 14px 5px; }
+  .consent-saved .cookie-consent__card { bottom: calc(64px + env(safe-area-inset-bottom)); max-height: calc(100dvh - 76px - env(safe-area-inset-bottom)); }
+  .cookie-consent__label, .cookie-consent__emblem { display: none; }
+  .cookie-consent [data-consent-view="intro"] h2 { max-width: none; margin-bottom: .3rem; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: .92rem; font-weight: 800; letter-spacing: .075em; line-height: 1.1; }
+  .cookie-consent [data-consent-view="intro"] > p { margin-bottom: .55rem; font-size: .76rem; line-height: 1.28; }
+  .cookie-consent [data-consent-view="intro"] .cookie-consent__actions { gap: .4rem; }
+  .cookie-consent [data-consent-view="intro"] .cookie-consent__button { min-height: 42px; padding: .55rem .45rem; font-size: .73rem; }
+  .cookie-consent [data-consent-view="intro"] .cookie-consent__links { margin-top: .05rem; gap: .75rem; }
+  .cookie-consent [data-consent-view="intro"] .cookie-consent__customize, .cookie-consent [data-consent-view="intro"] .cookie-consent__privacy { font-size: .62rem; }
+  .cookie-consent [data-consent-view="settings"] h2 { font-size: clamp(1.75rem, 9vw, 2.25rem); }
   .cookie-consent__setting { padding: .65rem .7rem; }
   .cookie-manager { bottom: calc(64px + env(safe-area-inset-bottom)); }
   .footer-cookie-manager { font-size: .9rem; text-align: center; }
