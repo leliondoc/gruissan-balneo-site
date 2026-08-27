@@ -127,7 +127,10 @@
       '    <div class="cookie-consent__actions">',
       '      <button class="cookie-consent__button cookie-consent__button--primary" type="button" data-consent-accept>Tout accepter</button>',
       '      <button class="cookie-consent__button cookie-consent__button--secondary" type="button" data-consent-reject>Tout refuser</button>',
-      '      <button class="cookie-consent__customize" type="button" data-consent-customize>Personnaliser mes choix</button>',
+      '      <div class="cookie-consent__links">',
+      '        <button class="cookie-consent__customize" type="button" data-consent-customize>Personnaliser mes choix</button>',
+      '        <a class="cookie-consent__privacy" href="' + privacyUrl.replace(/"/g, '&quot;') + '">Données personnelles et cookies</a>',
+      '      </div>',
       '    </div>',
       '  </div>',
       '  <div class="cookie-consent__view" data-consent-view="settings" hidden>',
@@ -149,8 +152,8 @@
       '      </label>',
       '    </div>',
       '    <button class="cookie-consent__button cookie-consent__button--primary cookie-consent__save" type="button" data-consent-save>Enregistrer mes choix</button>',
+      '    <a class="cookie-consent__privacy cookie-consent__privacy--settings" href="' + privacyUrl.replace(/"/g, '&quot;') + '">Données personnelles et cookies</a>',
       '  </div>',
-      '  <a class="cookie-consent__privacy" href="' + privacyUrl.replace(/"/g, '&quot;') + '">Données personnelles et cookies</a>',
       '</section>'
     ].join('');
   }

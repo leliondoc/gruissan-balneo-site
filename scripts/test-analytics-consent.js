@@ -48,6 +48,7 @@ function gtagCalls(dom) {
   assert.equal(document.querySelector('.cookie-consent__overlay'), null, 'aucun voile ne doit masquer le site');
   assert.equal(document.querySelector('.cookie-consent__card').getAttribute('aria-modal'), null, 'la carte ne doit pas être modale');
   assert.equal(document.body.classList.contains('consent-open'), false, 'la page doit rester consultable derrière la carte');
+  assert.equal(document.querySelectorAll('[data-consent-view="intro"] .cookie-consent__links > *').length, 2, 'les deux liens du bas doivent partager la même ligne');
   assert.equal(document.querySelector('script[src*="googletagmanager.com"]'), null, 'Google ne doit pas être chargé avant le consentement');
 
   document.querySelector('[data-consent-accept]').click();
