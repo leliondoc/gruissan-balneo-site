@@ -50,6 +50,7 @@ assert(functionsPhp.includes("'strategy'  => 'defer'"), 'Le script public n’ut
 const publicCss = read('css/styles.css');
 const editorCss = read('css/editor.css');
 const editorJs = read('blocks/editor.js');
+const publicJs = read('js/main.js');
 const primaryMenuWalker = read('inc/class-balneo-v2-primary-menu-walker.php');
 assert(!publicCss.includes('cursive'), 'Une police cursive système peut encore provoquer un flash Comic Sans.');
 assert(!publicCss.includes('BrandonSmithStamp.woff\''), 'L’ancienne police Brandon WOFF lourde est encore chargée.');
@@ -60,6 +61,9 @@ assert(publicCss.includes('.cookie-consent__card'), 'Styles du panneau de consen
 assert(!publicCss.includes('.cookie-consent__overlay'), 'Un voile masque encore le site derrière le consentement.');
 assert(publicCss.includes('.seasonal-slider__track > .seasonal-slide'), 'La protection du slider saisonnier contre les espacements Gutenberg est absente.');
 assert(publicCss.includes('@keyframes infoBannerTicker'), 'Le défilement du bandeau d’information est absent.');
+assert(publicCss.includes('.info-banner .container::after'), 'Le texte du bandeau peut encore passer sous le bouton de fermeture.');
+assert(!publicCss.includes('.info-banner .container > .context-icon'), 'L’ancienne icône du bandeau est encore stylée.');
+assert(!publicJs.includes("prependContextIcon(banner, 'fa-circle-exclamation')"), 'L’icône du bandeau est encore ajoutée par JavaScript.');
 assert(publicCss.includes('@media (prefers-reduced-motion: reduce)'), 'Le bandeau animé ne respecte pas la réduction des animations.');
 assert(!publicCss.includes('.site-logo:hover'), 'Une animation au survol du logo est encore présente.');
 assert(editorCss.includes('.hero__media,.editor-styles-wrapper .page-hero__media{display:none!important}'), 'Les groupes d’images de héros restent visibles dans Gutenberg.');

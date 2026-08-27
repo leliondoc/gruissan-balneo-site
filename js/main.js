@@ -410,10 +410,6 @@
     label.prepend(icon);
   });
 
-  document.querySelectorAll('.info-banner .container').forEach(function (banner) {
-    prependContextIcon(banner, 'fa-circle-exclamation');
-  });
-
   document.querySelectorAll('.info-box__title').forEach(function (title) {
     prependContextIcon(title, 'fa-circle-info');
   });
