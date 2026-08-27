@@ -22,6 +22,7 @@ const force = process.argv.includes('--force');
 const sourceExtensions = new Set(['.jpg', '.jpeg', '.png']);
 const maxDimension = 2560;
 const quality = 82;
+const responsiveWidths = [768, 1280];
 
 function formatBytes(bytes) {
   const units = ['o', 'Ko', 'Mo', 'Go'];
@@ -39,25 +40,45 @@ async function convert(file) {
   const target = path.join(path.dirname(file), `${path.basename(file, extension)}.webp`);
   const sourceStat = fs.statSync(file);
 
-  if (!force && fs.existsSync(target) && fs.statSync(target).mtimeMs >= sourceStat.mtimeMs) {
-    return { status: 'skipped', source: file, target, sourceBytes: sourceStat.size, targetBytes: fs.statSync(target).size };
+  let status = 'skipped';
+  if (force || !fs.existsSync(target) || fs.statSync(target).mtimeMs < sourceStat.mtimeMs) {
+    const temporaryTarget = `${target}.tmp`;
+    await sharp(file, { failOn: 'warning' })
+      .rotate()
+      .resize({
+        width: maxDimension,
+        height: maxDimension,
+        fit: 'inside',
+        withoutEnlargement: true,
+      })
+      .webp({ quality, effort: 5, smartSubsample: true })
+      .toFile(temporaryTarget);
+
+    fs.renameSync(temporaryTarget, target);
+    status = 'converted';
   }
 
-  const temporaryTarget = `${target}.tmp`;
-  await sharp(file, { failOn: 'warning' })
-    .rotate()
-    .resize({
-      width: maxDimension,
-      height: maxDimension,
-      fit: 'inside',
-      withoutEnlargement: true,
-    })
-    .webp({ quality, effort: 5, smartSubsample: true })
-    .toFile(temporaryTarget);
+  const metadata = await sharp(file).metadata();
+  const variants = [];
+  for (const width of responsiveWidths) {
+    if (!metadata.width || metadata.width <= width) continue;
+    const variantTarget = path.join(path.dirname(file), `${path.basename(file, extension)}-${width}.webp`);
+    let variantStatus = 'skipped';
+    if (force || !fs.existsSync(variantTarget) || fs.statSync(variantTarget).mtimeMs < sourceStat.mtimeMs) {
+      const temporaryVariant = `${variantTarget}.tmp`;
+      await sharp(file, { failOn: 'warning' })
+        .rotate()
+        .resize({ width, withoutEnlargement: true })
+        .webp({ quality: 78, effort: 5, smartSubsample: true })
+        .toFile(temporaryVariant);
+      fs.renameSync(temporaryVariant, variantTarget);
+      variantStatus = 'converted';
+    }
+    variants.push({ status: variantStatus, target: variantTarget, width });
+  }
 
-  fs.renameSync(temporaryTarget, target);
   const targetStat = fs.statSync(target);
-  return { status: 'converted', source: file, target, sourceBytes: sourceStat.size, targetBytes: targetStat.size };
+  return { status, source: file, target, sourceBytes: sourceStat.size, targetBytes: targetStat.size, variants };
 }
 
 async function main() {
@@ -75,15 +96,20 @@ async function main() {
       const saved = result.sourceBytes - result.targetBytes;
       console.log(`${path.basename(result.source)} → ${path.basename(result.target)} (${formatBytes(saved)} économisés)`);
     }
+
+    result.variants
+      .filter((variant) => variant.status === 'converted')
+      .forEach((variant) => console.log(`  ↳ ${path.basename(variant.target)} (${variant.width} px)`));
   }
 
   const sourceBytes = results.reduce((sum, result) => sum + result.sourceBytes, 0);
   const targetBytes = results.reduce((sum, result) => sum + result.targetBytes, 0);
   const ratio = sourceBytes ? Math.round((1 - targetBytes / sourceBytes) * 100) : 0;
   const converted = results.filter((result) => result.status === 'converted').length;
+  const variantsConverted = results.flatMap((result) => result.variants).filter((variant) => variant.status === 'converted').length;
 
   console.log(
-    `${results.length} image(s) contrôlée(s), ${converted} convertie(s) — ${formatBytes(sourceBytes)} → ${formatBytes(targetBytes)} (-${ratio} %).`,
+    `${results.length} image(s) contrôlée(s), ${converted} originale(s) et ${variantsConverted} variante(s) convertie(s) — ${formatBytes(sourceBytes)} → ${formatBytes(targetBytes)} (-${ratio} %).`,
   );
 }
 

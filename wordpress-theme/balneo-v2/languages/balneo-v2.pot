@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Balnéo V2 1.4.3\n"
+"Project-Id-Version: Balnéo V2 1.5.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 msgid "Accès & parking"
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:89
+#: inc/class-balneo-v2-primary-menu-walker.php:90
 msgid "Accès libre"
 msgstr ""
 
@@ -29,11 +29,15 @@ msgstr ""
 msgid "Administration"
 msgstr ""
 
+#: header.php:17
+msgid "Aller au contenu principal"
+msgstr ""
+
 #: footer.php:25
 msgid "Aquagym"
 msgstr ""
 
-#: header.php:20
+#: header.php:21
 msgid "Au cœur de Gruissan, entre mer et lagune"
 msgstr ""
 
@@ -45,7 +49,7 @@ msgstr ""
 msgid "Aucun résultat."
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:89
+#: inc/class-balneo-v2-primary-menu-walker.php:90
 msgid "Bains & chaleur"
 msgstr ""
 
@@ -57,7 +61,7 @@ msgstr ""
 msgid "Code postal"
 msgstr ""
 
-#: inc/forms.php:83
+#: inc/forms.php:110
 msgid "Code postal : %s"
 msgstr ""
 
@@ -65,7 +69,11 @@ msgstr ""
 msgid "Commentaires"
 msgstr ""
 
-#: header.php:23
+#: inc/forms.php:112
+msgid "Consentement newsletter : oui"
+msgstr ""
+
+#: header.php:24
 msgid "Contact"
 msgstr ""
 
@@ -77,7 +85,7 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: inc/forms.php:82
+#: inc/forms.php:109
 msgid "E-mail : %s"
 msgstr ""
 
@@ -89,7 +97,7 @@ msgstr ""
 msgid "Erreur 404"
 msgstr ""
 
-#: footer.php:23 inc/class-balneo-v2-primary-menu-walker.php:89
+#: footer.php:23 inc/class-balneo-v2-primary-menu-walker.php:90
 msgid "Espace Balnéo"
 msgstr ""
 
@@ -105,7 +113,7 @@ msgstr ""
 msgid "Espace For.Me"
 msgstr ""
 
-#: header.php:24
+#: header.php:25
 msgid "Gruissan Tourisme"
 msgstr ""
 
@@ -113,7 +121,7 @@ msgstr ""
 msgid "Horaires"
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:88
+#: inc/class-balneo-v2-primary-menu-walker.php:89
 msgid "Hydromassages"
 msgstr ""
 
@@ -125,23 +133,27 @@ msgstr ""
 msgid "Infos pratiques"
 msgstr ""
 
-#: inc/forms.php:88
+#: inc/forms.php:116
 msgid "Inscription newsletter Balnéo"
+msgstr ""
+
+#: inc/forms.php:47
+msgid "J’accepte de recevoir les actualités et j’ai lu la %s."
 msgstr ""
 
 #: inc/forms.php:27
 msgid "L’inscription n’a pas pu être envoyée. Vérifiez votre adresse e-mail ou réessayez."
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:31 inc/class-balneo-v2-primary-menu-walker.php:85 inc/navigation.php:32
+#: inc/class-balneo-v2-primary-menu-walker.php:31 inc/class-balneo-v2-primary-menu-walker.php:86 inc/navigation.php:32
 msgid "Lâcher-prise"
 msgstr ""
 
-#: header.php:21
+#: header.php:22
 msgid "Liens pratiques"
 msgstr ""
 
-#: footer.php:24 inc/class-balneo-v2-primary-menu-walker.php:87
+#: footer.php:24 inc/class-balneo-v2-primary-menu-walker.php:88
 msgid "Massages"
 msgstr ""
 
@@ -153,11 +165,11 @@ msgstr ""
 msgid "Merci pour votre inscription !"
 msgstr ""
 
-#: functions.php:49
+#: functions.php:52
 msgid "Navigation de pied de page"
 msgstr ""
 
-#: functions.php:48
+#: functions.php:51
 msgid "Navigation principale"
 msgstr ""
 
@@ -169,15 +181,15 @@ msgstr ""
 msgid "Nom"
 msgstr ""
 
-#: inc/forms.php:81
+#: inc/forms.php:108
 msgid "Nom : %s"
 msgstr ""
 
-#: inc/forms.php:78
+#: inc/forms.php:105
 msgid "Nouvelle demande d’inscription à la newsletter Balnéo V2"
 msgstr ""
 
-#: header.php:30
+#: header.php:31
 msgid "Ouvrir le menu"
 msgstr ""
 
@@ -189,6 +201,10 @@ msgstr ""
 msgid "Photos : J.B. Roubinet"
 msgstr ""
 
+#: inc/forms.php:48
+msgid "politique de confidentialité"
+msgstr ""
+
 #: inc/navigation.php:33
 msgid "Pratiquer"
 msgstr ""
@@ -197,7 +213,7 @@ msgstr ""
 msgid "Prénom"
 msgstr ""
 
-#: inc/forms.php:80
+#: inc/forms.php:107
 msgid "Prénom : %s"
 msgstr ""
 
@@ -217,7 +233,7 @@ msgstr ""
 msgid "Retour à l’accueil"
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:88
+#: inc/class-balneo-v2-primary-menu-walker.php:89
 msgid "Rituels & hydrojets"
 msgstr ""
 
@@ -225,7 +241,7 @@ msgstr ""
 msgid "S’amuser"
 msgstr ""
 
-#: inc/forms.php:40
+#: inc/forms.php:54
 msgid "S’inscrire"
 msgstr ""
 
@@ -237,11 +253,11 @@ msgstr ""
 msgid "Site web"
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:87
+#: inc/class-balneo-v2-primary-menu-walker.php:88
 msgid "Soin du corps"
 msgstr ""
 
-#: inc/class-balneo-v2-primary-menu-walker.php:87 inc/class-balneo-v2-primary-menu-walker.php:88
+#: inc/class-balneo-v2-primary-menu-walker.php:88 inc/class-balneo-v2-primary-menu-walker.php:89
 msgid "Sur rendez-vous"
 msgstr ""
 
@@ -253,7 +269,7 @@ msgstr ""
 msgid "Ville"
 msgstr ""
 
-#: inc/forms.php:84
+#: inc/forms.php:111
 msgid "Ville : %s"
 msgstr ""
 

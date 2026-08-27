@@ -43,6 +43,7 @@ jobs:
           node --check scripts/audit-wordpress-theme.js
           node --check scripts/build-pot.js
           npm run check:links
+          npm run check:analytics
           npm run audit:wordpress
           find wordpress-theme/balneo-v2 wordpress-plugin/balneo-media -type f -name '*.php' -print0 | xargs -0 -n1 php -l
 

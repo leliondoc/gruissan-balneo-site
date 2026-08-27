@@ -1,26 +1,39 @@
-# Audit qualité — Balnéo V2 1.4.2
+# Audit qualité — Balnéo V2 1.5.0
 
-Audit réalisé le 26 août 2026 sur le thème privé `balneo-v2`.
+Audit réalisé le 27 août 2026 sur le thème privé `balneo-v2`, après comparaison avec le site éditorial `mygruissan.fr` et vérification des recommandations officielles Google, OpenAI, WordPress et web.dev.
 
 ## Résultats
 
-- PHP 8.2 : aucune erreur de syntaxe sur le thème et le plugin médias.
-- WordPress Coding Standards 3.4.1 / PHPCS 3.13.6 : les nouveaux modules `inc/blocks.php` et `inc/content.php` passent sans erreur ni avertissement. Le formatage historique des gabarits HTML générés reste à normaliser avant de pouvoir annoncer un contrôle PHPCS global vierge.
-- Audit interne WordPress : 26 contenus découpés en vrais blocs Gutenberg, sans bloc Classique monolithique, avec navigation principale dynamique, logo personnalisable, `theme.json`, styles d’éditeur, traduction et capture du thème présents.
-- Sécurité npm : aucune vulnérabilité connue après passage à Sharp 0.35.4.
-- Polices d’administration : Barlow 400/500/600 auto-hébergée en WOFF2 avec licence OFL ; Barlow Condensed reste réservée aux titres.
-- Chargement typographique public : fontes critiques préchargées, Buttercy et Brandon Smith Stamp converties en WOFF2, et suppression du fallback cursif système responsable du flash Comic Sans.
+- SEO : titres et descriptions contextuels, URL canonique, Open Graph, Twitter Cards et graphe JSON-LD `WebSite`, `WebPage`, `BreadcrumbList`, établissement local et `Article` lorsque le contenu s’y prête.
+- SEO pour les moteurs IA : contenus HTML sémantiques et éditoriaux accessibles, `robots.txt` explicite pour `OAI-SearchBot`, `ChatGPT-User` et `GPTBot`, ainsi qu’un fichier `/llms.txt` synthétique. Aucun balisage propriétaire n’est présenté comme un signal de classement.
+- Sécurité : échappement et assainissement WordPress, nonce, champ piège, validation, consentement et limitation de fréquence sur la newsletter ; en-têtes `nosniff`, `SAMEORIGIN`, `Referrer-Policy`, `Permissions-Policy` et protection des liens ouverts dans un nouvel onglet.
+- Performance : JavaScript différé avec l’API native WordPress, préchargement limité aux fontes critiques, suppression des ressources historiques inutiles, WebP, dimensions explicites, chargement différé et `srcset` 768/1280 pixels. Les 18 photos principales occupent 5,3 Mo au lieu de 19 Mo, soit environ 72 % de moins que les sources.
+- Accessibilité et sémantique : lien d’évitement, cible `<main>`, boutons explicitement typés, images descriptives et navigation au clavier conservée.
+- Conventions du projet : classes CSS métier renommées en français et commentaires du CSS et du JavaScript rédigés en français. Les classes imposées par WordPress et Font Awesome restent inchangées afin de préserver leur API.
+- Confidentialité : consentement explicite à la newsletter et panneau local Google Analytics/Ads avec refus par défaut, choix granulaire, retrait permanent et aucun appel à Google avant accord ; informations sur la finalité, la base légale, les destinataires, la conservation, les droits et la CNIL.
+- Audit interne WordPress : SEO, IA, sécurité, performance et 26 contenus Gutenberg validés.
 - Liens de la maquette : 26 pages contrôlées sans substitution manquante.
-- Pa11y WCAG 2 AA : aucune erreur sur la page d’accueil locale après correction des contrastes.
+- JavaScript : syntaxe valide sur les 8 scripts de construction, d’audit et d’exécution modifiés.
+- PHP 8.4.24 : syntaxe valide sur les 49 fichiers du thème et du module d’administration.
+- Dépendances npm : aucune vulnérabilité connue au niveau `low` ou supérieur.
 
 ## Commandes reproductibles
 
 ```powershell
+npm run build:static
 npm run build:wordpress
 npm run check:links
 npm run audit:wordpress
-vendor/bin/phpcs
-npx --yes pa11y@latest http://127.0.0.1:4173/ --standard WCAG2AA
+npm audit --audit-level=low
+Get-ChildItem wordpress-theme\balneo-v2,wordpress-admin -Filter *.php -Recurse | ForEach-Object { php -l $_.FullName }
 ```
 
-Theme Check doit être exécuté dans l’administration WordPress après installation de la version 1.4.2. Le thème est privé et conserve volontairement ses fonctions SEO, redirections et formulaires dans des modules internes, conformément au choix de ne jamais changer de thème. Cette architecture n’est donc pas destinée à une publication dans l’annuaire public WordPress.org, qui impose de placer ces fonctions dans une extension.
+## Contrôles de déploiement
+
+- Exécuter WordPress Coding Standards dans l’environnement d’intégration : PHPCS n’est pas installé sur cette machine de développement.
+- Exécuter Theme Check dans l’administration WordPress après installation de la version 1.5.0.
+- Renseigner l’identité et les coordonnées exactes de l’hébergeur dans les mentions légales avant la mise en production.
+- Configurer HTTPS, HSTS, la politique CSP définitive, le cache de page, la compression Brotli/Gzip et les sauvegardes au niveau de l’hébergement ou du CDN.
+- Valider une dernière fois les données d’établissement, les profils sociaux, les horaires et les dates éditoriales dans WordPress.
+
+Le thème est privé et conserve volontairement ses fonctions SEO, redirections et formulaires dans des modules internes, conformément au choix de ne jamais changer de thème. Cette architecture n’est pas destinée à une publication dans l’annuaire public WordPress.org, qui impose de placer ces fonctions dans une extension.

@@ -23,9 +23,9 @@
 		},
 		edit: function ( props ) {
 			var blockProps = useBlockProps( {
-				className: 'balneo-editor-container'
+				className: 'balneo-conteneur-editeur'
 			} );
-			var innerProps = useInnerBlocksProps( { className: 'balneo-editor-container__content' }, { templateLock: false } );
+			var innerProps = useInnerBlocksProps( { className: 'balneo-conteneur-editeur__contenu' }, { templateLock: false } );
 
 			return createElement(
 				'div',
@@ -49,7 +49,7 @@
 		},
 		edit: function ( props ) {
 			var sourceClass = props.attributes.htmlAttributes.class || '';
-			var blockProps = useBlockProps( { className: 'balneo-editor-rich-text ' + sourceClass } );
+			var blockProps = useBlockProps( { className: 'balneo-texte-enrichi-editeur ' + sourceClass } );
 			return createElement(
 				'div',
 				blockProps,
@@ -74,7 +74,7 @@
 			htmlAttributes: { type: 'object', default: {} }
 		},
 		edit: function ( props ) {
-			var blockProps = useBlockProps( { className: 'balneo-editor-image' } );
+			var blockProps = useBlockProps( { className: 'balneo-image-editeur' } );
 			return createElement(
 				'div',
 				blockProps,
@@ -83,10 +83,13 @@
 					MediaUploadCheck,
 					null,
 					createElement( MediaUpload, {
-						onSelect: function ( media ) {
+							onSelect: function ( media ) {
 							var htmlAttributes = Object.assign( {}, props.attributes.htmlAttributes, {
 								src: media.url,
-								alt: media.alt || ''
+								alt: media.alt || '',
+								width: media.width || undefined,
+								height: media.height || undefined,
+								decoding: 'async'
 							} );
 							props.setAttributes( { src: media.url, alt: media.alt || '', htmlAttributes: htmlAttributes } );
 						},

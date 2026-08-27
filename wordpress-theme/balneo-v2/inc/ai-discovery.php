@@ -22,18 +22,23 @@ function balneo_v2_ai_robots_txt( string $output, bool $is_public ): string {
 		return $output;
 	}
 
-	$rules = array(
-		'User-agent: OAI-SearchBot',
-		'Allow: /',
-		'',
-		'User-agent: ChatGPT-User',
-		'Allow: /',
-		'',
-		'User-agent: GPTBot',
-		'Disallow: /',
-		'',
-		'Sitemap: ' . home_url( '/wp-sitemap.xml' ),
-	);
+	$rules = array();
+	if ( false === stripos( $output, 'User-agent: OAI-SearchBot' ) ) {
+		$rules = array_merge( $rules, array( 'User-agent: OAI-SearchBot', 'Allow: /', '' ) );
+	}
+	if ( false === stripos( $output, 'User-agent: ChatGPT-User' ) ) {
+		$rules = array_merge( $rules, array( 'User-agent: ChatGPT-User', 'Allow: /', '' ) );
+	}
+	if ( false === stripos( $output, 'User-agent: GPTBot' ) ) {
+		$rules = array_merge( $rules, array( 'User-agent: GPTBot', 'Disallow: /', '' ) );
+	}
+	if ( false === stripos( $output, 'Sitemap:' ) ) {
+		$rules[] = 'Sitemap: ' . home_url( '/wp-sitemap.xml' );
+	}
+
+	if ( ! $rules ) {
+		return $output;
+	}
 
 	return rtrim( $output ) . "\n\n" . implode( "\n", $rules ) . "\n";
 }
@@ -54,13 +59,18 @@ function balneo_v2_ai_llms_txt(): void {
 	}
 
 	status_header( 200 );
-	nocache_headers();
 	header( 'Content-Type: text/plain; charset=utf-8' );
+	header( 'Cache-Control: public, max-age=3600' );
+	header( 'X-Content-Type-Options: nosniff' );
+
+	$last_modified = get_lastpostmodified( 'GMT' );
+	$last_updated  = $last_modified ? mysql2date( 'Y-m-d', $last_modified, false ) : gmdate( 'Y-m-d' );
 
 	$lines = array(
 		'# Espace Balnéo de Gruissan',
 		'',
 		'> Site officiel de l’Espace Balnéo de Gruissan, centre aquatique, sportif et de bien-être situé avenue des Bains à Gruissan (11430, France).',
+		'> Dernière mise à jour éditoriale : ' . $last_updated . '.',
 		'',
 		'## Informations officielles',
 		'',
@@ -80,6 +90,7 @@ function balneo_v2_ai_llms_txt(): void {
 		'- [Horaires](' . home_url( '/horaires/' ) . ')',
 		'- [Tarifs](' . home_url( '/tarifs/' ) . ')',
 		'- [Questions fréquentes](' . home_url( '/faq/' ) . ')',
+		'- [Actualités](' . home_url( '/actualites/' ) . ')',
 		'- [Accès et parking](' . home_url( '/acces-parking/' ) . ')',
 		'- [Contact](' . home_url( '/contact/' ) . ')',
 		'- [Sitemap XML](' . home_url( '/wp-sitemap.xml' ) . ')',

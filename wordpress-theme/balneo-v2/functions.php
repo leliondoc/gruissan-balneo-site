@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.4.3' );
+define( 'BALNEO_V2_VERSION', '1.5.0' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/blocks.php' );
@@ -19,6 +19,9 @@ require_once get_theme_file_path( '/inc/forms.php' );
 require_once get_theme_file_path( '/inc/redirects.php' );
 require_once get_theme_file_path( '/inc/seo.php' );
 require_once get_theme_file_path( '/inc/ai-discovery.php' );
+require_once get_theme_file_path( '/inc/security.php' );
+require_once get_theme_file_path( '/inc/performance.php' );
+require_once get_theme_file_path( '/inc/analytics.php' );
 require_once get_theme_file_path( '/inc/admin-branding.php' );
 
 /**
@@ -76,20 +79,21 @@ function balneo_v2_assets() {
         get_theme_file_uri( '/js/main.js' ),
         array(),
         file_exists( $script_path ) ? (string) filemtime( $script_path ) : BALNEO_V2_VERSION,
-        true
+        array(
+            'strategy'  => 'defer',
+            'in_footer' => true,
+        )
     );
-    wp_script_add_data( 'balneo-v2', 'strategy', 'defer' );
 }
 add_action( 'wp_enqueue_scripts', 'balneo_v2_assets' );
 
 /**
- * Précharge les trois polices utilisées dès le premier écran.
+ * Précharge uniquement les deux polices réellement visibles au premier écran.
  */
 function balneo_v2_preload_critical_fonts() {
     $fonts = array(
         'BarlowCondensed-Regular.woff2',
         'Buttercy.woff2',
-        'BrandonSmithStamp.woff2',
     );
 
     foreach ( $fonts as $font ) {
@@ -109,7 +113,7 @@ add_action( 'wp_head', 'balneo_v2_preload_critical_fonts', 1 );
  */
 function balneo_v2_body_classes( $classes ) {
     if ( is_front_page() ) {
-        $classes[] = 'is-home';
+        $classes[] = 'est-accueil';
     }
     return $classes;
 }

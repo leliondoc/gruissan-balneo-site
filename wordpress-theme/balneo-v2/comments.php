@@ -11,9 +11,9 @@ if ( post_password_required() ) {
 
 if ( have_comments() ) {
     ?>
-    <section class="comments-area container">
+    <section class="zone-commentaires conteneur">
         <h2><?php esc_html_e( 'Commentaires', 'balneo-v2' ); ?></h2>
-        <ol class="comment-list"><?php wp_list_comments(); ?></ol>
+        <ol class="liste-commentaires"><?php wp_list_comments(); ?></ol>
         <?php the_comments_navigation(); ?>
     </section>
     <?php

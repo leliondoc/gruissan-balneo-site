@@ -157,7 +157,7 @@ function balneo_v2_seo_slug(): string {
 		return 'accueil';
 	}
 
-	if ( is_singular( 'page' ) ) {
+	if ( is_singular() ) {
 		return (string) get_post_field( 'post_name', get_queried_object_id() );
 	}
 
@@ -172,15 +172,31 @@ function balneo_v2_seo_slug(): string {
 function balneo_v2_seo_current_page(): array {
 	$pages = balneo_v2_seo_pages();
 	$slug  = balneo_v2_seo_slug();
+	if ( isset( $pages[ $slug ] ) ) {
+		return $pages[ $slug ];
+	}
 
-	return $pages[ $slug ] ?? array();
+	if ( ! is_singular() ) {
+		return array();
+	}
+
+	$post_id     = get_queried_object_id();
+	$content     = (string) get_post_field( 'post_content', $post_id );
+	$description = has_excerpt( $post_id ) ? (string) get_the_excerpt( $post_id ) : wp_strip_all_tags( strip_shortcodes( $content ) );
+	$image       = get_the_post_thumbnail_url( $post_id, 'full' );
+
+	return array(
+		'title'       => get_the_title( $post_id ) . ' | ' . get_bloginfo( 'name' ),
+		'description' => wp_trim_words( $description, 32, '…' ),
+		'image_url'   => $image ? (string) $image : balneo_v2_seo_image_url( 'balneo-188.webp' ),
+	);
 }
 
 /**
  * Détecte un éventuel plugin SEO afin d’éviter les balises en double.
  */
 function balneo_v2_seo_plugin_active(): bool {
-	return defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' );
+	return defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' ) || defined( 'THE_SEO_FRAMEWORK_VERSION' );
 }
 
 /**
@@ -220,6 +236,19 @@ function balneo_v2_seo_canonical_url(): string {
  */
 function balneo_v2_seo_image_url( string $filename ): string {
 	return get_theme_file_uri( '/assets/photos/' . ltrim( $filename, '/' ) );
+}
+
+/**
+ * Retourne l’image sociale d’une page éditoriale ou d’un contenu WordPress.
+ *
+ * @param array<string, string> $page Métadonnées de la page.
+ */
+function balneo_v2_seo_current_image_url( array $page ): string {
+	if ( ! empty( $page['image_url'] ) ) {
+		return $page['image_url'];
+	}
+
+	return balneo_v2_seo_image_url( $page['image'] ?? 'balneo-188.webp' );
 }
 
 /**
@@ -284,15 +313,16 @@ function balneo_v2_seo_schema_graph(): array {
 	$slug      = balneo_v2_seo_slug();
 	$canonical = balneo_v2_seo_canonical_url();
 	$base      = untrailingslashit( home_url( '/' ) );
-	$image     = balneo_v2_seo_image_url( $page['image'] ?? 'balneo-188.webp' );
+	$image     = balneo_v2_seo_current_image_url( $page );
 	$business  = $base . '/#etablissement';
 	$website   = $base . '/#site-web';
 	$webpage   = $canonical . '#page-web';
 	$image_id  = $canonical . '#image-principale';
+	$is_article = str_starts_with( $slug, 'article-' ) || is_singular( 'post' );
 
 	$graph = array(
 		array(
-			'@type'           => 'SportsActivityLocation',
+			'@type'           => array( 'SportsActivityLocation', 'HealthClub', 'DaySpa' ),
 			'@id'             => $business,
 			'name'            => 'Espace Balnéo de Gruissan',
 			'alternateName'   => 'Espace Balnéo Gruissan',
@@ -304,6 +334,19 @@ function balneo_v2_seo_schema_graph(): array {
 			'image'           => array( $image ),
 			'description'     => 'Centre aquatique et de bien-être à Gruissan proposant balnéothérapie, piscine, massages, activités aquatiques, sport et parc aqualudique saisonnier.',
 			'telephone'       => '+33468756050',
+			'email'           => 'espace.balneoludique@gruissan-mediterranee.com',
+			'priceRange'      => '€€',
+			'currenciesAccepted' => 'EUR',
+			'sameAs'          => array(
+				'https://www.instagram.com/gruissan_espacebalneo/',
+				'https://www.facebook.com/espacebalneoludiquegruissan.omt',
+			),
+			'contactPoint'    => array(
+				'@type'             => 'ContactPoint',
+				'telephone'         => '+33468756050',
+				'contactType'       => 'customer service',
+				'availableLanguage' => array( 'fr' ),
+			),
 			'address'         => array(
 				'@type'           => 'PostalAddress',
 				'streetAddress'   => 'Avenue des Bains',
@@ -365,6 +408,27 @@ function balneo_v2_seo_schema_graph(): array {
 	}
 	$graph[] = $page_schema;
 
+	if ( $is_article ) {
+		$publication_dates = array(
+			'article-parc-ete'        => '2026-06-03T08:00:00+02:00',
+			'article-riviere'         => '2026-04-01T08:00:00+02:00',
+			'article-stages-natation' => '2026-06-01T08:00:00+02:00',
+		);
+		$graph[] = array(
+			'@type'            => 'Article',
+			'@id'              => $canonical . '#article',
+			'headline'         => get_the_title( get_queried_object_id() ),
+			'description'      => $page['description'] ?? '',
+			'datePublished'    => $publication_dates[ $slug ] ?? get_the_date( DATE_W3C, get_queried_object_id() ),
+			'dateModified'     => get_the_modified_date( DATE_W3C, get_queried_object_id() ),
+			'mainEntityOfPage' => array( '@id' => $webpage ),
+			'image'            => array( '@id' => $image_id ),
+			'author'           => array( '@id' => $business ),
+			'publisher'        => array( '@id' => $business ),
+			'inLanguage'       => 'fr-FR',
+		);
+	}
+
 	if ( 'accueil' !== $slug && $canonical ) {
 		$graph[] = array(
 			'@type'           => 'BreadcrumbList',
@@ -424,12 +488,13 @@ function balneo_v2_seo_render_head(): void {
 	$title       = $page['title'];
 	$description = $page['description'];
 	$canonical   = balneo_v2_seo_canonical_url();
-	$image       = balneo_v2_seo_image_url( $page['image'] );
+	$image       = balneo_v2_seo_current_image_url( $page );
+	$og_type     = str_starts_with( balneo_v2_seo_slug(), 'article-' ) || is_singular( 'post' ) ? 'article' : 'website';
 
 	printf( '<meta name="description" content="%s">' . "\n", esc_attr( $description ) );
 	printf( '<link rel="canonical" href="%s">' . "\n", esc_url( $canonical ) );
 	printf( '<meta property="og:locale" content="fr_FR">' . "\n" );
-	printf( '<meta property="og:type" content="website">' . "\n" );
+	printf( '<meta property="og:type" content="%s">' . "\n", esc_attr( $og_type ) );
 	printf( '<meta property="og:title" content="%s">' . "\n", esc_attr( $title ) );
 	printf( '<meta property="og:description" content="%s">' . "\n", esc_attr( $description ) );
 	printf( '<meta property="og:url" content="%s">' . "\n", esc_url( $canonical ) );
@@ -440,8 +505,9 @@ function balneo_v2_seo_render_head(): void {
 	printf( '<meta name="twitter:title" content="%s">' . "\n", esc_attr( $title ) );
 	printf( '<meta name="twitter:description" content="%s">' . "\n", esc_attr( $description ) );
 	printf( '<meta name="twitter:image" content="%s">' . "\n", esc_url( $image ) );
+	printf( '<meta name="twitter:image:alt" content="%s">' . "\n", esc_attr( 'Espace Balnéo de Gruissan' ) );
 
-	echo '<script type="application/ld+json">' . wp_json_encode( balneo_v2_seo_schema_graph(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP ) . '</script>' . "\n";
+	echo '<script type="application/ld+json">' . wp_json_encode( balneo_v2_seo_schema_graph(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . '</script>' . "\n";
 }
 
 if ( ! balneo_v2_seo_plugin_active() ) {

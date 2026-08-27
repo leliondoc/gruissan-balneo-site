@@ -60,7 +60,7 @@ function balneo_v2_block_html_attributes( array $attributes ): string {
 
 	foreach ( $attributes as $name => $value ) {
 		$name = strtolower( (string) $name );
-		if ( ! preg_match( '/^(?:aria-[a-z0-9_-]+|data-[a-z0-9_-]+|alt|class|fetchpriority|height|href|id|loading|rel|role|src|style|target|title|width)$/', $name ) ) {
+		if ( ! preg_match( '/^(?:aria-[a-z0-9_-]+|data-[a-z0-9_-]+|alt|class|decoding|fetchpriority|height|href|id|loading|rel|role|sizes|src|srcset|style|target|title|width)$/', $name ) ) {
 			continue;
 		}
 
@@ -72,6 +72,17 @@ function balneo_v2_block_html_attributes( array $attributes ): string {
 		$value = (string) $value;
 		if ( 'href' === $name || 'src' === $name ) {
 			$value = esc_url( $value );
+		} elseif ( 'srcset' === $name ) {
+			$candidates = array();
+			foreach ( explode( ',', $value ) as $candidate ) {
+				if ( preg_match( '/^\s*(\S+)\s+(\d+)w\s*$/', $candidate, $matches ) ) {
+					$url = esc_url( $matches[1] );
+					if ( $url ) {
+						$candidates[] = $url . ' ' . absint( $matches[2] ) . 'w';
+					}
+				}
+			}
+			$value = implode( ', ', $candidates );
 		} elseif ( 'style' === $name ) {
 			$value = safecss_filter_attr( $value );
 		} elseif ( 'class' === $name ) {
@@ -176,6 +187,14 @@ function balneo_v2_render_image_block( array $attributes ): string {
 	$html_attributes        = isset( $attributes['htmlAttributes'] ) && is_array( $attributes['htmlAttributes'] ) ? $attributes['htmlAttributes'] : array();
 	$html_attributes['src'] = isset( $attributes['src'] ) ? (string) $attributes['src'] : '';
 	$html_attributes['alt'] = isset( $attributes['alt'] ) ? (string) $attributes['alt'] : '';
+
+	if ( empty( $html_attributes['srcset'] ) && str_contains( $html_attributes['src'], '/assets/photos/' ) ) {
+		$srcset = balneo_v2_theme_image_srcset( wp_basename( (string) wp_parse_url( $html_attributes['src'], PHP_URL_PATH ) ) );
+		if ( $srcset ) {
+			$html_attributes['srcset'] = $srcset;
+			$html_attributes['sizes']  = 'high' === ( $html_attributes['fetchpriority'] ?? '' ) ? '100vw' : '(max-width: 760px) 100vw, 50vw';
+		}
+	}
 
 	return '<img' . balneo_v2_block_html_attributes( $html_attributes ) . '>';
 }

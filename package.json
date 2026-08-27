@@ -6,6 +6,7 @@
     "images:webp": "node scripts/convert-images-webp.js",
     "build:wordpress": "npm run images:webp && node build-wordpress-theme.js && node scripts/build-pot.js",
     "check:links": "node check-links.js",
+    "check:analytics": "node scripts/test-analytics-consent.js",
     "audit:wordpress": "node scripts/audit-wordpress-theme.js",
     "i18n:pot": "node scripts/build-pot.js"
   },

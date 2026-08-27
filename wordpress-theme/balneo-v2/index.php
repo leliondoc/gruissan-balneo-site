@@ -7,8 +7,8 @@
 
 get_header();
 ?>
-<main class="section">
-    <div class="container entry-content">
+<main class="section-contenu">
+    <div class="conteneur contenu-entree">
         <?php if ( have_posts() ) : ?>
             <?php while ( have_posts() ) : the_post(); ?>
                 <article <?php post_class(); ?>>
