@@ -65,9 +65,19 @@ const header = read('header.php');
 assert(header.includes('balneo_v2_primary_navigation()'), 'Navigation principale encore codée en dur.');
 assert(header.includes("balneo_v2_site_logo( 'header' )"), 'Logo d’en-tête non piloté par WordPress.');
 assert(header.includes('class="skip-link"'), 'Lien d’évitement vers le contenu principal absent.');
+assert(header.includes('<!-- Référencement, données structurées, polices et styles WordPress -->'), 'Repère français des ressources d’en-tête absent du HTML public.');
+assert(header.includes('<!-- En-tête : identité, informations pratiques et navigation principale -->'), 'Repère français de navigation absent du HTML public.');
 
 const footer = read('footer.php');
 assert(footer.includes("balneo_v2_site_logo( 'footer' )"), 'Logo de pied de page non piloté par WordPress.');
+assert(footer.includes('<!-- Pied de page : navigation secondaire et informations légales -->'), 'Repère français du pied de page absent du HTML public.');
+assert(footer.includes('<!-- Scripts différés et fonctionnalités interactives -->'), 'Repère français des scripts publics absent.');
+
+const blocksPhp = read('inc/blocks.php');
+assert(blocksPhp.includes('function balneo_v2_comment_public_sections'), 'Commentaires français des grandes sections absents.');
+['hero', 'quick-access', 'seasonal-section', 'news-section', 'contact-section'].forEach((classe) => {
+  assert(blocksPhp.includes(`'${classe}'`), `Repère de section publique absent : ${classe}`);
+});
 
 const securityPhp = read('inc/security.php');
 assert(securityPhp.includes('X-Content-Type-Options'), 'Protection contre le reniflage MIME absente.');

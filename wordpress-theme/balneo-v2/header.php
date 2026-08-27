@@ -8,13 +8,18 @@
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
+  <!-- Configuration du document et compatibilité mobile -->
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Référencement, données structurées, polices et styles WordPress -->
   <?php wp_head(); ?>
+  <!-- Fin des ressources de l’en-tête -->
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<!-- Accessibilité : lien d’évitement vers le contenu principal -->
 <a class="skip-link" href="#contenu-principal"><?php esc_html_e( 'Aller au contenu principal', 'balneo-v2' ); ?></a>
+<!-- En-tête : identité, informations pratiques et navigation principale -->
 <header class="site-header">
     <div class="utility-bar">
       <div class="utility-bar__inner">

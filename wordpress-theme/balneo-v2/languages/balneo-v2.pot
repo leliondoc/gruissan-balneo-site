@@ -5,11 +5,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr_FR\n"
 
-#: footer.php:37
+#: footer.php:39
 msgid "® D.B.G — Espace Balnéo de Gruissan"
 msgstr ""
 
-#: footer.php:32
+#: footer.php:34
 msgid "Accès & parking"
 msgstr ""
 
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Accueil — Espace Balnéo Gruissan"
 msgstr ""
 
-#: footer.php:9 inc/navigation.php:77
+#: footer.php:10 inc/navigation.php:77
 msgid "Acheter"
 msgstr ""
 
@@ -29,19 +29,19 @@ msgstr ""
 msgid "Administration"
 msgstr ""
 
-#: header.php:17
+#: header.php:21
 msgid "Aller au contenu principal"
 msgstr ""
 
-#: footer.php:25
+#: footer.php:27
 msgid "Aquagym"
 msgstr ""
 
-#: header.php:21
+#: header.php:26
 msgid "Au cœur de Gruissan, entre mer et lagune"
 msgstr ""
 
-#: index.php:20
+#: index.php:21
 msgid "Aucun contenu"
 msgstr ""
 
@@ -73,11 +73,11 @@ msgstr ""
 msgid "Consentement newsletter : oui"
 msgstr ""
 
-#: header.php:24
+#: header.php:29
 msgid "Contact"
 msgstr ""
 
-#: footer.php:17
+#: footer.php:19
 msgid "Données personnelles"
 msgstr ""
 
@@ -89,7 +89,7 @@ msgstr ""
 msgid "E-mail : %s"
 msgstr ""
 
-#: footer.php:9
+#: footer.php:10
 msgid "en ligne"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Erreur 404"
 msgstr ""
 
-#: footer.php:23 inc/class-balneo-v2-primary-menu-walker.php:90
+#: footer.php:25 inc/class-balneo-v2-primary-menu-walker.php:90
 msgid "Espace Balnéo"
 msgstr ""
 
@@ -109,15 +109,15 @@ msgstr ""
 msgid "Espace Balnéo Gruissan"
 msgstr ""
 
-#: footer.php:22
+#: footer.php:24
 msgid "Espace For.Me"
 msgstr ""
 
-#: header.php:25
+#: header.php:30
 msgid "Gruissan Tourisme"
 msgstr ""
 
-#: footer.php:31
+#: footer.php:33
 msgid "Horaires"
 msgstr ""
 
@@ -125,11 +125,11 @@ msgstr ""
 msgid "Hydromassages"
 msgstr ""
 
-#: footer.php:15
+#: footer.php:17
 msgid "Informations légales"
 msgstr ""
 
-#: footer.php:29
+#: footer.php:31
 msgid "Infos pratiques"
 msgstr ""
 
@@ -149,15 +149,15 @@ msgstr ""
 msgid "Lâcher-prise"
 msgstr ""
 
-#: header.php:22
+#: header.php:27
 msgid "Liens pratiques"
 msgstr ""
 
-#: footer.php:24 inc/class-balneo-v2-primary-menu-walker.php:88
+#: footer.php:26 inc/class-balneo-v2-primary-menu-walker.php:88
 msgid "Massages"
 msgstr ""
 
-#: footer.php:16
+#: footer.php:18
 msgid "Mentions légales"
 msgstr ""
 
@@ -189,15 +189,15 @@ msgstr ""
 msgid "Nouvelle demande d’inscription à la newsletter Balnéo V2"
 msgstr ""
 
-#: header.php:31
+#: header.php:36
 msgid "Ouvrir le menu"
 msgstr ""
 
-#: footer.php:26
+#: footer.php:28
 msgid "Parc été"
 msgstr ""
 
-#: footer.php:38
+#: footer.php:40
 msgid "Photos : J.B. Roubinet"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Préparer"
 msgstr ""
 
-#: footer.php:18
+#: footer.php:20
 msgid "Règlement intérieur"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Sur rendez-vous"
 msgstr ""
 
-#: footer.php:30
+#: footer.php:32
 msgid "Tarifs"
 msgstr ""
 

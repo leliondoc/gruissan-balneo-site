@@ -268,13 +268,18 @@ function buildHeader(homeHtml) {
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
+  <!-- Configuration du document et compatibilité mobile -->
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Référencement, données structurées, polices et styles WordPress -->
   <?php wp_head(); ?>
+  <!-- Fin des ressources de l’en-tête -->
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<!-- Accessibilité : lien d’évitement vers le contenu principal -->
 <a class="skip-link" href="#contenu-principal"><?php esc_html_e( 'Aller au contenu principal', 'balneo-v2' ); ?></a>
+<!-- En-tête : identité, informations pratiques et navigation principale -->
 ${header}`;
 }
 
@@ -283,6 +288,9 @@ function buildFooter(homeHtml) {
   const footerEnd = homeHtml.indexOf('</footer>', footerStart);
   if (footerStart === -1 || footerEnd === -1) throw new Error('Pied de page introuvable');
   let footer = transformMarkup(homeHtml.slice(footerStart, footerEnd + '</footer>'.length));
+  footer = footer
+    .replace('<a class="cta-orb"', '<!-- Appel à l’action persistant : billetterie en ligne -->\n<a class="cta-orb"')
+    .replace('<footer class="site-footer">', '<!-- Pied de page : navigation secondaire et informations légales -->\n<footer class="site-footer">');
   footer = footer.replace(
     /<a href="<\?php echo esc_url\( home_url\( '\/' \) \); \?>" class="footer-wordmark">[\s\S]*?<\/a>/,
     "<?php balneo_v2_site_logo( 'footer' ); ?>",
@@ -314,6 +322,7 @@ function buildFooter(homeHtml) {
 
 ?>
 ${footer}
+<!-- Scripts différés et fonctionnalités interactives -->
 <?php wp_footer(); ?>
 </body>
 </html>`;
@@ -573,6 +582,9 @@ Text Domain: balneo-v2
 
 get_header();
 
+?>
+<!-- Page Accueil : contenu éditorial administré dans Gutenberg -->
+<?php
 while ( have_posts() ) {
     the_post();
     if ( '' !== trim( (string) get_the_content() ) ) {
@@ -582,6 +594,9 @@ while ( have_posts() ) {
     }
 }
 
+?>
+<!-- Fin de la page Accueil -->
+<?php
 get_footer();`);
 
   write('page.php', `<?php
@@ -593,6 +608,9 @@ get_footer();`);
 
 get_header();
 
+?>
+<!-- Page intérieure : contenu éditorial administré dans Gutenberg -->
+<?php
 while ( have_posts() ) {
     the_post();
     $slug = get_post_field( 'post_name', get_the_ID() );
@@ -613,6 +631,9 @@ while ( have_posts() ) {
     }
 }
 
+?>
+<!-- Fin du contenu éditorial de la page -->
+<?php
 get_footer();`);
 
   write('index.php', `<?php
@@ -624,6 +645,7 @@ get_footer();`);
 
 get_header();
 ?>
+<!-- Liste de contenus WordPress -->
 <main class="section">
     <div class="container entry-content">
         <?php if ( have_posts() ) : ?>
@@ -638,6 +660,7 @@ get_header();
         <?php endif; ?>
     </div>
 </main>
+<!-- Fin de la liste de contenus WordPress -->
 <?php
 get_footer();`);
 

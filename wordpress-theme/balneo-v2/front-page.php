@@ -7,6 +7,9 @@
 
 get_header();
 
+?>
+<!-- Page Accueil : contenu éditorial administré dans Gutenberg -->
+<?php
 while ( have_posts() ) {
     the_post();
     if ( '' !== trim( (string) get_the_content() ) ) {
@@ -16,4 +19,7 @@ while ( have_posts() ) {
     }
 }
 
+?>
+<!-- Fin de la page Accueil -->
+<?php
 get_footer();

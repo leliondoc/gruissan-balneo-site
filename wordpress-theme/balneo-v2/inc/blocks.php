@@ -150,6 +150,53 @@ function balneo_v2_render_core_group_attributes( string $block_content, array $b
 add_filter( 'render_block_core/group', 'balneo_v2_render_core_group_attributes', 10, 2 );
 
 /**
+ * Ajoute des repères français dans le code source autour des grandes sections.
+ *
+ * Ces commentaires facilitent la lecture et la maintenance du HTML public sans
+ * modifier le contenu visible, l’accessibilité ou l’indexation de la page.
+ *
+ * @param string               $block_content HTML rendu du bloc.
+ * @param array<string, mixed> $block         Bloc analysé.
+ * @return string
+ */
+function balneo_v2_comment_public_sections( string $block_content, array $block ): string {
+	if ( is_admin() || '' === trim( $block_content ) ) {
+		return $block_content;
+	}
+
+	$class_name = isset( $block['attrs']['className'] ) ? (string) $block['attrs']['className'] : '';
+	$classes    = preg_split( '/\s+/', $class_name, -1, PREG_SPLIT_NO_EMPTY );
+	$classes    = false !== $classes ? $classes : array();
+	$sections   = array(
+		'info-banner'       => 'Bandeau d’information pratique',
+		'hero'              => 'Accueil : présentation principale',
+		'quick-access'      => 'Accueil : accès rapides',
+		'welcome'           => 'Accueil : présentation de l’Espace Balnéo',
+		'experience-section' => 'Accueil : découverte des espaces',
+		'seasonal-section'  => 'Accueil : activités au fil des saisons',
+		'manifesto'         => 'Accueil : engagements et chiffres clés',
+		'news-section'      => 'Accueil : actualités',
+		'contact-section'   => 'Accueil : contact et inscription',
+		'page-hero'         => 'Page intérieure : en-tête éditorial',
+	);
+
+	foreach ( $sections as $class => $label ) {
+		if ( ! in_array( $class, $classes, true ) ) {
+			continue;
+		}
+
+		return sprintf(
+			"<!-- %1\$s -->\n%2\$s\n<!-- Fin : %1\$s -->",
+			esc_html( $label ),
+			$block_content
+		);
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block_core/group', 'balneo_v2_comment_public_sections', 20, 2 );
+
+/**
  * Rend un conteneur tout en conservant ses blocs internes éditables.
  *
  * @param array<string, mixed> $attributes Attributs du bloc.

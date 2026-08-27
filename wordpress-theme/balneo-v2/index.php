@@ -7,6 +7,7 @@
 
 get_header();
 ?>
+<!-- Liste de contenus WordPress -->
 <main class="section">
     <div class="container entry-content">
         <?php if ( have_posts() ) : ?>
@@ -21,5 +22,6 @@ get_header();
         <?php endif; ?>
     </div>
 </main>
+<!-- Fin de la liste de contenus WordPress -->
 <?php
 get_footer();

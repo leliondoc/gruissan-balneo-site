@@ -7,6 +7,9 @@
 
 get_header();
 
+?>
+<!-- Page intérieure : contenu éditorial administré dans Gutenberg -->
+<?php
 while ( have_posts() ) {
     the_post();
     $slug = get_post_field( 'post_name', get_the_ID() );
@@ -27,4 +30,7 @@ while ( have_posts() ) {
     }
 }
 
+?>
+<!-- Fin du contenu éditorial de la page -->
+<?php
 get_footer();
