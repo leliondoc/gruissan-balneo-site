@@ -524,7 +524,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 .page-hero__label { margin-bottom: .7rem; color: var(--yellow); font-family: 'Brandon Smith Stamp', 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; font-size: clamp(1.45rem, 2.6vw, 2.25rem); font-weight: 400; letter-spacing: 0; text-transform: none; }
 .page-hero__title { max-width: 15ch; font-size: clamp(4rem, 7.5vw, 7.5rem); letter-spacing: -.01em; }
 /* Le premier contenu reste proche du héros, sans modifier le rythme des sections suivantes. */
-.page-hero + .section { padding-top: clamp(3.5rem, 5vw, 4.5rem); }
+.page-hero + .section { margin-block-start: 0; padding-top: clamp(3.5rem, 5vw, 4.5rem); }
 .section--light { background: var(--sand-light); }
 .section--cream { background: var(--sand); }
 .content-block { width: min(100%, 960px); }
