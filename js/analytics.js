@@ -123,7 +123,7 @@
       '  <div class="cookie-consent__view" data-consent-view="intro">',
       '    <p class="cookie-consent__eyebrow">Une visite à votre rythme</p>',
       '    <h2 id="consentement-cookies-titre" tabindex="-1">On se jette à l’eau&nbsp;?</h2>',
-      '    <p>Avec votre accord, Google Analytics nous aide à comprendre la fréquentation du site et Google Ads à mesurer nos campagnes. Rien ne part chez Google avant votre choix.</p>',
+      '    <p>Avec votre accord, Google Analytics nous aide à comprendre la fréquentation du site et Google Ads à mesurer nos campagnes.</p>',
       '    <div class="cookie-consent__actions">',
       '      <button class="cookie-consent__button cookie-consent__button--primary" type="button" data-consent-accept>Tout accepter</button>',
       '      <button class="cookie-consent__button cookie-consent__button--secondary" type="button" data-consent-reject>Tout refuser</button>',
