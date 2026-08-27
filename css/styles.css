@@ -97,7 +97,7 @@ p + p { margin-top: 1rem; }
 .main-nav { order: 1; height: 100%; margin-left: auto; display: flex; align-items: center; gap: clamp(1.55rem, 2.4vw, 2.75rem); }
 .main-nav > li { position: relative; height: 100%; display: flex; align-items: center; }
 .main-nav > li > a, .main-nav > li > .nav-link { position: relative; height: 100%; padding: 1.7rem .18rem 0; display: flex; align-items: center; justify-content: center; color: inherit; border: 0; background: none; cursor: pointer; font-size: .9rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-.main-nav__icon { position: absolute; top: 1.15rem; left: 50%; width: 34px; height: 34px; display: grid; place-items: center; font-size: 1.48rem; transform: translate3d(-50%,0,0); transition: color .24s ease, transform .28s cubic-bezier(.22,1,.36,1); }
+.main-nav__icon { position: absolute; top: 1.15rem; left: 50%; width: 34px; height: 34px; display: grid; place-items: center; font-size: 1.48rem; transform: translate3d(-50%,0,0); transition: color .5s ease, transform .55s cubic-bezier(.22,1,.36,1); }
 .main-nav__icon i { position: relative; z-index: 1; grid-area: 1 / 1; display: block; line-height: 1; transform-origin: center; }
 .main-nav__icon--2::after { content: ''; position: absolute; inset: 4px; border: 1px solid currentColor; border-radius: 50%; opacity: 0; transform-origin: center; }
 .main-nav__icon--3 .main-nav__icon-water { z-index: 2; clip-path: inset(55% 0 0); }
@@ -110,9 +110,9 @@ p + p { margin-top: 1rem; }
 .main-nav > li:hover .main-nav__icon, .main-nav > li:focus-within .main-nav__icon { transform: translate3d(-50%,-2px,0) scale(1.06); }
 .main-nav > li:hover > a, .main-nav > li:hover > .nav-link, .main-nav > li > a.active { color: var(--yellow); }
 .main-nav__booking > a { height: 46px !important; margin-left: .35rem; padding: 0 1.25rem !important; border: 0 !important; color: var(--ink) !important; background: var(--yellow); transform: rotate(-1deg); }
-.main-nav__booking > a:hover, .main-nav__booking > a:focus-visible { background: var(--white); color: var(--ink-deep) !important; animation: bookingHello .34s cubic-bezier(.2,.8,.3,1) both; }
+.main-nav__booking > a:hover, .main-nav__booking > a:focus-visible { background: var(--white); color: var(--ink-deep) !important; animation: bookingHello .58s cubic-bezier(.2,.8,.3,1) both; }
 
-.dropdown { position: absolute; top: calc(100% - 10px); left: 50%; min-width: 260px; padding: .7rem; contain: layout paint; color: var(--ink); background: var(--white); border-top: 5px solid var(--green); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translate3d(-50%,12px,0); transition: opacity .24s ease, transform .28s cubic-bezier(.22,1,.36,1), visibility .24s; }
+.dropdown { position: absolute; top: calc(100% - 10px); left: 50%; min-width: 260px; padding: .7rem; contain: layout paint; color: var(--ink); background: var(--white); border-top: 5px solid var(--green); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translate3d(-50%,12px,0); transition: opacity var(--transition), transform var(--transition), visibility var(--transition); }
 .dropdown--right { right: auto; }
 .dropdown--practical { width: 420px; display: grid; grid-template-columns: 1fr 1fr; }
 .has-dropdown:hover > .dropdown, .has-dropdown.open > .dropdown, .has-dropdown:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translate3d(-50%,0,0); }
@@ -131,7 +131,7 @@ p + p { margin-top: 1rem; }
 .dropdown--mega { left: 50%; width: min(850px, calc(100vw - 3rem)); min-width: 0; padding: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; border-top: 0; border-radius: 14px; }
 .dropdown--mega::before { content: ''; position: absolute; top: 0; left: 50%; width: min(260px, calc(100% - 2rem)); height: 5px; background: var(--pink); border-radius: 0 0 3px 3px; transform: translateX(-50%); }
 .dropdown .mega-menu__card { position: relative; height: 285px; padding: 0; overflow: hidden; color: var(--white); background: var(--ink-deep); border: 0; border-radius: 10px; isolation: isolate; }
-.mega-menu__card > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; transform: translateZ(0); transition: transform .38s cubic-bezier(.2,.7,.2,1); }
+.mega-menu__card > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; transform: translateZ(0); transition: transform .75s cubic-bezier(.2,.7,.2,1); }
 .mega-menu__card--massages > img { object-position: 55% center; }
 .mega-menu__card--hydromassages > img { object-position: 74% center; }
 .mega-menu__card--balneo > img { object-position: 67% center; }
@@ -169,25 +169,25 @@ body:not(.is-home) .main-nav > li > a.active { color: var(--green); }
 @media (min-width: 1081px) and (prefers-reduced-motion: no-preference) {
   .main-nav > li:is(:hover, :focus-within) .main-nav__icon i,
   .main-nav > li:is(:hover, :focus-within) .main-nav__icon::after { will-change: transform, opacity; }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--1 i { animation: navDumbbellRep .46s cubic-bezier(.22,1,.36,1); }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--2 i { animation: navSpaBreathe .5s cubic-bezier(.22,1,.36,1); }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--2::after { animation: navSpaHalo .5s ease-out; }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--3 .main-nav__icon-water { animation: navSwimWater .46s cubic-bezier(.45,0,.55,1); }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--4 i { animation: navPoolBob .46s cubic-bezier(.22,1,.36,1); }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--4::after { animation: navPoolRipple .5s ease-out; }
-  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--5 i { animation: navBookFlutter .5s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--1 i { animation: navDumbbellRep .82s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--2 i { animation: navSpaBreathe .96s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--2::after { animation: navSpaHalo .96s ease-out; }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--3 .main-nav__icon-water { animation: navSwimWater .9s cubic-bezier(.45,0,.55,1); }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--4 i { animation: navPoolBob .84s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--4::after { animation: navPoolRipple .92s ease-out; }
+  .main-nav > li:is(:hover, :focus-within) .main-nav__icon--5 i { animation: navBookFlutter .96s cubic-bezier(.22,1,.36,1); }
 }
 
 @media (max-width: 1080px) and (prefers-reduced-motion: no-preference) {
   .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon i,
   .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon::after { will-change: transform, opacity; }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--1 i { animation: navDumbbellRep .42s cubic-bezier(.22,1,.36,1); }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--2 i { animation: navSpaBreathe .46s cubic-bezier(.22,1,.36,1); }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--2::after { animation: navSpaHalo .46s ease-out; }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--3 .main-nav__icon-water { animation: navSwimWater .42s cubic-bezier(.45,0,.55,1); }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--4 i { animation: navPoolBob .42s cubic-bezier(.22,1,.36,1); }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--4::after { animation: navPoolRipple .46s ease-out; }
-  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--5 i { animation: navBookFlutter .46s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--1 i { animation: navDumbbellRep .82s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--2 i { animation: navSpaBreathe .96s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--2::after { animation: navSpaHalo .96s ease-out; }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--3 .main-nav__icon-water { animation: navSwimWater .9s cubic-bezier(.45,0,.55,1); }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--4 i { animation: navPoolBob .84s cubic-bezier(.22,1,.36,1); }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--4::after { animation: navPoolRipple .92s ease-out; }
+  .main-nav > li > .nav-link[aria-expanded="true"] .main-nav__icon--5 i { animation: navBookFlutter .96s cubic-bezier(.22,1,.36,1); }
 }
 
 @keyframes navDumbbellRep {
@@ -585,6 +585,10 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 .cta-orb:hover { transform: scale(1.05); }
 .cta-orb:hover::before { background: var(--green); }
 .cta-orb:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+@keyframes ctaSunTurn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) {
+  .cta-orb::before { animation: ctaSunTurn 26s linear infinite; }
+}
 .site-footer { position: relative; padding: 5rem 0 1.5rem; color: var(--white); background: var(--ink-deep); }
 .site-footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 14px; background: linear-gradient(90deg, var(--yellow) 0 33%, var(--green) 33% 66%, var(--pink) 66%); }
 .footer-grid { margin-bottom: 4rem; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 3rem; }
@@ -644,7 +648,7 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .site-logo { width: 100px; }
   .nav-toggle { display: block; }
   .site-tools { margin-left: auto; }
-  .main-nav { position: fixed; inset: 0; z-index: 101; height: 100vh; height: 100dvh; padding: 7.5rem 1.5rem 2rem; contain: layout paint; display: block; overflow-y: auto; color: var(--ink); background: var(--green-light); backface-visibility: hidden; will-change: transform; transform: translate3d(100%,0,0); transition: transform .28s cubic-bezier(.22,1,.36,1); }
+  .main-nav { position: fixed; inset: 0; z-index: 101; height: 100vh; height: 100dvh; padding: 7.5rem 1.5rem 2rem; contain: layout paint; display: block; overflow-y: auto; color: var(--ink); background: var(--green-light); backface-visibility: hidden; will-change: transform; transform: translate3d(100%,0,0); transition: transform var(--transition); }
   .main-nav.open { transform: translate3d(0,0,0); }
   .main-nav > li { display: block; height: auto; border-bottom: 1px solid var(--line); }
   .main-nav > li > a, .main-nav > li > .nav-link { width: 100%; height: auto; min-height: 62px; padding: 0 0 0 2.6rem; justify-content: space-between; color: var(--ink); font-size: .75rem; text-align: left; }

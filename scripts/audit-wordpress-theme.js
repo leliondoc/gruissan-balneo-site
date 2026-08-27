@@ -44,6 +44,8 @@ const publicCss = read('css/styles.css');
 assert(!publicCss.includes('cursive'), 'Une police cursive système peut encore provoquer un flash Comic Sans.');
 assert(!publicCss.includes('BrandonSmithStamp.woff\''), 'L’ancienne police Brandon WOFF lourde est encore chargée.');
 assert(!publicCss.includes('Buttercy.ttf'), 'L’ancienne police Buttercy TTF est encore chargée.');
+assert(publicCss.includes('navSpaBreathe .96s'), 'Les animations posées des icônes du menu ont disparu.');
+assert(publicCss.includes('animation: ctaSunTurn 26s linear infinite'), 'La rotation lente de la pastille Acheter a disparu.');
 
 const header = read('header.php');
 assert(header.includes('balneo_v2_primary_navigation()'), 'Navigation principale encore codée en dur.');
