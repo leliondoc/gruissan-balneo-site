@@ -5,6 +5,7 @@
 	var Fragment = element.Fragment;
 	var __ = i18n.__;
 	var useBlockProps = blockEditor.useBlockProps;
+	var useInnerBlocksProps = blockEditor.useInnerBlocksProps;
 	var InnerBlocks = blockEditor.InnerBlocks;
 	var RichText = blockEditor.RichText;
 	var MediaUpload = blockEditor.MediaUpload;
@@ -13,7 +14,7 @@
 	var TextControl = components.TextControl;
 
 	blocks.registerBlockType( 'balneo/container', {
-		title: __( 'Conteneur Balnéo', 'balneo-v2' ),
+		title: __( 'Ancien conteneur Balnéo', 'balneo-v2' ),
 		category: 'design',
 		icon: 'layout',
 		attributes: {
@@ -21,18 +22,15 @@
 			htmlAttributes: { type: 'object', default: {} }
 		},
 		edit: function ( props ) {
-			var sourceClass = props.attributes.htmlAttributes.class || '';
-			var label = props.attributes.tagName + ( sourceClass ? ' · .' + sourceClass.split( ' ' ).join( '.' ) : '' );
 			var blockProps = useBlockProps( {
-				className: 'balneo-editor-container',
-				'data-balneo-element': label
+				className: 'balneo-editor-container'
 			} );
+			var innerProps = useInnerBlocksProps( { className: 'balneo-editor-container__content' }, { templateLock: false } );
 
 			return createElement(
 				'div',
 				blockProps,
-				createElement( 'span', { className: 'balneo-editor-container__label' }, label ),
-				createElement( InnerBlocks )
+				createElement( 'div', innerProps )
 			);
 		},
 		save: function () {
@@ -50,13 +48,13 @@
 			htmlAttributes: { type: 'object', default: {} }
 		},
 		edit: function ( props ) {
-			var blockProps = useBlockProps( { className: 'balneo-editor-rich-text' } );
+			var sourceClass = props.attributes.htmlAttributes.class || '';
+			var blockProps = useBlockProps( { className: 'balneo-editor-rich-text ' + sourceClass } );
 			return createElement(
 				'div',
 				blockProps,
-				createElement( 'small', { className: 'balneo-editor-rich-text__label' }, props.attributes.tagName ),
 				createElement( RichText, {
-					tagName: 'div',
+					tagName: props.attributes.tagName || 'div',
 					value: props.attributes.content,
 					onChange: function ( content ) { props.setAttributes( { content: content } ); },
 					placeholder: __( 'Saisissez le texte…', 'balneo-v2' )
@@ -67,7 +65,7 @@
 	} );
 
 	blocks.registerBlockType( 'balneo/image', {
-		title: __( 'Image Balnéo', 'balneo-v2' ),
+		title: __( 'Image', 'balneo-v2' ),
 		category: 'media',
 		icon: 'format-image',
 		attributes: {

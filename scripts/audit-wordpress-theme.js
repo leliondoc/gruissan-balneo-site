@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const { parse } = require('@wordpress/block-serialization-default-parser');
+const { parse: parseSerializedBlocks } = require('@wordpress/block-serialization-default-parser');
+const { htmlToEditableGutenberg } = require('./gutenberg-blocks');
+
+htmlToEditableGutenberg('<p>Audit Gutenberg</p>');
+const { parse: parseGutenbergBlocks } = require('@wordpress/blocks');
 
 const root = path.resolve(__dirname, '..');
 const theme = path.join(root, 'wordpress-theme', 'balneo-v2');
@@ -55,8 +59,11 @@ const seeds = read('inc/content-seeds.php');
 const seedCount = (seeds.match(/'content'\s*=>\s*<<<'BALNEO_/g) || []).length;
 assert(seedCount === 26, `26 contenus attendus, ${seedCount} trouvés.`);
 assert((seeds.match(/'legacy_hash'\s*=>/g) || []).length === 26, 'Les empreintes de migration non destructive sont incomplètes.');
+assert((seeds.match(/'schema2_hash'\s*=>/g) || []).length === 26, 'Les empreintes de migration du schéma 2 sont incomplètes.');
 assert(!seeds.includes('<!-- wp:freeform -->'), 'Un ancien monobloc Classique subsiste dans les contenus.');
-assert((seeds.match(/<!-- wp:balneo\/container /g) || []).length >= 100, 'Les sections Gutenberg structurées paraissent incomplètes.');
+assert(!seeds.includes('<!-- wp:balneo/container'), 'Un ancien conteneur technique subsiste dans les nouveaux contenus.');
+assert((seeds.match(/<!-- wp:group(?:\s|-->)/g) || []).length >= 100, 'Les groupes Gutenberg natifs paraissent incomplets.');
+assert((seeds.match(/<!-- wp:details(?:\s|-->)/g) || []).length >= 5, 'Les accordéons Gutenberg natifs paraissent incomplets.');
 assert((seeds.match(/<!-- wp:paragraph/g) || []).length >= 100, 'Les paragraphes ne sont pas suffisamment découpés en blocs natifs.');
 assert((seeds.match(/<!-- wp:heading/g) || []).length >= 50, 'Les titres ne sont pas suffisamment découpés en blocs natifs.');
 assert((seeds.match(/<!-- wp:table/g) || []).length >= 5, 'Les tableaux natifs Gutenberg paraissent incomplets.');
@@ -78,17 +85,26 @@ function flattenBlocks(blocks) {
 }
 
 seedContents.forEach((content, index) => {
-  const parsed = parse(content);
+  const parsed = parseSerializedBlocks(content);
   const flat = flattenBlocks(parsed);
+  const editorBlocks = flattenBlocks(parseGutenbergBlocks(content));
   const editableLeaves = flat.filter((block) => editableLeafNames.has(block.blockName));
   const oversizedHtml = flat.filter(
     (block) => block.blockName === 'core/html' && (block.innerHTML || '').length > 500,
   );
+  const oversizedRichText = flat.filter(
+    (block) => block.blockName === 'balneo/rich-text' && String(block.attrs?.content || '').length > 500,
+  );
 
   assert(parsed.length > 0, `Le contenu ${index + 1} ne contient aucun bloc.`);
+  assert(editorBlocks.every((block) => block.isValid !== false), `Le contenu ${index + 1} contient un bloc invalide dans l’éditeur.`);
   assert(editableLeaves.length >= 3, `Le contenu ${index + 1} reste trop monolithique.`);
   assert(oversizedHtml.length === 0, `Le contenu ${index + 1} contient encore un gros bloc HTML.`);
+  assert(oversizedRichText.length === 0, `Le contenu ${index + 1} contient encore un gros bloc de texte technique.`);
 });
+
+const contentMigration = read('inc/content.php');
+assert(contentMigration.includes("'3.0.0'"), 'La migration vers le schéma Gutenberg 3 est absente.');
 
 const pagePhp = read('page.php');
 const frontPagePhp = read('front-page.php');

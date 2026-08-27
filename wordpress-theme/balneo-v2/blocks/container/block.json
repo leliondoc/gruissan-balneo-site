@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "name": "balneo/container",
   "version": "1.0.0",
-  "title": "Conteneur Balnéo",
+  "title": "Ancien conteneur Balnéo",
   "category": "design",
   "icon": "layout",
-  "description": "Conserve la structure visuelle de la maquette tout en rendant ses blocs internes déplaçables.",
+  "description": "Bloc conservé uniquement pour migrer les anciennes pages vers des Groupes Gutenberg natifs.",
   "textdomain": "balneo-v2",
   "attributes": {
     "tagName": {
@@ -19,6 +19,8 @@
     }
   },
   "supports": {
-    "html": false
+    "html": false,
+    "inserter": false,
+    "reusable": false
   }
 }

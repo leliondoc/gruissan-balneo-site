@@ -88,6 +88,57 @@ function balneo_v2_block_html_attributes( array $attributes ): string {
 }
 
 /**
+ * Réinjecte les rares attributs HTML conservés dans les métadonnées d'un Groupe.
+ *
+ * Les éditeurs manipulent ainsi un bloc Groupe natif et non une balise technique,
+ * tandis que le rendu public conserve les liens, rôles et attributs de la maquette.
+ *
+ * @param string               $block_content HTML rendu du bloc.
+ * @param array<string, mixed> $block         Bloc analysé.
+ * @return string
+ */
+function balneo_v2_render_core_group_attributes( string $block_content, array $block ): string {
+	$metadata   = isset( $block['attrs']['metadata'] ) && is_array( $block['attrs']['metadata'] ) ? $block['attrs']['metadata'] : array();
+	$attributes = isset( $metadata['balneoAttributes'] ) && is_array( $metadata['balneoAttributes'] ) ? $metadata['balneoAttributes'] : array();
+	if ( ! $attributes || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+		return $block_content;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag() ) {
+		return $block_content;
+	}
+
+	foreach ( $attributes as $name => $value ) {
+		$name = strtolower( (string) $name );
+		if ( ! preg_match( '/^(?:aria-[a-z0-9_-]+|data-[a-z0-9_-]+|href|rel|role|target|title|type)$/', $name ) ) {
+			continue;
+		}
+
+		if ( 'href' === $name ) {
+			$value = esc_url_raw( (string) $value );
+		} elseif ( 'target' === $name ) {
+			$value = (string) $value;
+			if ( ! in_array( $value, array( '_blank', '_self', '_parent', '_top' ), true ) ) {
+				continue;
+			}
+		} elseif ( 'rel' === $name ) {
+			$tokens = preg_split( '/\s+/', (string) $value, -1, PREG_SPLIT_NO_EMPTY );
+			$value  = implode( ' ', array_filter( array_map( 'sanitize_key', false !== $tokens ? $tokens : array() ) ) );
+		} elseif ( in_array( $name, array( 'role', 'type' ), true ) ) {
+			$value = sanitize_key( (string) $value );
+		} else {
+			$value = sanitize_text_field( (string) $value );
+		}
+
+		$processor->set_attribute( $name, $value );
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/group', 'balneo_v2_render_core_group_attributes', 10, 2 );
+
+/**
  * Rend un conteneur tout en conservant ses blocs internes éditables.
  *
  * @param array<string, mixed> $attributes Attributs du bloc.

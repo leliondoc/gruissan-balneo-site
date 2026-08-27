@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { htmlToEditableGutenberg } = require('./scripts/gutenberg-blocks');
+const { htmlToEditableGutenberg, htmlToLegacyBalneoGutenberg } = require('./scripts/gutenberg-blocks');
 
 const root = __dirname;
 const themeRoot = path.join(root, 'wordpress-theme', 'balneo-v2');
@@ -100,7 +100,7 @@ function optimizeFirstHeroImage(markup) {
   );
 }
 
-function transformEditableMarkup(markup) {
+function transformEditableMarkup(markup, converter = htmlToEditableGutenberg) {
   let output = markup;
 
   output = output.replace(
@@ -127,7 +127,7 @@ function transformEditableMarkup(markup) {
     '[balneo_newsletter_form]',
   );
 
-  return htmlToEditableGutenberg(output);
+  return converter(output);
 }
 
 function transformLegacyEditableMarkup(markup) {
@@ -279,14 +279,16 @@ function buildContentSeeds(homeHtml) {
   const entries = [];
   const homeBody = optimizeFirstHeroImage(sliceBetween(homeHtml, '</header>', '<a class="cta-orb"', 'index.html'));
   const homeLegacyContent = transformLegacyEditableMarkup(homeBody);
-  entries.push(`    'accueil' => array(\n        'title' => 'Accueil',\n        'legacy_hash' => '${crypto.createHash('sha256').update(homeLegacyContent).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(homeBody), 'accueil')},\n    ),`);
+  const homeSchema2Content = transformEditableMarkup(homeBody, htmlToLegacyBalneoGutenberg);
+  entries.push(`    'accueil' => array(\n        'title' => 'Accueil',\n        'legacy_hash' => '${crypto.createHash('sha256').update(homeLegacyContent).digest('hex')}',\n        'schema2_hash' => '${crypto.createHash('sha256').update(homeSchema2Content).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(homeBody), 'accueil')},\n    ),`);
 
   Object.entries(pages).forEach(([slug, title]) => {
     const sourceName = `${slug}.html`;
     const html = fs.readFileSync(path.join(root, 'pages', sourceName), 'utf8');
     const body = optimizeFirstHeroImage(sliceBetween(html, '</header>', '<a class="cta-orb"', sourceName));
     const legacyContent = transformLegacyEditableMarkup(body);
-    entries.push(`    '${slug}' => array(\n        'title' => '${title.replace(/'/g, "\\'")}',\n        'legacy_hash' => '${crypto.createHash('sha256').update(legacyContent).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(body), slug)},\n    ),`);
+    const schema2Content = transformEditableMarkup(body, htmlToLegacyBalneoGutenberg);
+    entries.push(`    '${slug}' => array(\n        'title' => '${title.replace(/'/g, "\\'")}',\n        'legacy_hash' => '${crypto.createHash('sha256').update(legacyContent).digest('hex')}',\n        'schema2_hash' => '${crypto.createHash('sha256').update(schema2Content).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(body), slug)},\n    ),`);
   });
 
   return `<?php\n/** Contenus initiaux Gutenberg issus de la maquette validée. @package BalneoV2 */\n\nif ( ! defined( 'ABSPATH' ) ) { exit; }\n\nreturn array(\n${entries.join('\n')}\n);`;
@@ -331,7 +333,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.4.2' );
+define( 'BALNEO_V2_VERSION', '1.4.3' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/blocks.php' );
@@ -680,7 +682,7 @@ Theme Name: Balnéo V2
 Theme URI: https://balneov2.gruissan-balneo.com/
 Author: Gruissan Méditerranée
 Description: Thème sur mesure de l'Espace Balnéo de Gruissan, issu de la maquette Balnéo V2 validée.
-Version: 1.4.2
+Version: 1.4.3
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.1
@@ -890,19 +892,19 @@ get_header();
 .editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow",sans-serif;font-size:17px;line-height:1.55}
 .editor-styles-wrapper .wp-block{max-width:1120px}
 .editor-styles-wrapper .wp-block[data-align="wide"]{max-width:1440px}
-.editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3{color:#024360;font-family:"Barlow Condensed",sans-serif;font-weight:400}
-.editor-styles-wrapper h1{font-size:clamp(2.4rem,6vw,5rem)}
+.editor-styles-wrapper .block-editor-block-list__layout h1,.editor-styles-wrapper .block-editor-block-list__layout h2,.editor-styles-wrapper .block-editor-block-list__layout h3{color:#024360;font-family:"Barlow Condensed",sans-serif;font-weight:400}
+.editor-styles-wrapper .block-editor-block-list__layout h1{font-size:clamp(2.4rem,6vw,5rem)}
+.editor-styles-wrapper .editor-post-title__input{font-size:2.25rem!important;line-height:1.1}
 .editor-styles-wrapper a{color:#006392}
-.editor-styles-wrapper .balneo-editor-container{position:relative;margin-block:.75rem;padding:1.25rem;border:1px dashed #AACCDE;background:rgba(255,255,255,.7)}
-.editor-styles-wrapper .balneo-editor-container__label{display:block;margin:-1.25rem -1.25rem 1rem;padding:.35rem .7rem;color:#fff;background:#009885;font-size:.72rem;letter-spacing:.04em}
-.editor-styles-wrapper .balneo-editor-rich-text{padding:.5rem;border:1px dashed rgba(0,152,133,.35)}
-.editor-styles-wrapper .balneo-editor-rich-text__label{display:block;color:#006392;font-size:.7rem;text-transform:uppercase}
+.editor-styles-wrapper .balneo-editor-container{margin:0;padding:0;border:0;background:transparent}
+.editor-styles-wrapper .balneo-editor-container__content{display:contents}
+.editor-styles-wrapper .balneo-editor-rich-text{padding:0;border:0}
 .editor-styles-wrapper .balneo-editor-image img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
 .editor-styles-wrapper .balneo-editor-image .components-button{margin:.5rem .5rem .5rem 0}`);
 
   write('languages/balneo-v2.pot', `msgid ""
 msgstr ""
-"Project-Id-Version: Balnéo V2 1.4.2\\n"
+"Project-Id-Version: Balnéo V2 1.4.3\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 "Language: fr_FR\\n"

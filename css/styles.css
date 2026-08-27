@@ -774,3 +774,10 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .fade-in { opacity: 1; transform: none; }
 }
+
+/* Utilitaires issus des rares styles inline de la maquette. */
+.balneo-align-left { text-align: left; }
+.balneo-align-center { text-align: center; }
+.balneo-space-bottom-md { margin-bottom: var(--space-md); }
+.balneo-space-top-md { margin-top: var(--space-md); }
+.balneo-space-y-lg { margin: var(--space-lg) 0; }

@@ -775,6 +775,13 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .fade-in { opacity: 1; transform: none; }
 }
 
+/* Utilitaires issus des rares styles inline de la maquette. */
+.balneo-align-left { text-align: left; }
+.balneo-align-center { text-align: center; }
+.balneo-space-bottom-md { margin-bottom: var(--space-md); }
+.balneo-space-top-md { margin-top: var(--space-md); }
+.balneo-space-y-lg { margin: var(--space-lg) 0; }
+
 /* Formulaire newsletter WordPress */
 .form-error { display: none; margin-bottom: 1rem; padding: .9rem 1rem; color: #7b1f1b; background: #fde8e7; }
 .form-error.visible { display: block; }
