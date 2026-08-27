@@ -91,7 +91,7 @@ class Balneo_V2_Primary_Menu_Walker extends Walker_Nav_Menu {
 			);
 			$card    = $cards[ $slug ];
 			$output .= sprintf(
-				'<a class="mega-menu__card menu-mega__carte--%1$s" href="%2$s"><img src="%3$s" width="%8$d" height="%9$d" loading="lazy" decoding="async" alt=""><span class="mega-menu__veil" aria-hidden="true"></span><span class="mega-menu__content"><small>%4$s</small><strong>%5$s</strong><span class="mega-menu__meta"><i class="fa-regular %6$s" aria-hidden="true"></i>%7$s</span></span></a>',
+				'<a class="mega-menu__card mega-menu__card--%1$s" href="%2$s"><img src="%3$s" width="%8$d" height="%9$d" loading="lazy" decoding="async" alt=""><span class="mega-menu__veil" aria-hidden="true"></span><span class="mega-menu__content"><small>%4$s</small><strong>%5$s</strong><span class="mega-menu__meta"><i class="fa-regular %6$s" aria-hidden="true"></i>%7$s</span></span></a>',
 				esc_attr( $slug ),
 				esc_url( $item->url ),
 				esc_url( get_theme_file_uri( '/assets/photos/' . $card[0] ) ),

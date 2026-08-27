@@ -48,6 +48,9 @@ assert(!fontPreloadFunction.includes('BrandonSmithStamp.woff2'), 'La fonte déco
 assert(functionsPhp.includes("'strategy'  => 'defer'"), 'Le script public n’utilise pas la stratégie différée native.');
 
 const publicCss = read('css/styles.css');
+const editorCss = read('css/editor.css');
+const editorJs = read('blocks/editor.js');
+const primaryMenuWalker = read('inc/class-balneo-v2-primary-menu-walker.php');
 assert(!publicCss.includes('cursive'), 'Une police cursive système peut encore provoquer un flash Comic Sans.');
 assert(!publicCss.includes('BrandonSmithStamp.woff\''), 'L’ancienne police Brandon WOFF lourde est encore chargée.');
 assert(!publicCss.includes('Buttercy.ttf'), 'L’ancienne police Buttercy TTF est encore chargée.');
@@ -56,6 +59,13 @@ assert(publicCss.includes('animation: ctaSunTurn 26s linear infinite'), 'La rota
 assert(publicCss.includes('.cookie-consent__card'), 'Styles du panneau de consentement absents.');
 assert(!publicCss.includes('.cookie-consent__overlay'), 'Un voile masque encore le site derrière le consentement.');
 assert(publicCss.includes('.seasonal-slider__track > .seasonal-slide'), 'La protection du slider saisonnier contre les espacements Gutenberg est absente.');
+assert(publicCss.includes('@keyframes infoBannerTicker'), 'Le défilement du bandeau d’information est absent.');
+assert(publicCss.includes('@media (prefers-reduced-motion: reduce)'), 'Le bandeau animé ne respecte pas la réduction des animations.');
+assert(!publicCss.includes('.site-logo:hover'), 'Une animation au survol du logo est encore présente.');
+assert(editorCss.includes('.hero__media,.editor-styles-wrapper .page-hero__media{display:none!important}'), 'Les groupes d’images de héros restent visibles dans Gutenberg.');
+assert(editorJs.includes("htmlAttributes.loading === 'eager' && htmlAttributes.fetchpriority === 'high'"), 'Les contrôles des images de héros restent accessibles dans Gutenberg.');
+assert(primaryMenuWalker.includes('mega-menu__card mega-menu__card--%1$s'), 'Les variantes des cartes du méga-menu ne suivent pas le nommage CSS anglais.');
+assert(!primaryMenuWalker.includes('menu-mega__carte'), 'Une ancienne classe CSS française subsiste dans le méga-menu.');
 ['.hero', '.container', '.btn', '.quick-access', '.site-header', '.site-footer'].forEach((classe) => {
   assert(publicCss.includes(classe), `Classe historique attendue absente du CSS : ${classe}`);
 });

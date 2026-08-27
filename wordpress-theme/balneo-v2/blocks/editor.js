@@ -74,6 +74,14 @@
 			htmlAttributes: { type: 'object', default: {} }
 		},
 		edit: function ( props ) {
+			var htmlAttributes = props.attributes.htmlAttributes || {};
+			var isHeroImage = htmlAttributes.loading === 'eager' && htmlAttributes.fetchpriority === 'high';
+
+			// Les images de héros sont gérées dans le thème et restent invisibles pour les éditeurs.
+			if ( isHeroImage ) {
+				return null;
+			}
+
 			var blockProps = useBlockProps( { className: 'balneo-editor-image' } );
 			return createElement(
 				'div',

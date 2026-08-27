@@ -794,6 +794,8 @@ get_header();
 .editor-styles-wrapper .balneo-editor-container{margin:0;padding:0;border:0;background:transparent}
 .editor-styles-wrapper .balneo-editor-container__content{display:contents}
 .editor-styles-wrapper .balneo-editor-rich-text{padding:0;border:0}
+/* Les images de héros sont gérées dans les sources avec Codex, jamais dans Gutenberg. */
+.editor-styles-wrapper .hero__media,.editor-styles-wrapper .page-hero__media{display:none!important}
 .editor-styles-wrapper .balneo-editor-image img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
 .editor-styles-wrapper .balneo-editor-image .components-button{margin:.5rem .5rem .5rem 0}`);
 
