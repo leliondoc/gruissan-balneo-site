@@ -163,11 +163,13 @@ body.balneo-admin-branded .wp-heading-inline {
 body.balneo-admin-branded .wrap h1::after,
 body.balneo-admin-branded .wp-heading-inline::after {
   display: block;
-  width: 52px;
-  height: 5px;
-  margin-top: 7px;
+  width: 8px;
+  height: 8px;
+  margin-top: 8px;
   content: "";
-  background: linear-gradient(90deg, var(--balneo-green) 0 64%, var(--balneo-yellow) 64% 100%);
+  border-radius: 50%;
+  background: var(--balneo-green);
+  box-shadow: 12px 0 0 var(--balneo-sky), 24px 0 0 var(--balneo-yellow);
 }
 
 body.balneo-admin-branded .page-title-action,

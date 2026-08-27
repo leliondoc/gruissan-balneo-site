@@ -868,8 +868,6 @@ get_header();
           ] },
           { slug: 'barlow-condensed', name: 'Barlow Condensed', fontFamily: '"Barlow Condensed", sans-serif', fontFace: [
             { fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/BarlowCondensed-Regular.woff2'] },
-            { fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '700', src: ['file:./assets/fonts/BarlowCondensed-Bold.woff2'] },
-            { fontFamily: 'Barlow Condensed', fontStyle: 'normal', fontWeight: '800', src: ['file:./assets/fonts/BarlowCondensed-ExtraBold.woff2'] },
           ] },
           { slug: 'buttercy', name: 'Buttercy', fontFamily: 'Buttercy, "Barlow Condensed", sans-serif', fontFace: [{ fontFamily: 'Buttercy', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/Buttercy.woff2'] }] },
           { slug: 'brandon', name: 'Brandon Smith Stamp', fontFamily: '"Brandon Smith Stamp", "Barlow Condensed", sans-serif', fontFace: [{ fontFamily: 'Brandon Smith Stamp', fontStyle: 'normal', fontWeight: '400', src: ['file:./assets/fonts/BrandonSmithStamp.woff2'] }] },
@@ -888,8 +886,6 @@ get_header();
 @font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-Medium.woff2") format("woff2");font-style:normal;font-weight:500;font-display:swap}
 @font-face{font-family:"Barlow";src:url("../assets/fonts/Barlow-SemiBold.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
 @font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-Bold.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-ExtraBold.woff2") format("woff2");font-style:normal;font-weight:800;font-display:swap}
 @font-face{font-family:Buttercy;src:url("../assets/fonts/Buttercy.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
 .editor-styles-wrapper{color:#024360;background:#fff;font-family:"Barlow",sans-serif;font-size:17px;line-height:1.55}
 .editor-styles-wrapper .wp-block{max-width:1120px}
