@@ -55,6 +55,7 @@ assert(publicCss.includes('navSpaBreathe .96s'), 'Les animations posées des ic�
 assert(publicCss.includes('animation: ctaSunTurn 26s linear infinite'), 'La rotation lente de la pastille Acheter a disparu.');
 assert(publicCss.includes('.cookie-consent__card'), 'Styles du panneau de consentement absents.');
 assert(!publicCss.includes('.cookie-consent__overlay'), 'Un voile masque encore le site derrière le consentement.');
+assert(publicCss.includes('.seasonal-slider__track > .seasonal-slide'), 'La protection du slider saisonnier contre les espacements Gutenberg est absente.');
 ['.hero', '.container', '.btn', '.quick-access', '.site-header', '.site-footer'].forEach((classe) => {
   assert(publicCss.includes(classe), `Classe historique attendue absente du CSS : ${classe}`);
 });
