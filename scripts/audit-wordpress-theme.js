@@ -60,6 +60,7 @@ assert(publicCss.includes('animation: ctaSunTurn 26s linear infinite'), 'La rota
 assert(publicCss.includes('.cookie-consent__card'), 'Styles du panneau de consentement absents.');
 assert(!publicCss.includes('.cookie-consent__overlay'), 'Un voile masque encore le site derrière le consentement.');
 assert(publicCss.includes('.seasonal-slider__track > .seasonal-slide'), 'La protection du slider saisonnier contre les espacements Gutenberg est absente.');
+assert(publicCss.includes('.page-hero + .section { padding-top: clamp(3.5rem, 5vw, 4.5rem); }'), 'Le premier contenu des pages reste trop éloigné de l’image de héros.');
 assert(publicCss.includes('@keyframes infoBannerTicker'), 'Le défilement du bandeau d’information est absent.');
 assert(publicCss.includes('.info-banner .container::after'), 'Le texte du bandeau peut encore passer sous le bouton de fermeture.');
 assert(!publicCss.includes('.info-banner .container > .context-icon'), 'L’ancienne icône du bandeau est encore stylée.');
