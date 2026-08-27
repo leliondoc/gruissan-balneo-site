@@ -12,6 +12,7 @@ assert.equal(themeSource, source, 'le script source et sa copie WordPress doiven
 assert.match(themeFunctions, /inc\/analytics\.php/, 'le module Analytics doit être chargé par le thème');
 assert.match(analyticsPhp, /G-4F2ZKB7RRZ/);
 assert.match(analyticsPhp, /AW-358922226/);
+assert.doesNotMatch(source, /Une visite à votre rythme/, 'le surtitre supprimé ne doit pas réapparaître');
 
 function createPage(savedConsent) {
   const dom = new JSDOM(

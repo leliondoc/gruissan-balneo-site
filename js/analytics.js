@@ -121,7 +121,6 @@
       '  <span class="cookie-consent__label">Vos choix</span>',
       '  <span class="cookie-consent__emblem" aria-hidden="true"><i></i><i></i><i></i></span>',
       '  <div class="cookie-consent__view" data-consent-view="intro">',
-      '    <p class="cookie-consent__eyebrow">Une visite à votre rythme</p>',
       '    <h2 id="consentement-cookies-titre" tabindex="-1">On se jette à l’eau&nbsp;?</h2>',
       '    <p>Avec votre accord, Google Analytics nous aide à comprendre la fréquentation du site et Google Ads à mesurer nos campagnes.</p>',
       '    <div class="cookie-consent__actions">',
