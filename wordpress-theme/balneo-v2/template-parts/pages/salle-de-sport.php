@@ -7,22 +7,22 @@
 
 ?>
 <main id="contenu-principal">
-<section class="hero-page">
-    <div class="hero-page__media media-plein">
+<section class="page-hero">
+    <div class="page-hero__media media-fill">
       <img src="<?php echo esc_url( get_theme_file_uri( '/assets/photos/balneo-37.webp' ) ); ?>" alt="" width="2560" height="1705" loading="eager" fetchpriority="high" decoding="async" srcset="<?php echo esc_attr( balneo_v2_theme_image_srcset( 'balneo-37.webp' ) ); ?>" sizes="100vw">
     </div>
-    <div class="hero-page__voile"></div>
-    <div class="hero-page__contenu">
-      <p class="hero-page__libelle">For.Me</p>
-      <h1 class="hero-page__titre">S'entraîner / Se dépasser</h1>
-      <span class="filet-titre" aria-hidden="true"></span>
+    <div class="page-hero__veil"></div>
+    <div class="page-hero__content">
+      <p class="page-hero__label">For.Me</p>
+      <h1 class="page-hero__title">S'entraîner / Se dépasser</h1>
+      <span class="title-rule" aria-hidden="true"></span>
     </div>
   </section>
-<section class="section-contenu section-contenu--claire">
-  <div class="conteneur bloc-contenu apparition">
+<section class="section section--light">
+  <div class="container content-block fade-in">
     <p>Cet espace est doté de machines dernière génération Wellness® développées par Technogym®. Que vous ayez un objectif précis ou que vous souhaitiez pratiquer une activité physique régulière, vous trouverez votre programme et votre rythme grâce au système Wellness®.</p>
-    <div class="encadre-info">
-      <p class="encadre-info__titre">Infos pratiques</p>
+    <div class="info-box">
+      <p class="info-box__title">Infos pratiques</p>
       <ul>
         <li>Ouvert 6h00 – 23h00 (dernier accès 22h00), 7j/7</li>
         <li>Réservé aux majeurs (+18 ans) ou mineurs à partir de 16 ans accompagnés d'un adulte</li>
@@ -31,7 +31,7 @@
       </ul>
     </div>
     <h2>Tarifs</h2>
-    <div class="tableau-adaptatif"><table>
+    <div class="table-wrap"><table>
       <tr><th>Formule</th><th>Tarif</th></tr>
       <tr><td>1 séance (jour même)</td><td>11 €</td></tr>
       <tr><td>Carte 10 séances (2 mois)</td><td>100 €</td></tr>
@@ -44,16 +44,16 @@
     <p>6 mois : 254 € — 12 mois (-1 mois vidange) : 485 €</p>
     <h3>Balnéo + Piscine + Salle</h3>
     <p>Remise 50 % sur activités aquatiques et tarifs préférentiels sur massages.</p>
-    <div class="tableau-adaptatif"><table>
+    <div class="table-wrap"><table>
       <tr><th></th><th>6 mois</th><th>12 mois</th></tr>
       <tr><td>1 personne</td><td>500 €</td><td>930 €</td></tr>
       <tr><td>Couple</td><td>755 €</td><td>1 395 €</td></tr>
     </table></div>
   </div>
 </section>
-<div class="bande-appel">
+<div class="cta-band">
     <p>Achetez vos abonnements en ligne</p>
-    <a href="https://gruissan-balneo.horanet.com/" class="bouton bouton--plein" target="_blank" rel="noopener">Billetterie &amp; cadeaux<i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
+    <a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie &amp; cadeaux<i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
     <p style="margin-top:0.75rem;font-size:0.75rem;opacity:0.7">Les e-billets ne sont pas nominatifs</p>
   </div>
 </main>

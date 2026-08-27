@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const { parse: parseSerializedBlocks } = require('@wordpress/block-serialization-default-parser');
 const { htmlToEditableGutenberg } = require('./gutenberg-blocks');
-const { correspondances } = require('./franciser-classes-css');
 
 htmlToEditableGutenberg('<p>Audit Gutenberg</p>');
 const { parse: parseGutenbergBlocks } = require('@wordpress/blocks');
@@ -54,19 +53,17 @@ assert(!publicCss.includes('BrandonSmithStamp.woff\''), 'L’ancienne police Bra
 assert(!publicCss.includes('Buttercy.ttf'), 'L’ancienne police Buttercy TTF est encore chargée.');
 assert(publicCss.includes('navSpaBreathe .96s'), 'Les animations posées des icônes du menu ont disparu.');
 assert(publicCss.includes('animation: ctaSunTurn 26s linear infinite'), 'La rotation lente de la pastille Acheter a disparu.');
-assert(publicCss.includes('.consentement-cookies__carte'), 'Styles du panneau de consentement absents.');
-assert(publicCss.includes('body.consentement-ouvert'), 'Verrouillage du fond derrière le panneau de consentement absent.');
-
-Object.keys(correspondances).forEach((ancienneClasse) => {
-  const motif = new RegExp(`\\.${ancienneClasse.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![A-Za-z0-9_-])`);
-  assert(!motif.test(publicCss), `Ancienne classe CSS encore présente : .${ancienneClasse}`);
+assert(publicCss.includes('.cookie-consent__card'), 'Styles du panneau de consentement absents.');
+assert(!publicCss.includes('.cookie-consent__overlay'), 'Un voile masque encore le site derrière le consentement.');
+['.hero', '.container', '.btn', '.quick-access', '.site-header', '.site-footer'].forEach((classe) => {
+  assert(publicCss.includes(classe), `Classe historique attendue absente du CSS : ${classe}`);
 });
 assert(!/(?:Header tools|Persistent practical|Fade-in on scroll|Back to top)/.test(publicCss), 'Un commentaire CSS public reste en anglais.');
 
 const header = read('header.php');
 assert(header.includes('balneo_v2_primary_navigation()'), 'Navigation principale encore codée en dur.');
 assert(header.includes("balneo_v2_site_logo( 'header' )"), 'Logo d’en-tête non piloté par WordPress.');
-assert(header.includes('class="lien-evitement"'), 'Lien d’évitement vers le contenu principal absent.');
+assert(header.includes('class="skip-link"'), 'Lien d’évitement vers le contenu principal absent.');
 
 const footer = read('footer.php');
 assert(footer.includes("balneo_v2_site_logo( 'footer' )"), 'Logo de pied de page non piloté par WordPress.');
@@ -99,7 +96,8 @@ assert(analyticsPhp.includes("'strategy'  => 'defer'"), 'Le gestionnaire de cons
 assert(analyticsJs.includes("analytics_storage: 'denied'"), 'Le consentement analytics n’est pas refusé par défaut.');
 assert(analyticsJs.includes("ad_storage: 'denied'"), 'Le consentement publicitaire n’est pas refusé par défaut.');
 assert(analyticsJs.includes('loadGoogleTag('), 'Le chargement conditionnel de Google Tag est absent.');
-assert(analyticsJs.includes("document.body.classList.add('consentement-ouvert')"), 'Le dialogue de consentement ne verrouille pas le fond.');
+assert(!analyticsJs.includes('aria-modal="true"'), 'Le panneau de consentement est encore déclaré comme modal.');
+assert(!analyticsJs.includes("document.body.classList.add('consent-open')"), 'Le panneau de consentement verrouille encore le fond.');
 
 const pot = read('languages/balneo-v2.pot');
 assert((pot.match(/^msgid /gm) || []).length >= 30, 'Le catalogue de traduction paraît incomplet.');
@@ -123,9 +121,10 @@ assert((seeds.match(/"anchor":"contenu-principal"/g) || []).length === 26, 'La c
 
 const classesSerialisees = Array.from(seeds.matchAll(/"className":"([^"]+)"/g), (match) => match[1])
   .flatMap((liste) => liste.split(/\s+/));
-Object.keys(correspondances).forEach((ancienneClasse) => {
-  assert(!classesSerialisees.includes(ancienneClasse), `Ancienne classe présente dans Gutenberg : ${ancienneClasse}`);
+['hero', 'container', 'quick-access', 'section'].forEach((classe) => {
+  assert(classesSerialisees.includes(classe), `Classe historique attendue absente de Gutenberg : ${classe}`);
 });
+assert(seeds.includes('"class":"btn"'), 'Classe historique attendue absente des liens Gutenberg : btn');
 
 const seedContents = Array.from(
   seeds.matchAll(/'content'\s*=>\s*<<<'([^']+)'\n([\s\S]*?)\n\1/g),

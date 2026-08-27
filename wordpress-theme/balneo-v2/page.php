@@ -17,8 +17,8 @@ while ( have_posts() ) {
         get_template_part( 'template-parts/pages/' . $slug );
     } else {
         ?>
-        <main class="section-contenu">
-            <article class="conteneur contenu-entree">
+        <main class="section">
+            <article class="container entry-content">
                 <h1><?php the_title(); ?></h1>
                 <?php the_content(); ?>
             </article>

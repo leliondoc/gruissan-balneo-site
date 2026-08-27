@@ -118,7 +118,7 @@ function balneo_v2_seo_pages(): array {
 		),
 		'parc-ete'                => array(
 			'title'       => 'Parc aqualudique à Gruissan | Espace Balnéo',
-			'description' => 'Profitez du parc été de Gruissan : toboggans, rivière et pataugeoires dans un espace aqualudique ouvert en juillet et août.',
+			'description' => 'Profitez du parc été de Gruissan : toboggans, rivière et pataugeoires dans un espace aqualudique open en juillet et août.',
 			'image'       => 'parc-aquatique.webp',
 		),
 		'privatisation'           => array(

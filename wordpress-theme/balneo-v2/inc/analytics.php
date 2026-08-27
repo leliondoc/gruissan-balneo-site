@@ -59,7 +59,7 @@ function balneo_v2_migrate_analytics_privacy_copy(): void {
     }
 
     $old = '<p>Le thème n’ajoute aucun traceur publicitaire ni outil de mesure d’audience. WordPress et les extensions installées peuvent toutefois déposer des cookies fonctionnels ; toute extension de suivi doit être déclarée et soumise au consentement lorsqu’il est requis.</p>';
-    $new = '<p>Avec votre accord, le site utilise Google Analytics pour mesurer sa fréquentation et Google Ads pour mesurer l’efficacité et personnaliser les campagnes publicitaires. Ces services Google ne sont chargés qu’après votre consentement.</p>' . "\n" . '<p>Vous pouvez accepter, refuser ou personnaliser ces traceurs depuis le panneau de consentement. Le bouton « Gérer mes cookies », disponible sur toutes les pages, permet de modifier ou retirer votre choix à tout moment.</p>';
+    $new = '<p>Avec votre accord, le site utilise Google Analytics pour mesurer sa fréquentation et Google Ads pour mesurer l’efficacité et personnaliser les campagnes publicitaires. Ces services Google ne sont chargés qu’après votre consentement.</p>' . "\n" . '<p>Vous pouvez accepter, refuser ou personnaliser ces traceurs depuis le panneau de consentement. Le btn « Gérer mes cookies », disponible sur toutes les pages, permet de modifier ou retirer votre choix à tout moment.</p>';
 
     if ( false !== strpos( (string) $page->post_content, $old ) ) {
         wp_update_post(

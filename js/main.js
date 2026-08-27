@@ -2,22 +2,22 @@
   'use strict';
 
   // Ouverture et fermeture de la navigation mobile.
-  const navToggle = document.querySelector('.bouton-navigation');
-  const mainNav = document.querySelector('.navigation-principale');
+  const navToggle = document.querySelector('.nav-toggle');
+  const mainNav = document.querySelector('.main-nav');
 
   if (mainNav) {
     var menuIcons = [
       '<i class="fa-solid fa-dumbbell" aria-hidden="true"></i>',
       '<i class="fa-solid fa-spa" aria-hidden="true"></i>',
-      '<i class="fa-solid fa-person-swimming" aria-hidden="true"></i><i class="fa-solid fa-person-swimming navigation-principale__icone-eau" aria-hidden="true"></i>',
+      '<i class="fa-solid fa-person-swimming" aria-hidden="true"></i><i class="fa-solid fa-person-swimming main-nav__icon-water" aria-hidden="true"></i>',
       '<i class="fa-solid fa-water-ladder" aria-hidden="true"></i>',
       '<i class="fa-solid fa-book-open" aria-hidden="true"></i>'
     ];
     Array.from(mainNav.children).slice(0, 5).forEach(function (item, index) {
-      var control = item.querySelector(':scope > a, :scope > .lien-navigation');
+      var control = item.querySelector(':scope > a, :scope > .nav-link');
       if (!control) return;
       var icon = document.createElement('span');
-      icon.className = 'navigation-principale__icone navigation-principale__icone--' + (index + 1);
+      icon.className = 'main-nav__icon main-nav__icon--' + (index + 1);
       icon.setAttribute('aria-hidden', 'true');
       icon.innerHTML = menuIcons[index];
       control.prepend(icon);
@@ -26,53 +26,53 @@
 
   if (navToggle && mainNav) {
     navToggle.addEventListener('click', function () {
-      mainNav.classList.toggle('ouvert');
-      navToggle.classList.toggle('actif');
-      var isOpen = mainNav.classList.contains('ouvert');
+      mainNav.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      var isOpen = mainNav.classList.contains('open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
       navToggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
-      document.body.classList.toggle('menu-ouvert', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
     });
   }
 
   // Ouverture et fermeture des sous-menus sur mobile.
-  document.querySelectorAll('.avec-sous-menu > .lien-navigation').forEach(function (bouton) {
+  document.querySelectorAll('.has-dropdown > .nav-link').forEach(function (bouton) {
     bouton.addEventListener('click', function (e) {
       if (window.innerWidth <= 1080) {
         e.preventDefault();
         var parent = bouton.parentElement;
-        document.querySelectorAll('.avec-sous-menu.ouvert').forEach(function (item) {
+        document.querySelectorAll('.has-dropdown.open').forEach(function (item) {
           if (item !== parent) {
-            item.classList.remove('ouvert');
-            var otherButton = item.querySelector(':scope > .lien-navigation');
+            item.classList.remove('open');
+            var otherButton = item.querySelector(':scope > .nav-link');
             if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
           }
         });
-        parent.classList.toggle('ouvert');
-        bouton.setAttribute('aria-expanded', String(parent.classList.contains('ouvert')));
+        parent.classList.toggle('open');
+        bouton.setAttribute('aria-expanded', String(parent.classList.contains('open')));
       }
     });
   });
 
-  document.querySelectorAll('.navigation-principale a').forEach(function (link) {
+  document.querySelectorAll('.main-nav a').forEach(function (link) {
     link.addEventListener('click', function () {
       if (window.innerWidth <= 1080 && mainNav && navToggle) {
-        mainNav.classList.remove('ouvert');
-        navToggle.classList.remove('actif');
+        mainNav.classList.remove('open');
+        navToggle.classList.remove('active');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.setAttribute('aria-label', 'Ouvrir le menu');
-        document.body.classList.remove('menu-ouvert');
+        document.body.classList.remove('menu-open');
       }
     });
   });
 
   // Raccourcis pratiques persistants.
-  if (!document.querySelector('.barre-pratique')) {
+  if (!document.querySelector('.practical-rail')) {
     var mainScript = document.querySelector('script[src*="js/main.js"]');
     if (!mainScript) throw new Error('Le script principal doit avoir une URL explicite.');
     var siteRoot = new URL('../', mainScript.src);
     var practicalRail = document.createElement('nav');
-    practicalRail.className = 'barre-pratique';
+    practicalRail.className = 'practical-rail';
     practicalRail.setAttribute('aria-label', 'Accès pratiques');
 
     var practicalLinks = [
@@ -87,10 +87,10 @@
 
     practicalLinks.forEach(function (item) {
       var link = document.createElement('a');
-      link.className = 'barre-pratique__lien practical-rail__link--' + item.tone;
+      link.className = 'practical-rail__link practical-rail__link--' + item.tone;
       link.href = item.href;
       link.setAttribute('aria-label', item.label);
-      link.innerHTML = '<i class="' + item.icon + ' fa-fw" aria-hidden="true"></i><span class="barre-pratique__libelle">' + item.label + '</span>';
+      link.innerHTML = '<i class="' + item.icon + ' fa-fw" aria-hidden="true"></i><span class="practical-rail__label">' + item.label + '</span>';
       if (item.external) {
         link.target = '_blank';
         link.rel = 'noopener';
@@ -102,8 +102,8 @@
   }
 
   // Fermeture du bandeau d’information.
-  var bannerClose = document.querySelector('.bandeau-info__fermer');
-  var infoBanner = document.querySelector('.bandeau-info');
+  var bannerClose = document.querySelector('.info-banner__close');
+  var infoBanner = document.querySelector('.info-banner');
   if (bannerClose && infoBanner) {
     bannerClose.addEventListener('click', function () {
       infoBanner.classList.add('hidden');
@@ -117,8 +117,8 @@
     } catch (e) {}
   }
 
-  var bookingOrb = document.querySelector('.orbe-appel');
-  var mobileHeader = document.querySelector('.entete-site');
+  var bookingOrb = document.querySelector('.cta-orb');
+  var mobileHeader = document.querySelector('.site-header');
   var lastMobileBookingTop = '';
   var positionBookingOrb = function () {
     if (!bookingOrb) return;
@@ -144,7 +144,7 @@
 
   // Placement des suggestions saisonnières sous les accès rapides.
   var seasonalSection = document.querySelector('[data-seasonal]');
-  var quickAccess = document.querySelector('.acces-rapides');
+  var quickAccess = document.querySelector('.quick-access');
   if (seasonalSection && quickAccess) {
     quickAccess.insertAdjacentElement('afterend', seasonalSection);
   }
@@ -160,36 +160,36 @@
 
   var createToolButton = function (kind, label, icon) {
     var button = document.createElement('button');
-    button.className = 'outil-site site-tool--' + kind;
+    button.className = 'site-tool site-tool--' + kind;
     button.type = 'button';
     button.setAttribute('aria-label', label);
     button.setAttribute('data-tooltip', label);
-    button.innerHTML = icon + (kind === 'saved' ? '<span class="outil-site__compteur">0</span>' : '');
+    button.innerHTML = icon + (kind === 'saved' ? '<span class="site-tool__count">0</span>' : '');
     return button;
   };
 
   var toolsBar = document.createElement('div');
-  toolsBar.className = 'outils-site';
+  toolsBar.className = 'site-tools';
   var searchTool = createToolButton('search', 'Rechercher', iconSearch);
   var savedTool = createToolButton('saved', 'Mes favoris', iconHeart);
   toolsBar.appendChild(searchTool);
   toolsBar.appendChild(savedTool);
-  var headerInner = document.querySelector('.entete-site__interieur');
-  var navToggleButton = document.querySelector('.bouton-navigation');
+  var headerInner = document.querySelector('.site-header__inner');
+  var navToggleButton = document.querySelector('.nav-toggle');
   if (!headerInner || !navToggleButton) throw new Error('Structure du header incomplète.');
   headerInner.insertBefore(toolsBar, navToggleButton);
 
   var overlay = document.createElement('div');
-  overlay.className = 'panneau-site';
+  overlay.className = 'site-panel';
   overlay.setAttribute('aria-hidden', 'true');
-  overlay.innerHTML = '<div class="panneau-site__dialogue" role="dialog" aria-modal="true"><button class="panneau-site__fermer" type="button" aria-label="Fermer">' + iconClose + '</button><div class="panneau-site__contenu"></div></div>';
+  overlay.innerHTML = '<div class="site-panel__dialog" role="dialog" aria-modal="true"><button class="site-panel__close" type="button" aria-label="Fermer">' + iconClose + '</button><div class="site-panel__content"></div></div>';
   document.body.appendChild(overlay);
-  var panelContent = overlay.querySelector('.panneau-site__contenu');
-  var panelClose = overlay.querySelector('.panneau-site__fermer');
+  var panelContent = overlay.querySelector('.site-panel__content');
+  var panelClose = overlay.querySelector('.site-panel__close');
   var lastPanelTrigger = null;
 
   var floatingTooltip = document.createElement('div');
-  floatingTooltip.className = 'infobulle-flottante';
+  floatingTooltip.className = 'floating-tooltip';
   floatingTooltip.setAttribute('role', 'tooltip');
   document.body.appendChild(floatingTooltip);
 
@@ -200,48 +200,48 @@
     floatingTooltip.textContent = label;
     floatingTooltip.style.left = (rect.left + rect.width / 2) + 'px';
     floatingTooltip.style.top = (rect.bottom + 10) + 'px';
-    floatingTooltip.classList.add('est-visible');
+    floatingTooltip.classList.add('is-visible');
   };
 
   var hideFloatingTooltip = function () {
-    floatingTooltip.classList.remove('est-visible');
+    floatingTooltip.classList.remove('is-visible');
   };
 
   document.addEventListener('mouseover', function (event) {
-    var target = event.target.closest('.bouton-enregistrer[data-tooltip]');
+    var target = event.target.closest('.save-button[data-tooltip]');
     if (target) showFloatingTooltip(target);
   });
   document.addEventListener('mouseout', function (event) {
-    if (event.target.closest('.bouton-enregistrer[data-tooltip]')) hideFloatingTooltip();
+    if (event.target.closest('.save-button[data-tooltip]')) hideFloatingTooltip();
   });
   document.addEventListener('focusin', function (event) {
-    var target = event.target.closest('.bouton-enregistrer[data-tooltip]');
+    var target = event.target.closest('.save-button[data-tooltip]');
     if (target) showFloatingTooltip(target);
   });
   document.addEventListener('focusout', function (event) {
-    if (event.target.closest('.bouton-enregistrer[data-tooltip]')) hideFloatingTooltip();
+    if (event.target.closest('.save-button[data-tooltip]')) hideFloatingTooltip();
   });
 
   var closePanel = function () {
-    overlay.classList.remove('est-ouvert');
+    overlay.classList.remove('is-open');
     overlay.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('panneau-ouvert');
+    document.body.classList.remove('panel-open');
     if (lastPanelTrigger) lastPanelTrigger.focus();
   };
 
   var openPanel = function (trigger, html) {
     lastPanelTrigger = trigger;
     panelContent.innerHTML = html;
-    overlay.classList.add('est-ouvert');
+    overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('panneau-ouvert');
+    document.body.classList.add('panel-open');
     var firstField = panelContent.querySelector('input, a, button');
     if (firstField) firstField.focus();
   };
 
   panelClose.addEventListener('click', closePanel);
   overlay.addEventListener('click', function (event) { if (event.target === overlay) closePanel(); });
-  document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && overlay.classList.contains('est-ouvert')) closePanel(); });
+  document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closePanel(); });
 
   var searchEntries = [
     ['Espace For.Me, sport et fitness', 'pages/salle-de-sport.html'],
@@ -267,9 +267,9 @@
   var pathPrefix = window.location.pathname.indexOf('/pages/') !== -1 ? '../' : '';
 
   searchTool.addEventListener('click', function () {
-    openPanel(searchTool, '<p class="section-contenu__libelle">Je recherche</p><h2>Que souhaitez-vous trouver ?</h2><label class="boite-recherche"><span class="lecteur-ecran">Votre recherche</span><input type="search" placeholder="Balnéo, massage, piscine…" autocomplete="off">' + iconSearch + '</label><div class="resultats-recherche" aria-live="polite"></div>');
+    openPanel(searchTool, '<p class="section__label">Je recherche</p><h2>Que souhaitez-vous trouver ?</h2><label class="search-box"><span class="sr-only">Votre recherche</span><input type="search" placeholder="Balnéo, massage, piscine…" autocomplete="off">' + iconSearch + '</label><div class="search-results" aria-live="polite"></div>');
     var input = panelContent.querySelector('input');
-    var results = panelContent.querySelector('.resultats-recherche');
+    var results = panelContent.querySelector('.search-results');
     var renderResults = function () {
       var query = input.value.trim().toLocaleLowerCase('fr');
       var matches = searchEntries.filter(function (entry) { return !query || entry[0].toLocaleLowerCase('fr').indexOf(query) !== -1; });
@@ -284,7 +284,7 @@
   };
 
   var updateSavedUi = function () {
-    var count = toolsBar.querySelector('.outil-site__compteur');
+    var count = toolsBar.querySelector('.site-tool__count');
     if (count) count.textContent = String(savedItems.length);
     var savedToolHeart = savedTool.querySelector('i');
     if (savedToolHeart) {
@@ -293,7 +293,7 @@
     }
     document.querySelectorAll('[data-save-url]').forEach(function (button) {
       var isSaved = savedItems.some(function (item) { return item.url === button.getAttribute('data-save-url'); });
-      button.classList.toggle('est-enregistre', isSaved);
+      button.classList.toggle('is-saved', isSaved);
       var heart = button.querySelector('i');
       if (heart) {
         heart.classList.toggle('fa-solid', isSaved);
@@ -306,10 +306,10 @@
   };
 
   var renderSavedPanel = function () {
-    var cards = savedItems.length ? '<div class="liste-enregistres">' + savedItems.map(function (item) {
-      return '<article class="element-enregistre">' + (item.image ? '<img src="' + item.image + '" alt="">' : '') + '<div><a href="' + item.url + '">' + item.title + '</a><button type="button" data-remove-saved="' + item.url + '">Retirer</button></div></article>';
-    }).join('') + '</div>' : '<p class="enregistres-vides">Vous n’avez encore rien enregistré. Utilisez les cœurs présents sur les pages et les vignettes.</p>';
-    openPanel(savedTool, '<p class="section-contenu__libelle">À retrouver plus tard</p><h2>Mes favoris <span>(' + savedItems.length + ')</span></h2>' + cards);
+    var cards = savedItems.length ? '<div class="saved-list">' + savedItems.map(function (item) {
+      return '<article class="saved-item">' + (item.image ? '<img src="' + item.image + '" alt="">' : '') + '<div><a href="' + item.url + '">' + item.title + '</a><button type="button" data-remove-saved="' + item.url + '">Retirer</button></div></article>';
+    }).join('') + '</div>' : '<p class="saved-empty">Vous n’avez encore rien enregistré. Utilisez les cœurs présents sur les pages et les vignettes.</p>';
+    openPanel(savedTool, '<p class="section__label">À retrouver plus tard</p><h2>Mes favoris <span>(' + savedItems.length + ')</span></h2>' + cards);
     panelContent.querySelectorAll('[data-remove-saved]').forEach(function (button) {
       button.addEventListener('click', function () {
         savedItems = savedItems.filter(function (item) { return item.url !== button.getAttribute('data-remove-saved'); });
@@ -323,7 +323,7 @@
 
   var addSaveButton = function (host, url, title, image, variant) {
     if (!host || !url || !title || !image) throw new Error('Données de favori incomplètes.');
-    if (host.querySelector(':scope > .bouton-enregistrer')) return;
+    if (host.querySelector(':scope > .save-button')) return;
     var isInsideLink = host.tagName === 'A';
     var button = document.createElement(isInsideLink ? 'span' : 'button');
     if (isInsideLink) {
@@ -332,7 +332,7 @@
     } else {
       button.type = 'button';
     }
-    button.className = 'bouton-enregistrer' + (variant ? ' save-button--' + variant : '');
+    button.className = 'save-button' + (variant ? ' save-button--' + variant : '');
     button.setAttribute('data-save-url', url);
     button.innerHTML = iconHeart;
     button.addEventListener('click', function (event) {
@@ -354,26 +354,26 @@
     host.appendChild(button);
   };
 
-  document.querySelectorAll('.carte-experience').forEach(function (card) {
+  document.querySelectorAll('.experience-card').forEach(function (card) {
     var image = card.querySelector('img');
     var title = card.querySelector('h3');
     addSaveButton(card, card.href, title && title.textContent.trim(), image && image.src, 'overlay');
   });
-  document.querySelectorAll('.carte-actualite').forEach(function (card) {
-    var link = card.querySelector('.carte-actualite__lien');
+  document.querySelectorAll('.news-card').forEach(function (card) {
+    var link = card.querySelector('.news-card__link');
     var image = card.querySelector('img');
     var title = card.querySelector('h3');
     if (!link) throw new Error('Lien requis absent sur une actualité.');
     addSaveButton(card, link.href, title && title.textContent.trim(), image && image.src, 'overlay');
   });
-  document.querySelectorAll('.diapositive-saison').forEach(function (card) {
+  document.querySelectorAll('.seasonal-slide').forEach(function (card) {
     var link = card.querySelector('a');
     var image = card.querySelector('img');
     var title = card.querySelector('h3');
     if (!link) throw new Error('Lien requis absent sur une saison.');
     addSaveButton(card, link.href, title && title.textContent.replace(/\s+/g, ' ').trim(), image && image.src, 'overlay');
   });
-  var pageHero = document.querySelector('.hero-page');
+  var pageHero = document.querySelector('.page-hero');
   if (pageHero) {
     var heroImage = pageHero.querySelector('img');
     var heroTitle = pageHero.querySelector('h1');
@@ -383,57 +383,57 @@
 
   // Icônes Font Awesome ajoutées selon le contexte.
   var prependContextIcon = function (element, iconName) {
-    if (!element || !iconName || element.querySelector(':scope > .icone-contexte')) return;
+    if (!element || !iconName || element.querySelector(':scope > .context-icon')) return;
     var icon = document.createElement('i');
-    icon.className = 'fa-solid ' + iconName + ' icone-contexte';
+    icon.className = 'fa-solid ' + iconName + ' context-icon';
     icon.setAttribute('aria-hidden', 'true');
     element.prepend(icon);
   };
 
   var quickAccessIcons = ['fa-clock', 'fa-ticket', 'fa-route'];
-  document.querySelectorAll('.acces-rapides > a').forEach(function (link, index) {
+  document.querySelectorAll('.quick-access > a').forEach(function (link, index) {
     if (!quickAccessIcons[index]) throw new Error('Icône explicite absente pour un accès rapide.');
     var icon = document.createElement('i');
-    icon.className = 'fa-solid ' + quickAccessIcons[index] + ' acces-rapides__icone';
+    icon.className = 'fa-solid ' + quickAccessIcons[index] + ' quick-access__icon';
     icon.setAttribute('aria-hidden', 'true');
     link.appendChild(icon);
   });
 
   var contactIcons = { 'téléphone': 'fa-phone', 'e-mail': 'fa-envelope', 'adresse': 'fa-location-dot' };
-  document.querySelectorAll('.infos-contact__libelle').forEach(function (label) {
+  document.querySelectorAll('.contact-info__label').forEach(function (label) {
     var name = label.textContent.trim().toLocaleLowerCase('fr');
     if (!contactIcons[name]) throw new Error('Icône explicite absente pour « ' + name + ' ».');
     if (label.querySelector('i')) return;
     var icon = document.createElement('i');
-    icon.className = 'fa-solid ' + contactIcons[name] + ' icone-contexte';
+    icon.className = 'fa-solid ' + contactIcons[name] + ' context-icon';
     icon.setAttribute('aria-hidden', 'true');
     label.prepend(icon);
   });
 
-  document.querySelectorAll('.bandeau-info .conteneur').forEach(function (banner) {
+  document.querySelectorAll('.info-banner .container').forEach(function (banner) {
     prependContextIcon(banner, 'fa-circle-exclamation');
   });
 
-  document.querySelectorAll('.encadre-info__titre').forEach(function (title) {
+  document.querySelectorAll('.info-box__title').forEach(function (title) {
     prependContextIcon(title, 'fa-circle-info');
   });
 
-  document.querySelectorAll('.element-service__duree').forEach(function (duration) {
+  document.querySelectorAll('.service-item__duration').forEach(function (duration) {
     prependContextIcon(duration, 'fa-clock');
   });
 
   // Apparition progressive au défilement.
-  var fadeEls = document.querySelectorAll('.apparition');
+  var fadeEls = document.querySelectorAll('.fade-in');
   if (fadeEls.length && 'IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('est-anime');
+          entry.target.classList.add('is-animating');
           window.requestAnimationFrame(function () {
             entry.target.classList.add('visible');
           });
           entry.target.addEventListener('transitionend', function () {
-            entry.target.classList.remove('est-anime');
+            entry.target.classList.remove('is-animating');
           }, { once: true });
           observer.unobserve(entry.target);
         }
@@ -447,9 +447,9 @@
 
   // Suggestions saisonnières.
   document.querySelectorAll('[data-seasonal]').forEach(function (seasonal) {
-    var track = seasonal.querySelector('.carrousel-saisons__piste');
-    var slides = Array.from(seasonal.querySelectorAll('.diapositive-saison'));
-    var tabs = Array.from(seasonal.querySelectorAll('.onglet-saison'));
+    var track = seasonal.querySelector('.seasonal-slider__track');
+    var slides = Array.from(seasonal.querySelectorAll('.seasonal-slide'));
+    var tabs = Array.from(seasonal.querySelectorAll('.seasonal-tab'));
     var seasonOrder = ['spring', 'summer', 'fall', 'winter'];
     var month = new Date().getMonth();
     var currentSeason = month >= 2 && month <= 4 ? 'spring' : month >= 5 && month <= 7 ? 'summer' : month >= 8 && month <= 10 ? 'fall' : 'winter';
@@ -462,12 +462,12 @@
     if ('IntersectionObserver' in window) {
       var seasonalVisibilityObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          entry.target.classList.toggle('est-dans-vue', entry.isIntersecting);
+          entry.target.classList.toggle('is-in-view', entry.isIntersecting);
         });
       }, { rootMargin: '100px 0px' });
       seasonalVisibilityObserver.observe(seasonal);
     } else {
-      seasonal.classList.add('est-dans-vue');
+      seasonal.classList.add('is-in-view');
     }
 
     var showSeason = function (index) {
@@ -484,7 +484,7 @@
 
       tabs.forEach(function (tab, tabIndex) {
         var isActive = tabIndex === seasonIndex;
-        tab.classList.toggle('est-actif', isActive);
+        tab.classList.toggle('is-active', isActive);
         tab.setAttribute('aria-selected', String(isActive));
         tab.tabIndex = isActive ? 0 : -1;
       });
@@ -522,7 +522,7 @@
   document.querySelectorAll('[data-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var success = form.parentElement.querySelector('.formulaire-succes');
+      var success = form.parentElement.querySelector('.form-success');
       if (success) {
         success.classList.add('visible');
         form.reset();
@@ -533,7 +533,7 @@
 
   // Retour en haut de page.
   var backToTop = document.createElement('button');
-  backToTop.className = 'retour-haut';
+  backToTop.className = 'back-to-top';
   backToTop.type = 'button';
   backToTop.setAttribute('aria-label', 'Retour en haut de la page');
   backToTop.setAttribute('aria-hidden', 'true');
@@ -546,7 +546,7 @@
     var isVisible = window.scrollY > 600;
     if (isVisible === backToTopVisible) return;
     backToTopVisible = isVisible;
-    backToTop.classList.toggle('est-visible', isVisible);
+    backToTop.classList.toggle('is-visible', isVisible);
     backToTop.setAttribute('aria-hidden', String(!isVisible));
     backToTop.tabIndex = isVisible ? 0 : -1;
   };
@@ -557,11 +557,11 @@
   });
 
   // État de l’en-tête. Sur l’accueil, la version lisible est permanente.
-  var header = document.querySelector('.entete-site');
+  var header = document.querySelector('.site-header');
   if (header) {
-    var forceReadableHeader = document.body.classList.contains('est-accueil');
-    header.classList.toggle('est-defile', forceReadableHeader);
-    document.body.classList.toggle('est-defile', forceReadableHeader);
+    var forceReadableHeader = document.body.classList.contains('is-home');
+    header.classList.toggle('is-scrolled', forceReadableHeader);
+    document.body.classList.toggle('is-scrolled', forceReadableHeader);
   }
 
   // Une seule mise à jour par image pour les effets dépendant du défilement.
@@ -582,12 +582,12 @@
   window.addEventListener('scroll', scheduleScrollEffects, { passive: true });
   window.addEventListener('resize', scheduleScrollEffects, { passive: true });
   var currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.navigation-principale a').forEach(function (link) {
+  document.querySelectorAll('.main-nav a').forEach(function (link) {
     var href = link.getAttribute('href');
     if (!href) return;
     var linkPath = href.split('/').pop();
     if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
-      link.classList.add('actif');
+      link.classList.add('active');
     }
   });
 })();

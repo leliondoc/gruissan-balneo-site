@@ -30,13 +30,13 @@ files.forEach((file) => {
 
   Array.from(html.matchAll(/<nav class="footer-nav">([\s\S]*?)<\/nav>/g)).forEach((navMatch) => {
     Array.from(navMatch[1].matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g)).forEach((linkMatch) => {
-      if (!/<i\b/.test(linkMatch[1])) errors.push(`Icône de footer absente : ${file}`);
+      if (!/<i\b/.test(linkMatch[1])) errors.push(`Icône de pied de page absente : ${file}`);
     });
   });
 
   Array.from(html.matchAll(/<(a|button)\b[^>]*class="([^"]*)"[^>]*>([\s\S]*?)<\/\1>/g)).forEach((match) => {
     if (match[2].split(/\s+/).includes('btn') && !/<i\b/.test(match[3])) {
-      errors.push(`Icône de bouton absente : ${file}`);
+      errors.push(`Icône de btn absente : ${file}`);
     }
   });
 });

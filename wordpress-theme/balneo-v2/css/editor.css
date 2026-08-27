@@ -10,8 +10,8 @@
 .editor-styles-wrapper .block-editor-block-list__layout h1{font-size:clamp(2.4rem,6vw,5rem)}
 .editor-styles-wrapper .editor-post-title__input{font-size:2.25rem!important;line-height:1.1}
 .editor-styles-wrapper a{color:#006392}
-.editor-styles-wrapper .balneo-conteneur-editeur{margin:0;padding:0;border:0;background:transparent}
-.editor-styles-wrapper .balneo-conteneur-editeur__contenu{display:contents}
-.editor-styles-wrapper .balneo-texte-enrichi-editeur{padding:0;border:0}
-.editor-styles-wrapper .balneo-image-editeur img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
-.editor-styles-wrapper .balneo-image-editeur .components-button{margin:.5rem .5rem .5rem 0}
+.editor-styles-wrapper .balneo-editor-container{margin:0;padding:0;border:0;background:transparent}
+.editor-styles-wrapper .balneo-editor-container__content{display:contents}
+.editor-styles-wrapper .balneo-editor-rich-text{padding:0;border:0}
+.editor-styles-wrapper .balneo-editor-image img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
+.editor-styles-wrapper .balneo-editor-image .components-button{margin:.5rem .5rem .5rem 0}

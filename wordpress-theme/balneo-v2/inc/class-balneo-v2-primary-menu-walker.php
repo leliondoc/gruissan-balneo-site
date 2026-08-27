@@ -30,9 +30,9 @@ class Balneo_V2_Primary_Menu_Walker extends Walker_Nav_Menu {
 	public function start_lvl( &$output, $depth = 0, $args = null ): void {
 		$is_mega  = 0 === $depth && __( 'Lâcher-prise', 'balneo-v2' ) === $this->parent_title;
 		$is_right = 0 === $depth && __( 'Préparer', 'balneo-v2' ) === $this->parent_title;
-		$class    = 'sous-menu';
-		$class   .= $is_mega ? ' sous-menu--mega' : '';
-		$class   .= $is_right ? ' sous-menu--droite sous-menu--pratique' : '';
+		$class    = 'dropdown';
+		$class   .= $is_mega ? ' dropdown--mega' : '';
+		$class   .= $is_right ? ' dropdown--right dropdown--practical' : '';
 		$output  .= '<div class="' . esc_attr( $class ) . '">';
 	}
 
@@ -59,18 +59,18 @@ class Balneo_V2_Primary_Menu_Walker extends Walker_Nav_Menu {
 	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ): void {
 		$classes      = empty( $item->classes ) ? array() : (array) $item->classes;
 		$has_children = in_array( 'menu-item-has-children', $classes, true );
-		$is_booking   = in_array( 'navigation-principale__achat', $classes, true ) || in_array( 'main-nav__booking', $classes, true );
+		$is_booking   = in_array( 'main-nav__booking', $classes, true ) || in_array( 'main-nav__booking', $classes, true );
 		$classes      = array_diff( $classes, array( 'main-nav__booking' ) );
 
 		if ( 0 === $depth ) {
 			$this->parent_title = (string) $item->title;
-			$classes[]          = $has_children ? 'avec-sous-menu' : '';
-			$classes[]          = $is_booking ? 'navigation-principale__achat' : '';
+			$classes[]          = $has_children ? 'has-dropdown' : '';
+			$classes[]          = $is_booking ? 'main-nav__booking' : '';
 			$classes            = array_filter( array_map( 'sanitize_html_class', $classes ) );
 			$output            .= '<li class="' . esc_attr( implode( ' ', array_unique( $classes ) ) ) . '">';
 
 			if ( $has_children ) {
-				$output .= '<button class="lien-navigation" type="button" aria-expanded="false">' . esc_html( $item->title ) . '</button>';
+				$output .= '<button class="nav-link" type="button" aria-expanded="false">' . esc_html( $item->title ) . '</button>';
 				return;
 			}
 
@@ -91,7 +91,7 @@ class Balneo_V2_Primary_Menu_Walker extends Walker_Nav_Menu {
 			);
 			$card    = $cards[ $slug ];
 			$output .= sprintf(
-				'<a class="menu-mega__carte menu-mega__carte--%1$s" href="%2$s"><img src="%3$s" width="%8$d" height="%9$d" loading="lazy" decoding="async" alt=""><span class="menu-mega__voile" aria-hidden="true"></span><span class="menu-mega__contenu"><small>%4$s</small><strong>%5$s</strong><span class="menu-mega__meta"><i class="fa-regular %6$s" aria-hidden="true"></i>%7$s</span></span></a>',
+				'<a class="mega-menu__card menu-mega__carte--%1$s" href="%2$s"><img src="%3$s" width="%8$d" height="%9$d" loading="lazy" decoding="async" alt=""><span class="mega-menu__veil" aria-hidden="true"></span><span class="mega-menu__content"><small>%4$s</small><strong>%5$s</strong><span class="mega-menu__meta"><i class="fa-regular %6$s" aria-hidden="true"></i>%7$s</span></span></a>',
 				esc_attr( $slug ),
 				esc_url( $item->url ),
 				esc_url( get_theme_file_uri( '/assets/photos/' . $card[0] ) ),

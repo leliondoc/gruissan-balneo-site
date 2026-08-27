@@ -23,9 +23,9 @@
 		},
 		edit: function ( props ) {
 			var blockProps = useBlockProps( {
-				className: 'balneo-conteneur-editeur'
+				className: 'balneo-editor-container'
 			} );
-			var innerProps = useInnerBlocksProps( { className: 'balneo-conteneur-editeur__contenu' }, { templateLock: false } );
+			var innerProps = useInnerBlocksProps( { className: 'balneo-editor-container__content' }, { templateLock: false } );
 
 			return createElement(
 				'div',
@@ -49,7 +49,7 @@
 		},
 		edit: function ( props ) {
 			var sourceClass = props.attributes.htmlAttributes.class || '';
-			var blockProps = useBlockProps( { className: 'balneo-texte-enrichi-editeur ' + sourceClass } );
+			var blockProps = useBlockProps( { className: 'balneo-editor-rich-text ' + sourceClass } );
 			return createElement(
 				'div',
 				blockProps,
@@ -74,7 +74,7 @@
 			htmlAttributes: { type: 'object', default: {} }
 		},
 		edit: function ( props ) {
-			var blockProps = useBlockProps( { className: 'balneo-image-editeur' } );
+			var blockProps = useBlockProps( { className: 'balneo-editor-image' } );
 			return createElement(
 				'div',
 				blockProps,

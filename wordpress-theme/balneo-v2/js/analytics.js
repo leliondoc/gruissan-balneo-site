@@ -117,41 +117,40 @@
 
   function bannerMarkup() {
     return [
-      '<div class="consentement-cookies__voile" data-consent-dismiss></div>',
-      '<section class="consentement-cookies__carte" role="dialog" aria-modal="true" aria-labelledby="consentement-cookies-titre">',
-      '  <span class="consentement-cookies__etiquette">Vos choix</span>',
-      '  <span class="consentement-cookies__embleme" aria-hidden="true"><i></i><i></i><i></i></span>',
-      '  <div class="consentement-cookies__vue" data-consent-view="intro">',
-      '    <p class="consentement-cookies__surtitre">Une visite à votre rythme</p>',
+      '<section class="cookie-consent__card" role="region" aria-labelledby="consentement-cookies-titre">',
+      '  <span class="cookie-consent__label">Vos choix</span>',
+      '  <span class="cookie-consent__emblem" aria-hidden="true"><i></i><i></i><i></i></span>',
+      '  <div class="cookie-consent__view" data-consent-view="intro">',
+      '    <p class="cookie-consent__eyebrow">Une visite à votre rythme</p>',
       '    <h2 id="consentement-cookies-titre" tabindex="-1">On se jette à l’eau&nbsp;?</h2>',
       '    <p>Avec votre accord, Google Analytics nous aide à comprendre la fréquentation du site et Google Ads à mesurer nos campagnes. Rien ne part chez Google avant votre choix.</p>',
-      '    <div class="consentement-cookies__actions">',
-      '      <button class="consentement-cookies__bouton consentement-cookies__bouton--principal" type="button" data-consent-accept>Tout accepter</button>',
-      '      <button class="consentement-cookies__bouton consentement-cookies__bouton--secondaire" type="button" data-consent-reject>Tout refuser</button>',
-      '      <button class="consentement-cookies__personnaliser" type="button" data-consent-customize>Personnaliser mes choix</button>',
+      '    <div class="cookie-consent__actions">',
+      '      <button class="cookie-consent__button cookie-consent__button--primary" type="button" data-consent-accept>Tout accepter</button>',
+      '      <button class="cookie-consent__button cookie-consent__button--secondary" type="button" data-consent-reject>Tout refuser</button>',
+      '      <button class="cookie-consent__customize" type="button" data-consent-customize>Personnaliser mes choix</button>',
       '    </div>',
       '  </div>',
-      '  <div class="consentement-cookies__vue" data-consent-view="settings" hidden>',
-      '    <button class="consentement-cookies__retour" type="button" data-consent-back aria-label="Revenir à la présentation">← Retour</button>',
-      '    <p class="consentement-cookies__surtitre">À vous de choisir</p>',
+      '  <div class="cookie-consent__view" data-consent-view="settings" hidden>',
+      '    <button class="cookie-consent__back" type="button" data-consent-back aria-label="Revenir à la présentation">← Retour</button>',
+      '    <p class="cookie-consent__eyebrow">À vous de choisir</p>',
       '    <h2>Mes préférences</h2>',
-      '    <div class="consentement-cookies__reglages">',
-      '      <div class="consentement-cookies__reglage">',
+      '    <div class="cookie-consent__settings">',
+      '      <div class="cookie-consent__setting">',
       '        <div><strong>Nécessaires</strong><small>Affichage du site et mémorisation de votre choix.</small></div>',
-      '        <span class="consentement-cookies__statut">Toujours actifs</span>',
+      '        <span class="cookie-consent__status">Toujours actifs</span>',
       '      </div>',
-      '      <label class="consentement-cookies__reglage" for="consentement-analytics">',
+      '      <label class="cookie-consent__setting" for="consentement-analytics">',
       '        <span><strong>Mesure d’audience</strong><small>Google Analytics — statistiques de fréquentation.</small></span>',
-      '        <span class="consentement-cookies__interrupteur"><input id="consentement-analytics" type="checkbox" data-consent-analytics><i aria-hidden="true"></i></span>',
+      '        <span class="cookie-consent__toggle"><input id="consentement-analytics" type="checkbox" data-consent-analytics><i aria-hidden="true"></i></span>',
       '      </label>',
-      '      <label class="consentement-cookies__reglage" for="consentement-publicite">',
+      '      <label class="cookie-consent__setting" for="consentement-publicite">',
       '        <span><strong>Publicité</strong><small>Google Ads — mesure et personnalisation des campagnes.</small></span>',
-      '        <span class="consentement-cookies__interrupteur"><input id="consentement-publicite" type="checkbox" data-consent-ads><i aria-hidden="true"></i></span>',
+      '        <span class="cookie-consent__toggle"><input id="consentement-publicite" type="checkbox" data-consent-ads><i aria-hidden="true"></i></span>',
       '      </label>',
       '    </div>',
-      '    <button class="consentement-cookies__bouton consentement-cookies__bouton--principal consentement-cookies__enregistrer" type="button" data-consent-save>Enregistrer mes choix</button>',
+      '    <button class="cookie-consent__button cookie-consent__button--primary cookie-consent__save" type="button" data-consent-save>Enregistrer mes choix</button>',
       '  </div>',
-      '  <a class="consentement-cookies__confidentialite" href="' + privacyUrl.replace(/"/g, '&quot;') + '">Données personnelles et cookies</a>',
+      '  <a class="cookie-consent__privacy" href="' + privacyUrl.replace(/"/g, '&quot;') + '">Données personnelles et cookies</a>',
       '</section>'
     ].join('');
   }
@@ -159,17 +158,17 @@
   function createManagerButton() {
     var button = document.createElement('button');
     button.type = 'button';
-    button.className = 'gestion-cookies';
+    button.className = 'cookie-manager';
     button.setAttribute('data-consent-manage', '');
     button.setAttribute('aria-label', 'Gérer mes cookies');
     button.innerHTML = '<span aria-hidden="true"><i></i><i></i><i></i></span><strong>Cookies</strong>';
     document.body.appendChild(button);
 
-    var legal = document.querySelector('.pied-page__legal');
+    var legal = document.querySelector('.footer-legal');
     if (legal) {
       var footerButton = document.createElement('button');
       footerButton.type = 'button';
-      footerButton.className = 'pied-page__gestion-cookies';
+      footerButton.className = 'footer-cookie-manager';
       footerButton.setAttribute('data-consent-manage', '');
       footerButton.textContent = 'Gérer mes cookies';
       legal.appendChild(footerButton);
@@ -180,7 +179,7 @@
     ensureGtag();
 
     var banner = document.createElement('div');
-    banner.className = 'consentement-cookies';
+    banner.className = 'cookie-consent';
     banner.hidden = true;
     banner.innerHTML = bannerMarkup();
     document.body.appendChild(banner);
@@ -204,34 +203,33 @@
       }
     }
 
-    function openBanner(view) {
-      previousFocus = document.activeElement;
+    function openBanner(view, moveFocus) {
+      previousFocus = moveFocus ? document.activeElement : null;
       showView(view || 'intro');
       banner.hidden = false;
-      document.body.classList.add('consentement-ouvert');
       window.requestAnimationFrame(function () {
-        banner.classList.add('est-visible');
-        if (view === 'settings') {
+        banner.classList.add('is-visible');
+        if (moveFocus && view === 'settings') {
           banner.querySelector('[data-consent-back]').focus();
-        } else {
+        } else if (moveFocus) {
           title.focus();
         }
       });
     }
 
     function closeBanner() {
-      banner.classList.remove('est-visible');
-      document.body.classList.remove('consentement-ouvert');
+      banner.classList.remove('is-visible');
       window.setTimeout(function () {
         banner.hidden = true;
       }, 360);
       if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+      previousFocus = null;
     }
 
     function save(selection) {
       storedConsent = writeConsent(selection);
       applyConsent(storedConsent);
-      document.documentElement.classList.add('consentement-enregistre');
+      document.documentElement.classList.add('consent-saved');
       closeBanner();
     }
 
@@ -255,39 +253,21 @@
 
     document.querySelectorAll('[data-consent-manage]').forEach(function (button) {
       button.addEventListener('click', function () {
-        openBanner('settings');
+        openBanner('settings', true);
       });
-    });
-
-    banner.querySelector('[data-consent-dismiss]').addEventListener('click', function () {
-      if (storedConsent) closeBanner();
     });
 
     banner.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && storedConsent) {
         closeBanner();
-        return;
-      }
-      if (event.key !== 'Tab') return;
-      var focusable = Array.from(banner.querySelectorAll('button:not([hidden]), a[href], input:not([disabled])'))
-        .filter(function (element) { return element.offsetParent !== null; });
-      if (!focusable.length) return;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
       }
     });
 
     if (storedConsent) {
       applyConsent(storedConsent);
-      document.documentElement.classList.add('consentement-enregistre');
+      document.documentElement.classList.add('consent-saved');
     } else {
-      openBanner('intro');
+      openBanner('intro', false);
     }
   }
 

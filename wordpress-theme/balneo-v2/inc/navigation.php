@@ -77,7 +77,7 @@ function balneo_v2_seed_primary_navigation(): void {
 			'menu-item-title'   => __( 'Acheter', 'balneo-v2' ),
 			'menu-item-url'     => 'https://gruissan-balneo.horanet.com/',
 			'menu-item-target'  => '_blank',
-			'menu-item-classes' => 'navigation-principale__achat',
+			'menu-item-classes' => 'main-nav__booking',
 			'menu-item-status'  => 'publish',
 		)
 	);
@@ -96,7 +96,7 @@ function balneo_v2_primary_navigation(): void {
 		array(
 			'theme_location' => 'primary',
 			'container'      => false,
-			'items_wrap'     => '<ul class="navigation-principale">%3$s</ul>',
+			'items_wrap'     => '<ul class="main-nav">%3$s</ul>',
 			'depth'          => 2,
 			'fallback_cb'    => false,
 			'walker'         => new Balneo_V2_Primary_Menu_Walker(),
@@ -110,16 +110,16 @@ function balneo_v2_primary_navigation(): void {
  * @param string $context Emplacement du logo : header ou footer.
  */
 function balneo_v2_site_logo( string $context = 'header' ): void {
-	$class   = 'footer' === $context ? 'pied-page__marque' : 'logo-site';
+	$class   = 'footer' === $context ? 'footer-wordmark' : 'site-logo';
 	$logo_id = (int) get_theme_mod( 'custom_logo' );
 	?>
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php esc_attr_e( 'Accueil — Espace Balnéo Gruissan', 'balneo-v2' ); ?>">
 		<?php
 		if ( $logo_id ) {
-			echo wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'image-logo', 'loading' => 'eager', 'decoding' => 'async' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'logo-img', 'loading' => 'eager', 'decoding' => 'async' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			?>
-			<img class="image-logo" src="<?php echo esc_url( get_theme_file_uri( '/assets/logo-balneo-officiel.png' ) ); ?>" width="300" height="210" loading="eager" decoding="async" alt="<?php esc_attr_e( 'Espace Balnéo Gruissan', 'balneo-v2' ); ?>">
+			<img class="logo-img" src="<?php echo esc_url( get_theme_file_uri( '/assets/logo-balneo-officiel.png' ) ); ?>" width="300" height="210" loading="eager" decoding="async" alt="<?php esc_attr_e( 'Espace Balnéo Gruissan', 'balneo-v2' ); ?>">
 			<?php
 		}
 		?>

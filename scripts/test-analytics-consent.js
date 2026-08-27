@@ -15,7 +15,7 @@ assert.match(analyticsPhp, /AW-358922226/);
 
 function createPage(savedConsent) {
   const dom = new JSDOM(
-    '<!doctype html><html><head></head><body><footer><nav class="pied-page__legal"></nav></footer></body></html>',
+    '<!doctype html><html><head></head><body><footer><nav class="footer-legal"></nav></footer></body></html>',
     {
       url: 'https://balneov2.gruissan-balneo.com/',
       runScripts: 'outside-only',
@@ -44,7 +44,10 @@ function gtagCalls(dom) {
 {
   const dom = createPage();
   const { document } = dom.window;
-  assert.equal(document.querySelector('.consentement-cookies').hidden, false, 'le panneau doit apparaître sans choix');
+  assert.equal(document.querySelector('.cookie-consent').hidden, false, 'le panneau doit apparaître sans choix');
+  assert.equal(document.querySelector('.cookie-consent__overlay'), null, 'aucun voile ne doit masquer le site');
+  assert.equal(document.querySelector('.cookie-consent__card').getAttribute('aria-modal'), null, 'la carte ne doit pas être modale');
+  assert.equal(document.body.classList.contains('consent-open'), false, 'la page doit rester consultable derrière la carte');
   assert.equal(document.querySelector('script[src*="googletagmanager.com"]'), null, 'Google ne doit pas être chargé avant le consentement');
 
   document.querySelector('[data-consent-accept]').click();
@@ -96,9 +99,9 @@ function gtagCalls(dom) {
 {
   const dom = createPage({ version: 1, analytics: true, ads: false, savedAt: Date.now() });
   const { document } = dom.window;
-  assert.ok(document.documentElement.classList.contains('consentement-enregistre'));
+  assert.ok(document.documentElement.classList.contains('consent-saved'));
   assert.ok(document.querySelector('script[src*="googletagmanager.com/gtag/js"]'));
-  assert.ok(document.querySelector('.pied-page__gestion-cookies'));
+  assert.ok(document.querySelector('.footer-cookie-manager'));
   dom.window.close();
 }
 

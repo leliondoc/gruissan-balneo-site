@@ -113,7 +113,7 @@ add_action( 'wp_head', 'balneo_v2_preload_critical_fonts', 1 );
  */
 function balneo_v2_body_classes( $classes ) {
     if ( is_front_page() ) {
-        $classes[] = 'est-accueil';
+        $classes[] = 'is-home';
     }
     return $classes;
 }

@@ -138,16 +138,16 @@ function transformMarkup(markup) {
   );
 
   output = output.replace(
-    '<div class="formulaire-succes">Merci pour votre inscription !</div>',
-    `<div class="formulaire-succes<?php echo isset( $_GET['inscription'] ) && 'merci' === $_GET['inscription'] ? ' visible' : ''; ?>">Merci pour votre inscription !</div>
-          <div class="formulaire-erreur<?php echo isset( $_GET['inscription'] ) && 'erreur' === $_GET['inscription'] ? ' visible' : ''; ?>">L'inscription n'a pas pu être envoyée. Vérifiez votre adresse e-mail ou réessayez.</div>`,
+    '<div class="form-success">Merci pour votre inscription !</div>',
+    `<div class="form-success<?php echo isset( $_GET['inscription'] ) && 'merci' === $_GET['inscription'] ? ' visible' : ''; ?>">Merci pour votre inscription !</div>
+          <div class="form-error<?php echo isset( $_GET['inscription'] ) && 'erreur' === $_GET['inscription'] ? ' visible' : ''; ?>">L'inscription n'a pas pu être envoyée. Vérifiez votre adresse e-mail ou réessayez.</div>`,
   );
   output = output.replace(
     '<form data-form>',
     `<form data-form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
             <input type="hidden" name="action" value="balneo_v2_newsletter">
             <?php wp_nonce_field( 'balneo_v2_newsletter', 'balneo_v2_newsletter_nonce' ); ?>
-            <div class="balneo-champ-piege" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>`,
+            <div class="balneo-honeypot" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>`,
   );
 
   return addResponsiveSourcesToPhpMarkup(output);
@@ -155,7 +155,7 @@ function transformMarkup(markup) {
 
 function optimizeFirstHeroImage(markup) {
   return markup.replace(
-    /(<div class="(?:hero-accueil__media|hero-page__media)[^"]*"[^>]*>[\s\S]*?<img\s+)([^>]*)(>)/,
+    /(<div class="(?:hero__media|page-hero__media)[^"]*"[^>]*>[\s\S]*?<img\s+)([^>]*)(>)/,
     (_match, start, attributes, end) => {
       const cleanAttributes = attributes
         .replace(/\sdecoding="[^"]*"/g, '')
@@ -189,7 +189,7 @@ function transformEditableMarkup(markup, converter = htmlToEditableGutenberg) {
     (_match, start, hash = '', end) => `${start}/${hash || ''}${end}`,
   );
   output = output.replace(
-    /<div class="formulaire-succes">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
+    /<div class="form-success">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
     '[balneo_newsletter_form]',
   );
 
@@ -219,7 +219,7 @@ function transformLegacyEditableMarkup(markup) {
     (_match, start, hash = '', end) => `${start}/${hash || ''}${end}`,
   );
   output = output.replace(
-    /<div class="formulaire-succes">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
+    /<div class="form-success">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
     '[balneo_newsletter_form]',
   );
 
@@ -242,15 +242,15 @@ function write(relativePath, contents) {
 }
 
 function buildHeader(homeHtml) {
-  const headerStart = homeHtml.indexOf('<header class="entete-site">');
+  const headerStart = homeHtml.indexOf('<header class="site-header">');
   const headerEnd = homeHtml.indexOf('</header>', headerStart);
   if (headerStart === -1 || headerEnd === -1) throw new Error('En-tête introuvable');
   let header = transformMarkup(homeHtml.slice(headerStart, headerEnd + '</header>'.length));
   header = header.replace(
-    /<a href="<\?php echo esc_url\( home_url\( '\/' \) \); \?>" class="logo-site"[\s\S]*?<\/a>/,
+    /<a href="<\?php echo esc_url\( home_url\( '\/' \) \); \?>" class="site-logo"[\s\S]*?<\/a>/,
     "<?php balneo_v2_site_logo( 'header' ); ?>",
   );
-  header = header.replace(/<ul class="navigation-principale">[\s\S]*?<\/ul>/, '<?php balneo_v2_primary_navigation(); ?>');
+  header = header.replace(/<ul class="main-nav">[\s\S]*?<\/ul>/, '<?php balneo_v2_primary_navigation(); ?>');
   header = header
     .replace('Au cœur de Gruissan, entre mer et lagune', "<?php esc_html_e( 'Au cœur de Gruissan, entre mer et lagune', 'balneo-v2' ); ?>")
     .replace('aria-label="Liens pratiques"', "aria-label=\"<?php esc_attr_e( 'Liens pratiques', 'balneo-v2' ); ?>\"")
@@ -274,17 +274,17 @@ function buildHeader(homeHtml) {
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="lien-evitement" href="#contenu-principal"><?php esc_html_e( 'Aller au contenu principal', 'balneo-v2' ); ?></a>
+<a class="skip-link" href="#contenu-principal"><?php esc_html_e( 'Aller au contenu principal', 'balneo-v2' ); ?></a>
 ${header}`;
 }
 
 function buildFooter(homeHtml) {
-  const footerStart = homeHtml.indexOf('<a class="orbe-appel"');
+  const footerStart = homeHtml.indexOf('<a class="cta-orb"');
   const footerEnd = homeHtml.indexOf('</footer>', footerStart);
   if (footerStart === -1 || footerEnd === -1) throw new Error('Pied de page introuvable');
   let footer = transformMarkup(homeHtml.slice(footerStart, footerEnd + '</footer>'.length));
   footer = footer.replace(
-    /<a href="<\?php echo esc_url\( home_url\( '\/' \) \); \?>" class="pied-page__marque">[\s\S]*?<\/a>/,
+    /<a href="<\?php echo esc_url\( home_url\( '\/' \) \); \?>" class="footer-wordmark">[\s\S]*?<\/a>/,
     "<?php balneo_v2_site_logo( 'footer' ); ?>",
   );
   footer = footer
@@ -320,9 +320,9 @@ ${footer}
 }
 
 function buildPagePart(html, sourceName) {
-  const body = sliceBetween(html, '</header>', '<a class="orbe-appel"', sourceName);
+  const body = sliceBetween(html, '</header>', '<a class="cta-orb"', sourceName);
   const optimizedBody = optimizeFirstHeroImage(body).replace(
-    /<div class="formulaire-succes">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
+    /<div class="form-success">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
     "<?php echo do_shortcode( '[balneo_newsletter_form]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sortie échappée dans le shortcode. ?>",
   );
   return `<?php
@@ -344,7 +344,7 @@ function phpNowdoc(value, slug) {
 
 function buildContentSeeds(homeHtml) {
   const entries = [];
-  const homeBody = optimizeFirstHeroImage(optimizeImages(sliceBetween(homeHtml, '</header>', '<a class="orbe-appel"', 'index.html')));
+  const homeBody = optimizeFirstHeroImage(optimizeImages(sliceBetween(homeHtml, '</header>', '<a class="cta-orb"', 'index.html')));
   const homeLegacyContent = transformLegacyEditableMarkup(homeBody);
   const homeSchema2Content = transformEditableMarkup(homeBody, htmlToLegacyBalneoGutenberg);
   entries.push(`    'accueil' => array(\n        'title' => 'Accueil',\n        'legacy_hash' => '${crypto.createHash('sha256').update(homeLegacyContent).digest('hex')}',\n        'schema2_hash' => '${crypto.createHash('sha256').update(homeSchema2Content).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(homeBody), 'accueil')},\n    ),`);
@@ -352,7 +352,7 @@ function buildContentSeeds(homeHtml) {
   Object.entries(pages).forEach(([slug, title]) => {
     const sourceName = `${slug}.html`;
     const html = fs.readFileSync(path.join(root, 'pages', sourceName), 'utf8');
-    const body = optimizeFirstHeroImage(optimizeImages(sliceBetween(html, '</header>', '<a class="orbe-appel"', sourceName)));
+    const body = optimizeFirstHeroImage(optimizeImages(sliceBetween(html, '</header>', '<a class="cta-orb"', sourceName)));
     const legacyContent = transformLegacyEditableMarkup(body);
     const schema2Content = transformEditableMarkup(body, htmlToLegacyBalneoGutenberg);
     entries.push(`    '${slug}' => array(\n        'title' => '${title.replace(/'/g, "\\'")}',\n        'legacy_hash' => '${crypto.createHash('sha256').update(legacyContent).digest('hex')}',\n        'schema2_hash' => '${crypto.createHash('sha256').update(schema2Content).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(body), slug)},\n    ),`);
@@ -504,7 +504,7 @@ add_action( 'wp_head', 'balneo_v2_preload_critical_fonts', 1 );
  */
 function balneo_v2_body_classes( $classes ) {
     if ( is_front_page() ) {
-        $classes[] = 'est-accueil';
+        $classes[] = 'is-home';
     }
     return $classes;
 }
@@ -603,8 +603,8 @@ while ( have_posts() ) {
         get_template_part( 'template-parts/pages/' . $slug );
     } else {
         ?>
-        <main class="section-contenu">
-            <article class="conteneur contenu-entree">
+        <main class="section">
+            <article class="container entry-content">
                 <h1><?php the_title(); ?></h1>
                 <?php the_content(); ?>
             </article>
@@ -624,8 +624,8 @@ get_footer();`);
 
 get_header();
 ?>
-<main class="section-contenu">
-    <div class="conteneur contenu-entree">
+<main class="section">
+    <div class="container entry-content">
         <?php if ( have_posts() ) : ?>
             <?php while ( have_posts() ) : the_post(); ?>
                 <article <?php post_class(); ?>>
@@ -650,11 +650,11 @@ get_footer();`);
 
 get_header();
 ?>
-<main class="section-contenu">
-    <div class="conteneur contenu-entree" style="padding-block:var(--space-2xl);text-align:center">
-        <p class="section-contenu__libelle"><?php esc_html_e( 'Erreur 404', 'balneo-v2' ); ?></p>
+<main class="section">
+    <div class="container entry-content" style="padding-block:var(--space-2xl);text-align:center">
+        <p class="section__label"><?php esc_html_e( 'Erreur 404', 'balneo-v2' ); ?></p>
         <h1><?php esc_html_e( 'Cette page n’existe pas', 'balneo-v2' ); ?></h1>
-        <p><a class="bouton bouton--plein" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Retour à l’accueil', 'balneo-v2' ); ?></a></p>
+        <p><a class="btn btn--filled" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Retour à l’accueil', 'balneo-v2' ); ?></a></p>
     </div>
 </main>
 <?php
@@ -684,9 +684,9 @@ if ( post_password_required() ) {
 
 if ( have_comments() ) {
     ?>
-    <section class="zone-commentaires conteneur">
+    <section class="comments-area container">
         <h2><?php esc_html_e( 'Commentaires', 'balneo-v2' ); ?></h2>
-        <ol class="liste-commentaires"><?php wp_list_comments(); ?></ol>
+        <ol class="comment-list"><?php wp_list_comments(); ?></ol>
         <?php the_comments_navigation(); ?>
     </section>
     <?php
@@ -705,8 +705,8 @@ if ( comments_open() ) {
 
 get_header();
 ?>
-<main class="section-contenu"><div class="conteneur contenu-entree">
-<h1><?php /* translators: %s: search query. */ printf( esc_html__( 'Résultats pour « %s »', 'balneo-v2' ), esc_html( get_search_query() ) ); ?></h1>
+<main class="section"><div class="container entry-content">
+<h1><?php /* translators: %s : requête de recherche. */ printf( esc_html__( 'Résultats pour « %s »', 'balneo-v2' ), esc_html( get_search_query() ) ); ?></h1>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <article <?php post_class(); ?>><h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><?php the_excerpt(); ?></article>
 <?php endwhile; the_posts_navigation(); else : ?><p><?php esc_html_e( 'Aucun résultat.', 'balneo-v2' ); ?></p><?php endif; ?>
@@ -768,11 +768,11 @@ get_header();
 .editor-styles-wrapper .block-editor-block-list__layout h1{font-size:clamp(2.4rem,6vw,5rem)}
 .editor-styles-wrapper .editor-post-title__input{font-size:2.25rem!important;line-height:1.1}
 .editor-styles-wrapper a{color:#006392}
-.editor-styles-wrapper .balneo-conteneur-editeur{margin:0;padding:0;border:0;background:transparent}
-.editor-styles-wrapper .balneo-conteneur-editeur__contenu{display:contents}
-.editor-styles-wrapper .balneo-texte-enrichi-editeur{padding:0;border:0}
-.editor-styles-wrapper .balneo-image-editeur img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
-.editor-styles-wrapper .balneo-image-editeur .components-button{margin:.5rem .5rem .5rem 0}`);
+.editor-styles-wrapper .balneo-editor-container{margin:0;padding:0;border:0;background:transparent}
+.editor-styles-wrapper .balneo-editor-container__content{display:contents}
+.editor-styles-wrapper .balneo-editor-rich-text{padding:0;border:0}
+.editor-styles-wrapper .balneo-editor-image img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover}
+.editor-styles-wrapper .balneo-editor-image .components-button{margin:.5rem .5rem .5rem 0}`);
 
   write('languages/balneo-v2.pot', `msgid ""
 msgstr ""

@@ -74,6 +74,6 @@ add_filter( 'admin_footer_text', 'balneo_admin_branding_footer_text' );
  * @param string $classes Classes existantes de l’administration.
  */
 function balneo_admin_branding_body_class( string $classes ): string {
-	return trim( $classes . ' balneo-admin-personnalise' );
+	return trim( $classes . ' balneo-admin-branded' );
 }
 add_filter( 'admin_body_class', 'balneo_admin_branding_body_class' );
