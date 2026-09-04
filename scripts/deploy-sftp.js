@@ -33,11 +33,14 @@ async function checkHost(env, ClientType = Client, log = console.log) {
   await new Promise((resolve, reject) => {
     const client = new ClientType();
     let observed;
+    let observedHex;
     client.on('error', (error) => {
       client.destroy();
       if (!observed) return reject(error);
       if (!env.SFTP_HOST_KEY_SHA256) {
         log(`Clé publique ED25519 observée : ${observed}`);
+        // Le format hexadécimal évite qu'un secret de chemin masque les « / » du Base64.
+        log(`Empreinte SHA256 hexadécimale : ${observedHex}`);
         return reject(new Error('Première connexion : valider puis enregistrer SFTP_HOST_KEY_SHA256 avant publication. Aucun identifiant transmis.'));
       }
       if (observed !== env.SFTP_HOST_KEY_SHA256) return reject(new Error('Clé SFTP différente : connexion bloquée avant authentification.'));
@@ -48,7 +51,11 @@ async function checkHost(env, ClientType = Client, log = console.log) {
       ...options,
       username: 'host-key-check',
       authHandler: () => false,
-      hostVerifier: (key) => { observed = fingerprint(key); return false; },
+      hostVerifier: (key) => {
+        observed = fingerprint(key);
+        observedHex = createHash('sha256').update(key).digest('hex');
+        return false;
+      },
     });
   });
 }
