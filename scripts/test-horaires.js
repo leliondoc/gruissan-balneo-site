@@ -43,9 +43,10 @@ test('initialisation : date de Paris, seulement les cartes programmées, mois co
   assert.equal(query('[aria-current="date"]').dataset.date, '2026-09-04');
   assert.equal(query('.schedule-calendar__day').dataset.date, '2026-08-31');
   assert.equal(query('.schedule-card--sport .schedule-card__time').textContent, '06h–23h');
-  assert.equal(query('.schedule-card--balneo .schedule-card__time').textContent, 'À confirmer');
-  assert.equal(query('.daily-schedule__count').textContent, '1 espace / activité');
-  for (const selector of ['.schedule-card--balneo', '.schedule-card--aquatique', '.schedule-card--soins', '.schedule-card--parc']) assert.equal(query(selector).hidden, true);
+  assert.equal(query('.schedule-card--balneo .schedule-card__time').textContent, '10h–19h');
+  assert.equal(query('.schedule-card--aquatique .schedule-card__time').textContent, '11h15–12h');
+  assert.equal(query('.daily-schedule__count').textContent, '5 espaces & activités');
+  for (const selector of ['.schedule-card--soins', '.schedule-card--parc']) assert.equal(query(selector).hidden, true);
   assert.equal(query('.daily-schedule__empty').hidden, true);
 });
 
@@ -69,17 +70,17 @@ test('navigation mensuelle, changement de jour, sélection unique et retour à a
   assert.equal(query('[aria-pressed="true"]').dataset.date, '2026-09-04');
 });
 
-test('Parc été : masqué hors saison, visible en août, masqué au 1er septembre', (t) => {
+test('Parc été : uniquement du 27 juin au 30 août 2026 inclus', (t) => {
   const { query, click } = setup(t);
   assert.ok(query('.schedule-card--parc').classList.contains('is-closed'));
   assert.equal(query('.schedule-card--parc').hidden, true);
   click('[data-month-step="-1"]');
-  click('[data-date="2026-08-31"]');
+  click('[data-date="2026-08-30"]');
   assert.equal(query('.schedule-card--parc .schedule-card__time').textContent, '11h–18h');
   assert.equal(query('.schedule-card--parc').classList.contains('is-closed'), false);
   assert.equal(query('.schedule-card--parc').hidden, false);
   assert.equal(query('.daily-schedule__count').textContent, '2 espaces & activités');
-  click('[data-date="2026-09-01"]');
+  click('[data-date="2026-08-31"]');
   assert.equal(query('.schedule-card--parc .schedule-card__time').textContent, 'Hors saison');
   assert.equal(query('.schedule-card--parc').hidden, true);
 });
@@ -97,7 +98,7 @@ test('règles : récurrences hebdomadaires bornées, exception datée et fermetu
   assert.equal(query('.schedule-card--aquatique .schedule-card__time').textContent, '09h30–10h15');
   click('[data-date="2026-09-05"]');
   assert.equal(query('.schedule-card--aquatique').hidden, true);
-  assert.equal(query('.daily-schedule__count').textContent, '1 espace / activité');
+  assert.equal(query('.daily-schedule__count').textContent, '4 espaces & activités');
   click('[data-date="2026-09-07"]');
   assert.equal(query('.schedule-card--aquatique').hidden, false);
   assert.equal(query('.schedule-card--aquatique .schedule-card__time').textContent, 'Séance annulée');
@@ -197,11 +198,12 @@ test('les titres du planning utilisent la variante Barlow Condensed Bold de la c
 
 test('les préréglages sont masqués sans règles, y compris For.Me : aucune exception en dur', (t) => {
   const entries = require('../data/horaires.json');
-  assert.equal(entries.length, 8);
+  assert.equal(entries.length, 11);
   assert.ok(entries.every((entry) => entry.default.hidden === true));
-  assert.deepEqual(entries.filter((entry) => entry.theme === 'aquatique').map((entry) => entry.title), ['Aquagym', 'Aquabike', 'Natation', 'Bébés nageurs']);
+  assert.deepEqual(entries.filter((entry) => entry.theme === 'aquatique').map((entry) => entry.title), ['Aquagym', 'Aquabike', 'Natation', 'Bébés nageurs', 'Aquapalmes', 'Circuit aquatraining', 'Jardin aquatique']);
   const { query, click } = setup(t, { prepare(document) {
     changeEntry(document, 'forme', (entry) => { entry.rules[0].weekdays = [1]; });
+    for (const entry of entries.filter((entry) => entry.id !== 'forme')) changeEntry(document, entry.id, (value) => { value.rules = []; });
   } });
   assert.equal(query('.schedule-card--sport').hidden, true);
   assert.equal(query('.daily-schedule__empty').hidden, false);
@@ -231,7 +233,7 @@ test('la pastille Acheter apparaît uniquement sur l’accueil et le lien du men
   assert.match(footer, /<\?php if \( is_front_page\(\) \) : \?>\s*<!--[\s\S]*?<a class="cta-orb"[\s\S]*?<\/a>\s*<\?php endif; \?>/);
 });
 
-test('les textes des cinq thèmes dépassent le contraste 4,5:1', () => {
+test('contrastes : petits textes ≥ 4,5:1, titres et grandes icônes ≥ 3:1', () => {
   function luminance(hex) {
     const channels = hex.match(/../g).map((v) => parseInt(v, 16) / 255)
       .map((v) => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
@@ -241,4 +243,35 @@ test('les textes des cinq thèmes dépassent le contraste 4,5:1', () => {
     const values = [luminance(background), luminance(foreground)].sort((a, b) => b - a);
     assert.ok((values[0] + 0.05) / (values[1] + 0.05) >= 4.5, `${background} / ${foreground}`);
   }
+  for (const background of ['006392', '009885', 'e94740']) {
+    assert.ok((luminance('ffffff') + 0.05) / (luminance(background) + 0.05) >= 3, background);
+  }
+  const css = fs.readFileSync(path.join(root, 'css/styles.css'), 'utf8');
+  assert.match(css, /\.schedule-card \{[^}]*--card-heading: var\(--white\)/);
+  for (const theme of ['soins', 'parc']) assert.match(css, new RegExp(`\\.schedule-card--${theme} \\{[^}]*--card-heading: var\\(--ink-deep\\)`));
+  assert.match(css, /\.schedule-card__title, \.schedule-card__time, \.schedule-card__top > i \{ color: var\(--card-heading\)/);
+});
+
+test('planning de rentrée : fermeture mardi, reprise natation le 9, séances du week-end et fin de période', (t) => {
+  const { window, query, click } = setup(t);
+  const card = (id) => [...window.document.querySelectorAll('[data-schedule-entry]')].find((node) => JSON.parse(node.dataset.scheduleEntry).id === id);
+  assert.equal(card('natation').hidden, true);
+  click('[data-date="2026-09-08"]');
+  assert.equal(query('.daily-schedule__count').textContent, '1 espace / activité');
+  click('[data-date="2026-09-09"]');
+  assert.equal(card('natation').hidden, false);
+  assert.match(card('natation').textContent, /15h–15h45/);
+  click('[data-date="2026-09-10"]');
+  assert.equal(card('balneo').querySelector('.schedule-card__time').textContent, '10h30–13h30 / 16h–20h');
+  click('[data-date="2026-09-05"]');
+  assert.equal(card('jardin-aquatique').hidden, false);
+  assert.equal(card('bebes-nageurs').hidden, true);
+  click('[data-date="2026-09-06"]');
+  assert.equal(card('jardin-aquatique').hidden, true);
+  assert.equal(card('bebes-nageurs').hidden, false);
+  click('[data-month-step="1"]');
+  click('[data-date="2026-10-16"]');
+  assert.equal(card('natation').hidden, false);
+  click('[data-date="2026-10-17"]');
+  assert.equal(query('.daily-schedule__count').textContent, '1 espace / activité');
 });

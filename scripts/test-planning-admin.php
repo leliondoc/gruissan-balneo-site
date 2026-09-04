@@ -71,12 +71,12 @@ if ( in_array( '--fixtures', $argv, true ) ) {
 }
 
 $initial = balneo_v2_schedule_store();
-verify( count( $initial['entries'] ) === 8, 'Initialisation des huit fiches' );
+verify( count( $initial['entries'] ) === 11, 'Initialisation des onze fiches' );
 verify( ! $options, 'Une lecture ne doit pas modifier la base' );
 $revision = balneo_v2_schedule_revision( $initial );
 $result = balneo_v2_schedule_save( input_fixture(), $revision );
 verify( ! $result['errors'], 'Création valide refusée' );
-verify( count( $options['balneo_v2_schedule']['entries'] ) === 9, 'Conservation des cartes initiales' );
+verify( count( $options['balneo_v2_schedule']['entries'] ) === 12, 'Conservation des cartes initiales' );
 verify( 'period' === $result['entry']['rules'][0]['kind'] && 'exception' === $result['entry']['rules'][1]['kind'], 'Priorité des exceptions' );
 verify( array( 1, 3, 5 ) === $result['entry']['rules'][0]['weekdays'], 'Conversion des jours en nombres' );
 verify( false === $result['entry']['rules'][0]['hidden'] && true === $result['entry']['default']['hidden'], 'Réapparition de la carte lors des séances' );
@@ -126,8 +126,8 @@ verify( str_contains( $redirect, 'feedback=' ), 'Les erreurs doivent revenir à 
 
 $edit = input_fixture(); $edit['id'] = $saved_id; unset( $edit['enabled'] );
 $result = balneo_v2_schedule_save( $edit, balneo_v2_schedule_revision( balneo_v2_schedule_store() ) );
-verify( ! $result['errors'] && count( balneo_v2_schedule_entries() ) === 8, 'Désactivation sans suppression' );
-verify( count( balneo_v2_schedule_store()['entries'] ) === 9, 'Données désactivées conservées' );
+verify( ! $result['errors'] && count( balneo_v2_schedule_entries() ) === 11, 'Désactivation sans suppression' );
+verify( count( balneo_v2_schedule_store()['entries'] ) === 12, 'Données désactivées conservées' );
 $options['balneo_v2_schedule']['entries'] = array();
 verify( array() === balneo_v2_schedule_entries(), 'Un planning vide ne doit pas réimporter les exemples' );
 

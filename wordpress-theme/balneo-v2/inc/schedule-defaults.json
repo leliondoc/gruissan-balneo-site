@@ -10,9 +10,60 @@
       "hidden": true,
       "time": "À confirmer",
       "status": "Selon la période",
-      "note": "Repère été : 10h–19h. Confirmez les horaires de votre visite auprès de l’accueil. Évacuation des bassins 15 minutes avant la fermeture."
+      "note": "Évacuation des bassins 15 minutes avant la fermeture. Consultez les périodes programmées."
     },
-    "rules": []
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          1,
+          3,
+          5
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "10h–19h",
+        "status": "Sans réservation",
+        "note": "Mineurs admis de 14h à 19h. Évacuation des bassins 15 minutes avant la fermeture."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          4
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "10h30–13h30 / 16h–20h",
+        "status": "Sans réservation",
+        "note": "Évacuation des bassins 15 minutes avant la fermeture."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          6
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "10h–20h",
+        "status": "Sans réservation",
+        "note": "Mineurs admis toute la journée. Évacuation des bassins 15 minutes avant la fermeture."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          0
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "10h–17h30",
+        "status": "Sans réservation",
+        "note": "Mineurs admis toute la journée. Évacuation des bassins 15 minutes avant la fermeture."
+      }
+    ]
   },
   {
     "id": "forme",
@@ -29,7 +80,15 @@
     },
     "rules": [
       {
-        "weekdays": [1, 2, 3, 4, 5, 6, 0],
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          0
+        ],
         "hidden": false,
         "time": "06h–23h",
         "status": "Horaires habituels · 7j/7",
@@ -50,7 +109,57 @@
       "status": "Planning auprès de l’accueil",
       "note": "Les séances d’aquagym sont à renseigner dans le planning."
     },
-    "rules": []
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          1
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "15h–15h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          3,
+          4
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "9h45–10h30",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          5
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "11h15–12h",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          6
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "10h–10h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
   },
   {
     "id": "soins",
@@ -83,12 +192,13 @@
     },
     "rules": [
       {
-        "months": [7, 8],
+        "startDate": "2026-06-27",
+        "endDate": "2026-08-30",
         "hidden": false,
+        "closed": false,
         "time": "11h–18h",
-        "status": "Horaires habituels · été",
-        "note": "Ouverture saisonnière en juillet et août, sous réserve de modification.",
-        "closed": false
+        "status": "Saison été 2026",
+        "note": "Ouverture du 27 juin au 30 août 2026. Sous réserve des conditions météo."
       }
     ]
   },
@@ -105,7 +215,56 @@
       "status": "Planning auprès de l’accueil",
       "note": "Les séances d’aquabike sont à renseigner dans le planning."
     },
-    "rules": []
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          1
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "9h45–10h30 / 18h–18h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          3
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "18h–18h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          5
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "15h–15h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          6
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "11h–11h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
   },
   {
     "id": "natation",
@@ -120,7 +279,56 @@
       "status": "Planning auprès de l’accueil",
       "note": "Les séances de natation sont à renseigner dans le planning."
     },
-    "rules": []
+    "rules": [
+      {
+        "startDate": "2026-09-09",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          1
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "17h45–18h45",
+        "status": "Sur inscription",
+        "note": "Adultes · perfectionnement. Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-09",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          3
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "15h–15h45 / 16h–16h45 / 17h–17h45",
+        "status": "Sur inscription",
+        "note": "15h : Hippocampes, Requins. 16h : Cranquettes, Hippocampes. 17h : Dorades et adultes débutants. Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-09",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          4
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "17h15–18h / 18h–18h45",
+        "status": "Sur inscription",
+        "note": "17h15 : Dorades. 18h : Dauphins. Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-09",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          5
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "18h–18h45",
+        "status": "Sur inscription",
+        "note": "Orques et ados. Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
   },
   {
     "id": "bebes-nageurs",
@@ -135,6 +343,116 @@
       "status": "Planning auprès de l’accueil",
       "note": "Les séances de bébés nageurs sont à renseigner dans le planning."
     },
-    "rules": []
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          0
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "9h15–10h",
+        "status": "Sur réservation",
+        "note": "De 5 à 36 mois, avec un parent accompagnateur. Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
+  },
+  {
+    "id": "aquapalmes",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Aquapalmes",
+    "icon": "fa-person-swimming",
+    "url": "",
+    "default": {
+      "hidden": true,
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Consultez les périodes programmées."
+    },
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          1,
+          4
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "9h45–10h30",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      },
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          3
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "18h–18h45",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
+  },
+  {
+    "id": "aquatraining",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Circuit aquatraining",
+    "icon": "fa-person-swimming",
+    "url": "",
+    "default": {
+      "hidden": true,
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Consultez les périodes programmées."
+    },
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          5
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "12h30–13h15",
+        "status": "Sur réservation",
+        "note": "Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
+  },
+  {
+    "id": "jardin-aquatique",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Jardin aquatique",
+    "icon": "fa-person-swimming",
+    "url": "bebes-nageurs.html",
+    "default": {
+      "hidden": true,
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Consultez les périodes programmées."
+    },
+    "rules": [
+      {
+        "startDate": "2026-09-01",
+        "endDate": "2026-10-16",
+        "weekdays": [
+          6
+        ],
+        "hidden": false,
+        "closed": false,
+        "time": "9h15–10h",
+        "status": "Sur réservation",
+        "note": "De 37 mois à 5 ans, avec un parent accompagnateur. Réservation obligatoire au 04 68 75 60 50."
+      }
+    ]
   }
 ]

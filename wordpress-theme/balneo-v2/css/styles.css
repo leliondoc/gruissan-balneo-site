@@ -937,12 +937,13 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 .daily-schedule__date::first-letter { text-transform: uppercase; }
 .daily-schedule__count { padding: .4rem .75rem; border: 1px solid var(--line); border-radius: 99px; font-size: .875rem; white-space: nowrap; }
 .daily-schedule__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.schedule-card { --card-color: var(--blue); --card-ink: var(--white); min-width: 0; padding: 1.6rem; display: flex; flex-direction: column; position: relative; border-radius: 4px 4px 24px 4px; background: var(--card-color); color: var(--card-ink); }
+.schedule-card { --card-color: var(--blue); --card-ink: var(--white); --card-heading: var(--white); min-width: 0; padding: 1.6rem; display: flex; flex-direction: column; position: relative; border-radius: 4px 4px 24px 4px; background: var(--card-color); color: var(--card-ink); }
 .schedule-card--balneo { grid-column: 1 / -1; }
 .schedule-card--sport { --card-color: var(--green); --card-ink: #001c29; }
 .schedule-card--aquatique { --card-color: var(--clay); --card-ink: #001c29; }
-.schedule-card--soins { --card-color: var(--pink); --card-ink: var(--ink-deep); }
-.schedule-card--parc { --card-color: var(--yellow); --card-ink: var(--ink-deep); }
+.schedule-card--soins { --card-color: var(--pink); --card-ink: var(--ink-deep); --card-heading: var(--ink-deep); }
+.schedule-card--parc { --card-color: var(--yellow); --card-ink: var(--ink-deep); --card-heading: var(--ink-deep); }
+.schedule-card__title, .schedule-card__time, .schedule-card__top > i { color: var(--card-heading); }
 .schedule-card__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
 .schedule-card__category { margin: 0; font-size: .875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .schedule-card__top > i { flex: 0 0 auto; font-size: 1.7rem; }

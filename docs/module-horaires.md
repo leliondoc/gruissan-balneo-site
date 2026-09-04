@@ -102,16 +102,46 @@ Exemple fictif, à ne pas publier sans validation de l’accueil :
 }
 ```
 
-Les données livrées reprennent uniquement les repères du dépôt : For.Me 6h–23h,
-Parc été 11h–18h en juillet/août. Pour la Balnéo, la période exacte du repère été
-10h–19h n’est pas renseignée : ce repère reste dans la note, sans l’affirmer pour
-une date. Toutes les cartes sont masquées par défaut : For.Me a une récurrence
-sur les sept jours de la semaine ; le Parc a une récurrence en juillet/août qui
-réaffiche sa carte. Aquagym, aquabike, natation et bébés nageurs ont chacun une fiche,
-sans créneau fictif. Balnéo, cours et soins restent masqués tant que leurs périodes
-ne sont pas renseignées. Ces choix sont des données éditables dans l’administration,
-jamais des conditions spécifiques à une activité dans le calendrier.
+### Préréglages vérifiés le 4 septembre 2026
+
+Les horaires ont été recoupés avec les pages officielles publiques, puis saisis
+dans l’admin WordPress. Toutes les cartes restent masquées par défaut ; leurs règles
+éditables déterminent les jours d’affichage, sans condition métier dans le JavaScript.
+
+- For.Me : 6h–23h tous les jours, dernier accès 22h.
+- Balnéo : lun./mer./ven. 10h–19h ; jeu. 10h30–13h30 et 16h–20h ;
+  sam. 10h–20h ; dim. 10h–17h30. Aucune carte le mardi.
+- Aquagym : lun. 15h ; mer./jeu. 9h45 ; ven. 11h15 ; sam. 10h (45 min).
+- Aquabike : lun. 9h45 et 18h ; mer. 18h ; ven. 15h ; sam. 11h (45 min).
+- Aquapalmes : lun./jeu. 9h45 et mer. 18h (45 min).
+- Circuit aquatraining : ven. 12h30–13h15.
+- Bébés nageurs : dim. 9h15–10h ; jardin aquatique : sam. 9h15–10h.
+- Natation : reprise le **9 septembre** ; créneaux distincts lun./mer./jeu./ven.
+  avec les niveaux indiqués dans les notes des règles.
+- Parc été : période exacte **27 juin–30 août 2026**, 11h–18h, sans récurrence annuelle implicite.
+- Massages : fiche conservée mais masquée ; réservation attestée, disponibilité
+  quotidienne non publiée. L’accueil doit renseigner les périodes proposées.
+
+Les nouvelles règles de rentrée sont volontairement bornées au **16 octobre 2026 inclus**,
+avant les vacances de Toussaint. C’est une limite de programmation prudente, pas une
+annonce de fermeture : **l’équipe doit préparer les périodes suivantes**. Aucun planning
+de vacances ni reprise ultérieure n’est déduit automatiquement. La natation n’est pas
+proposée pendant les vacances scolaires ; les cours aquatiques excluent les jours fériés.
+La période initiale retenue ne comporte aucun jour férié national.
+
+Sources consultées :
+
+- [Balnéo : calendrier interactif et accès](https://gruissan-balneo.com/balneo/)
+  et [Gruissan Tourisme : horaires saisonniers](https://www.gruissan-mediterranee.com/equipement-loisir-gruissan/espace-balneoludique/).
+- [Activités de septembre à juin : tableau et niveaux](https://gruissan-balneo.com/activites-aquatiques/).
+- [Annonce de rentrée natation](https://gruissan-balneo.com/actualites/inscriptions-aux-cours-de-natation-a-lannee/).
+- [For.Me](https://gruissan-balneo.com/salle-de-sport/), [parc été](https://gruissan-balneo.com/parc-ete/),
+  [massages](https://gruissan-balneo.com/massages/).
+- [Calendrier scolaire 2026–2027](https://www.education.gouv.fr/calendrier-scolaire-toutes-les-dates-des-cours-et-des-vacances-100148).
+
 Les horaires habituels ne constituent pas une confirmation d’ouverture exceptionnelle.
+Les petits textes gardent un contraste d’au moins 4,5:1 ; titres, horaires et grandes
+icônes sont blancs sur bleu/vert/corail (au moins 3:1), foncés sur rose/jaune.
 
 ## Regénérer et contrôler
 
