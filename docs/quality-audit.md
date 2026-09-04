@@ -24,7 +24,9 @@ récupérable, sans suppression distante. Les assets éventuellement référenc�
 les contenus WordPress sont conservés ; le contrôle de livraison signale désormais
 tout écart ou fichier orphelin par rapport aux sources.
 
-Le workflow impose FTPS avec certificat vérifié et un contrôle avant transfert.
+Le serveur OVH ayant refusé FTPS, le workflow impose SFTP avec clé ED25519 épinglée,
+vérifiée avant authentification. Le transfert est testé : chemins bornés, refus des
+liens symboliques, intégrité SHA-256 et remplacement atomique de chaque fichier.
 Les réglages serveur globaux, un audit RGAA exhaustif et Theme Check restent des
 contrôles distincts, non remplacés par cette suite de tests.
 

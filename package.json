@@ -7,6 +7,7 @@
     "build:wordpress": "npm run images:webp && node build-wordpress-theme.js && node scripts/check-phpcs.js --fix && node scripts/build-pot.js",
     "check:phpcs": "node scripts/check-phpcs.js",
     "check:assets": "node scripts/check-build-assets.js",
+    "check:deploy": "node --test scripts/test-deploy-sftp.js",
     "check:links": "node check-links.js",
     "check:analytics": "node scripts/test-analytics-consent.js",
     "check:horaires": "node --test scripts/test-horaires.js",
@@ -18,6 +19,7 @@
     "@wordpress/block-library": "^10.4.0",
     "@wordpress/blocks": "^15.26.0",
     "jsdom": "^29.1.1",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.4",
+    "ssh2": "1.17.0"
   }
 }
