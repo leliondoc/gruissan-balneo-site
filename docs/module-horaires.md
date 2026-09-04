@@ -25,7 +25,7 @@ Après publication du thème, les administratrices et éditrices trouvent un men
 
 Une activité désactivée reste en base et peut être réactivée. Retirer une règle
 dans le formulaire ne devient effectif qu’après enregistrement. Une nouvelle activité
-est désactivée par défaut, pour laisser le temps de la préparer.
+est désactivée et masquée hors programmation par défaut, pour laisser le temps de la préparer.
 
 Les dates impossibles, intervalles inversés, liens non HTTP(S), formulaires tronqués
 et fiches périmées sont refusés sans remplacer le planning enregistré. Les champs
@@ -105,7 +105,12 @@ Exemple fictif, à ne pas publier sans validation de l’accueil :
 Les données livrées reprennent uniquement les repères du dépôt : For.Me 6h–23h,
 Parc été 11h–18h en juillet/août. Pour la Balnéo, la période exacte du repère été
 10h–19h n’est pas renseignée : ce repère reste dans la note, sans l’affirmer pour
-une date. Les cours restent à confirmer et les soins sur rendez-vous.
+une date. Toutes les cartes sont masquées par défaut : For.Me a une récurrence
+sur les sept jours de la semaine ; le Parc a une récurrence en juillet/août qui
+réaffiche sa carte. Aquagym, aquabike, natation et bébés nageurs ont chacun une fiche,
+sans créneau fictif. Balnéo, cours et soins restent masqués tant que leurs périodes
+ne sont pas renseignées. Ces choix sont des données éditables dans l’administration,
+jamais des conditions spécifiques à une activité dans le calendrier.
 Les horaires habituels ne constituent pas une confirmation d’ouverture exceptionnelle.
 
 ## Regénérer et contrôler

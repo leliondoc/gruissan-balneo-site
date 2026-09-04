@@ -1700,7 +1700,7 @@ BALNEO_FAQ_CONTENT,
     ),
     'horaires' => array(
         'title' => 'Horaires',
-        'legacy_hash' => '7d6d60f41621c111f5f82f95b9fd53d9afc4a5f6a7ed7895e956ec0d6f9813f1',
+        'legacy_hash' => 'e680047a9defc1bec5f3f43c04242d842ceabc6985c686bdf205d912c8df1a6b',
         'schema2_hash' => '44d6980e39925ae9e100a296f35b16633a4d5a7ab03b71f16d233d744f2ec1fc',
         'content' => <<<'BALNEO_HORAIRES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->

@@ -915,11 +915,12 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 .schedule-calendar__navigation button:hover { border-color: var(--blue); color: var(--white); background: var(--blue); }
 .schedule-calendar__weekdays, .schedule-calendar__days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .2rem; }
 .schedule-calendar__weekdays { margin-bottom: .65rem; text-align: center; font-size: .875rem; font-weight: 700; }
-.schedule-calendar__day { position: relative; min-width: 0; min-height: 48px; aspect-ratio: 1; padding: .25rem; border: 1px solid transparent; border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; font-size: 1.125rem; transition: background .15s, color .15s; }
+.schedule-calendar__day { position: relative; display: grid; place-items: center; min-width: 0; min-height: 48px; aspect-ratio: 1; padding: .25rem; border: 1px solid transparent; border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; font-size: 1.125rem; line-height: 1; letter-spacing: 0; text-align: center; transition: background .15s, color .15s; }
+.schedule-calendar__number { position: relative; display: block; width: max-content; line-height: 1; }
 .schedule-calendar__day.is-outside { color: #6b7e87; }
 .schedule-calendar__day:hover { background: var(--green-light); }
-.schedule-calendar__day[aria-current="date"]::after { content: ''; position: absolute; bottom: 5px; left: calc(50% - 2px); width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
-.schedule-calendar__day[aria-pressed="true"] { color: var(--white); background: var(--blue); font-weight: 700; }
+.schedule-calendar__day[aria-current="date"] .schedule-calendar__number::after { content: ''; position: absolute; top: calc(100% + 3px); left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.schedule-calendar__day[aria-pressed="true"] { color: var(--white); background: var(--blue); font-family: 'Barlow Condensed Heading', 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 700; }
 .schedule-calendar__day:focus-visible, .schedule-calendar button:focus-visible, .schedule-card__link:focus-visible, .schedule-help a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .schedule-calendar__footer { margin-top: 1.25rem; padding-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; border-top: 1px solid var(--line); font-size: .875rem; }
 .schedule-calendar__footer > span { display: inline-flex; align-items: center; gap: .4rem; }

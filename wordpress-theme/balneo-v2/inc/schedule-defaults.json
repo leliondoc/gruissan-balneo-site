@@ -7,6 +7,7 @@
     "icon": "fa-water",
     "url": "balneo.html",
     "default": {
+      "hidden": true,
       "time": "À confirmer",
       "status": "Selon la période",
       "note": "Repère été : 10h–19h. Confirmez les horaires de votre visite auprès de l’accueil. Évacuation des bassins 15 minutes avant la fermeture."
@@ -21,23 +22,33 @@
     "icon": "fa-dumbbell",
     "url": "salle-de-sport.html",
     "default": {
+      "hidden": true,
       "time": "06h–23h",
       "status": "Horaires habituels · 7j/7",
       "note": "Dernier accès à 22h."
     },
-    "rules": []
+    "rules": [
+      {
+        "weekdays": [1, 2, 3, 4, 5, 6, 0],
+        "hidden": false,
+        "time": "06h–23h",
+        "status": "Horaires habituels · 7j/7",
+        "note": "Dernier accès à 22h."
+      }
+    ]
   },
   {
     "id": "aquatique",
     "theme": "aquatique",
     "category": "Pratiquer",
-    "title": "Activités aquatiques",
+    "title": "Aquagym",
     "icon": "fa-person-swimming",
     "url": "aquagym.html",
     "default": {
+      "hidden": true,
       "time": "Créneaux à confirmer",
       "status": "Planning auprès de l’accueil",
-      "note": "Aquagym, aquabike, natation et bébés nageurs : renseignez-vous sur les séances du jour."
+      "note": "Les séances d’aquagym sont à renseigner dans le planning."
     },
     "rules": []
   },
@@ -49,6 +60,7 @@
     "icon": "fa-spa",
     "url": "massages.html",
     "default": {
+      "hidden": true,
       "time": "Sur rendez-vous",
       "status": "Selon les disponibilités",
       "note": "Contactez l’accueil pour choisir votre soin et réserver votre créneau."
@@ -63,6 +75,7 @@
     "icon": "fa-sun",
     "url": "parc-ete.html",
     "default": {
+      "hidden": true,
       "time": "Hors saison",
       "status": "Ouverture en juillet et août",
       "note": "Retrouvez le parc pendant la saison estivale.",
@@ -71,11 +84,57 @@
     "rules": [
       {
         "months": [7, 8],
+        "hidden": false,
         "time": "11h–18h",
         "status": "Horaires habituels · été",
         "note": "Ouverture saisonnière en juillet et août, sous réserve de modification.",
         "closed": false
       }
     ]
+  },
+  {
+    "id": "aquabike",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Aquabike",
+    "icon": "fa-person-swimming",
+    "url": "aquabike.html",
+    "default": {
+      "hidden": true,
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Les séances d’aquabike sont à renseigner dans le planning."
+    },
+    "rules": []
+  },
+  {
+    "id": "natation",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Natation",
+    "icon": "fa-person-swimming",
+    "url": "natation.html",
+    "default": {
+      "hidden": true,
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Les séances de natation sont à renseigner dans le planning."
+    },
+    "rules": []
+  },
+  {
+    "id": "bebes-nageurs",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Bébés nageurs",
+    "icon": "fa-person-swimming",
+    "url": "bebes-nageurs.html",
+    "default": {
+      "hidden": true,
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Les séances de bébés nageurs sont à renseigner dans le planning."
+    },
+    "rules": []
   }
 ]

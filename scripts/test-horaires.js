@@ -36,7 +36,7 @@ function changeEntry(document, id, transform) {
   card.dataset.scheduleEntry = JSON.stringify(entry);
 }
 
-test('initialisation : date de Paris, cinq cartes, mois commençant le lundi', (t) => {
+test('initialisation : date de Paris, seulement les cartes programmées, mois commençant le lundi', (t) => {
   const { query } = setup(t);
   assert.equal(query('.daily-schedule__date').textContent, 'vendredi 4 septembre 2026');
   assert.equal(query('[aria-pressed="true"]').dataset.date, '2026-09-04');
@@ -44,7 +44,8 @@ test('initialisation : date de Paris, cinq cartes, mois commençant le lundi', (
   assert.equal(query('.schedule-calendar__day').dataset.date, '2026-08-31');
   assert.equal(query('.schedule-card--sport .schedule-card__time').textContent, '06h–23h');
   assert.equal(query('.schedule-card--balneo .schedule-card__time').textContent, 'À confirmer');
-  assert.equal(query('.daily-schedule__count').textContent, '5 espaces & activités');
+  assert.equal(query('.daily-schedule__count').textContent, '1 espace / activité');
+  for (const selector of ['.schedule-card--balneo', '.schedule-card--aquatique', '.schedule-card--soins', '.schedule-card--parc']) assert.equal(query(selector).hidden, true);
   assert.equal(query('.daily-schedule__empty').hidden, true);
 });
 
@@ -68,15 +69,19 @@ test('navigation mensuelle, changement de jour, sélection unique et retour à a
   assert.equal(query('[aria-pressed="true"]').dataset.date, '2026-09-04');
 });
 
-test('Parc été : horaires en août, hors saison au 1er septembre', (t) => {
+test('Parc été : masqué hors saison, visible en août, masqué au 1er septembre', (t) => {
   const { query, click } = setup(t);
   assert.ok(query('.schedule-card--parc').classList.contains('is-closed'));
+  assert.equal(query('.schedule-card--parc').hidden, true);
   click('[data-month-step="-1"]');
   click('[data-date="2026-08-31"]');
   assert.equal(query('.schedule-card--parc .schedule-card__time').textContent, '11h–18h');
   assert.equal(query('.schedule-card--parc').classList.contains('is-closed'), false);
+  assert.equal(query('.schedule-card--parc').hidden, false);
+  assert.equal(query('.daily-schedule__count').textContent, '2 espaces & activités');
   click('[data-date="2026-09-01"]');
   assert.equal(query('.schedule-card--parc .schedule-card__time').textContent, 'Hors saison');
+  assert.equal(query('.schedule-card--parc').hidden, true);
 });
 
 test('règles : récurrences hebdomadaires bornées, exception datée et fermeture', (t) => {
@@ -92,7 +97,7 @@ test('règles : récurrences hebdomadaires bornées, exception datée et fermetu
   assert.equal(query('.schedule-card--aquatique .schedule-card__time').textContent, '09h30–10h15');
   click('[data-date="2026-09-05"]');
   assert.equal(query('.schedule-card--aquatique').hidden, true);
-  assert.equal(query('.daily-schedule__count').textContent, '4 espaces & activités');
+  assert.equal(query('.daily-schedule__count').textContent, '1 espace / activité');
   click('[data-date="2026-09-07"]');
   assert.equal(query('.schedule-card--aquatique').hidden, false);
   assert.equal(query('.schedule-card--aquatique .schedule-card__time').textContent, 'Séance annulée');
@@ -150,7 +155,7 @@ test('état vide et données invalides : aucun plantage', (t) => {
 
 test('le contenu des règles reste du texte, jamais du HTML exécutable', (t) => {
   const { query } = setup(t, { prepare(document) {
-    changeEntry(document, 'forme', (entry) => { entry.default.note = '<img src=x onerror=alert(1)>'; });
+    changeEntry(document, 'forme', (entry) => { entry.rules = []; entry.default.note = '<img src=x onerror=alert(1)>'; });
   } });
   assert.equal(query('.schedule-card--sport .schedule-card__note img'), null);
   assert.equal(query('.schedule-card--sport .schedule-card__note').textContent, '<img src=x onerror=alert(1)>');
@@ -188,6 +193,30 @@ test('les titres du planning utilisent la variante Barlow Condensed Bold de la c
   assert.match(css, /\.daily-schedule h2, \.daily-schedule h3 \{ font-family: 'Barlow Condensed Heading'/);
   assert.ok(fs.existsSync(path.join(root, 'assets/fonts/BarlowCondensed-Bold.woff2')));
   assert.equal(fs.readFileSync(path.join(root, 'wordpress-theme/balneo-v2/css/styles.css'), 'utf8'), css);
+});
+
+test('les préréglages sont masqués sans règles, y compris For.Me : aucune exception en dur', (t) => {
+  const entries = require('../data/horaires.json');
+  assert.equal(entries.length, 8);
+  assert.ok(entries.every((entry) => entry.default.hidden === true));
+  assert.deepEqual(entries.filter((entry) => entry.theme === 'aquatique').map((entry) => entry.title), ['Aquagym', 'Aquabike', 'Natation', 'Bébés nageurs']);
+  const { query, click } = setup(t, { prepare(document) {
+    changeEntry(document, 'forme', (entry) => { entry.rules[0].weekdays = [1]; });
+  } });
+  assert.equal(query('.schedule-card--sport').hidden, true);
+  assert.equal(query('.daily-schedule__empty').hidden, false);
+  click('[data-date="2026-09-07"]');
+  assert.equal(query('.schedule-card--sport').hidden, false);
+});
+
+test('le point est ancré au chiffre et le clic sur le chiffre sélectionne toujours la date', (t) => {
+  const { query, click } = setup(t);
+  assert.equal(query('[aria-current="date"] .schedule-calendar__number').textContent, '4');
+  click('[data-date="2026-09-05"] .schedule-calendar__number');
+  assert.equal(query('[aria-pressed="true"]').dataset.date, '2026-09-05');
+  const css = fs.readFileSync(path.join(root, 'css/styles.css'), 'utf8');
+  assert.match(css, /\.schedule-calendar__day \{[^}]*display: grid; place-items: center/);
+  assert.match(css, /\[aria-current="date"\] \.schedule-calendar__number::after \{[^}]*left: 50%; transform: translateX\(-50%\)/);
 });
 
 test('la pastille Acheter apparaît uniquement sur l’accueil et le lien du menu reste partout', () => {

@@ -65,7 +65,10 @@
         var button = document.createElement('button');
         button.type = 'button';
         button.className = 'schedule-calendar__day';
-        button.textContent = date.getUTCDate();
+        var number = document.createElement('span');
+        number.className = 'schedule-calendar__number';
+        number.textContent = date.getUTCDate();
+        button.appendChild(number);
         button.dataset.date = key;
         button.tabIndex = key === tabKey ? 0 : -1;
         button.setAttribute('aria-label', dayFormatter.format(date));
@@ -116,7 +119,8 @@
     });
 
     grid.addEventListener('keydown', function (event) {
-      var key = event.target.dataset.date;
+      var dayButton = event.target.closest('[data-date]');
+      var key = dayButton && dayButton.dataset.date;
       if (!key) return;
       var date = new Date(key + 'T12:00:00Z');
       var delta = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[event.key];

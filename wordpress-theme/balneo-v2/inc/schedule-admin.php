@@ -109,7 +109,7 @@ function balneo_v2_schedule_admin_page(): void {
 		delete_transient( $key );
 	}
 	foreach ( $store['entries'] as $candidate ) { if ( $candidate['id'] === $edit ) { $entry = $candidate; break; } }
-	if ( 'new' === $edit ) { $entry = array( 'id' => '', 'title' => '', 'theme' => 'balneo', 'url' => '', 'enabled' => false, 'position' => 100, 'default' => array( 'time' => 'À confirmer', 'status' => '', 'note' => '', 'hidden' => false, 'closed' => false ), 'rules' => array() ); }
+	if ( 'new' === $edit ) { $entry = array( 'id' => '', 'title' => '', 'theme' => 'balneo', 'url' => '', 'enabled' => false, 'position' => 100, 'default' => array( 'time' => 'À confirmer', 'status' => '', 'note' => '', 'hidden' => true, 'closed' => false ), 'rules' => array() ); }
 	if ( is_array( $feedback ) ) { $entry = $feedback['entry']; }
 	?>
 	<div class="wrap planning-admin"><h1>Planning / Horaires</h1>
