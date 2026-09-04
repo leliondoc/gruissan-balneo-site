@@ -116,7 +116,16 @@ function balneo_v2_site_logo( string $context = 'header' ): void {
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php esc_attr_e( 'Accueil — Espace Balnéo Gruissan', 'balneo-v2' ); ?>">
 		<?php
 		if ( $logo_id ) {
-			echo wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'logo-img', 'loading' => 'eager', 'decoding' => 'async' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_get_attachment_image(
+				$logo_id,
+				'full',
+				false,
+				array(
+					'class'    => 'logo-img',
+					'loading'  => 'eager',
+					'decoding' => 'async',
+				)
+			); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			?>
 			<img class="logo-img" src="<?php echo esc_url( get_theme_file_uri( '/assets/logo-balneo-officiel.png' ) ); ?>" width="300" height="210" loading="eager" decoding="async" alt="<?php esc_attr_e( 'Espace Balnéo Gruissan', 'balneo-v2' ); ?>">

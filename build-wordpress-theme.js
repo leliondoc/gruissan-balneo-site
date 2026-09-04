@@ -429,6 +429,7 @@ require_once get_theme_file_path( '/inc/performance.php' );
 require_once get_theme_file_path( '/inc/analytics.php' );
 require_once get_theme_file_path( '/inc/admin-branding.php' );
 require_once get_theme_file_path( '/inc/schedule.php' );
+require_once get_theme_file_path( '/inc/accessibility.php' );
 
 /**
  * Configure les fonctionnalités natives du thème.
@@ -569,7 +570,7 @@ function buildTheme() {
   write('header.php', buildHeader(homeHtml));
   write('footer.php', buildFooter(homeHtml));
   write('inc/content-seeds.php', buildContentSeeds(homeHtml));
-  write('template-parts/daily-schedule.php', "<?php /** Planning journalier. @package BalneoV2 */ if ( ! defined( 'ABSPATH' ) ) { exit; } ?>\n" + transformMarkup(require('./scripts/schedule-markup').renderDailySchedule({ dynamic: true })));
+  write('template-parts/daily-schedule.php', "<?php\n/**\n * Planning journalier.\n *\n * @package BalneoV2\n */\n\nif ( ! defined( 'ABSPATH' ) ) { exit; } ?>\n" + transformMarkup(require('./scripts/schedule-markup').renderDailySchedule({ dynamic: true })));
   write('template-parts/pages/home.php', buildPagePart(homeHtml, 'index.html'));
 
   Object.keys(pages).forEach((slug) => {

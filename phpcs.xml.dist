@@ -2,8 +2,13 @@
 <ruleset name="Balneo V2">
   <description>Contrôle du thème Balnéo V2 avec les règles officielles WordPress.</description>
   <file>wordpress-theme/balneo-v2</file>
+  <file>wordpress-plugin/balneo-media</file>
   <arg name="extensions" value="php" />
   <arg value="sp" />
   <exclude-pattern>*/inc/content-seeds.php</exclude-pattern>
   <rule ref="WordPress" />
+  <rule ref="Squiz.WhiteSpace.ScopeClosingBrace">
+    <!-- L'indentation reste régie par WordPress, notamment dans les modèles PHP/HTML. -->
+    <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent" />
+  </rule>
 </ruleset>

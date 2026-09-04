@@ -11,6 +11,7 @@ const files = [
 const errors = [];
 
 function checkLocalTarget(file, value, type) {
+  if (!value.trim()) { errors.push(`${type} vide : ${file}`); return; }
   const cleanValue = value.split('#')[0].split('?')[0];
   if (!cleanValue || /^(https?:|tel:|mailto:|javascript:|data:)/.test(cleanValue)) return;
   const target = path.resolve(path.dirname(file), cleanValue);
@@ -20,11 +21,11 @@ function checkLocalTarget(file, value, type) {
 files.forEach((file) => {
   const html = fs.readFileSync(file, 'utf8');
 
-  Array.from(html.matchAll(/href="([^"]+)"/g)).forEach((match) => {
+  Array.from(html.matchAll(/href="([^"]*)"/g)).forEach((match) => {
     checkLocalTarget(file, match[1], 'Lien');
   });
 
-  Array.from(html.matchAll(/src="([^"]+)"/g)).forEach((match) => {
+  Array.from(html.matchAll(/src="([^"]*)"/g)).forEach((match) => {
     checkLocalTarget(file, match[1], 'Ressource');
   });
 

@@ -7,12 +7,20 @@
  * Requires PHP: 8.1
  * Author: Gruissan Méditerranée
  * Text Domain: balneo-media
+ *
+ * @package BalneoMedia
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Normalise le nom d'une image téléversée.
+ *
+ * @param string $filename Nom initial.
+ * @return string
+ */
 function balneo_media_clean_image_filename( $filename ) {
 	$extension = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
 	if ( ! in_array( $extension, array( 'jpg', 'jpeg', 'png', 'webp' ), true ) ) {
@@ -32,6 +40,13 @@ function balneo_media_clean_image_filename( $filename ) {
 }
 add_filter( 'sanitize_file_name', 'balneo_media_clean_image_filename', 20 );
 
+/**
+ * Convertit une image prise en charge en conservant l'original en cas d'échec.
+ *
+ * @param array  $upload  Résultat de téléversement WordPress.
+ * @param string $context Contexte du téléversement.
+ * @return array
+ */
 function balneo_media_convert_upload_to_webp( $upload, $context ) {
 	unset( $context );
 	if ( ! empty( $upload['error'] ) || empty( $upload['file'] ) || empty( $upload['type'] ) ) {
@@ -52,7 +67,7 @@ function balneo_media_convert_upload_to_webp( $upload, $context ) {
 	if ( file_exists( trailingslashit( $directory ) . $target_basename ) ) {
 		$target_basename = wp_unique_filename( $directory, $target_basename );
 	}
-	$saved           = $editor->save( trailingslashit( $directory ) . $target_basename, 'image/webp' );
+	$saved = $editor->save( trailingslashit( $directory ) . $target_basename, 'image/webp' );
 	if ( is_wp_error( $saved ) || empty( $saved['path'] ) ) {
 		return $upload;
 	}
@@ -68,6 +83,12 @@ function balneo_media_convert_upload_to_webp( $upload, $context ) {
 }
 add_filter( 'wp_handle_upload', 'balneo_media_convert_upload_to_webp', 20, 2 );
 
+/**
+ * Choisit WebP pour les formats sources compatibles.
+ *
+ * @param array $formats Correspondances de types MIME.
+ * @return array
+ */
 function balneo_media_image_output_format( $formats ) {
 	$formats['image/jpeg'] = 'image/webp';
 	$formats['image/png']  = 'image/webp';
@@ -75,20 +96,34 @@ function balneo_media_image_output_format( $formats ) {
 }
 add_filter( 'image_editor_output_format', 'balneo_media_image_output_format' );
 
+/**
+ * Définit la qualité des images WebP.
+ *
+ * @param int    $quality   Qualité proposée par WordPress.
+ * @param string $mime_type Type de sortie.
+ * @return int
+ */
 function balneo_media_image_quality( $quality, $mime_type ) {
 	return 'image/webp' === $mime_type ? 82 : $quality;
 }
 add_filter( 'wp_editor_set_quality', 'balneo_media_image_quality', 10, 2 );
 
+/**
+ * Nettoie le titre d'une pièce jointe image.
+ *
+ * @param array $data    Données du contenu.
+ * @param array $postarr Paramètres d'insertion.
+ * @return array
+ */
 function balneo_media_attachment_title( $data, $postarr ) {
 	if ( empty( $postarr['post_mime_type'] ) || ! str_starts_with( $postarr['post_mime_type'], 'image/' ) ) {
 		return $data;
 	}
 
 	if ( ! empty( $data['post_title'] ) ) {
-		$title = str_replace( array( '-', '_' ), ' ', $data['post_title'] );
-		$title = preg_replace( '/\\s+(?:copie|copy|final|nouveau|new)(?:\\s+[0-9]+)?$/iu', '', $title );
-		$title = trim( $title );
+		$title              = str_replace( array( '-', '_' ), ' ', $data['post_title'] );
+		$title              = preg_replace( '/\\s+(?:copie|copy|final|nouveau|new)(?:\\s+[0-9]+)?$/iu', '', $title );
+		$title              = trim( $title );
 		$data['post_title'] = function_exists( 'mb_convert_case' )
 			? mb_convert_case( $title, MB_CASE_TITLE, 'UTF-8' )
 			: ucwords( $title );
@@ -97,6 +132,12 @@ function balneo_media_attachment_title( $data, $postarr ) {
 }
 add_filter( 'wp_insert_attachment_data', 'balneo_media_attachment_title', 10, 2 );
 
+/**
+ * Enregistre le diagnostic WebP dans la santé du site.
+ *
+ * @param array $tests Tests disponibles.
+ * @return array
+ */
 function balneo_media_site_health_tests( $tests ) {
 	$tests['direct']['balneo_media_webp'] = array(
 		'label' => __( 'Conversion WebP Balnéo', 'balneo-media' ),
@@ -106,6 +147,11 @@ function balneo_media_site_health_tests( $tests ) {
 }
 add_filter( 'site_status_tests', 'balneo_media_site_health_tests' );
 
+/**
+ * Vérifie le support WebP du moteur d'image installé.
+ *
+ * @return array
+ */
 function balneo_media_webp_health_test() {
 	$supported = wp_image_editor_supports( array( 'mime_type' => 'image/webp' ) );
 	return array(

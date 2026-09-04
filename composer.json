@@ -1,0 +1,19 @@
+{
+  "name": "balneo/quality-tools",
+  "description": "Contrôles de qualité du thème WordPress, jamais déployés.",
+  "type": "project",
+  "license": "proprietary",
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^3.3",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.1"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "check": "phpcs --standard=phpcs.xml.dist"
+  }
+}

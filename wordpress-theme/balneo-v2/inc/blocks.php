@@ -168,16 +168,16 @@ function balneo_v2_comment_public_sections( string $block_content, array $block 
 	$classes    = preg_split( '/\s+/', $class_name, -1, PREG_SPLIT_NO_EMPTY );
 	$classes    = false !== $classes ? $classes : array();
 	$sections   = array(
-		'info-banner'       => 'Bandeau d’information pratique',
-		'hero'              => 'Accueil : présentation principale',
-		'quick-access'      => 'Accueil : accès rapides',
-		'welcome'           => 'Accueil : présentation de l’Espace Balnéo',
+		'info-banner'        => 'Bandeau d’information pratique',
+		'hero'               => 'Accueil : présentation principale',
+		'quick-access'       => 'Accueil : accès rapides',
+		'welcome'            => 'Accueil : présentation de l’Espace Balnéo',
 		'experience-section' => 'Accueil : découverte des espaces',
-		'seasonal-section'  => 'Accueil : activités au fil des saisons',
-		'manifesto'         => 'Accueil : engagements et chiffres clés',
-		'news-section'      => 'Accueil : actualités',
-		'contact-section'   => 'Accueil : contact et inscription',
-		'page-hero'         => 'Page intérieure : en-tête éditorial',
+		'seasonal-section'   => 'Accueil : activités au fil des saisons',
+		'manifesto'          => 'Accueil : engagements et chiffres clés',
+		'news-section'       => 'Accueil : actualités',
+		'contact-section'    => 'Accueil : contact et inscription',
+		'page-hero'          => 'Page intérieure : en-tête éditorial',
 	);
 
 	foreach ( $sections as $class => $label ) {

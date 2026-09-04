@@ -8,16 +8,16 @@
 ?>
 <main id="contenu-principal">
 <section class="page-hero">
-    <div class="page-hero__media media-fill">
-      <img src="<?php echo esc_url( get_theme_file_uri( '/assets/photos/riviere.webp' ) ); ?>" alt="" width="2560" height="1440" loading="eager" fetchpriority="high" decoding="async" srcset="<?php echo esc_attr( balneo_v2_theme_image_srcset( 'riviere.webp' ) ); ?>" sizes="100vw">
-    </div>
-    <div class="page-hero__veil"></div>
-    <div class="page-hero__content">
-      <p class="page-hero__label">Actualité — 1 avril</p>
-      <h1 class="page-hero__title">Réouverture de la rivière extérieure</h1>
-      <span class="title-rule" aria-hidden="true"></span>
-    </div>
-  </section>
+	<div class="page-hero__media media-fill">
+		<img src="<?php echo esc_url( get_theme_file_uri( '/assets/photos/riviere.webp' ) ); ?>" alt="" width="2560" height="1440" loading="eager" fetchpriority="high" decoding="async" srcset="<?php echo esc_attr( balneo_v2_theme_image_srcset( 'riviere.webp' ) ); ?>" sizes="100vw">
+	</div>
+	<div class="page-hero__veil"></div>
+	<div class="page-hero__content">
+		<p class="page-hero__label">Actualité — 1 avril</p>
+		<h1 class="page-hero__title">Réouverture de la rivière extérieure</h1>
+		<span class="title-rule" aria-hidden="true"></span>
+	</div>
+	</section>
 <section class="section section--light"><div class="container content-block fade-in">
 <p>Chers clients, nous avons le plaisir de vous informer de la réouverture de notre rivière extérieure au sein de votre Espace Balnéo. Profitez-en dès maintenant pour vous détendre.</p>
 <p>À très bientôt dans votre Espace Balnéo !</p>

@@ -13,10 +13,10 @@ function renderDailySchedule({ dynamic = false } = {}) {
     <p class="schedule-card__time">${escapeHtml(entry.default.time)}</p>
     <p class="schedule-card__status">${escapeHtml(entry.default.status)}</p>
     <p class="schedule-card__note">${escapeHtml(entry.default.note)}</p>
-    <a class="schedule-card__link" href="${escapeHtml(entry.url)}">Découvrir <span class="sr-only">${escapeHtml(entry.title)}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-  </article>`).join('\n');
+    ${entry.url ? `<a class="schedule-card__link" href="${escapeHtml(entry.url)}">Découvrir <span class="sr-only">${escapeHtml(entry.title)}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>` : ''}
+  </article>`).join('\n').replace(/[\t ]+$/gm, '');
 
-  return `<section class="section daily-schedule" aria-labelledby="schedule-title">
+  return `${dynamic ? '<?php $schedule = balneo_v2_schedule_context(); ?>\n' : ''}<section class="section daily-schedule" aria-labelledby="schedule-title">
   <div class="container">
     <div class="daily-schedule__intro">
       <div><p class="daily-schedule__eyebrow">On se retrouve quand ?</p><h2 id="schedule-title">À chacun son rythme.</h2></div>
@@ -28,9 +28,9 @@ function renderDailySchedule({ dynamic = false } = {}) {
         <div class="schedule-help"><i class="fa-solid fa-phone" aria-hidden="true"></i><div><p>Un doute avant de venir ?</p><a href="tel:+33468756050">04 68 75 60 50</a></div></div>
       </div>
       <div class="daily-schedule__programme">
-        <div class="daily-schedule__date-heading"><div><p class="daily-schedule__eyebrow daily-schedule__day-label">Préparer votre visite</p><h2 class="daily-schedule__date">Vos espaces & activités</h2></div><span class="daily-schedule__count">${dynamic ? '<?php echo esc_html( (string) count( balneo_v2_schedule_entries() ) ); ?>' : entries.length} espaces & activités</span></div>
+        <div class="daily-schedule__date-heading"><div><p class="daily-schedule__eyebrow daily-schedule__day-label">${dynamic ? 'Aujourd’hui chez nous' : 'Préparer votre visite'}</p><h2 class="daily-schedule__date">${dynamic ? '<?php echo esc_html( $schedule[\'label\'] ); ?>' : 'Vos espaces & activités'}</h2></div><span class="daily-schedule__count">${dynamic ? '<?php echo esc_html( (string) $schedule[\'count\'] ); ?>' : entries.length} espaces & activités</span></div>
         <div class="daily-schedule__cards">${cards}</div>
-        <p class="daily-schedule__empty">Aucune activité renseignée pour cette date. Contactez l’accueil pour préparer votre visite.</p>
+        <p class="daily-schedule__empty" ${dynamic ? '<?php echo $schedule[\'count\'] > 0 ? \'hidden\' : \'\'; ?>' : 'hidden'}>Aucune activité renseignée pour cette date. Contactez l’accueil pour préparer votre visite.</p>
         <p class="daily-schedule__notice"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Horaires habituels, sous réserve de modification. Jours fériés, fermetures techniques et séances encadrées : pensez à vérifier auprès de l’accueil.</p>
         <div class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-schedule-announcement></div>
       </div>

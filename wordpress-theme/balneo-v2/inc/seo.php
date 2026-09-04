@@ -309,62 +309,62 @@ function balneo_v2_seo_services(): array {
  * @return array<string, mixed>
  */
 function balneo_v2_seo_schema_graph(): array {
-	$page      = balneo_v2_seo_current_page();
-	$slug      = balneo_v2_seo_slug();
-	$canonical = balneo_v2_seo_canonical_url();
-	$base      = untrailingslashit( home_url( '/' ) );
-	$image     = balneo_v2_seo_current_image_url( $page );
-	$business  = $base . '/#etablissement';
-	$website   = $base . '/#site-web';
-	$webpage   = $canonical . '#page-web';
-	$image_id  = $canonical . '#image-principale';
+	$page       = balneo_v2_seo_current_page();
+	$slug       = balneo_v2_seo_slug();
+	$canonical  = balneo_v2_seo_canonical_url();
+	$base       = untrailingslashit( home_url( '/' ) );
+	$image      = balneo_v2_seo_current_image_url( $page );
+	$business   = $base . '/#etablissement';
+	$website    = $base . '/#site-web';
+	$webpage    = $canonical . '#page-web';
+	$image_id   = $canonical . '#image-principale';
 	$is_article = str_starts_with( $slug, 'article-' ) || is_singular( 'post' );
 
 	$graph = array(
 		array(
-			'@type'           => array( 'SportsActivityLocation', 'HealthClub', 'DaySpa' ),
-			'@id'             => $business,
-			'name'            => 'Espace Balnéo de Gruissan',
-			'alternateName'   => 'Espace Balnéo Gruissan',
-			'url'             => home_url( '/' ),
-			'logo'            => array(
+			'@type'              => array( 'SportsActivityLocation', 'HealthClub', 'DaySpa' ),
+			'@id'                => $business,
+			'name'               => 'Espace Balnéo de Gruissan',
+			'alternateName'      => 'Espace Balnéo Gruissan',
+			'url'                => home_url( '/' ),
+			'logo'               => array(
 				'@type' => 'ImageObject',
 				'url'   => get_theme_file_uri( '/assets/logo-balneo-officiel.png' ),
 			),
-			'image'           => array( $image ),
-			'description'     => 'Centre aquatique et de bien-être à Gruissan proposant balnéothérapie, piscine, massages, activités aquatiques, sport et parc aqualudique saisonnier.',
-			'telephone'       => '+33468756050',
-			'email'           => 'espace.balneoludique@gruissan-mediterranee.com',
-			'priceRange'      => '€€',
+			'image'              => array( $image ),
+			'description'        => 'Centre aquatique et de bien-être à Gruissan proposant balnéothérapie, piscine, massages, activités aquatiques, sport et parc aqualudique saisonnier.',
+			'telephone'          => '+33468756050',
+			'email'              => 'espace.balneoludique@gruissan-mediterranee.com',
+			'priceRange'         => '€€',
 			'currenciesAccepted' => 'EUR',
-			'sameAs'          => array(
+			'sameAs'             => array(
 				'https://www.instagram.com/gruissan_espacebalneo/',
 				'https://www.facebook.com/espacebalneoludiquegruissan.omt',
 			),
-			'contactPoint'    => array(
+			'contactPoint'       => array(
 				'@type'             => 'ContactPoint',
 				'telephone'         => '+33468756050',
 				'contactType'       => 'customer service',
 				'availableLanguage' => array( 'fr' ),
 			),
-			'address'         => array(
+			'address'            => array(
 				'@type'           => 'PostalAddress',
 				'streetAddress'   => 'Avenue des Bains',
 				'addressLocality' => 'Gruissan',
 				'postalCode'      => '11430',
 				'addressCountry'  => 'FR',
 			),
-			'geo'             => array(
+			'geo'                => array(
 				'@type'     => 'GeoCoordinates',
 				'latitude'  => 43.1182048,
 				'longitude' => 3.11328202,
 			),
-			'hasMap'          => 'https://maps.google.fr/?saddr=&daddr=43.1182048,3.11328202',
-			'areaServed'      => array(
+			'hasMap'             => 'https://maps.google.fr/?saddr=&daddr=43.1182048,3.11328202',
+			'areaServed'         => array(
 				'@type' => 'City',
 				'name'  => 'Gruissan',
 			),
-			'paymentAccepted' => 'Carte bancaire, espèces, chèques ANCV papier',
+			'paymentAccepted'    => 'Carte bancaire, espèces, chèques ANCV papier',
 		),
 		array(
 			'@type'      => 'WebSite',
@@ -414,7 +414,7 @@ function balneo_v2_seo_schema_graph(): array {
 			'article-riviere'         => '2026-04-01T08:00:00+02:00',
 			'article-stages-natation' => '2026-06-01T08:00:00+02:00',
 		);
-		$graph[] = array(
+		$graph[]           = array(
 			'@type'            => 'Article',
 			'@id'              => $canonical . '#article',
 			'headline'         => get_the_title( get_queried_object_id() ),

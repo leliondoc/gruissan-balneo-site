@@ -10,6 +10,30 @@ $nonce_valid = true;
 $write_fail = false;
 $redirect = '';
 $hooks = array();
+$before_cas = null;
+$fake_now = '2026-09-04T12:00:00Z';
+function __( $text, $domain ) { return $text; }
+function esc_html__( $text, $domain ) { return esc_html( $text ); }
+function current_datetime() { global $fake_now; return new DateTimeImmutable( $fake_now ); }
+function wp_date( $format, $timestamp, $timezone ) { return ( new DateTimeImmutable( '@' . $timestamp ) )->setTimezone( $timezone )->format( $format ); }
+function maybe_serialize( $value ) { return serialize( $value ); }
+function wp_cache_delete( $key, $group ) { global $cleared; $cleared[] = array( $key, $group ); }
+function do_action( ...$args ) {}
+function add_option( $key, $value, $deprecated = '', $autoload = null ) { global $options, $write_fail; if ( $write_fail || array_key_exists( $key, $options ) ) { return false; } $options[ $key ] = $value; return true; }
+class Planning_Test_Wpdb {
+	public $options = 'wp_options';
+	function prepare( $query, ...$args ) { return $args; }
+	function query( $args ) {
+		global $options, $before_cas, $write_fail;
+		if ( $before_cas ) { $callback = $before_cas; $before_cas = null; $callback(); }
+		if ( $write_fail ) { return false; }
+		[ $table, $next, $autoload, $key, $previous ] = $args;
+		if ( serialize( $options[ $key ] ?? null ) !== $previous ) { return 0; }
+		$options[ $key ] = unserialize( $next );
+		return 1;
+	}
+}
+$wpdb = new Planning_Test_Wpdb();
 function add_action( $name, $callback, ...$args ) { global $hooks; $hooks[ $name ] = $callback; }
 function add_shortcode( $name, $callback ) {}
 function add_menu_page( ...$args ) { global $menu; $menu = $args; }
@@ -82,6 +106,20 @@ verify( array( 1, 3, 5 ) === $result['entry']['rules'][0]['weekdays'], 'Conversi
 verify( false === $result['entry']['rules'][0]['hidden'] && true === $result['entry']['default']['hidden'], 'Réapparition de la carte lors des séances' );
 $saved_id = $result['entry']['id'];
 $snapshot = $options;
+
+// Deux requêtes réellement entrelacées : la deuxième écriture doit être refusée.
+$concurrent_revision = balneo_v2_schedule_revision( balneo_v2_schedule_store() );
+$before_cas = function () use ( $concurrent_revision ) {
+	global $concurrent;
+	$input = input_fixture(); $input['id'] = 'forme'; $input['title'] = 'Modification B';
+	$concurrent = balneo_v2_schedule_save( $input, $concurrent_revision );
+};
+$input = input_fixture(); $input['id'] = 'balneo'; $input['title'] = 'Modification A';
+$raced = balneo_v2_schedule_save( $input, $concurrent_revision );
+verify( $raced['errors'] && ! $concurrent['errors'], 'Une course doit refuser la requête devenue périmée' );
+verify( 'Modification B' === $options['balneo_v2_schedule']['entries'][1]['title'], 'La modification concurrente doit être conservée' );
+verify( in_array( array( 'balneo_v2_schedule', 'options' ), $cleared, true ), 'Le cache de l’option doit être invalidé' );
+$options = $snapshot;
 $stale = balneo_v2_schedule_save( input_fixture(), $revision );
 verify( $stale['errors'] && $snapshot === $options, 'Protection contre les fiches périmées' );
 
@@ -102,6 +140,28 @@ foreach ( $invalids as $index => $invalid ) {
 	verify( $result['errors'] && $options === $snapshot, 'Validation invalide ' . $index );
 }
 verify( balneo_v2_schedule_valid_date( '2028-02-29' ) && ! balneo_v2_schedule_valid_date( '2026-02-29' ), 'Années bissextiles' );
+verify( 120 === balneo_v2_schedule_text_length( str_repeat( 'é', 120 ) ), 'Les accents ne comptent pas comme deux caractères' );
+verify( 2 === balneo_v2_schedule_text_length( '🏊' ), 'Longueur UTF-16 identique au navigateur' );
+$long = input_fixture(); $long['title'] = str_repeat( 'é', 121 );
+verify( balneo_v2_schedule_validate( $long )['errors'], 'La limite HTML est aussi appliquée côté serveur' );
+
+// Le rendu serveur affiche les vraies séances même sans JavaScript.
+$html = balneo_v2_daily_schedule_shortcode();
+verify( str_contains( $html, 'Aujourd’hui chez nous' ), 'Le rendu serveur doit être daté' );
+verify( str_contains( $html, '09h30–10h15' ), 'La séance du jour doit être rendue côté serveur' );
+$card_count = preg_match_all( '/<article\b(?![^>]*\shidden)[^>]*>/', $html );
+verify( 6 === $card_count, 'Six cartes visibles le vendredi avec la fixture ajoutée' );
+$today = balneo_v2_schedule_today();
+verify( '2026-09-04' === $today->format( 'Y-m-d' ), 'Jour de Gruissan' );
+$fake_now = '2026-09-04T22:30:00Z';
+verify( '2026-09-05' === balneo_v2_schedule_today()->format( 'Y-m-d' ), 'Minuit français avant minuit UTC' );
+$fake_now = '2026-09-04T12:00:00Z';
+foreach ( $initial['entries'] as $entry ) {
+	$status = balneo_v2_schedule_status( $entry, $today );
+	if ( 'parc' === $entry['id'] ) { verify( 'Période terminée' === $status['label'], 'Statut du parc hors saison' ); }
+	if ( 'massages' === $entry['id'] ) { verify( 'Activée · sans créneau' === $status['label'], 'Statut des soins sans disponibilité' ); }
+	if ( 'natation' === $entry['id'] ) { verify( '2026-09-09' === $status['next'] && '2026-10-16' === $status['until'], 'Reprise et fin de programmation' ); }
+}
 $allowed = false;
 $result = balneo_v2_schedule_save( input_fixture(), balneo_v2_schedule_revision( balneo_v2_schedule_store() ) );
 verify( $result['errors'] && $options === $snapshot, 'Permissions d’écriture' );

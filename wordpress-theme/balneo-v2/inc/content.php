@@ -31,29 +31,29 @@ function balneo_v2_group_editor_name( string $tag_name, string $class_name ): st
 	$classes = preg_split( '/\s+/', $class_name, -1, PREG_SPLIT_NO_EMPTY );
 	$classes = false !== $classes ? $classes : array();
 	$labels  = array(
-		'page-hero__media' => 'Image de couverture',
+		'page-hero__media'   => 'Image de couverture',
 		'page-hero__content' => 'Contenu de la bannière',
-		'page-hero' => 'Bannière de page',
-		'hero__media' => 'Image d’accueil',
-		'hero__content' => 'Introduction de l’accueil',
-		'hero-seals' => 'Pastilles d’information',
-		'quick-access' => 'Accès rapides',
-		'content-block' => 'Contenu de la page',
-		'info-box' => 'Encart d’information',
-		'link-grid' => 'Grille de liens',
-		'link-card' => 'Carte liée',
-		'experience-grid' => 'Grille des expériences',
-		'experience-card' => 'Carte expérience',
-		'seasonal-section' => 'Sélection saisonnière',
-		'seasonal-slide' => 'Carte saisonnière',
-		'news-grid' => 'Grille des actualités',
-		'news-card' => 'Carte actualité',
-		'contact-grid' => 'Bloc contact',
-		'two-col' => 'Deux colonnes',
-		'faq-list' => 'Questions fréquentes',
-		'section-heading' => 'En-tête de section',
-		'section__header' => 'En-tête de section',
-		'btn-group' => 'Boutons',
+		'page-hero'          => 'Bannière de page',
+		'hero__media'        => 'Image d’accueil',
+		'hero__content'      => 'Introduction de l’accueil',
+		'hero-seals'         => 'Pastilles d’information',
+		'quick-access'       => 'Accès rapides',
+		'content-block'      => 'Contenu de la page',
+		'info-box'           => 'Encart d’information',
+		'link-grid'          => 'Grille de liens',
+		'link-card'          => 'Carte liée',
+		'experience-grid'    => 'Grille des expériences',
+		'experience-card'    => 'Carte expérience',
+		'seasonal-section'   => 'Sélection saisonnière',
+		'seasonal-slide'     => 'Carte saisonnière',
+		'news-grid'          => 'Grille des actualités',
+		'news-card'          => 'Carte actualité',
+		'contact-grid'       => 'Bloc contact',
+		'two-col'            => 'Deux colonnes',
+		'faq-list'           => 'Questions fréquentes',
+		'section-heading'    => 'En-tête de section',
+		'section__header'    => 'En-tête de section',
+		'btn-group'          => 'Boutons',
 	);
 
 	foreach ( $labels as $class => $label ) {
@@ -63,11 +63,11 @@ function balneo_v2_group_editor_name( string $tag_name, string $class_name ): st
 	}
 
 	$tag_labels = array(
-		'main' => 'Contenu de la page',
+		'main'    => 'Contenu de la page',
 		'section' => 'Section',
 		'article' => 'Carte',
-		'a' => 'Lien',
-		'nav' => 'Navigation',
+		'a'       => 'Lien',
+		'nav'     => 'Navigation',
 	);
 
 	return $tag_labels[ $tag_name ] ?? '';
@@ -86,9 +86,9 @@ function balneo_v2_core_group_attributes( string $tag_name, array $html_attribut
 	$style_key = rtrim( (string) preg_replace( '/\s+/', '', (string) ( $html_attributes['style'] ?? '' ) ), ';' );
 	$utilities = array(
 		'text-align:left;margin-bottom:var(--space-md)' => array( 'balneo-align-left', 'balneo-space-bottom-md' ),
-		'margin-top:var(--space-md)' => array( 'balneo-space-top-md' ),
-		'text-align:center' => array( 'balneo-align-center' ),
-		'margin:var(--space-lg)0' => array( 'balneo-space-y-lg' ),
+		'margin-top:var(--space-md)'                    => array( 'balneo-space-top-md' ),
+		'text-align:center'                             => array( 'balneo-align-center' ),
+		'margin:var(--space-lg)0'                       => array( 'balneo-space-y-lg' ),
 	);
 	if ( isset( $utilities[ $style_key ] ) ) {
 		$classes = array_merge( $classes, $utilities[ $style_key ] );
@@ -144,10 +144,10 @@ function balneo_v2_wrapped_block( string $block_name, array $attributes, array $
 	$inner_content[] = $closing;
 
 	return array(
-		'blockName' => $block_name,
-		'attrs' => $attributes,
-		'innerBlocks' => $inner_blocks,
-		'innerHTML' => $opening . $closing,
+		'blockName'    => $block_name,
+		'attrs'        => $attributes,
+		'innerBlocks'  => $inner_blocks,
+		'innerHTML'    => $opening . $closing,
 		'innerContent' => $inner_content,
 	);
 }
@@ -258,7 +258,7 @@ function balneo_v2_seed_pages(): void {
 			wp_update_post(
 				wp_slash(
 					array(
-						'ID' => $page->ID,
+						'ID'           => $page->ID,
 						'post_content' => $new_content,
 					)
 				)

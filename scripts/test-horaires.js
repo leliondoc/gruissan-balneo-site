@@ -247,9 +247,36 @@ test('contrastes : petits textes ≥ 4,5:1, titres et grandes icônes ≥ 3:1', 
     assert.ok((luminance('ffffff') + 0.05) / (luminance(background) + 0.05) >= 3, background);
   }
   const css = fs.readFileSync(path.join(root, 'css/styles.css'), 'utf8');
+  for (const [selector, background] of [
+    ['.daily-schedule__intro .daily-schedule__eyebrow', 'f7fbfb'],
+    ['.schedule-calendar__day.is-outside', 'ffffff'],
+  ]) {
+    const declaration = css.slice(css.indexOf(`${selector} {`)).split('}')[0];
+    const foreground = declaration.match(/color: #([a-f\d]{6})/i)?.[1];
+    assert.ok(foreground, `Couleur de texte contrôlable : ${selector}`);
+    const values = [luminance(background), luminance(foreground)].sort((a, b) => b - a);
+    assert.ok((values[0] + 0.05) / (values[1] + 0.05) >= 4.5, selector);
+  }
   assert.match(css, /\.schedule-card \{[^}]*--card-heading: var\(--white\)/);
   for (const theme of ['soins', 'parc']) assert.match(css, new RegExp(`\\.schedule-card--${theme} \\{[^}]*--card-heading: var\\(--ink-deep\\)`));
   assert.match(css, /\.schedule-card__title, \.schedule-card__time, \.schedule-card__top > i \{ color: var\(--card-heading\)/);
+});
+
+test('les boutons restent contenus dans leur colonne, même à largeur tablette', () => {
+  const css = fs.readFileSync(path.join(root, 'css/styles.css'), 'utf8');
+  const day = css.match(/\.schedule-calendar__day \{([^}]+)\}/)[1];
+  assert.match(day, /width: 100%;/);
+  assert.match(day, /aspect-ratio: auto;/);
+  assert.match(day, /min-width: 0;/);
+});
+
+test('aucun lien vide et une sémantique correcte pour les repères de l’accueil', () => {
+  const dom = new JSDOM(renderDailySchedule());
+  assert.equal(dom.window.document.querySelectorAll('a[href=""]').length, 0);
+  dom.window.close();
+  const home = new JSDOM(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
+  assert.equal(home.window.document.querySelector('.hero-seals').getAttribute('role'), 'group');
+  home.window.close();
 });
 
 test('planning de rentrée : fermeture mardi, reprise natation le 9, séances du week-end et fin de période', (t) => {

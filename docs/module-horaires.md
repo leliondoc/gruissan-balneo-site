@@ -31,7 +31,9 @@ Les dates impossibles, intervalles inversés, liens non HTTP(S), formulaires tro
 et fiches périmées sont refusés sans remplacer le planning enregistré. Les champs
 validés restent disponibles après une erreur. En cas de modification concurrente,
 recharger la fiche enregistrée avant de réappliquer ses changements. La vérification
-de version est optimiste ; elle n’est pas un verrou d’édition temps réel.
+de version est suivie d'une comparaison-et-échange atomique en base : même deux
+requêtes simultanées ne peuvent plus écraser silencieusement leurs modifications.
+Ce mécanisme n'est pas un verrou d'édition temps réel.
 
 L’administration nécessite une session WordPress autorisée et un jeton anti-CSRF.
 Les modifications sont lues au rendu public sans reconstruction du thème. Si un cache
@@ -62,7 +64,8 @@ activités sont désactivées ou si le planning est vide. Aucun accès public au
 ne déclenche d’écriture d’initialisation.
 
 Le code est séparé dans `inc/schedule-data.php` (lecture et validation),
-`inc/schedule-admin.php` (formulaires et sauvegarde), et `inc/schedule.php` (rendu public).
+`inc/schedule-admin.php` (formulaires et sauvegarde), `inc/schedule-state.php`
+(évaluation des dates et indicateurs), et `inc/schedule.php` (rendu public).
 Les fichiers JS/CSS de l’admin ne sont chargés que sur l’écran Planning.
 
 Chaque entrée donne une carte : `id`, `theme`, `category`, `title`, `icon`, `url`,
@@ -152,9 +155,20 @@ npm run check:horaires
 npm run check:planning-admin
 npm run check:links
 npm run audit:wordpress
+npm run check:phpcs
+npm run check:assets
 ```
 
 Le jour initial est calculé dans le fuseau Europe/Paris. Le calendrier démarre le lundi,
 gère les années bissextiles et permet la navigation au clavier (flèches, Début/Fin,
-Page précédente/suivante, Entrée/Espace pour sélectionner). Sans JavaScript, les
-informations générales restent lisibles, sans prétendre présenter un jour précis.
+Page précédente/suivante, Entrée/Espace pour sélectionner). Dans WordPress, le serveur
+affiche les activités du jour, la date française et le message vide éventuel avant
+JavaScript. La maquette statique conserve un aperçu général sans fausse date du jour.
+
+La liste d'administration distingue activation, programmation du jour, absence de
+créneau et période terminée. Elle présente aussi la prochaine séance trouvée et la
+borne de programmation, sans prolonger les horaires automatiquement.
+
+Les contrôles PHP utilisent les normes WordPress officielles installées avec
+`composer install`. Le formatage des fichiers générés fait partie de la construction,
+pour éviter de réintroduire les écarts au prochain build.

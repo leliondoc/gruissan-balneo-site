@@ -19,7 +19,7 @@ on:
 permissions:
   contents: read
 
-# Une seule synchronisation FTP a la fois afin de proteger son fichier d'etat.
+# Une seule synchronisation FTPS a la fois afin de proteger son fichier d'etat.
 concurrency:
   group: deploy-balneo-wordpress
   cancel-in-progress: false
@@ -35,7 +35,9 @@ jobs:
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.sha }}
 
       - name: Installer les dependances de validation
-        run: npm ci --ignore-scripts
+        run: |
+          npm ci --ignore-scripts
+          composer install --no-interaction --prefer-dist --no-progress
 
       - name: Valider le theme et le plugin
         run: |
@@ -46,13 +48,22 @@ jobs:
           npm run check:analytics
           npm run check:horaires
           npm run check:planning-admin
+          npm run check:phpcs
+          npm run check:assets
           npm run audit:wordpress
           find wordpress-theme/balneo-v2 wordpress-plugin/balneo-media -type f -name '*.php' -print0 | xargs -0 -n1 php -l
 
-      - name: Publier le theme WordPress via FTP
+      - name: Verifier le certificat FTPS avant tout transfert
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: node scripts/check-ftps.js
+
+      - name: Publier le theme WordPress via FTPS
         uses: SamKirkland/FTP-Deploy-Action@cfcb39fa3cdf2ff98ac1a7fbfa539d20526d474d # 4.3.3
         with:
           server: ${{ secrets.FTP_SERVER }}
+          protocol: ftps
+          security: strict
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ format('{0}wp-content/themes/balneo-v2/', secrets.FTP_SERVER_DIR) }}
@@ -60,10 +71,12 @@ jobs:
           state-name: .ftp-deploy-sync-state-balneo-theme.json
           dangerous-clean-slate: false
 
-      - name: Publier le plugin medias via FTP
+      - name: Publier le plugin medias via FTPS
         uses: SamKirkland/FTP-Deploy-Action@cfcb39fa3cdf2ff98ac1a7fbfa539d20526d474d # 4.3.3
         with:
           server: ${{ secrets.FTP_SERVER }}
+          protocol: ftps
+          security: strict
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ format('{0}wp-content/plugins/balneo-media/', secrets.FTP_SERVER_DIR) }}

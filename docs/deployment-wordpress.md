@@ -18,6 +18,17 @@ Le dépôt utilise les secrets suivants, sans jamais exposer leur valeur dans le
 
 `FTP_SERVER_DIR` doit désigner la racine de l'installation WordPress et se terminer par `/`, par exemple `/www.balneov2/`.
 
+Le transport est **FTPS explicite**, avec validation stricte du certificat. Aucun
+repli FTP ni validation TLS désactivée n'est autorisé. Un contrôle `AUTH TLS`, sans
+identifiant, bloque le workflow avant tout transfert si le certificat ne peut pas
+être vérifié. Utiliser le nom FTP exact indiqué par OVH, pas une adresse IP ou un
+alias dont le nom n'est pas couvert par le certificat.
+
+Les outils qualité PHP s'installent avec `composer install`. La CI exécute les
+conventions WordPress, les tests du planning, les liens et la correspondance des
+assets avant publication. `vendor/`, `node_modules/` et les archives locales ne sont
+jamais livrés sur l'hébergement.
+
 ## Périmètre protégé
 
 Le workflow synchronise uniquement :

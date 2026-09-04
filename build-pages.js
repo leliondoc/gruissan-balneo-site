@@ -264,7 +264,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
         <a href="pages/horaires.html" class="text-link text-link--light">Voir les horaires <span>→</span></a>
       </div>
     </div>
-    <div class="hero-seals" aria-label="Informations saison 2026">
+    <div class="hero-seals" role="group" aria-label="Informations saison 2026">
       <div class="brand-seal brand-seal--open"><strong>Ouvert</strong><span>7j/7</span></div>
     </div>
     <a class="hero__scroll" href="#welcome"><span></span>Découvrir</a>
@@ -1150,6 +1150,7 @@ pages['pages/contact.html'] = page('Contact', 'Contactez l\'Espace Balnéo de Gr
 ${pageHero('Nous contacter', 'Contact', '../assets/photos/gruissan-050.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in" style="text-align:center">
+    <h2>Nos coordonnées</h2>
     <p>Vous pouvez nous contacter par téléphone, par e-mail ou nous rendre directement visite.</p>
     <div style="margin:var(--space-lg) 0">
       <p class="contact-info__label">Téléphone</p>

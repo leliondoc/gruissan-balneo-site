@@ -69,7 +69,7 @@ function balneo_v2_newsletter_signup(): void {
 	if (
 		! isset( $_POST['balneo_v2_newsletter_nonce'] ) ||
 		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['balneo_v2_newsletter_nonce'] ) ), 'balneo_v2_newsletter' ) ||
-		( isset( $_POST['website'] ) && '' !== trim( (string) wp_unslash( $_POST['website'] ) ) )
+		( isset( $_POST['website'] ) && ( ! is_string( $_POST['website'] ) || '' !== sanitize_text_field( wp_unslash( $_POST['website'] ) ) ) )
 	) {
 		wp_safe_redirect( add_query_arg( 'inscription', 'erreur', $referer ) . '#contact' );
 		exit;
@@ -82,7 +82,7 @@ function balneo_v2_newsletter_signup(): void {
 	$city       = isset( $_POST['ville'] ) ? sanitize_text_field( wp_unslash( $_POST['ville'] ) ) : '';
 	$consent    = isset( $_POST['consentement'] ) && '1' === sanitize_key( wp_unslash( $_POST['consentement'] ) );
 
-	$invalid_lengths = strlen( $first_name ) > 80 || strlen( $last_name ) > 80 || strlen( $email ) > 254 || strlen( $postcode ) > 12 || strlen( $city ) > 120;
+	$invalid_lengths  = strlen( $first_name ) > 80 || strlen( $last_name ) > 80 || strlen( $email ) > 254 || strlen( $postcode ) > 12 || strlen( $city ) > 120;
 	$invalid_postcode = $postcode && ! preg_match( '/^[0-9A-Za-z -]+$/', $postcode );
 
 	if ( ! $first_name || ! $last_name || ! is_email( $email ) || ! $consent || $invalid_lengths || $invalid_postcode ) {

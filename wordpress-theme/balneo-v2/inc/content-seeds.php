@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 return array(
     'accueil' => array(
         'title' => 'Accueil',
-        'legacy_hash' => 'ee3f37e7a399447c3f4c505faaaba44b3e4c1604109c2700e5dc0c6dbfa966ee',
-        'schema2_hash' => '9f903d36033b7f5177409534ee40e97a021e544e28ba3d3fb6e37693fa94674d',
+        'legacy_hash' => '926fc2f9c481c1b0132e00853dc1df328d84a666fc7672e8f4d1d308a348e5aa',
+        'schema2_hash' => 'fdd7da1e9678b8fa7015f39db69d29be929a6de0e2bb746357bda60b648f506b',
         'content' => <<<'BALNEO_ACCUEIL_CONTENT'
 <!-- wp:group {"className":"info-banner","layout":{"type":"default"}} -->
 <div class="wp-block-group info-banner"><!-- wp:group {"className":"container","layout":{"type":"default"}} -->
@@ -47,7 +47,7 @@ return array(
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"hero-seals","layout":{"type":"default"},"metadata":{"name":"Pastilles d’information","balneoAttributes":{"aria-label":"Informations saison 2026"}}} -->
+<!-- wp:group {"className":"hero-seals","layout":{"type":"default"},"metadata":{"name":"Pastilles d’information","balneoAttributes":{"role":"group","aria-label":"Informations saison 2026"}}} -->
 <div class="wp-block-group hero-seals"><!-- wp:group {"className":"brand-seal brand-seal\u002d\u002dopen","layout":{"type":"default"}} -->
 <div class="wp-block-group brand-seal brand-seal--open"><!-- wp:balneo/rich-text {"tagName":"strong","content":"Ouvert"} /-->
 
@@ -1406,8 +1406,8 @@ BALNEO_BROCHURES_CONTENT,
     ),
     'contact' => array(
         'title' => 'Contact',
-        'legacy_hash' => '47b7bf443fb391fbb071d23eefd535250efee8ea8302d43ffac2224ba961a946',
-        'schema2_hash' => 'b423d7602e2c3f78ff101202a35b692a8e78a571a9376205a543635b0ad3b85f',
+        'legacy_hash' => '5ddcae60c094d9e1d1f9b187a70bd279dcad9df2d198226cf1f174465abb953d',
+        'schema2_hash' => '21e650d75c17038e57f8b3ee69d58261a673071ee3718b9db366e50ca8c00b3d',
         'content' => <<<'BALNEO_CONTACT_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -1434,7 +1434,11 @@ BALNEO_BROCHURES_CONTENT,
 
 <!-- wp:group {"tagName":"section","className":"section section\u002d\u002dlight","layout":{"type":"default"},"metadata":{"name":"Section"}} -->
 <section class="wp-block-group section section--light"><!-- wp:group {"className":"container content-block fade-in balneo-align-center","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
-<div class="wp-block-group container content-block fade-in balneo-align-center"><!-- wp:paragraph -->
+<div class="wp-block-group container content-block fade-in balneo-align-center"><!-- wp:heading -->
+<h2 class="wp-block-heading">Nos coordonnées</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>Vous pouvez nous contacter par téléphone, par e-mail ou nous rendre directement visite.</p>
 <!-- /wp:paragraph -->
 
@@ -1700,7 +1704,7 @@ BALNEO_FAQ_CONTENT,
     ),
     'horaires' => array(
         'title' => 'Horaires',
-        'legacy_hash' => '7eb49e6c75149ceaedbbfaaaef642f549817d50cf10b3cb49f5e1287b7024b14',
+        'legacy_hash' => '55eee1aaacad07e3fe29bbafced15076da0fa36cc07126a248d8a7d5a06c5fe2',
         'schema2_hash' => '44d6980e39925ae9e100a296f35b16633a4d5a7ab03b71f16d233d744f2ec1fc',
         'content' => <<<'BALNEO_HORAIRES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->

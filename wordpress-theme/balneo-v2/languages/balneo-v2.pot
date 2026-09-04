@@ -25,6 +25,14 @@ msgstr ""
 msgid "Acheter"
 msgstr ""
 
+#: inc/schedule-state.php:113
+msgid "Activée · pas de créneau aujourd’hui"
+msgstr ""
+
+#: inc/schedule-state.php:130
+msgid "Activée · sans créneau"
+msgstr ""
+
 #: inc/admin-branding.php:64
 msgid "Administration"
 msgstr ""
@@ -41,11 +49,11 @@ msgstr ""
 msgid "Au cœur de Gruissan, entre mer et lagune"
 msgstr ""
 
-#: index.php:21
+#: index.php:24
 msgid "Aucun contenu"
 msgstr ""
 
-#: search.php:14
+#: search.php:23
 msgid "Aucun résultat."
 msgstr ""
 
@@ -77,6 +85,10 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: inc/schedule-state.php:76
+msgid "Désactivée"
+msgstr ""
+
 #: footer.php:21
 msgid "Données personnelles"
 msgstr ""
@@ -105,12 +117,16 @@ msgstr ""
 msgid "Espace Balnéo de Gruissan"
 msgstr ""
 
-#: inc/navigation.php:122
+#: inc/navigation.php:131
 msgid "Espace Balnéo Gruissan"
 msgstr ""
 
 #: footer.php:26
 msgid "Espace For.Me"
+msgstr ""
+
+#: inc/schedule-state.php:108
+msgid "Fermeture affichée aujourd’hui"
 msgstr ""
 
 #: header.php:30
@@ -165,11 +181,11 @@ msgstr ""
 msgid "Merci pour votre inscription !"
 msgstr ""
 
-#: functions.php:53
+#: functions.php:54
 msgid "Navigation de pied de page"
 msgstr ""
 
-#: functions.php:52
+#: functions.php:53
 msgid "Navigation principale"
 msgstr ""
 
@@ -185,6 +201,10 @@ msgstr ""
 msgid "Nom : %s"
 msgstr ""
 
+#: inc/accessibility.php:33
+msgid "Nos coordonnées"
+msgstr ""
+
 #: inc/forms.php:105
 msgid "Nouvelle demande d’inscription à la newsletter Balnéo V2"
 msgstr ""
@@ -195,6 +215,10 @@ msgstr ""
 
 #: footer.php:30
 msgid "Parc été"
+msgstr ""
+
+#: inc/schedule-state.php:110
+msgid "Période terminée"
 msgstr ""
 
 #: footer.php:42
@@ -219,6 +243,18 @@ msgstr ""
 
 #: inc/class-balneo-v2-primary-menu-walker.php:32 inc/navigation.php:35
 msgid "Préparer"
+msgstr ""
+
+#: inc/schedule-admin.php:336
+msgid "Prochaine séance :"
+msgstr ""
+
+#: inc/schedule-admin.php:343
+msgid "Programmation jusqu’au :"
+msgstr ""
+
+#: inc/schedule-state.php:108
+msgid "Programmée aujourd’hui"
 msgstr ""
 
 #: footer.php:22
