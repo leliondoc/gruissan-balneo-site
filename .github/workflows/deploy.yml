@@ -27,6 +27,7 @@ concurrency:
 jobs:
   validate-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Recuperer le depot
@@ -35,9 +36,18 @@ jobs:
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.sha }}
 
       - name: Installer les dependances de validation
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts --no-audit --no-fund --fetch-retries=1 --fetch-timeout=30000
+
+      - name: Installer les controles WordPress
+        timeout-minutes: 3
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Verifier les vulnerabilites des dependances
+        timeout-minutes: 3
         run: |
-          npm ci --ignore-scripts
-          composer install --no-interaction --prefer-dist --no-progress
+          npm audit --audit-level=low --fetch-retries=1 --fetch-timeout=60000
+          composer audit --no-interaction
 
       - name: Valider le theme et le plugin
         run: |
