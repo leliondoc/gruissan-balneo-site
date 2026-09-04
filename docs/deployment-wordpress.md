@@ -42,6 +42,14 @@ conventions WordPress, les tests du planning, les liens et la correspondance des
 assets avant publication. `vendor/`, `node_modules/` et les archives locales ne sont
 jamais livrés sur l'hébergement.
 
+`npm run audit:dependencies` interroge la base publique OSV pour **toutes** les
+versions npm du lockfile, dépendances de développement, transitives et optionnelles
+comprises. Une vulnérabilité, une panne ou une réponse incomplète bloque la CI.
+Ce contrôle remplace la requête globale `npm audit` en CI, devenue indisponible
+(HTTP 503/délais dépassés constatés le 4 septembre 2026). Il ne fournit pas le graphe
+de remédiation de npm ; `npm audit` reste utilisable en complément. Les dépendances
+PHP sont contrôlées séparément par `composer audit`.
+
 ## Périmètre protégé
 
 Le workflow synchronise uniquement :

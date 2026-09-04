@@ -18,6 +18,9 @@ et JS d'administration, les liens des 26 pages, le consentement et les 70 assets
 Le calendrier a été mesuré à 320, 390, 768, 821 et 1024 px : aucun chevauchement ni
 débordement horizontal. L'audit npm complet a finalement abouti : zéro vulnérabilité
 signalée au moment du contrôle.
+Après ajout du transport SFTP, le service npm est devenu indisponible. Un nouveau
+contrôle OSV couvre les 364 versions verrouillées : aucune vulnérabilité connue
+signalée. Ce contrôle, testé et bloquant, est conservé dans la CI avec Composer Audit.
 
 Les archives et temporaires locaux ont été déplacés hors du dépôt dans une archive
 récupérable, sans suppression distante. Les assets éventuellement référencés dans

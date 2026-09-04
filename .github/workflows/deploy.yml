@@ -10,6 +10,8 @@ on:
       - ".github/workflows/deploy.yml"
       - "scripts/deploy-sftp.js"
       - "scripts/test-deploy-sftp.js"
+      - "scripts/audit-dependencies.js"
+      - "scripts/test-audit-dependencies.js"
       - "package.json"
       - "package-lock.json"
       - "composer.json"
@@ -59,7 +61,8 @@ jobs:
       - name: Verifier les vulnerabilites des dependances
         timeout-minutes: 3
         run: |
-          npm audit --audit-level=low --fetch-retries=1 --fetch-timeout=60000
+          npm run check:security-audit
+          npm run audit:dependencies
           composer audit --no-interaction
 
       - name: Valider le theme et le plugin
