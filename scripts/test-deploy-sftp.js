@@ -2,7 +2,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { EventEmitter } = require('node:events');
 const path = require('node:path');
-const { checkHost, childPath, collectFiles, connectionOptions, ensureDirectory, fingerprint, publishFile } = require('./deploy-sftp');
+const { checkHost, childPath, cleanInterruptedTransfers, collectFiles, connectionOptions, ensureDirectory, fingerprint, publishFile } = require('./deploy-sftp');
 
 const key = Buffer.from('clé publique de test');
 const env = { FTP_SERVER: 'ftp.example.test', SFTP_HOST_KEY_SHA256: fingerprint(key) };
@@ -111,4 +111,22 @@ test('le manifeste réel contient seulement les livrables et charge functions.ph
   assert.ok(files.includes('inc/schedule-state.php'));
   assert.equal(files.at(-1), 'functions.php');
   assert.equal(files.some((file) => /^(?:node_modules|vendor)\/|\.zip$/i.test(file)), false);
+});
+
+test('seuls les temporaires interrompus de nos livrables peuvent être nettoyés', async () => {
+  const own = '.balneo-12345678-abcd-4abc-8abc-123456789012-file.php';
+  const deleted = [];
+  const sftp = {
+    readdir(directory, callback) {
+      assert.equal(directory, '/theme/inc');
+      callback(null, [own, own.replace('file.php', 'unrelated.php'), 'file.php', '.balneo-user-file.php'].map((filename) => ({ filename })));
+    },
+    lstat(file, callback) { callback(null, { isFile: () => true, isSymbolicLink: () => false }); },
+    unlink(file, callback) { deleted.push(file); callback(null); },
+  };
+  assert.equal(await cleanInterruptedTransfers(sftp, '/theme', ['inc/file.php']), 1);
+  assert.deepEqual(deleted, [`/theme/inc/${own}`]);
+  sftp.lstat = (file, callback) => callback(null, { isFile: () => true, isSymbolicLink: () => true });
+  await assert.rejects(cleanInterruptedTransfers(sftp, '/theme', ['inc/file.php']), /refusé/);
+  assert.equal(deleted.length, 1);
 });

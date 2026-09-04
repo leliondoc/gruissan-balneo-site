@@ -64,6 +64,10 @@ autres thèmes ni aux autres extensions. Les liens symboliques sont refusés et 
 fichiers identiques sont ignorés après comparaison SHA-256. Chaque fichier modifié
 est transféré dans un temporaire à extension conservée, relu et vérifié, puis
 remplacé par renommage atomique. L'atomicité est par fichier, pas pour l'ensemble du
-site. Les temporaires de cette exécution sont nettoyés en cas d'erreur ; aucun
-nettoyage récursif ni suppression d'anciens fichiers distants n'est effectué.
+site. Les temporaires de cette exécution sont nettoyés en cas d'erreur. Après une
+interruption forcée, la prochaine publication terminée nettoie uniquement les
+temporaires UUID de cet outil associés à un livrable connu, après vérification de
+leur chemin et de leur type. Aucun nettoyage récursif ni suppression d'anciens
+contenus distants n'est effectué. Le transfert est borné à dix minutes, avec une
+progression tous les dix fichiers, pour tenir compte du débit SFTP de l'hébergement.
 Une suppression devenue nécessaire doit être examinée et ciblée séparément.

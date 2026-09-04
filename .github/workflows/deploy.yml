@@ -36,7 +36,7 @@ concurrency:
 jobs:
   validate-and-deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Recuperer le depot
@@ -81,7 +81,7 @@ jobs:
           find wordpress-theme/balneo-v2 wordpress-plugin/balneo-media -type f -name '*.php' -print0 | xargs -0 -n1 php -l
 
       - name: Publier le theme et le plugin medias via SFTP
-        timeout-minutes: 5
+        timeout-minutes: 10
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}

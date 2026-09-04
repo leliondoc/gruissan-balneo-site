@@ -145,6 +145,30 @@ async function publishFile(sftp, target, bytes) {
   }
 }
 
+async function cleanInterruptedTransfers(sftp, root, files) {
+  const directories = new Map();
+  for (const file of files) {
+    const directory = path.posix.dirname(file);
+    if (!directories.has(directory)) directories.set(directory, new Set());
+    directories.get(directory).add(path.posix.basename(file));
+  }
+  let removed = 0;
+  for (const [relative, names] of directories) {
+    const directory = relative === '.' ? root : childPath(root, relative);
+    for (const entry of await call(sftp, 'readdir', directory)) {
+      const match = /^\.balneo-[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}-(.+)$/i.exec(entry.filename);
+      // Seulement nos temporaires UUID associés à un livrable connu de ce dossier.
+      if (!match || !names.has(match[1])) continue;
+      const target = childPath(directory, entry.filename);
+      const stats = await call(sftp, 'lstat', target);
+      if (!stats.isFile() || stats.isSymbolicLink()) throw new Error('Temporaire distant non régulier : nettoyage refusé.');
+      await call(sftp, 'unlink', target);
+      removed++;
+    }
+  }
+  return removed;
+}
+
 async function deploy(env) {
   const options = connectionOptions(env);
   if (!env.SFTP_HOST_KEY_SHA256 || !env.FTP_USERNAME || !env.FTP_PASSWORD) throw new Error('Clé serveur ou identifiants SFTP absents.');
@@ -176,6 +200,7 @@ async function deploy(env) {
       const targetRoot = childPath(root, remote);
       const directories = new Set();
       let updated = 0;
+      let checked = 0;
       for (const relative of files) {
         const directory = path.posix.dirname(relative);
         if (directory !== '.' && !directories.has(directory)) {
@@ -183,8 +208,10 @@ async function deploy(env) {
           directories.add(directory);
         }
         if (await publishFile(sftp, childPath(targetRoot, relative), await fs.readFile(path.join(localRoot, local, relative)))) updated++;
+        if (++checked % 10 === 0) console.log(`${local} : ${checked}/${files.length} fichiers vérifiés.`);
       }
-      console.log(`${local} : ${updated} fichiers publiés, ${files.length - updated} déjà identiques. Aucune suppression distante.`);
+      const cleaned = await cleanInterruptedTransfers(sftp, targetRoot, files);
+      console.log(`${local} : ${updated} fichiers publiés, ${files.length - updated} déjà identiques, ${cleaned} temporaires interrompus nettoyés. Aucun contenu distant supprimé.`);
     }
   } finally {
     client.end();
@@ -201,4 +228,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { checkHost, childPath, collectFiles, connectionOptions, ensureDirectory, fingerprint, publishFile };
+module.exports = { checkHost, childPath, cleanInterruptedTransfers, collectFiles, connectionOptions, ensureDirectory, fingerprint, publishFile };
