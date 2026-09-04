@@ -23,6 +23,7 @@ require_once get_theme_file_path( '/inc/security.php' );
 require_once get_theme_file_path( '/inc/performance.php' );
 require_once get_theme_file_path( '/inc/analytics.php' );
 require_once get_theme_file_path( '/inc/admin-branding.php' );
+require_once get_theme_file_path( '/inc/schedule.php' );
 
 /**
  * Configure les fonctionnalités natives du thème.
@@ -84,6 +85,16 @@ function balneo_v2_assets() {
             'in_footer' => true,
         )
     );
+    if ( is_page( 'horaires' ) ) {
+        $schedule_path = get_theme_file_path( '/js/horaires.js' );
+        wp_enqueue_script(
+            'balneo-v2-horaires',
+            get_theme_file_uri( '/js/horaires.js' ),
+            array(),
+            file_exists( $schedule_path ) ? (string) filemtime( $schedule_path ) : BALNEO_V2_VERSION,
+            array( 'strategy' => 'defer', 'in_footer' => true )
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'balneo_v2_assets' );
 

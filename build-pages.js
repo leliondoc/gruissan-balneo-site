@@ -113,10 +113,11 @@ function header(root, isHome) {
   </header>`;
 }
 
-function footer(root) {
+function footer(root, isHome = false) {
   const p = root ? '..' : '.';
   return `
-  <a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span class="cta-orb__label"><span>Acheter</span><small>en ligne</small></span></a>
+  <!-- Fin du contenu de page -->
+${isHome ? '<a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span class="cta-orb__label"><span>Acheter</span><small>en ligne</small></span></a>' : ''}
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -157,10 +158,13 @@ function footer(root) {
 }
 
 function page(title, desc, body, inPages = true, isHome = false) {
+  const pageFooter = title === 'Horaires'
+    ? footer(inPages, isHome).replace('</body>', '<script src="../js/horaires.js?v=20260904-1"></script>\n</body>')
+    : footer(inPages, isHome);
   return header(inPages, isHome)
     .replace('{{TITLE}}', title)
     .replace('{{DESC}}', desc)
-    + body.replace('<main>', '<main id="contenu-principal">') + footer(inPages);
+    + body.replace('<main>', '<main id="contenu-principal">') + pageFooter;
 }
 
 function infoBanner(text) {
@@ -1014,12 +1018,7 @@ ${pageHero('Préparer', 'Brochures', '../assets/photos/bassins-exterieurs.jpg')}
 pages['pages/horaires.html'] = page('Horaires', 'Horaires d’ouverture de l’Espace Balnéo, de l’Espace For.Me et du Parc été.', `
 <main>
 ${pageHero('Préparer', 'Horaires', '../assets/photos/balneo-188.jpg')}
-<section class="section section--light"><div class="container content-block fade-in">
-  <p>Les horaires évoluent selon les espaces et les périodes de l'année. Retrouvez ici les repères essentiels avant votre venue.</p>
-  <div class="pricing-grid"><div class="pricing-card"><p class="pricing-card__name">Espace For.Me</p><p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>6h–23h</p><p class="pricing-card__desc">7j/7 — dernier accès à 22h.</p></div><div class="pricing-card"><p class="pricing-card__name">Espace Balnéo — été</p><p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>10h–19h</p><p class="pricing-card__desc">Évacuation des bassins 15 minutes avant la fermeture.</p></div><div class="pricing-card"><p class="pricing-card__name">Parc été</p><p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>11h–18h</p><p class="pricing-card__desc">Ouverture saisonnière en juillet et août.</p></div></div>
-  <div class="info-box"><p class="info-box__title">Horaires du jour</p><p>Pour les horaires hors saison, les jours fériés, les activités encadrées ou une fermeture technique, vérifiez auprès de l'accueil au <a href="tel:+33468756050">04 68 75 60 50</a>.</p></div>
-  <p><a class="btn" href="contact.html">Contacter l'accueil<i class="fa-solid fa-envelope" aria-hidden="true"></i></a></p>
-</div></section>
+${require('./scripts/schedule-markup').renderDailySchedule()}
 </main>`);
 
 // PRIVATISATION

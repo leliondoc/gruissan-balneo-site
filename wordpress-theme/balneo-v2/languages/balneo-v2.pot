@@ -5,11 +5,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr_FR\n"
 
-#: footer.php:39
+#: footer.php:41
 msgid "® D.B.G — Espace Balnéo de Gruissan"
 msgstr ""
 
-#: footer.php:34
+#: footer.php:36
 msgid "Accès & parking"
 msgstr ""
 
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Accueil — Espace Balnéo Gruissan"
 msgstr ""
 
-#: footer.php:10 inc/navigation.php:77
+#: footer.php:11 inc/navigation.php:77
 msgid "Acheter"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Aller au contenu principal"
 msgstr ""
 
-#: footer.php:27
+#: footer.php:29
 msgid "Aquagym"
 msgstr ""
 
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: footer.php:19
+#: footer.php:21
 msgid "Données personnelles"
 msgstr ""
 
@@ -89,7 +89,7 @@ msgstr ""
 msgid "E-mail : %s"
 msgstr ""
 
-#: footer.php:10
+#: footer.php:11
 msgid "en ligne"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Erreur 404"
 msgstr ""
 
-#: footer.php:25 inc/class-balneo-v2-primary-menu-walker.php:90
+#: footer.php:27 inc/class-balneo-v2-primary-menu-walker.php:90
 msgid "Espace Balnéo"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Espace Balnéo Gruissan"
 msgstr ""
 
-#: footer.php:24
+#: footer.php:26
 msgid "Espace For.Me"
 msgstr ""
 
@@ -117,7 +117,7 @@ msgstr ""
 msgid "Gruissan Tourisme"
 msgstr ""
 
-#: footer.php:33
+#: footer.php:35
 msgid "Horaires"
 msgstr ""
 
@@ -125,11 +125,11 @@ msgstr ""
 msgid "Hydromassages"
 msgstr ""
 
-#: footer.php:17
+#: footer.php:19
 msgid "Informations légales"
 msgstr ""
 
-#: footer.php:31
+#: footer.php:33
 msgid "Infos pratiques"
 msgstr ""
 
@@ -153,11 +153,11 @@ msgstr ""
 msgid "Liens pratiques"
 msgstr ""
 
-#: footer.php:26 inc/class-balneo-v2-primary-menu-walker.php:88
+#: footer.php:28 inc/class-balneo-v2-primary-menu-walker.php:88
 msgid "Massages"
 msgstr ""
 
-#: footer.php:18
+#: footer.php:20
 msgid "Mentions légales"
 msgstr ""
 
@@ -165,11 +165,11 @@ msgstr ""
 msgid "Merci pour votre inscription !"
 msgstr ""
 
-#: functions.php:52
+#: functions.php:53
 msgid "Navigation de pied de page"
 msgstr ""
 
-#: functions.php:51
+#: functions.php:52
 msgid "Navigation principale"
 msgstr ""
 
@@ -193,11 +193,11 @@ msgstr ""
 msgid "Ouvrir le menu"
 msgstr ""
 
-#: footer.php:28
+#: footer.php:30
 msgid "Parc été"
 msgstr ""
 
-#: footer.php:40
+#: footer.php:42
 msgid "Photos : J.B. Roubinet"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Préparer"
 msgstr ""
 
-#: footer.php:20
+#: footer.php:22
 msgid "Règlement intérieur"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Sur rendez-vous"
 msgstr ""
 
-#: footer.php:32
+#: footer.php:34
 msgid "Tarifs"
 msgstr ""
 

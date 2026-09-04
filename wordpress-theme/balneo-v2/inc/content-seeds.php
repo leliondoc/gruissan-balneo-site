@@ -1700,8 +1700,8 @@ BALNEO_FAQ_CONTENT,
     ),
     'horaires' => array(
         'title' => 'Horaires',
-        'legacy_hash' => '0d40a56af1293d73cc99c65e7f5c711674641f62612676e022e68b651772b260',
-        'schema2_hash' => '28e6120e6d0d4fa6b966dc3ff59c3d4044f1f903c9864573edba4d7942ac15f8',
+        'legacy_hash' => '7d6d60f41621c111f5f82f95b9fd53d9afc4a5f6a7ed7895e956ec0d6f9813f1',
+        'schema2_hash' => '44d6980e39925ae9e100a296f35b16633a4d5a7ab03b71f16d233d744f2ec1fc',
         'content' => <<<'BALNEO_HORAIRES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -1726,71 +1726,9 @@ BALNEO_FAQ_CONTENT,
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"section section\u002d\u002dlight","layout":{"type":"default"},"metadata":{"name":"Section"}} -->
-<section class="wp-block-group section section--light"><!-- wp:group {"className":"container content-block fade-in","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
-<div class="wp-block-group container content-block fade-in"><!-- wp:paragraph -->
-<p>Les horaires évoluent selon les espaces et les périodes de l'année. Retrouvez ici les repères essentiels avant votre venue.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"className":"pricing-grid","layout":{"type":"default"}} -->
-<div class="wp-block-group pricing-grid"><!-- wp:group {"className":"pricing-card","layout":{"type":"default"}} -->
-<div class="wp-block-group pricing-card"><!-- wp:paragraph {"className":"pricing-card__name"} -->
-<p class="pricing-card__name">Espace For.Me</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"pricing-card__price"} -->
-<p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>6h–23h</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"pricing-card__desc"} -->
-<p class="pricing-card__desc">7j/7 — dernier accès à 22h.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"pricing-card","layout":{"type":"default"}} -->
-<div class="wp-block-group pricing-card"><!-- wp:paragraph {"className":"pricing-card__name"} -->
-<p class="pricing-card__name">Espace Balnéo — été</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"pricing-card__price"} -->
-<p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>10h–19h</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"pricing-card__desc"} -->
-<p class="pricing-card__desc">Évacuation des bassins 15 minutes avant la fermeture.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"pricing-card","layout":{"type":"default"}} -->
-<div class="wp-block-group pricing-card"><!-- wp:paragraph {"className":"pricing-card__name"} -->
-<p class="pricing-card__name">Parc été</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"pricing-card__price"} -->
-<p class="pricing-card__price"><i class="fa-solid fa-clock context-icon" aria-hidden="true"></i>11h–18h</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"pricing-card__desc"} -->
-<p class="pricing-card__desc">Ouverture saisonnière en juillet et août.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"info-box","layout":{"type":"default"},"metadata":{"name":"Encart d’information"}} -->
-<div class="wp-block-group info-box"><!-- wp:paragraph {"className":"info-box__title"} -->
-<p class="info-box__title">Horaires du jour</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Pour les horaires hors saison, les jours fériés, les activités encadrées ou une fermeture technique, vérifiez auprès de l'accueil au <a href="tel:+33468756050">04 68 75 60 50</a>.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph -->
-<p><a class="btn" href="/contact/">Contacter l'accueil<i class="fa-solid fa-envelope" aria-hidden="true"></i></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></section>
-<!-- /wp:group --></main>
+<!-- wp:shortcode -->
+[balneo_daily_schedule]
+<!-- /wp:shortcode --></main>
 <!-- /wp:group -->
 BALNEO_HORAIRES_CONTENT,
     ),

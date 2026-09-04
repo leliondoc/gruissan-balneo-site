@@ -6,8 +6,10 @@
  */
 
 ?>
+<?php if ( is_front_page() ) : ?>
 <!-- Appel à l’action persistant : billetterie en ligne -->
 <a class="cta-orb" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener"><span class="cta-orb__label"><span><?php esc_html_e( 'Acheter', 'balneo-v2' ); ?></span><small><?php esc_html_e( 'en ligne', 'balneo-v2' ); ?></small></span></a>
+<?php endif; ?>
   <!-- Pied de page : navigation secondaire et informations légales -->
 <footer class="site-footer">
     <div class="container">

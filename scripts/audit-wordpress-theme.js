@@ -32,6 +32,9 @@ const required = [
   'assets/fonts/BarlowCondensed-Regular.woff2', 'assets/fonts/Buttercy.woff2',
   'assets/fonts/BrandonSmithStamp.woff2',
   'languages/balneo-v2.pot',
+  'inc/schedule.php', 'inc/schedule-data.php', 'inc/schedule-admin.php',
+  'inc/schedule-defaults.json', 'js/horaires.js', 'js/schedule-admin.js',
+  'css/schedule-admin.css', 'template-parts/daily-schedule.php',
 ];
 required.forEach(read);
 
@@ -42,6 +45,11 @@ assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/blocks.php
 assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/security.php' )"), 'Module de sécurité non chargé.');
 assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/performance.php' )"), 'Module de performance non chargé.');
 assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/analytics.php' )"), 'Gestion du consentement analytics non chargée.');
+assert(functionsPhp.includes("require_once get_theme_file_path( '/inc/schedule.php' )"), 'Module de planning non chargé.');
+assert(read('inc/schedule-admin.php').includes("'edit_pages', 'balneo-planning'"), 'Accès éditorial au planning absent.');
+assert(read('inc/schedule-admin.php').includes("check_admin_referer( 'balneo_schedule_save'"), 'Protection CSRF du planning absente.');
+assert(read('template-parts/daily-schedule.php').includes('balneo_v2_schedule_render_cards();'), 'Les cartes ne sont pas reliées aux données WordPress.');
+assert(read('template-parts/pages/horaires.php').includes("do_shortcode( '[balneo_daily_schedule]' )"), 'Le gabarit de secours ne consulte pas le planning administrable.');
 assert(functionsPhp.includes('balneo_v2_preload_critical_fonts'), 'Préchargement des polices critiques absent.');
 const fontPreloadFunction = functionsPhp.match(/function balneo_v2_preload_critical_fonts[\s\S]*?add_action\( 'wp_head'/)?.[0] || '';
 assert(!fontPreloadFunction.includes('BrandonSmithStamp.woff2'), 'La fonte décorative lourde ne doit pas être préchargée.');

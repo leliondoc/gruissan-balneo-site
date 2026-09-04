@@ -1,0 +1,81 @@
+[
+  {
+    "id": "balneo",
+    "theme": "balneo",
+    "category": "Lâcher-prise",
+    "title": "Espace Balnéo",
+    "icon": "fa-water",
+    "url": "balneo.html",
+    "default": {
+      "time": "À confirmer",
+      "status": "Selon la période",
+      "note": "Repère été : 10h–19h. Confirmez les horaires de votre visite auprès de l’accueil. Évacuation des bassins 15 minutes avant la fermeture."
+    },
+    "rules": []
+  },
+  {
+    "id": "forme",
+    "theme": "sport",
+    "category": "Se dépasser",
+    "title": "Espace For.Me",
+    "icon": "fa-dumbbell",
+    "url": "salle-de-sport.html",
+    "default": {
+      "time": "06h–23h",
+      "status": "Horaires habituels · 7j/7",
+      "note": "Dernier accès à 22h."
+    },
+    "rules": []
+  },
+  {
+    "id": "aquatique",
+    "theme": "aquatique",
+    "category": "Pratiquer",
+    "title": "Activités aquatiques",
+    "icon": "fa-person-swimming",
+    "url": "aquagym.html",
+    "default": {
+      "time": "Créneaux à confirmer",
+      "status": "Planning auprès de l’accueil",
+      "note": "Aquagym, aquabike, natation et bébés nageurs : renseignez-vous sur les séances du jour."
+    },
+    "rules": []
+  },
+  {
+    "id": "soins",
+    "theme": "soins",
+    "category": "Prendre soin de soi",
+    "title": "Massages & soins",
+    "icon": "fa-spa",
+    "url": "massages.html",
+    "default": {
+      "time": "Sur rendez-vous",
+      "status": "Selon les disponibilités",
+      "note": "Contactez l’accueil pour choisir votre soin et réserver votre créneau."
+    },
+    "rules": []
+  },
+  {
+    "id": "parc",
+    "theme": "parc",
+    "category": "S’amuser",
+    "title": "Parc été",
+    "icon": "fa-sun",
+    "url": "parc-ete.html",
+    "default": {
+      "time": "Hors saison",
+      "status": "Ouverture en juillet et août",
+      "note": "Retrouvez le parc pendant la saison estivale.",
+      "closed": true
+    },
+    "rules": [
+      {
+        "months": [7, 8],
+        "time": "11h–18h",
+        "status": "Horaires habituels · été",
+        "note": "Ouverture saisonnière en juillet et août, sous réserve de modification.",
+        "closed": false
+      }
+    ]
+  }
+]

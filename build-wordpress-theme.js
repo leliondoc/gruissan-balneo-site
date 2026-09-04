@@ -168,6 +168,7 @@ function optimizeFirstHeroImage(markup) {
 
 function transformEditableMarkup(markup, converter = htmlToEditableGutenberg) {
   let output = markup;
+  output = output.replace(/<section class="section daily-schedule"[\s\S]*?<\/section>/, '[balneo_daily_schedule]');
 
   output = output.replace(
     /((?:src|href|data-[a-z-]+)=")(?:\.\.\/|\.\/)?assets\/([^"]+)(")/g,
@@ -288,6 +289,7 @@ function buildFooter(homeHtml) {
   const footerEnd = homeHtml.indexOf('</footer>', footerStart);
   if (footerStart === -1 || footerEnd === -1) throw new Error('Pied de page introuvable');
   let footer = transformMarkup(homeHtml.slice(footerStart, footerEnd + '</footer>'.length));
+  footer = footer.replace(/<a class="cta-orb"[\s\S]*?<\/a>/, (orb) => `<?php if ( is_front_page() ) : ?>\n${orb}\n<?php endif; ?>`);
   footer = footer
     .replace('<a class="cta-orb"', '<!-- Appel à l’action persistant : billetterie en ligne -->\n<a class="cta-orb"')
     .replace('<footer class="site-footer">', '<!-- Pied de page : navigation secondaire et informations légales -->\n<footer class="site-footer">');
@@ -329,8 +331,11 @@ ${footer}
 }
 
 function buildPagePart(html, sourceName) {
-  const body = sliceBetween(html, '</header>', '<a class="cta-orb"', sourceName);
+  const body = sliceBetween(html, '</header>', '<!-- Fin du contenu de page -->', sourceName);
   const optimizedBody = optimizeFirstHeroImage(body).replace(
+    /<section class="section daily-schedule"[\s\S]*?<\/section>/,
+    "<?php echo do_shortcode( '[balneo_daily_schedule]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Le module échappe son rendu. ?>",
+  ).replace(
     /<div class="form-success">[\s\S]*?<\/div>\s*<form data-form>[\s\S]*?<\/form>/,
     "<?php echo do_shortcode( '[balneo_newsletter_form]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sortie échappée dans le shortcode. ?>",
   );
@@ -353,7 +358,7 @@ function phpNowdoc(value, slug) {
 
 function buildContentSeeds(homeHtml) {
   const entries = [];
-  const homeBody = optimizeFirstHeroImage(optimizeImages(sliceBetween(homeHtml, '</header>', '<a class="cta-orb"', 'index.html')));
+  const homeBody = optimizeFirstHeroImage(optimizeImages(sliceBetween(homeHtml, '</header>', '<!-- Fin du contenu de page -->', 'index.html')));
   const homeLegacyContent = transformLegacyEditableMarkup(homeBody);
   const homeSchema2Content = transformEditableMarkup(homeBody, htmlToLegacyBalneoGutenberg);
   entries.push(`    'accueil' => array(\n        'title' => 'Accueil',\n        'legacy_hash' => '${crypto.createHash('sha256').update(homeLegacyContent).digest('hex')}',\n        'schema2_hash' => '${crypto.createHash('sha256').update(homeSchema2Content).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(homeBody), 'accueil')},\n    ),`);
@@ -361,7 +366,7 @@ function buildContentSeeds(homeHtml) {
   Object.entries(pages).forEach(([slug, title]) => {
     const sourceName = `${slug}.html`;
     const html = fs.readFileSync(path.join(root, 'pages', sourceName), 'utf8');
-    const body = optimizeFirstHeroImage(optimizeImages(sliceBetween(html, '</header>', '<a class="cta-orb"', sourceName)));
+    const body = optimizeFirstHeroImage(optimizeImages(sliceBetween(html, '</header>', '<!-- Fin du contenu de page -->', sourceName)));
     const legacyContent = transformLegacyEditableMarkup(body);
     const schema2Content = transformEditableMarkup(body, htmlToLegacyBalneoGutenberg);
     entries.push(`    '${slug}' => array(\n        'title' => '${title.replace(/'/g, "\\'")}',\n        'legacy_hash' => '${crypto.createHash('sha256').update(legacyContent).digest('hex')}',\n        'schema2_hash' => '${crypto.createHash('sha256').update(schema2Content).digest('hex')}',\n        'content' => ${phpNowdoc(transformEditableMarkup(body), slug)},\n    ),`);
@@ -423,6 +428,7 @@ require_once get_theme_file_path( '/inc/security.php' );
 require_once get_theme_file_path( '/inc/performance.php' );
 require_once get_theme_file_path( '/inc/analytics.php' );
 require_once get_theme_file_path( '/inc/admin-branding.php' );
+require_once get_theme_file_path( '/inc/schedule.php' );
 
 /**
  * Configure les fonctionnalités natives du thème.
@@ -484,6 +490,16 @@ function balneo_v2_assets() {
             'in_footer' => true,
         )
     );
+    if ( is_page( 'horaires' ) ) {
+        $schedule_path = get_theme_file_path( '/js/horaires.js' );
+        wp_enqueue_script(
+            'balneo-v2-horaires',
+            get_theme_file_uri( '/js/horaires.js' ),
+            array(),
+            file_exists( $schedule_path ) ? (string) filemtime( $schedule_path ) : BALNEO_V2_VERSION,
+            array( 'strategy' => 'defer', 'in_footer' => true )
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'balneo_v2_assets' );
 
@@ -545,11 +561,15 @@ function buildTheme() {
   ensureDir(path.join(themeRoot, 'js'));
   fs.writeFileSync(path.join(themeRoot, 'js', 'main.js'), buildMainScript(), 'utf8');
   fs.copyFileSync(path.join(root, 'js', 'analytics.js'), path.join(themeRoot, 'js', 'analytics.js'));
+  fs.copyFileSync(path.join(root, 'js', 'horaires.js'), path.join(themeRoot, 'js', 'horaires.js'));
+  fs.copyFileSync(path.join(root, 'wordpress-admin', 'js', 'schedule-admin.js'), path.join(themeRoot, 'js', 'schedule-admin.js'));
+  fs.copyFileSync(path.join(root, 'data', 'horaires.json'), path.join(themeRoot, 'inc', 'schedule-defaults.json'));
 
   const homeHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   write('header.php', buildHeader(homeHtml));
   write('footer.php', buildFooter(homeHtml));
   write('inc/content-seeds.php', buildContentSeeds(homeHtml));
+  write('template-parts/daily-schedule.php', "<?php /** Planning journalier. @package BalneoV2 */ if ( ! defined( 'ABSPATH' ) ) { exit; } ?>\n" + transformMarkup(require('./scripts/schedule-markup').renderDailySchedule({ dynamic: true })));
   write('template-parts/pages/home.php', buildPagePart(homeHtml, 'index.html'));
 
   Object.keys(pages).forEach((slug) => {

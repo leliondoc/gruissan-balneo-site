@@ -1,0 +1,27 @@
+.planning-admin { max-width: 1140px; }
+.planning-admin [hidden] { display: none !important; }
+.planning-admin .planning-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.planning-admin .planning-panel { padding: 24px; margin: 24px 0; border: 1px solid #ccd0d4; border-top: 4px solid #009885; border-radius: 5px; background: #fff; }
+.planning-admin .planning-panel h2 { margin-top: 0; }
+.planning-admin .planning-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 18px 0; }
+.planning-admin .planning-field label, .planning-admin legend { display: block; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+.planning-admin .planning-field input, .planning-admin .planning-field textarea, .planning-admin .planning-field select { width: 100%; max-width: none; }
+.planning-admin .planning-field input, .planning-admin .planning-field select { min-height: 40px; }
+.planning-admin .planning-rule { margin: 24px 0; padding: 20px; border: 1px solid #aaccde; border-radius: 4px; background: #f7fbfb; }
+.planning-admin .planning-rule > legend { padding: 0 8px; color: #024360; font-size: 17px; }
+.planning-admin .planning-rule__toolbar { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.planning-admin .planning-rule__toolbar .planning-field { flex: 1 1 250px; }
+.planning-admin .planning-rule__toolbar button { min-height: 40px; }
+.planning-admin .planning-checks { margin: 18px 0; padding: 0; }
+.planning-admin .planning-checks > div { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.planning-admin .planning-checks label { display: inline-flex; align-items: center; min-height: 32px; }
+.planning-admin .planning-enabled { display: block; padding: 12px; background: #e7f1f3; font-weight: 600; }
+.planning-admin .notice ul { margin-left: 20px; list-style: disc; }
+.planning-admin .widefat th, .planning-admin .widefat td { vertical-align: middle; }
+.planning-admin .planning-live { min-height: 24px; }
+@media (max-width: 782px) {
+  .planning-admin .planning-panel { padding: 16px; }
+  .planning-admin .planning-fields { grid-template-columns: minmax(0, 1fr); }
+  .planning-admin .planning-rule { padding: 12px; }
+  .planning-admin .widefat { display: block; overflow-x: auto; }
+}
