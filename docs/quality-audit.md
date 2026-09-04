@@ -33,6 +33,16 @@ liens symboliques, intégrité SHA-256 et remplacement atomique de chaque fichie
 Les réglages serveur globaux, un audit RGAA exhaustif et Theme Check restent des
 contrôles distincts, non remplacés par cette suite de tests.
 
+Publication SFTP confirmée le 4 septembre 2026 (exécution GitHub Actions
+`33871180423`) : 143 fichiers du thème et le plugin médias vérifiés, aucun contenu
+distant supprimé et aucun temporaire résiduel détecté. Après publication, Accueil,
+Contact, Horaires, Aquagym, Balnéo et Tarifs répondent en HTTP 200, avec un seul H1,
+aucun lien vide et aucune erreur ni avertissement au validateur HTML Nu du W3C.
+Les cinq activités du jour sont présentes dans le HTML serveur. L'administration
+confirme les statuts datés, les prochaines séances et les fins de période, sans
+modification des horaires enregistrés. La feuille de style servie est identique au
+fichier corrigé du dépôt.
+
 ### Résultats historiques du 27 août
 
 - SEO : titres et descriptions contextuels, URL canonique, Open Graph, Twitter Cards et graphe JSON-LD `WebSite`, `WebPage`, `BreadcrumbList`, établissement local et `Article` lorsque le contenu s’y prête.
