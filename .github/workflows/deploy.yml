@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Recuperer le depot
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.sha }}
 
@@ -49,6 +49,12 @@ jobs:
       - name: Installer les controles WordPress
         timeout-minutes: 3
         run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Verifier la cle SFTP sans identifiants
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          SFTP_HOST_KEY_SHA256: ${{ secrets.SFTP_HOST_KEY_SHA256 }}
+        run: node scripts/deploy-sftp.js --check-host
 
       - name: Verifier les vulnerabilites des dependances
         timeout-minutes: 3
@@ -70,12 +76,6 @@ jobs:
           npm run check:deploy
           npm run audit:wordpress
           find wordpress-theme/balneo-v2 wordpress-plugin/balneo-media -type f -name '*.php' -print0 | xargs -0 -n1 php -l
-
-      - name: Verifier la cle SFTP sans identifiants
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          SFTP_HOST_KEY_SHA256: ${{ secrets.SFTP_HOST_KEY_SHA256 }}
-        run: node scripts/deploy-sftp.js --check-host
 
       - name: Publier le theme et le plugin medias via SFTP
         timeout-minutes: 5
