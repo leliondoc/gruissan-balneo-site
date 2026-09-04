@@ -148,8 +148,8 @@ async function publishFile(sftp, target, bytes) {
 async function deploy(env) {
   const options = connectionOptions(env);
   if (!env.SFTP_HOST_KEY_SHA256 || !env.FTP_USERNAME || !env.FTP_PASSWORD) throw new Error('Clé serveur ou identifiants SFTP absents.');
-  const requestedRoot = env.FTP_SERVER_DIR;
-  if (!requestedRoot || !requestedRoot.startsWith('/') || requestedRoot.includes('\\') || requestedRoot.split('/').includes('..')) throw new Error('Racine WordPress invalide.');
+  const requestedRoot = env.SFTP_SERVER_DIR || '.';
+  if ((requestedRoot !== '.' && !requestedRoot.startsWith('/')) || requestedRoot.includes('\\') || requestedRoot.split('/').includes('..')) throw new Error('Racine WordPress invalide.');
   const localRoot = path.resolve(__dirname, '..');
   const manifests = await Promise.all(TARGETS.map(async ([local, remote]) => ({ local, remote, files: await collectFiles(path.join(localRoot, local)) })));
   const client = new Client();

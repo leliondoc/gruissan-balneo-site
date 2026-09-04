@@ -14,16 +14,18 @@ Le dépôt utilise les secrets suivants, sans jamais exposer leur valeur dans le
 - `FTP_SERVER`
 - `FTP_USERNAME`
 - `FTP_PASSWORD`
-- `FTP_SERVER_DIR`
 - `SFTP_HOST_KEY_SHA256` : empreinte `SHA256:…` de la clé publique ED25519 du serveur.
 
 Les anciens noms `FTP_*` sont conservés pour réutiliser les identifiants existants,
 mais le transport est exclusivement **SFTP sur le port 22**. Le compte OVH est limité
 au dossier du site V2 ; aucun accès au shell SSH n'est nécessaire.
 
-`FTP_SERVER_DIR` doit désigner la racine de l'installation WordPress telle que vue
-par ce compte (par exemple `/` pour un compte restreint au site). La présence de
-`wp-load.php` et `wp-content/` est vérifiée avant publication.
+La variable GitHub facultative `SFTP_SERVER_DIR` désigne la racine WordPress telle
+que vue par SFTP ; par défaut `.` utilise le dossier de connexion du compte
+restreint. Le diagnostic a confirmé que ce dossier contient `wp-load.php` et
+`wp-content/`. Le chemin principal affiché par OVH n'est pas directement accessible
+depuis cet accès restreint. L'ancien secret `FTP_SERVER_DIR` n'est plus utilisé.
+La présence des deux repères WordPress est vérifiée avant chaque publication.
 
 Le serveur indiqué dans l'espace OVH authentifié est `ftp.cluster128.hosting.ovh.net`.
 Le FTPS a été testé le 4 septembre 2026 et refusé par ce serveur (réponse 500 à AUTH
