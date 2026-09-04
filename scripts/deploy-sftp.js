@@ -66,7 +66,11 @@ function call(sftp, method, ...args) {
     try {
       sftp[method](...args, (error, result) => {
         clearTimeout(timeout);
-        if (error) reject(error);
+        if (error) {
+          const context = typeof args[0] === 'string' ? ` ${args[0]}` : '';
+          error.message = `${method}${context} : ${error.message}`;
+          reject(error);
+        }
         else resolve(result);
       });
     } catch (error) { clearTimeout(timeout); reject(error); }
@@ -156,6 +160,10 @@ async function deploy(env) {
       client.connect({ ...options, username: env.FTP_USERNAME, password: env.FTP_PASSWORD, authHandler: ['password'] });
     });
     const sftp = await new Promise((resolve, reject) => client.sftp((error, channel) => error ? reject(error) : resolve(channel)));
+    const home = await call(sftp, 'realpath', '.');
+    console.log(`Répertoire de connexion SFTP : ${home}`);
+    const homeEntries = await call(sftp, 'readdir', '.');
+    console.log(`Repères WordPress accessibles : ${homeEntries.map((entry) => entry.filename).filter((name) => /^(?:wp-load\.php|wp-content|www(?:\.|$))/.test(name)).join(', ') || '(aucun)'}`);
     const root = await call(sftp, 'realpath', requestedRoot);
     if (!root.startsWith('/')) throw new Error('Racine SFTP non absolue.');
     const marker = await call(sftp, 'lstat', childPath(root, 'wp-load.php'));
