@@ -1,5 +1,7 @@
 # Audit du site Balnéo, 8 septembre 2026
 
+Ce document conserve les constats initiaux. Les corrections ont depuis été publiées et vérifiées : voir le [compte rendu des corrections](C:/Users/absys/Desktop/projects/gruissan-balneo-site/docs/corrections-astra-2026-09-08.md).
+
 La base technique est sérieuse et le site principal fonctionne dans les parcours vérifiés. Il reste cependant des défauts concrets de contenu, d'accessibilité et de finition, ainsi qu'une newsletter à finaliser. Je ne considère pas cette V2 comme entièrement prête à lancer en l'état. Aucune faille critique exploitable à distance n'a été démontrée dans le périmètre examiné.
 
 Audit du dépôt et de https://balneov2.gruissan-balneo.com/, sans modification du site, de ses réglages ou de ses contenus. Les vérifications publiques HTTP ont été faites sans authentification. Les parcours visuels et la lecture de l'administration ont utilisé la session WordPress déjà connectée du navigateur. Aucun formulaire envoyant un message, aucune inscription et aucun achat n'ont été soumis.

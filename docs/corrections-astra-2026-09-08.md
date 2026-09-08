@@ -36,4 +36,16 @@ L’identification de l’Office de tourisme suit les [mentions de la billetteri
 
 ## Vérification après livraison
 
-À compléter avec le résultat du déploiement et le contrôle des pages publiques.
+Les corrections ont été publiées avec les commits `2622c56`, `228596e` et `8e23f86`. La [dernière livraison GitHub Actions](https://github.com/leliondoc/gruissan-balneo-site/actions/runs/34215055331) a réussi. Dernière vérification HTTP : 8 septembre 2026 à 12h28, heure de Paris.
+
+- 26 pages sur 26 en HTTP 200, chacune avec un H1 et une zone principale. Aucune ancre locale cassée, aucun identifiant dupliqué, aucune image sans attribut alternatif. Les 22 ressources directement référencées sont accessibles. Le choix `noindex` de la V2 est conservé.
+- Les deux pages juridiques affichent les nouveaux textes et Mathias Szanto est identifié comme responsable de publication. Les mentions de prototype ont disparu.
+- La pastille affiche « For.Me 7j/7 ». Le bandeau d’été est remplacé et l’index de recherche contient les 26 pages publiées, sans les exemples.
+- La page d’exemple a d’abord confirmé le bon rendu d’une page WordPress ordinaire, avec H1 et zone principale. Elle a ensuite été placée dans la corbeille, ainsi que l’article « Bonjour tout le monde ! ». Leurs anciennes adresses répondent en 404. Le retour arrière reste possible dans WordPress.
+- Le registre « Demandes newsletter » est accessible en administration. Aucune demande d’essai n’a été créée. L’API publique de ce type de contenu répond en 404. Une requête de formulaire sans nonce est refusée et renvoyée vers l’accueil avec l’état d’erreur, même sans en-tête Referer.
+- La recherche « piscine » donne des résultats dans le navigateur réel. La navigation Tab reste dans le dialogue et Échap rend le focus au déclencheur. Aucun message d’erreur JavaScript relevé sur l’accueil pendant ces contrôles.
+- Affichage contrôlé à 1280 et 390 pixels sur la V2, et à 320 pixels dans l’aperçu local. Sur ordinateur, le titre commence à 102 pixels et la barre latérale se termine à 54 pixels. Aucun débordement horizontal relevé aux largeurs mobiles vérifiées.
+- Les en-têtes CSP et HSTS prévus sont présents dans les réponses publiques. Les pages 404 conservent des directives cohérentes `noindex, nofollow`.
+- GitHub a exécuté avec succès les tests du formulaire, des contenus publics, de l’interface, du consentement, du planning, des assets et du déploiement, ainsi que PHPCS, l’audit WordPress, la syntaxe PHP et les audits de dépendances npm et Composer. Le contrôle local de syntaxe couvre 57 fichiers PHP du thème et du plugin. Une reconstruction isolée a également confirmé la cohérence des sources et des fichiers générés.
+
+La réception effective des mails, l’intégration dans l’outil de diffusion, un paiement réel et les vérifications d’hébergement énumérées plus haut restent à valider. Les contrôles effectués ne permettent pas d’affirmer une sécurité absolue ni une conformité juridique certifiée.
