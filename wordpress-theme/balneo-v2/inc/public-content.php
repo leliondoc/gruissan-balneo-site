@@ -92,6 +92,11 @@ function balneo_v2_search_index(): void {
 		}
 		set_transient( 'balneo_v2_search_index', $entries, HOUR_IN_SECONDS );
 	}
+	// Le navigateur reçoit du texte brut, y compris pour les index déjà en cache.
+	foreach ( $entries as $index => $entry ) {
+		$entries[ $index ][0] = html_entity_decode( $entry[0], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$entries[ $index ][2] = html_entity_decode( $entry[2], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	}
 	wp_add_inline_script( 'balneo-v2', 'window.BALNEO_SEARCH = ' . wp_json_encode( $entries, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'balneo_v2_search_index', 25 );

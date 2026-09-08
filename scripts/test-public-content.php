@@ -33,4 +33,11 @@ $front = false;
 check( balneo_v2_home_practical_content( $banner, $block ) === $banner, 'Les autres pages ne doivent pas être transformées' );
 $text = balneo_v2_search_block_text( array( array( 'innerHTML' => '<p>Un bassin</p>', 'innerBlocks' => array( array( 'blockName' => 'balneo/rich-text', 'attrs' => array( 'content' => '<strong>Sauna finlandais</strong>' ) ), array( 'innerHTML' => '[balneo_newsletter_form]' ) ) ) ) );
 check( str_contains( $text, 'Un bassin' ) && str_contains( $text, 'Sauna finlandais' ) && ! str_contains( $text, '[' ), 'La recherche doit indexer le texte des blocs, sans exécuter les formulaires' );
+function get_transient( $key ) { return array( array( 'Accès &#038; parking', '/acces-parking/', 'L&#8217;accès &amp; les horaires' ), array( '&lt;script&gt;alert(1)&lt;/script&gt;', '/texte/', '' ) ); }
+function wp_json_encode( $value, $flags ) { return json_encode( $value, $flags ); }
+function wp_add_inline_script( $handle, $script, $position ) { global $search_script; $search_script = $script; }
+balneo_v2_search_index();
+$search_data = json_decode( substr( $search_script, strlen( 'window.BALNEO_SEARCH = ' ), -1 ), true );
+check( $search_data[0][0] === 'Accès & parking' && $search_data[0][2] === 'L’accès & les horaires', 'Les entités des titres et textes en cache doivent devenir du texte brut' );
+check( ! str_contains( $search_script, '<script>' ) && $search_data[1][0] === '<script>alert(1)</script>', 'Le transport JSON doit rester sûr après décodage des entités' );
 echo "Contenus publics validés : blocs historiques, planning du jour, annonces personnalisées et texte de recherche.\n";

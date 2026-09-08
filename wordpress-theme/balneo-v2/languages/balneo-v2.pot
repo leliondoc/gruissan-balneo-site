@@ -61,7 +61,7 @@ msgstr ""
 msgid "Bains & chaleur"
 msgstr ""
 
-#: inc/public-content.php:143
+#: inc/public-content.php:148
 msgid "Balnéo le %1$s : %2$s. %3$s"
 msgstr ""
 
@@ -141,7 +141,7 @@ msgstr ""
 msgid "Espace For.Me"
 msgstr ""
 
-#: inc/public-content.php:150
+#: inc/public-content.php:155
 msgid "Fermer"
 msgstr ""
 
@@ -157,7 +157,7 @@ msgstr ""
 msgid "Horaires"
 msgstr ""
 
-#: inc/public-content.php:133
+#: inc/public-content.php:138
 msgid "Horaires et accès des mineurs : consultez le programme de votre journée."
 msgstr ""
 
