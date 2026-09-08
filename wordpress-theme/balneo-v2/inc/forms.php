@@ -63,6 +63,9 @@ add_shortcode( 'balneo_newsletter_form', 'balneo_v2_newsletter_form_shortcode' )
 /** Traite un formulaire POST valide et redirige vers son état de résultat. */
 function balneo_v2_newsletter_signup(): void {
 	$referer = wp_validate_redirect( (string) wp_get_referer(), home_url( '/' ) );
+	if ( '' === $referer ) {
+		$referer = home_url( '/' );
+	}
 	$referer = explode( '#', remove_query_arg( 'inscription', $referer ) )[0];
 	$nonce   = isset( $_POST['balneo_v2_newsletter_nonce'] ) && is_string( $_POST['balneo_v2_newsletter_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['balneo_v2_newsletter_nonce'] ) ) : '';
 	$method  = isset( $_SERVER['REQUEST_METHOD'] ) && is_string( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '';

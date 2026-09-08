@@ -60,17 +60,24 @@ add_action( 'init', 'balneo_v2_register_newsletter_requests' );
  * @return bool
  */
 function balneo_v2_newsletter_rate_slot( string $scope, int $limit, int $seconds ): bool {
+	global $wpdb;
 	$window = (int) floor( time() / $seconds );
 	$hash   = hash_hmac( 'sha256', $scope . '|' . $window, wp_salt( 'nonce' ) );
-	for ( $slot = 0; $slot < $limit; ++$slot ) {
-		$key = 'balneo_nl_' . $hash . '_' . $slot;
-		// add_option repose sur l'unicité SQL du nom, sans séquence lecture/écriture non atomique.
-		add_option( '_transient_timeout_' . $key, ( $window + 1 ) * $seconds, '', false );
-		if ( add_option( '_transient_' . $key, 1, '', false ) ) {
-			return true;
-		}
+	$key    = 'balneo_nl_' . $hash;
+	$option = '_transient_' . $key;
+	$expiry = '_transient_timeout_' . $key;
+	if ( ! add_option( $expiry, ( $window + 1 ) * $seconds, '', false ) && (int) get_option( $expiry, 0 ) < time() ) {
+		return false;
 	}
-	return false;
+	// L'unicité du nom protège le premier enregistrement concurrent.
+	if ( add_option( $option, 1, '', false ) ) {
+		return true;
+	}
+	// Incrément conditionnel atomique, coût constant même lorsque le quota est atteint.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Atomicité SQL nécessaire ; cache de cette option invalidé juste après.
+	$updated = $wpdb->query( $wpdb->prepare( 'UPDATE %i SET option_value = CAST(option_value AS UNSIGNED) + 1 WHERE option_name = %s AND CAST(option_value AS UNSIGNED) < %d', $wpdb->options, $option, $limit ) );
+	wp_cache_delete( $option, 'options' );
+	return 1 === $updated;
 }
 
 /**
