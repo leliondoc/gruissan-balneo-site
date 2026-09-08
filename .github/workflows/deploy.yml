@@ -73,6 +73,7 @@ jobs:
           npm run check:links
           npm run check:analytics
           npm run check:public-ui
+          npm run check:public-content
           npm run check:newsletter
           npm run check:horaires
           npm run check:planning-admin

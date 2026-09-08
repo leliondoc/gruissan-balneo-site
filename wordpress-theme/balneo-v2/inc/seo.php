@@ -526,6 +526,9 @@ function balneo_v2_seo_robots( array $robots ): array {
 	if ( is_404() || is_search() || is_paged() ) {
 		$robots['noindex'] = true;
 		$robots['follow']  = true;
+		if ( ! empty( $robots['nofollow'] ) ) {
+			unset( $robots['follow'] );
+		}
 		unset( $robots['index'] );
 		return $robots;
 	}

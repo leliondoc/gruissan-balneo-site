@@ -191,6 +191,8 @@ function balneo_v2_newsletter_request_details( WP_Post $post ): void {
 
 /** Place les demandes de plus de 90 jours dans la corbeille WordPress. */
 function balneo_v2_expire_newsletter_requests(): void {
+	// Les compteurs SQL doivent aussi expirer si un cache objet externe est ajouté.
+	delete_expired_transients( true );
 	$batches = 0;
 	do {
 		$ids = get_posts(

@@ -149,7 +149,7 @@ function balneo_v2_home_practical_content( string $content, array $block ): stri
 		}
 		return '<div class="info-banner"><div class="container"><span class="info-banner__message"><a href="' . esc_url( home_url( '/horaires/' ) ) . '">' . esc_html( $label ) . '</a></span><button class="info-banner__close" type="button" aria-label="' . esc_attr__( 'Fermer', 'balneo-v2' ) . '">&times;</button></div></div>';
 	}
-	if ( in_array( 'brand-seal--open', $classes, true ) ) {
+	if ( in_array( 'brand-seal--open', $classes, true ) || in_array( 'hero-seals', $classes, true ) ) {
 		$content = str_replace( '>Ouvert<', '>For.Me<', $content );
 	}
 	if ( in_array( 'news-section', $classes, true ) ) {

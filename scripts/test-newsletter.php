@@ -12,6 +12,7 @@ function wp_salt( $scheme ) { return 'isolated-test-salt'; }
 function sanitize_text_field( $value ) { return trim( strip_tags( $value ) ); }
 function is_email( $value ) { return filter_var( $value, FILTER_VALIDATE_EMAIL ); }
 function wp_slash( $value ) { return $value; }
+function delete_expired_transients( $force_db ) { check( $force_db, 'Les compteurs SQL doivent être nettoyés même avec un cache externe' ); }
 function add_option( $key, $value, ...$args ) { global $options; if ( isset( $options[ $key ] ) ) return false; $options[ $key ] = $value; return true; }
 function get_option( $key ) { return 'admin@example.test'; }
 function get_posts( $query ) {
