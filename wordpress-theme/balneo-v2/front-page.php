@@ -13,7 +13,11 @@ get_header();
 while ( have_posts() ) {
 	the_post();
 	if ( '' !== trim( (string) get_the_content() ) ) {
-		the_content();
+		if ( function_exists( 'balneo_v2_render_page_content' ) ) {
+			balneo_v2_render_page_content();
+		} else {
+			the_content();
+		}
 	} else {
 		get_template_part( 'template-parts/pages/home' );
 	}

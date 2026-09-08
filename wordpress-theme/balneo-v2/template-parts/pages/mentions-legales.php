@@ -21,14 +21,16 @@
 <section class="section section--light">
 	<div class="container content-block fade-in">
 	<h2>Éditeur du site</h2>
-	<p>Espace Balnéoludique de Gruissan<br>Avenue des Bains — 11430 Gruissan<br>Téléphone : 04 68 75 60 50<br>E-mail : espace.balneoludique@gruissan-mediterranee.com</p>
+	<p>Office de tourisme de Gruissan<br>80 boulevard du Pech Maynaud, 11430 Gruissan.</p>
+	<p>Espace Balnéoludique de Gruissan<br>Avenue des Bains - 11430 Gruissan<br>Téléphone : 04 68 75 60 50<br>E-mail : espace.balneoludique@gruissan-mediterranee.com</p>
+	<p>Responsable de publication : Mathias Szanto.</p>
 	<h2>Hébergement</h2>
-	<p>Les coordonnées complètes de l’hébergeur doivent être renseignées par l’éditeur du site avant la mise en production.</p>
+	<p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.<br>Téléphone : 1007 depuis la France ou +33 9 72 10 10 07 depuis l’étranger.<br><a href="https://www.ovhcloud.com/fr/terms-and-conditions/" target="_blank" rel="noopener noreferrer">Informations légales de l’hébergeur</a></p>
 	<h2>Propriété intellectuelle</h2>
 	<p>L'ensemble du contenu de ce site (textes, images, graphismes) est la propriété de l'Espace Balnéoludique de Gruissan ou de ses partenaires. Toute reproduction est interdite sans autorisation préalable.</p>
-	<p>Photos : J.B. Roubinet — utilisées avec autorisation.</p>
+	<p>Photos : J.B. Roubinet - utilisées avec autorisation.</p>
 	<h2>Crédits</h2>
-	<p>&reg; D.B.G — Espace Balnéo de Gruissan</p>
+	<p>&reg; D.B.G - Espace Balnéo de Gruissan</p>
 	</div>
 </section>
 </main>

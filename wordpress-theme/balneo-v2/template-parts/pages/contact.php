@@ -28,7 +28,7 @@
 		<p class="contact-info__label" style="margin-top:var(--space-md)">E-mail</p>
 		<p><a href="mailto:espace.balneoludique@gruissan-mediterranee.com">espace.balneoludique@gruissan-mediterranee.com</a></p>
 		<p class="contact-info__label" style="margin-top:var(--space-md)">Adresse</p>
-		<p>Avenue des Bains — 11430 Gruissan</p>
+		<p>Avenue des Bains - 11430 Gruissan</p>
 	</div>
 	<a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie en ligne<i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
 	</div>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="contact-info__item">
 			<p class="contact-info__label">Adresse</p>
-			<p class="contact-info__value">Avenue des Bains — 11430 Gruissan</p>
+			<p class="contact-info__value">Avenue des Bains - 11430 Gruissan</p>
 			</div>
 		</div>
 		<div>

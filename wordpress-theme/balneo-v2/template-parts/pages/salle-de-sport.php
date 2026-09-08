@@ -41,7 +41,7 @@
 	</table></div>
 	<h2>Abonnements composés</h2>
 	<h3>Piscine + Salle (1 personne)</h3>
-	<p>6 mois : 254 € — 12 mois (-1 mois vidange) : 485 €</p>
+	<p>6 mois : 254 € - 12 mois (-1 mois vidange) : 485 €</p>
 	<h3>Balnéo + Piscine + Salle</h3>
 	<p>Remise 50 % sur activités aquatiques et tarifs préférentiels sur massages.</p>
 	<div class="table-wrap"><table>

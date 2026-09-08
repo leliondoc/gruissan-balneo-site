@@ -28,6 +28,12 @@ function balneo_v2_security_headers( array $headers ): array {
 	$headers['Referrer-Policy']                   = 'strict-origin-when-cross-origin';
 	$headers['Permissions-Policy']                = 'accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()';
 	$headers['X-Permitted-Cross-Domain-Policies'] = 'none';
+	if ( ! isset( $headers['Content-Security-Policy'] ) ) {
+		$headers['Content-Security-Policy'] = "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://gruissan-balneo.horanet.com; upgrade-insecure-requests";
+	}
+	if ( is_ssl() && ! isset( $headers['Strict-Transport-Security'] ) ) {
+		$headers['Strict-Transport-Security'] = 'max-age=86400';
+	}
 
 	return $headers;
 }
@@ -52,3 +58,15 @@ function balneo_v2_external_link_rel( string $rel, string $text ): string {
 	return implode( ' ', $tokens );
 }
 add_filter( 'wp_targeted_link_rel', 'balneo_v2_external_link_rel', 10, 2 );
+
+/**
+ * Réserve les modifications de code au dépôt et au déploiement contrôlé.
+ *
+ * @param array  $caps Capacités requises.
+ * @param string $cap Capacité demandée.
+ * @return array
+ */
+function balneo_v2_disable_code_editors( array $caps, string $cap ): array {
+	return in_array( $cap, array( 'edit_themes', 'edit_plugins' ), true ) ? array( 'do_not_allow' ) : $caps;
+}
+add_filter( 'map_meta_cap', 'balneo_v2_disable_code_editors', 10, 2 );

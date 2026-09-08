@@ -24,7 +24,7 @@
 	<div class="info-box">
 		<p class="info-box__title">Bon à savoir</p>
 		<ul>
-		<li>À partir de 15 ans — sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
+		<li>À partir de 15 ans - sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
 		<li>Arriver 20 min avant pour prendre une douche</li>
 		</ul>
 	</div>

@@ -25,7 +25,7 @@
 	<ul>
 		<li>Se conformer scrupuleusement aux consignes du personnel</li>
 		<li>Shorts et jupes de bain interdits dans l'ensemble de l'établissement</li>
-		<li>Cheveux longs attachés — serviettes non fournies</li>
+		<li>Cheveux longs attachés - serviettes non fournies</li>
 		<li>Évacuation des bassins 1/4 d'heure avant la fermeture</li>
 	</ul>
 	<h2>Massages et soins bien-être</h2>

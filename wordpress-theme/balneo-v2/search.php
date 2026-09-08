@@ -7,7 +7,7 @@
 
 get_header();
 ?>
-<main class="section"><div class="container entry-content">
+<main id="contenu-principal" tabindex="-1" class="section entry-content--standard"><div class="container entry-content">
 <h1><?php /* translators: %s : requête de recherche. */ printf( esc_html__( 'Résultats pour « %s »', 'balneo-v2' ), esc_html( get_search_query() ) ); ?></h1>
 <?php
 if ( have_posts() ) :

@@ -23,7 +23,7 @@
 	<p>À mi-chemin entre l'aquagym et le vélo en salle, l'Aquabike associe travail cardio et renforcement musculaire sur un vélo immergé, en petit groupe.</p>
 	<div class="info-box"><p class="info-box__title">Côté pratique</p><ul><li>Séance de 45 minutes</li><li>Réservation obligatoire au <a href="tel:+33468756050">04 68 75 60 50</a></li><li>Shorts et jupes de bain interdits</li><li>Pas de cours les jours fériés, sauf programme estival</li></ul></div>
 	<h2>Tarifs</h2>
-	<div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>11 €</td></tr><tr><td>12 séances — validité 1 an</td><td>121 €</td></tr><tr><td>24 séances — validité 1 an</td><td>231 €</td></tr></table></div>
+	<div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>11 €</td></tr><tr><td>12 séances - validité 1 an</td><td>121 €</td></tr><tr><td>24 séances - validité 1 an</td><td>231 €</td></tr></table></div>
 	<p><a href="<?php echo esc_url( home_url( '/aquagym/' ) ); ?>">Découvrir aussi l'Aquagym →</a></p>
 	</div>
 </section>

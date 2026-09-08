@@ -310,6 +310,52 @@ function balneo_v2_seed_pages(): void {
 }
 add_action( 'after_switch_theme', 'balneo_v2_seed_pages', 10 );
 
+/** Remplace uniquement les deux textes juridiques encore identifiés comme prototypes. */
+function balneo_v2_update_prototype_legal_pages(): void {
+	if ( ! current_user_can( 'manage_options' ) || '1.0' === get_option( 'balneo_v2_legal_revision' ) ) {
+		return;
+	}
+	$seeds    = balneo_v2_content_seeds();
+	$markers  = array(
+		'mentions-legales'     => 'Site prototype en cours de refonte',
+		'donnees-personnelles' => 'Ce prototype statique',
+	);
+	$complete = true;
+	foreach ( $markers as $slug => $marker ) {
+		$page = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( ! $page || ! isset( $seeds[ $slug ] ) ) {
+			$complete = false;
+			continue;
+		}
+		if ( ! str_contains( $page->post_content, $marker ) ) {
+			continue;
+		}
+		if ( ! metadata_exists( 'post', $page->ID, '_balneo_v2_legal_backup_20260908' ) ) {
+			if ( ! add_post_meta( $page->ID, '_balneo_v2_legal_backup_20260908', wp_slash( $page->post_content ), true ) ) {
+				$complete = false;
+				continue;
+			}
+		}
+		wp_save_post_revision( $page->ID );
+		$result = wp_update_post(
+			wp_slash(
+				array(
+					'ID'           => $page->ID,
+					'post_content' => $seeds[ $slug ]['content'],
+				)
+			),
+			true
+		);
+		if ( is_wp_error( $result ) || ! $result ) {
+			$complete = false;
+		}
+	}
+	if ( $complete ) {
+		update_option( 'balneo_v2_legal_revision', '1.0', false );
+	}
+}
+add_action( 'admin_init', 'balneo_v2_update_prototype_legal_pages', 30 );
+
 /**
  * Applique la migration sur les installations où le thème était déjà actif.
  */

@@ -31,7 +31,7 @@
 		<li>Shorts et jupes de bain interdits</li>
 		<li>Les enfants de moins de 18 ans doivent être accompagnés par un adulte en balnéo. Les enfants de moins de 3 ans ont accès uniquement aux trois alvéoles thématiques</li>
 		<li>Les saunas et le hammam sont accessibles à partir de 16 ans</li>
-		<li>Cheveux longs attachés — serviettes non fournies</li>
+		<li>Cheveux longs attachés - serviettes non fournies</li>
 		<li>Évacuation des bassins 1/4 d'heure avant la fermeture</li>
 		<li>En cas d'orage, les bassins extérieurs peuvent être fermés</li>
 		<li>Moyens de paiement : espèces, CB, chèques ANCV (format papier)</li>
@@ -60,7 +60,7 @@
 	</table></div>
 
 	<p>Avec l'entrée Balnéo, accès au bassin de nage de 25m aux horaires d'ouverture de celui-ci.</p>
-	<p>Carte 10 entrées 2h30 : 180 € — Carte 20 entrées 2h30 : 350 € — Carte de 10 heures (nominative) : 105 €</p>
+	<p>Carte 10 entrées 2h30 : 180 € - Carte 20 entrées 2h30 : 350 € - Carte de 10 heures (nominative) : 105 €</p>
 	<p>Pour l'achat d'1 entrée Balnéo : accès à l'espace Forme (même jour) : 6 €</p>
 
 	<h2>Abonnements</h2>

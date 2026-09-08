@@ -6,12 +6,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 return array(
     'accueil' => array(
         'title' => 'Accueil',
-        'legacy_hash' => '926fc2f9c481c1b0132e00853dc1df328d84a666fc7672e8f4d1d308a348e5aa',
-        'schema2_hash' => 'fdd7da1e9678b8fa7015f39db69d29be929a6de0e2bb746357bda60b648f506b',
+        'legacy_hash' => 'a723cefeb92dc3af5f4d3791c77c5eb0f266c048ac4c549d9598e9774f7299d5',
+        'schema2_hash' => 'd81c4fe13ecc98ee50243f8a33eb8b074a4c27352fd7738df55891a1d9445357',
         'content' => <<<'BALNEO_ACCUEIL_CONTENT'
 <!-- wp:group {"className":"info-banner","layout":{"type":"default"}} -->
 <div class="wp-block-group info-banner"><!-- wp:group {"className":"container","layout":{"type":"default"}} -->
-<div class="wp-block-group container"><!-- wp:balneo/rich-text {"content":"\u003cstrong\u003eAccès des mineurs à la Balnéo :\u003c/strong\u003e du samedi 27 juin au dimanche 30 août inclus, les mineurs sont admis toute la journée en Balnéo.","htmlAttributes":{"class":"info-banner__message"}} /-->
+<div class="wp-block-group container"><!-- wp:balneo/rich-text {"content":"\u003ca href=\u0022/horaires/\u0022\u003e\u003cstrong\u003eHoraires et accès des mineurs :\u003c/strong\u003e consultez le programme de votre journée.\u003c/a\u003e","htmlAttributes":{"class":"info-banner__message"}} /-->
 
 <!-- wp:balneo/rich-text {"tagName":"button","content":"×","htmlAttributes":{"class":"info-banner__close","type":"button","aria-label":"Fermer"}} /--></div>
 <!-- /wp:group --></div>
@@ -49,7 +49,7 @@ return array(
 
 <!-- wp:group {"className":"hero-seals","layout":{"type":"default"},"metadata":{"name":"Pastilles d’information","balneoAttributes":{"role":"group","aria-label":"Informations saison 2026"}}} -->
 <div class="wp-block-group hero-seals"><!-- wp:group {"className":"brand-seal brand-seal\u002d\u002dopen","layout":{"type":"default"}} -->
-<div class="wp-block-group brand-seal brand-seal--open"><!-- wp:balneo/rich-text {"tagName":"strong","content":"Ouvert"} /-->
+<div class="wp-block-group brand-seal brand-seal--open"><!-- wp:balneo/rich-text {"tagName":"strong","content":"For.Me"} /-->
 
 <!-- wp:balneo/rich-text {"content":"7j/7"} /--></div>
 <!-- /wp:group --></div>
@@ -345,7 +345,7 @@ return array(
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading fade-in","layout":{"type":"default"},"metadata":{"name":"En-tête de section"}} -->
 <div class="wp-block-group section-heading fade-in"><!-- wp:group {"layout":{"type":"default"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"section__label"} -->
-<p class="section__label">En ce moment</p>
+<p class="section__label">Le journal</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"className":"display-title"} -->
@@ -466,7 +466,7 @@ return array(
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"contact-info__value"} -->
-<p class="contact-info__value">Avenue des Bains — 11430 Gruissan</p>
+<p class="contact-info__value">Avenue des Bains - 11430 Gruissan</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -704,8 +704,8 @@ BALNEO_ACTUALITES_CONTENT,
     ),
     'aquabike' => array(
         'title' => 'Aquabike',
-        'legacy_hash' => 'd1ac52b7a593a37c0f07dddc1ab3a0f053b2a1502b229c256929f5a82ed79a5d',
-        'schema2_hash' => 'a915cd8c628c8391edbeade7e79da6d5a75d26b5a40c9a62f5d617989d645121',
+        'legacy_hash' => 'dae5515549f646322775ac933ffad402d1d91a4c2d8c7aad2970d842a8dbe42a',
+        'schema2_hash' => '3208cf8d0b101cb6d166dc85fba4af53dd4685e3ef231ebbc16f1b8693e5fff4',
         'content' => <<<'BALNEO_AQUABIKE_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -766,7 +766,7 @@ BALNEO_ACTUALITES_CONTENT,
 
 <!-- wp:group {"className":"table-wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group table-wrap"><!-- wp:table -->
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>11 €</td></tr><tr><td>12 séances — validité 1 an</td><td>121 €</td></tr><tr><td>24 séances — validité 1 an</td><td>231 €</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>11 €</td></tr><tr><td>12 séances - validité 1 an</td><td>121 €</td></tr><tr><td>24 séances - validité 1 an</td><td>231 €</td></tr></tbody></table></figure>
 <!-- /wp:table --></div>
 <!-- /wp:group -->
 
@@ -788,8 +788,8 @@ BALNEO_AQUABIKE_CONTENT,
     ),
     'aquagym' => array(
         'title' => 'Aquagym',
-        'legacy_hash' => 'fa661837cb50b8c34f1aeff5381a3a229f78e5d3ac4c6df3da7ec7f114ebef04',
-        'schema2_hash' => 'cffbe880cf12eddcabb8415ba470fec99a9dbd02d10dce839cdb07520b1e71b6',
+        'legacy_hash' => '982447e38e31abdcc17057c838187c3b5fce3bd835425a3c0c092db870db148f',
+        'schema2_hash' => '8b4560aa24f63d2e43fc46500c457411143e240db455571ee4f06be943d6b66e',
         'content' => <<<'BALNEO_AQUAGYM_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -850,7 +850,7 @@ BALNEO_AQUABIKE_CONTENT,
 
 <!-- wp:group {"className":"table-wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group table-wrap"><!-- wp:table -->
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>9 €</td></tr><tr><td>5 séances — validité 1 mois</td><td>41 €</td></tr><tr><td>10 séances — validité 1 an</td><td>81 €</td></tr><tr><td>Trimestre — hors été</td><td>105 €</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>9 €</td></tr><tr><td>5 séances - validité 1 mois</td><td>41 €</td></tr><tr><td>10 séances - validité 1 an</td><td>81 €</td></tr><tr><td>Trimestre - hors été</td><td>105 €</td></tr></tbody></table></figure>
 <!-- /wp:table --></div>
 <!-- /wp:group -->
 
@@ -872,8 +872,8 @@ BALNEO_AQUAGYM_CONTENT,
     ),
     'article-parc-ete' => array(
         'title' => 'Ouverture du parc été',
-        'legacy_hash' => 'f12ea601d30059fcf5bd7471764a15036e5c817869cefe1367097f27d794a985',
-        'schema2_hash' => '5a605161846df3ec8bd5305bd83a0a380d82b3fb75b11e13635ca8f9203aa204',
+        'legacy_hash' => '8402e83fd7dba86835dbec0455d15c0f6b9b564ff0c49b8c1a98597c6da804bd',
+        'schema2_hash' => '7ea9b1bc3b98630e26ca9d36ea843281b7604701a5028366b114ab50f84914ca',
         'content' => <<<'BALNEO_ARTICLE_PARC_ETE_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -887,7 +887,7 @@ BALNEO_AQUAGYM_CONTENT,
 
 <!-- wp:group {"className":"page-hero__content","layout":{"type":"default"},"metadata":{"name":"Contenu de la bannière"}} -->
 <div class="wp-block-group page-hero__content"><!-- wp:paragraph {"className":"page-hero__label"} -->
-<p class="page-hero__label">Actualité — 3 juin</p>
+<p class="page-hero__label">Actualité - 3 juin</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1,"className":"page-hero__title"} -->
@@ -920,8 +920,8 @@ BALNEO_ARTICLE_PARC_ETE_CONTENT,
     ),
     'article-riviere' => array(
         'title' => 'Réouverture de la rivière extérieure',
-        'legacy_hash' => 'a140274b10b885825ce9f83538b1bea28376a5b3998d8f54a825ec88c7c47029',
-        'schema2_hash' => '4f54bbbee8163484363ee9789c08b33a84e5fd3f91bbc2de4a039a2b0e425cdc',
+        'legacy_hash' => '3d74eb06d6b87a3d32d476b07d2e5192c19846a5fb8f3e2f46e5df822f7597b4',
+        'schema2_hash' => '42856346576511de107ef8e4fb635e566cf763dea7e0dd37f232af23b23f7332',
         'content' => <<<'BALNEO_ARTICLE_RIVIERE_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -935,7 +935,7 @@ BALNEO_ARTICLE_PARC_ETE_CONTENT,
 
 <!-- wp:group {"className":"page-hero__content","layout":{"type":"default"},"metadata":{"name":"Contenu de la bannière"}} -->
 <div class="wp-block-group page-hero__content"><!-- wp:paragraph {"className":"page-hero__label"} -->
-<p class="page-hero__label">Actualité — 1 avril</p>
+<p class="page-hero__label">Actualité - 1 avril</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1,"className":"page-hero__title"} -->
@@ -964,8 +964,8 @@ BALNEO_ARTICLE_RIVIERE_CONTENT,
     ),
     'article-stages-natation' => array(
         'title' => 'Stages de natation enfants été',
-        'legacy_hash' => 'dd7a023eb34a3a8a086f1e298d2226b58c689f6edb08e297d8f7c3bf5f935aa2',
-        'schema2_hash' => '257d6f814ddee435b0511d9e47c4d9c64b7f20af57be560b2fa3556e06d43070',
+        'legacy_hash' => 'ff1995f10d75d4254142402699da62afd87049211d01926caf8e06efb0c65d07',
+        'schema2_hash' => '8bab09552332a69a616f37fcd9fe68451b5c79505288f1ecc47cc5a09a133204',
         'content' => <<<'BALNEO_ARTICLE_STAGES_NATATION_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -979,7 +979,7 @@ BALNEO_ARTICLE_RIVIERE_CONTENT,
 
 <!-- wp:group {"className":"page-hero__content","layout":{"type":"default"},"metadata":{"name":"Contenu de la bannière"}} -->
 <div class="wp-block-group page-hero__content"><!-- wp:paragraph {"className":"page-hero__label"} -->
-<p class="page-hero__label">Actualité — 1 juin</p>
+<p class="page-hero__label">Actualité - 1 juin</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1,"className":"page-hero__title"} -->
@@ -997,7 +997,7 @@ BALNEO_ARTICLE_RIVIERE_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Niveau 1 : 9h à 9h45 ou 11h à 11h45 — Niveau 2 : 10h à 10h45. 8 enfants maximum par groupe.</p>
+<p>Niveau 1 : 9h à 9h45 ou 11h à 11h45 - Niveau 2 : 10h à 10h45. 8 enfants maximum par groupe.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -1016,8 +1016,8 @@ BALNEO_ARTICLE_STAGES_NATATION_CONTENT,
     ),
     'balneo' => array(
         'title' => 'Balnéo',
-        'legacy_hash' => '75edd0b0f2526b7d41b0ed58d26ab60ef910d95bd3b8cb7a8346c1ba57112976',
-        'schema2_hash' => 'dae9a8c89666231f6096f73e23e53b2a2575b50cd50df7550682b7efe469e28a',
+        'legacy_hash' => 'bfdad8f9e17e4ec5dc483089f3bf3281b2d466ae10ea97f22fee838b7cd00f2a',
+        'schema2_hash' => '23d60a12f2d830307fd57d8ec9260cd24397d405017168c1a027ed4c752d1069',
         'content' => <<<'BALNEO_BALNEO_CONTENT'
 <!-- wp:group {"className":"info-banner","layout":{"type":"default"}} -->
 <div class="wp-block-group info-banner"><!-- wp:group {"className":"container","layout":{"type":"default"}} -->
@@ -1071,7 +1071,7 @@ BALNEO_ARTICLE_STAGES_NATATION_CONTENT,
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Cheveux longs attachés — serviettes non fournies</li>
+<li>Cheveux longs attachés - serviettes non fournies</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -1125,7 +1125,7 @@ BALNEO_ARTICLE_STAGES_NATATION_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Carte 10 entrées 2h30 : 180 € — Carte 20 entrées 2h30 : 350 € — Carte de 10 heures (nominative) : 105 €</p>
+<p>Carte 10 entrées 2h30 : 180 € - Carte 20 entrées 2h30 : 350 € - Carte de 10 heures (nominative) : 105 €</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -1236,8 +1236,8 @@ BALNEO_BALNEO_CONTENT,
     ),
     'bebes-nageurs' => array(
         'title' => 'Bébés nageurs',
-        'legacy_hash' => '3999f718ff68154f0a11cdce34762842411e36592ed053b30c1df1b2b37f80b3',
-        'schema2_hash' => 'b63101dcdacf1188d347490c1178e12d337387cbb33f9ab4f5d1011d31c21cf1',
+        'legacy_hash' => 'a15e38f9e4b45e4f1024c345f37f440a386485a32c355ad7ab89e861240af29b',
+        'schema2_hash' => '6f923800e0b1822a3087e5b8defc15fe23809babe00fc51a0919657101456edf',
         'content' => <<<'BALNEO_BEBES_NAGEURS_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -1301,7 +1301,7 @@ BALNEO_BALNEO_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>1 séance : <strong>9 € par parent accompagnateur</strong> — gratuit pour l'enfant.<br>Carte 10 séances : <strong>81 €</strong>, valable 1 an.</p>
+<p>1 séance : <strong>9 € par parent accompagnateur</strong> - gratuit pour l'enfant.<br>Carte 10 séances : <strong>81 €</strong>, valable 1 an.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group --></main>
@@ -1406,8 +1406,8 @@ BALNEO_BROCHURES_CONTENT,
     ),
     'contact' => array(
         'title' => 'Contact',
-        'legacy_hash' => '5ddcae60c094d9e1d1f9b187a70bd279dcad9df2d198226cf1f174465abb953d',
-        'schema2_hash' => '21e650d75c17038e57f8b3ee69d58261a673071ee3718b9db366e50ca8c00b3d',
+        'legacy_hash' => '5c9302943e0f36917fe783f9be332109cac3a19c481cb9670b887f5615cee15d',
+        'schema2_hash' => '1f3f8e4c4b07f9a36c591f84c65efb2c0aa0e06ce6c1927160faa9006fc7d6b5',
         'content' => <<<'BALNEO_CONTACT_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -1458,7 +1458,7 @@ BALNEO_BROCHURES_CONTENT,
 <!-- wp:balneo/rich-text {"tagName":"p","content":"Adresse","htmlAttributes":{"class":"contact-info__label","style":"margin-top:var(\u002d\u002dspace-md)"}} /-->
 
 <!-- wp:paragraph -->
-<p>Avenue des Bains — 11430 Gruissan</p>
+<p>Avenue des Bains - 11430 Gruissan</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -1506,7 +1506,7 @@ BALNEO_BROCHURES_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"contact-info__value"} -->
-<p class="contact-info__value">Avenue des Bains — 11430 Gruissan</p>
+<p class="contact-info__value">Avenue des Bains - 11430 Gruissan</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -1536,8 +1536,8 @@ BALNEO_CONTACT_CONTENT,
     ),
     'donnees-personnelles' => array(
         'title' => 'Données personnelles',
-        'legacy_hash' => '44324376f4b60376e3b9b1d64793d4590dc926c9652e5bf28dc168fcc0fa1951',
-        'schema2_hash' => '90cd7f1480a0292f1a6f10a1be37d7df09fb365875b973f7a940df941ceec719',
+        'legacy_hash' => '7e0f158ca1a82027e3d0efca289f5015a884632b09b7ec49b4c62d38d725a2a5',
+        'schema2_hash' => '6fbd8786c2370a4fc7072f7311af814ce326c284e80cde29b666de7abc1b0572',
         'content' => <<<'BALNEO_DONNEES_PERSONNELLES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -1573,7 +1573,7 @@ BALNEO_CONTACT_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Le directeur de l'Espace Balnéoludique de Gruissan.<br>Pour exercer vos droits : espace.balneoludique@gruissan-mediterranee.com</p>
+<p>Office de tourisme de Gruissan, 80 boulevard du Pech Maynaud, 11430 Gruissan, pour l’Espace Balnéoludique.<br>Pour exercer vos droits : espace.balneoludique@gruissan-mediterranee.com</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -1581,7 +1581,7 @@ BALNEO_CONTACT_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Les données collectées via le formulaire d’inscription à la newsletter (prénom, nom, e-mail et, facultativement, code postal et ville) servent uniquement à l’envoi des actualités de l’Espace Balnéo. Le traitement repose sur votre consentement et les données sont accessibles aux seules personnes habilitées.</p>
+<p>Le formulaire permet de demander une inscription à la newsletter. Votre prénom, nom, adresse e-mail et, si vous les renseignez, code postal et ville sont enregistrés dans WordPress avec la date et le texte du consentement. L’équipe habilitée de l’Espace Balnéo traite ensuite votre demande. Cette collecte repose sur votre consentement ; elle n’entraîne pas à elle seule l’ajout automatique à une liste de diffusion.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -1589,7 +1589,7 @@ BALNEO_CONTACT_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Les données sont conservées jusqu’au retrait de votre consentement, sous réserve des obligations légales applicables. Vous pouvez vous désinscrire ou exercer vos droits en écrivant à l’adresse indiquée ci-dessus. Vous pouvez également introduire une réclamation auprès de la CNIL.</p>
+<p>La demande est conservée dans l’administration pendant 90 jours, puis placée dans la corbeille WordPress avant sa suppression selon le délai de cette corbeille. Vous pouvez retirer votre demande ou votre consentement à tout moment en écrivant à l’adresse indiquée ci-dessus. Les informations de l’éventuel abonnement vous sont communiquées lors de sa prise en charge par l’équipe. Vous pouvez également introduire une réclamation auprès de la CNIL.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -1609,7 +1609,7 @@ BALNEO_CONTACT_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Vous pouvez accepter, refuser ou personnaliser ces traceurs depuis le panneau de consentement. Le btn « Gérer mes cookies », disponible sur toutes les pages, permet de modifier ou retirer votre choix à tout moment.</p>
+<p>Vous pouvez accepter, refuser ou personnaliser ces traceurs depuis le panneau de consentement. Le bouton « Gérer mes cookies », disponible sur toutes les pages, permet de modifier ou retirer votre choix à tout moment. Votre choix est mémorisé pendant six mois. Les favoris sont conservés dans votre navigateur et peuvent être retirés depuis « Mes favoris ».</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -1738,8 +1738,8 @@ BALNEO_HORAIRES_CONTENT,
     ),
     'hydromassages' => array(
         'title' => 'Hydromassages',
-        'legacy_hash' => '4f5e8d3718b57de64af39c57d56e6bf714d45d91fae7746043199e0f3239ff3b',
-        'schema2_hash' => '651491a736e31688583fc24ad0851a6baa520fbb78a8c31d2e685f89075f408d',
+        'legacy_hash' => '9c0d9fc8b6912ee923500c34b51b19e623daf092027dca7ad41d5cbfe7e04c71',
+        'schema2_hash' => 'd48a065ad933ac9dd8c4d495c069e810ca849aae47ba2573b1b13d7c06256900',
         'content' => <<<'BALNEO_HYDROMASSAGES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -1777,7 +1777,7 @@ BALNEO_HORAIRES_CONTENT,
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>À partir de 15 ans — sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
+<li>À partir de 15 ans - sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -1984,8 +1984,8 @@ BALNEO_INFOS_PRATIQUES_CONTENT,
     ),
     'massages' => array(
         'title' => 'Massages',
-        'legacy_hash' => 'bedbc8e88a6d308fd0c66a3c175ad39af65cca9ef408551cf9178305946c43f0',
-        'schema2_hash' => 'a48bbb730872fb3731e61e477f5ca797b535c4a1b4de7b7778bb3efab6f5a817',
+        'legacy_hash' => 'd6252c71d1b1a1d755638b37c6ab204c212a8e21b2244b4dc90934273791bcef',
+        'schema2_hash' => '0905f8574a1d19baad6bd0496fd54a5b5b7fc7a73e0f252184d38cfce710f072',
         'content' => <<<'BALNEO_MASSAGES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2076,7 +2076,7 @@ BALNEO_INFOS_PRATIQUES_CONTENT,
 <!-- wp:group {"className":"service-item","layout":{"type":"default"}} -->
 <div class="wp-block-group service-item"><!-- wp:group {"layout":{"type":"default"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"service-item__name"} -->
-<p class="service-item__name">Tête — Mains — Pieds</p>
+<p class="service-item__name">Tête - Mains - Pieds</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"service-item__duration"} -->
@@ -2104,7 +2104,7 @@ BALNEO_INFOS_PRATIQUES_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"service-item__duration"} -->
-<p class="service-item__duration">30 ou 60 min — 4e au 8e mois</p>
+<p class="service-item__duration">30 ou 60 min - 4e au 8e mois</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -2116,7 +2116,7 @@ BALNEO_INFOS_PRATIQUES_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"service-item__duration"} -->
-<p class="service-item__duration">5 à 14 ans — accompagné en cabine</p>
+<p class="service-item__duration">5 à 14 ans - accompagné en cabine</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -2128,7 +2128,7 @@ BALNEO_INFOS_PRATIQUES_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"service-item__duration"} -->
-<p class="service-item__duration">60 ou 90 min — à partir de 15 ans</p>
+<p class="service-item__duration">60 ou 90 min - à partir de 15 ans</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -2186,8 +2186,8 @@ BALNEO_MASSAGES_CONTENT,
     ),
     'mentions-legales' => array(
         'title' => 'Mentions légales',
-        'legacy_hash' => '22a155670089dea45c0db70c529e19d427498582b5945234b76ab86aa4b6a38b',
-        'schema2_hash' => '93454a7bf7c2963549e0b2145b6755a7dcd413ab713d04c0b6abf22c82b182f4',
+        'legacy_hash' => '83c1c3b5efaa4acc211b8202bbb84763c2affc37fd26dab320e3090d8012cd27',
+        'schema2_hash' => '1eef3572e854f4c65eeca26fe28c2803c1a04d899c49e298a1dbfe6e11f735e1',
         'content' => <<<'BALNEO_MENTIONS_LEGALES_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2219,7 +2219,15 @@ BALNEO_MASSAGES_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Espace Balnéoludique de Gruissan<br>Avenue des Bains — 11430 Gruissan<br>Téléphone : 04 68 75 60 50<br>E-mail : espace.balneoludique@gruissan-mediterranee.com</p>
+<p>Office de tourisme de Gruissan<br>80 boulevard du Pech Maynaud, 11430 Gruissan.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Espace Balnéoludique de Gruissan<br>Avenue des Bains - 11430 Gruissan<br>Téléphone : 04 68 75 60 50<br>E-mail : espace.balneoludique@gruissan-mediterranee.com</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Responsable de publication : Mathias Szanto.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -2227,7 +2235,7 @@ BALNEO_MASSAGES_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Les coordonnées complètes de l’hébergeur doivent être renseignées par l’éditeur du site avant la mise en production.</p>
+<p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.<br>Téléphone : 1007 depuis la France ou +33 9 72 10 10 07 depuis l’étranger.<br><a href="https://www.ovhcloud.com/fr/terms-and-conditions/" target="_blank" rel="noopener noreferrer">Informations légales de l’hébergeur</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -2239,7 +2247,7 @@ BALNEO_MASSAGES_CONTENT,
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Photos : J.B. Roubinet — utilisées avec autorisation.</p>
+<p>Photos : J.B. Roubinet - utilisées avec autorisation.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -2247,7 +2255,7 @@ BALNEO_MASSAGES_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>® D.B.G — Espace Balnéo de Gruissan</p>
+<p>® D.B.G - Espace Balnéo de Gruissan</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group --></main>
@@ -2256,8 +2264,8 @@ BALNEO_MENTIONS_LEGALES_CONTENT,
     ),
     'natation' => array(
         'title' => 'Natation',
-        'legacy_hash' => '1b3b0d06494b70d675539e2fe816f05a42e8bae846640b8a06d84b8f7cc2ddec',
-        'schema2_hash' => '3731a76e20fe239962158c599226302525180c056f063315ec51d02a598d6abb',
+        'legacy_hash' => '388c1bf719f2e12e11b398baea6f64387de0e73e93470f685141ab977d058600',
+        'schema2_hash' => 'e2163c3d7060d14c42a197eb8c86cbc09fdd049b283fbd24b504ae4a67038c0d',
         'content' => <<<'BALNEO_NATATION_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2322,7 +2330,7 @@ BALNEO_MENTIONS_LEGALES_CONTENT,
 
 <!-- wp:group {"className":"table-wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group table-wrap"><!-- wp:table -->
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Adultes</th><th>Enfants / ados</th></tr><tr><td>Carte 10 séances — 1 an</td><td>126 €</td><td>—</td></tr><tr><td>Carte 20 séances — 1 an</td><td>238 €</td><td>—</td></tr><tr><td>Abonnement annuel septembre–juin</td><td>295 €</td><td>185 €</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Adultes</th><th>Enfants / ados</th></tr><tr><td>Carte 10 séances - 1 an</td><td>126 €</td><td>-</td></tr><tr><td>Carte 20 séances - 1 an</td><td>238 €</td><td>-</td></tr><tr><td>Abonnement annuel septembre–juin</td><td>295 €</td><td>185 €</td></tr></tbody></table></figure>
 <!-- /wp:table --></div>
 <!-- /wp:group -->
 
@@ -2340,8 +2348,8 @@ BALNEO_NATATION_CONTENT,
     ),
     'parc-ete' => array(
         'title' => 'Parc été',
-        'legacy_hash' => '4a4a6b495e07a89ba0f186ab6c45b734974ef90db1d994c187abaf37c58c9cba',
-        'schema2_hash' => 'd616ce99d73056cdd030997a028ac0362da6ff394d14bb8bf61ac2f2d0fac948',
+        'legacy_hash' => '79062a17dca09b44b1281d60703f0125afbbe183c8aff4854f19e389a93d324e',
+        'schema2_hash' => 'f5d8f3af8ca196407693fa81b2fc9a1d877f80a529f801c22c9d3c3798c8d191',
         'content' => <<<'BALNEO_PARC_ETE_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2370,7 +2378,7 @@ BALNEO_NATATION_CONTENT,
 <section class="wp-block-group section section--light"><!-- wp:group {"className":"container content-block fade-in","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <div class="wp-block-group container content-block fade-in"><!-- wp:paragraph -->
 <p><strong>Ouvert uniquement juillet et août, 7j/7 de 11h00 à 18h00.</strong><br>
-    Ouverture le 27 juin 2026 à 11h00 — Fermeture le 30 août 2026 à 18h00.</p>
+    Ouverture le 27 juin 2026 à 11h00 - Fermeture le 30 août 2026 à 18h00.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"info-box","layout":{"type":"default"},"metadata":{"name":"Encart d’information"}} -->
@@ -2645,8 +2653,8 @@ BALNEO_RECUPERATION_CONTENT,
     ),
     'reglement' => array(
         'title' => 'Règlement intérieur',
-        'legacy_hash' => 'b93cfab7130ed854a50114c0a6946ef2eeb54e38c1a4eed1e1e23130f5c9f173',
-        'schema2_hash' => 'd7a00365039cbb386ae26eba33eba4fe37545576f0348c28efd277d716999552',
+        'legacy_hash' => 'b372976632157322910183d25de5e14108d5489f8fec5c0585b57177d554e9db',
+        'schema2_hash' => '442ea7e651171fe301c0f4d2662f8432e15fb2a3ea795b5d79f2092c35ef99bb',
         'content' => <<<'BALNEO_REGLEMENT_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2691,7 +2699,7 @@ BALNEO_RECUPERATION_CONTENT,
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Cheveux longs attachés — serviettes non fournies</li>
+<li>Cheveux longs attachés - serviettes non fournies</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -2751,8 +2759,8 @@ BALNEO_REGLEMENT_CONTENT,
     ),
     'salle-de-sport' => array(
         'title' => 'Salle For.Me',
-        'legacy_hash' => '8c37a7c7cae45219fb5d9a7e49c98698bab3c41e6944e08f837ccf59ccbc0183',
-        'schema2_hash' => 'c145192bb8a0c352b484748f3a050b4452de83bf422e7a3081da42a5ed484e16',
+        'legacy_hash' => 'e85a5ca6eb9e1f40dafed569d08f97ab574eab180ee7ebadf62c78c7ae28eafb',
+        'schema2_hash' => '83675815e2a9b0401ff28743f80ab1348010c1096a47e2f46860cbfc7de05215',
         'content' => <<<'BALNEO_SALLE_DE_SPORT_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2826,7 +2834,7 @@ BALNEO_REGLEMENT_CONTENT,
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>6 mois : 254 € — 12 mois (-1 mois vidange) : 485 €</p>
+<p>6 mois : 254 € - 12 mois (-1 mois vidange) : 485 €</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
@@ -2859,8 +2867,8 @@ BALNEO_SALLE_DE_SPORT_CONTENT,
     ),
     'tarifs' => array(
         'title' => 'Tarifs',
-        'legacy_hash' => '6f1cc58cac4d019cc27a40049e625b41f97be1f31e1d1ace3b09a6b1ac7f43fd',
-        'schema2_hash' => 'e28a942628ee6197084a7f747584bfa6bfd19dbc3e66203187183c9f42640870',
+        'legacy_hash' => '2ed7a6212bb9da08a2e04f01a9acd69abf8e3c827946fe8d44d94c296dbdee7f',
+        'schema2_hash' => '09da70b95aa0ab4b1c494fc763fb47fb2bc0a8fdda146ca43d4216d4b22525e0',
         'content' => <<<'BALNEO_TARIFS_CONTENT'
 <!-- wp:group {"tagName":"main","anchor":"contenu-principal","layout":{"type":"default"},"metadata":{"name":"Contenu de la page"}} -->
 <main id="contenu-principal" class="wp-block-group"><!-- wp:group {"tagName":"section","className":"page-hero","layout":{"type":"default"},"metadata":{"name":"Bannière de page"}} -->
@@ -2897,7 +2905,7 @@ BALNEO_SALLE_DE_SPORT_CONTENT,
 
 <!-- wp:group {"className":"table-wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group table-wrap"><!-- wp:table -->
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Tarif</th></tr><tr><td>Entrée 2h30 — 6 ans et plus</td><td>23 €</td></tr><tr><td>Entrée 2h30 — 3 à moins de 6 ans</td><td>11 €</td></tr><tr><td>Pass sans limite de temps — 6 ans et plus</td><td>29 €</td></tr><tr><td>Dernière heure</td><td>11 €</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Formule</th><th>Tarif</th></tr><tr><td>Entrée 2h30 - 6 ans et plus</td><td>23 €</td></tr><tr><td>Entrée 2h30 - 3 à moins de 6 ans</td><td>11 €</td></tr><tr><td>Pass sans limite de temps - 6 ans et plus</td><td>29 €</td></tr><tr><td>Dernière heure</td><td>11 €</td></tr></tbody></table></figure>
 <!-- /wp:table --></div>
 <!-- /wp:group -->
 

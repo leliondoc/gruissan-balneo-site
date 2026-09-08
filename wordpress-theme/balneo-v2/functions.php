@@ -9,12 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.5.0' );
+define( 'BALNEO_V2_VERSION', '1.6.0' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/blocks.php' );
 require_once get_theme_file_path( '/inc/class-balneo-v2-primary-menu-walker.php' );
 require_once get_theme_file_path( '/inc/navigation.php' );
+require_once get_theme_file_path( '/inc/newsletter.php' );
 require_once get_theme_file_path( '/inc/forms.php' );
 require_once get_theme_file_path( '/inc/redirects.php' );
 require_once get_theme_file_path( '/inc/seo.php' );
@@ -25,6 +26,7 @@ require_once get_theme_file_path( '/inc/analytics.php' );
 require_once get_theme_file_path( '/inc/admin-branding.php' );
 require_once get_theme_file_path( '/inc/schedule.php' );
 require_once get_theme_file_path( '/inc/accessibility.php' );
+require_once get_theme_file_path( '/inc/public-content.php' );
 
 /**
  * Configure les fonctionnalités natives du thème.

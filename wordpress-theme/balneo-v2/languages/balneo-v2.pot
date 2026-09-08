@@ -6,7 +6,7 @@ msgstr ""
 "Language: fr_FR\n"
 
 #: footer.php:41
-msgid "® D.B.G — Espace Balnéo de Gruissan"
+msgid "® D.B.G - Espace Balnéo de Gruissan"
 msgstr ""
 
 #: footer.php:36
@@ -18,7 +18,7 @@ msgid "Accès libre"
 msgstr ""
 
 #: inc/navigation.php:116
-msgid "Accueil — Espace Balnéo Gruissan"
+msgid "Accueil - Espace Balnéo Gruissan"
 msgstr ""
 
 #: footer.php:11 inc/navigation.php:77
@@ -61,28 +61,44 @@ msgstr ""
 msgid "Bains & chaleur"
 msgstr ""
 
+#: inc/public-content.php:143
+msgid "Balnéo le %1$s : %2$s. %3$s"
+msgstr ""
+
+#: inc/newsletter.php:172
+msgid "Cette demande ne déclenche pas d’inscription automatique. Après traitement dans votre outil de newsletter, placez-la dans la corbeille. Les demandes sont conservées ici pendant 90 jours au maximum."
+msgstr ""
+
 #: 404.php:13
 msgid "Cette page n’existe pas"
 msgstr ""
 
-#: inc/forms.php:38
+#: inc/forms.php:39
 msgid "Code postal"
-msgstr ""
-
-#: inc/forms.php:110
-msgid "Code postal : %s"
 msgstr ""
 
 #: comments.php:15
 msgid "Commentaires"
 msgstr ""
 
-#: inc/forms.php:112
-msgid "Consentement newsletter : oui"
-msgstr ""
-
 #: header.php:29
 msgid "Contact"
+msgstr ""
+
+#: inc/newsletter.php:159
+msgid "Demande à traiter par l’équipe"
+msgstr ""
+
+#: inc/newsletter.php:136 inc/newsletter.php:19
+msgid "Demande newsletter"
+msgstr ""
+
+#: inc/newsletter.php:18
+msgid "Demandes newsletter"
+msgstr ""
+
+#: inc/forms.php:30
+msgid "Demandez votre inscription à la newsletter. Votre demande est enregistrée et traitée par notre équipe."
 msgstr ""
 
 #: inc/schedule-state.php:76
@@ -93,16 +109,16 @@ msgstr ""
 msgid "Données personnelles"
 msgstr ""
 
-#: inc/forms.php:37
+#: inc/forms.php:38
 msgid "E-mail"
-msgstr ""
-
-#: inc/forms.php:109
-msgid "E-mail : %s"
 msgstr ""
 
 #: footer.php:11
 msgid "en ligne"
+msgstr ""
+
+#: inc/forms.php:55
+msgid "Envoyer ma demande"
 msgstr ""
 
 #: 404.php:12
@@ -125,6 +141,10 @@ msgstr ""
 msgid "Espace For.Me"
 msgstr ""
 
+#: inc/public-content.php:150
+msgid "Fermer"
+msgstr ""
+
 #: inc/schedule-state.php:108
 msgid "Fermeture affichée aujourd’hui"
 msgstr ""
@@ -135,6 +155,10 @@ msgstr ""
 
 #: footer.php:35
 msgid "Horaires"
+msgstr ""
+
+#: inc/public-content.php:133
+msgid "Horaires et accès des mineurs : consultez le programme de votre journée."
 msgstr ""
 
 #: inc/class-balneo-v2-primary-menu-walker.php:89
@@ -149,16 +173,16 @@ msgstr ""
 msgid "Infos pratiques"
 msgstr ""
 
-#: inc/forms.php:116
-msgid "Inscription newsletter Balnéo"
-msgstr ""
-
-#: inc/forms.php:47
+#: inc/forms.php:48
 msgid "J’accepte de recevoir les actualités et j’ai lu la %s."
 msgstr ""
 
 #: inc/forms.php:27
 msgid "L’inscription n’a pas pu être envoyée. Vérifiez votre adresse e-mail ou réessayez."
+msgstr ""
+
+#: inc/newsletter.php:188
+msgid "La notification par e-mail a échoué. La demande est bien enregistrée."
 msgstr ""
 
 #: inc/class-balneo-v2-primary-menu-walker.php:31 inc/class-balneo-v2-primary-menu-walker.php:86 inc/navigation.php:32
@@ -177,15 +201,11 @@ msgstr ""
 msgid "Mentions légales"
 msgstr ""
 
-#: inc/forms.php:24
-msgid "Merci pour votre inscription !"
-msgstr ""
-
-#: functions.php:54
+#: functions.php:56
 msgid "Navigation de pied de page"
 msgstr ""
 
-#: functions.php:53
+#: functions.php:55
 msgid "Navigation principale"
 msgstr ""
 
@@ -193,20 +213,16 @@ msgstr ""
 msgid "Navigation principale Balnéo"
 msgstr ""
 
-#: inc/forms.php:36
+#: inc/forms.php:37
 msgid "Nom"
-msgstr ""
-
-#: inc/forms.php:108
-msgid "Nom : %s"
 msgstr ""
 
 #: inc/accessibility.php:33
 msgid "Nos coordonnées"
 msgstr ""
 
-#: inc/forms.php:105
-msgid "Nouvelle demande d’inscription à la newsletter Balnéo V2"
+#: inc/newsletter.php:152
+msgid "Nouvelle demande newsletter Balnéo"
 msgstr ""
 
 #: header.php:36
@@ -225,7 +241,7 @@ msgstr ""
 msgid "Photos : J.B. Roubinet"
 msgstr ""
 
-#: inc/forms.php:48
+#: inc/forms.php:49
 msgid "politique de confidentialité"
 msgstr ""
 
@@ -233,12 +249,8 @@ msgstr ""
 msgid "Pratiquer"
 msgstr ""
 
-#: inc/forms.php:35
+#: inc/forms.php:36
 msgid "Prénom"
-msgstr ""
-
-#: inc/forms.php:107
-msgid "Prénom : %s"
 msgstr ""
 
 #: inc/class-balneo-v2-primary-menu-walker.php:32 inc/navigation.php:35
@@ -277,15 +289,11 @@ msgstr ""
 msgid "S’amuser"
 msgstr ""
 
-#: inc/forms.php:54
-msgid "S’inscrire"
-msgstr ""
-
 #: inc/navigation.php:31
 msgid "Se dépasser"
 msgstr ""
 
-#: inc/forms.php:33
+#: inc/forms.php:34
 msgid "Site web"
 msgstr ""
 
@@ -301,11 +309,15 @@ msgstr ""
 msgid "Tarifs"
 msgstr ""
 
-#: inc/forms.php:39
+#: inc/newsletter.php:152
+msgid "Une demande est à traiter dans WordPress :"
+msgstr ""
+
+#: inc/forms.php:40
 msgid "Ville"
 msgstr ""
 
-#: inc/forms.php:111
-msgid "Ville : %s"
+#: inc/forms.php:24
+msgid "Votre demande est enregistrée. Notre équipe la prendra en charge."
 msgstr ""
 

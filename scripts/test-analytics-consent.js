@@ -107,4 +107,31 @@ function gtagCalls(dom) {
   dom.window.close();
 }
 
-console.log('Consentement Analytics/Ads validé : refus préalable, choix granulaire et réouverture.');
+for (const selection of [{ analytics: false, ads: false }, { analytics: true, ads: false }]) {
+  const dom = createPage({ version: 1, analytics: true, ads: true, savedAt: Date.now() - 1000 });
+  const { document } = dom.window;
+  const navigation = [];
+  dom.virtualConsole.removeAllListeners('jsdomError');
+  dom.virtualConsole.on('jsdomError', (error) => navigation.push(error));
+  document.querySelector('[data-consent-manage]').click();
+  document.querySelector('[data-consent-analytics]').checked = selection.analytics;
+  document.querySelector('[data-consent-ads]').checked = selection.ads;
+  document.querySelector('[data-consent-save]').click();
+  assert.equal(navigation.length, 1, 'Un retrait doit recharger le document pour arrêter les tags déjà exécutés');
+  assert.match(navigation[0].message, /navigation/);
+  const saved = JSON.parse(dom.window.localStorage.getItem('balneo_cookie_consent'));
+  assert.equal(saved.analytics, selection.analytics);
+  assert.equal(saved.ads, selection.ads);
+  dom.window.close();
+  const reloaded = createPage(saved);
+  const calls = gtagCalls(reloaded);
+  assert.equal(calls.some((call) => call[0] === 'config' && call[1] === 'AW-358922226'), false);
+  if (!selection.analytics) assert.equal(reloaded.window.document.querySelector('script[src*="googletagmanager.com"]'), null);
+  reloaded.window.close();
+}
+for (const savedAt of [Date.now() + 86400000, 'incorrect', Date.now() - 181 * 86400000]) {
+  const dom = createPage({ version: 1, analytics: true, ads: true, savedAt });
+  assert.equal(dom.window.document.querySelector('script[src*="googletagmanager.com"]'), null, 'Un consentement invalide ou expiré ne doit rien charger');
+  dom.window.close();
+}
+console.log('Consentement Analytics/Ads validé : refus préalable, choix granulaire, retrait, expiration et réouverture.');

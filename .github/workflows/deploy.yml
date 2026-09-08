@@ -72,6 +72,8 @@ jobs:
           node --check scripts/build-pot.js
           npm run check:links
           npm run check:analytics
+          npm run check:public-ui
+          npm run check:newsletter
           npm run check:horaires
           npm run check:planning-admin
           npm run check:phpcs

@@ -8,7 +8,7 @@
 get_header();
 ?>
 <!-- Liste de contenus WordPress -->
-<main class="section">
+<main id="contenu-principal" tabindex="-1" class="section entry-content--standard">
 	<div class="container entry-content">
 		<?php if ( have_posts() ) : ?>
 			<?php

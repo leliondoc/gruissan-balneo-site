@@ -312,7 +312,7 @@ function buildFooter(homeHtml) {
     .replace('>Tarifs</a>', "><?php esc_html_e( 'Tarifs', 'balneo-v2' ); ?></a>")
     .replace('>Horaires</a>', "><?php esc_html_e( 'Horaires', 'balneo-v2' ); ?></a>")
     .replace('>Accès &amp; parking</a>', "><?php esc_html_e( 'Accès & parking', 'balneo-v2' ); ?></a>")
-    .replace('&reg; D.B.G — Espace Balnéo de Gruissan', "<?php esc_html_e( '® D.B.G — Espace Balnéo de Gruissan', 'balneo-v2' ); ?>")
+    .replace('&reg; D.B.G - Espace Balnéo de Gruissan', "<?php esc_html_e( '® D.B.G - Espace Balnéo de Gruissan', 'balneo-v2' ); ?>")
     .replace('Photos : J.B. Roubinet', "<?php esc_html_e( 'Photos : J.B. Roubinet', 'balneo-v2' ); ?>");
 
   return `<?php
@@ -414,12 +414,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BALNEO_V2_VERSION', '1.5.0' );
+define( 'BALNEO_V2_VERSION', '1.6.0' );
 
 require_once get_theme_file_path( '/inc/content.php' );
 require_once get_theme_file_path( '/inc/blocks.php' );
 require_once get_theme_file_path( '/inc/class-balneo-v2-primary-menu-walker.php' );
 require_once get_theme_file_path( '/inc/navigation.php' );
+require_once get_theme_file_path( '/inc/newsletter.php' );
 require_once get_theme_file_path( '/inc/forms.php' );
 require_once get_theme_file_path( '/inc/redirects.php' );
 require_once get_theme_file_path( '/inc/seo.php' );
@@ -430,6 +431,7 @@ require_once get_theme_file_path( '/inc/analytics.php' );
 require_once get_theme_file_path( '/inc/admin-branding.php' );
 require_once get_theme_file_path( '/inc/schedule.php' );
 require_once get_theme_file_path( '/inc/accessibility.php' );
+require_once get_theme_file_path( '/inc/public-content.php' );
 
 /**
  * Configure les fonctionnalités natives du thème.
@@ -584,7 +586,7 @@ Theme Name: Balnéo V2
 Theme URI: https://balneov2.gruissan-balneo.com/
 Author: Gruissan Méditerranée
 Description: Thème sur mesure de l'Espace Balnéo de Gruissan, issu de la maquette Balnéo V2 validée.
-Version: 1.5.0
+Version: 1.6.0
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.1
@@ -609,7 +611,11 @@ get_header();
 while ( have_posts() ) {
     the_post();
     if ( '' !== trim( (string) get_the_content() ) ) {
-        the_content();
+        if ( function_exists( 'balneo_v2_render_page_content' ) ) {
+            balneo_v2_render_page_content();
+        } else {
+            the_content();
+        }
     } else {
         get_template_part( 'template-parts/pages/home' );
     }
@@ -637,12 +643,16 @@ while ( have_posts() ) {
     $slug = get_post_field( 'post_name', get_the_ID() );
 
     if ( '' !== trim( (string) get_the_content() ) ) {
-        the_content();
+        if ( function_exists( 'balneo_v2_render_page_content' ) ) {
+            balneo_v2_render_page_content();
+        } else {
+            the_content();
+        }
     } elseif ( $slug && file_exists( get_theme_file_path( '/template-parts/pages/' . $slug . '.php' ) ) ) {
         get_template_part( 'template-parts/pages/' . $slug );
     } else {
         ?>
-        <main class="section">
+        <main id="contenu-principal" tabindex="-1" class="section entry-content--standard">
             <article class="container entry-content">
                 <h1><?php the_title(); ?></h1>
                 <?php the_content(); ?>
@@ -667,7 +677,7 @@ get_footer();`);
 get_header();
 ?>
 <!-- Liste de contenus WordPress -->
-<main class="section">
+<main id="contenu-principal" tabindex="-1" class="section entry-content--standard">
     <div class="container entry-content">
         <?php if ( have_posts() ) : ?>
             <?php while ( have_posts() ) : the_post(); ?>
@@ -694,7 +704,7 @@ get_footer();`);
 
 get_header();
 ?>
-<main class="section">
+<main id="contenu-principal" tabindex="-1" class="section entry-content--standard">
     <div class="container entry-content" style="padding-block:var(--space-2xl);text-align:center">
         <p class="section__label"><?php esc_html_e( 'Erreur 404', 'balneo-v2' ); ?></p>
         <h1><?php esc_html_e( 'Cette page n’existe pas', 'balneo-v2' ); ?></h1>
@@ -749,7 +759,7 @@ if ( comments_open() ) {
 
 get_header();
 ?>
-<main class="section"><div class="container entry-content">
+<main id="contenu-principal" tabindex="-1" class="section entry-content--standard"><div class="container entry-content">
 <h1><?php /* translators: %s : requête de recherche. */ printf( esc_html__( 'Résultats pour « %s »', 'balneo-v2' ), esc_html( get_search_query() ) ); ?></h1>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <article <?php post_class(); ?>><h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><?php the_excerpt(); ?></article>
@@ -822,7 +832,7 @@ get_header();
 
   write('languages/balneo-v2.pot', `msgid ""
 msgstr ""
-"Project-Id-Version: Balnéo V2 1.5.0\\n"
+"Project-Id-Version: Balnéo V2 1.6.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 "Language: fr_FR\\n"

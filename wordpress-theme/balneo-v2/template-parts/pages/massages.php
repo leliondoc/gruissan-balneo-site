@@ -35,11 +35,11 @@
 		<p class="service-item__desc">Massage profondément relaxant associant gestes lents, fluides et enveloppants à des manœuvres plus profondes.</p>
 		<div class="service-item"><div><p class="service-item__name">Tonique et décontractant</p><p class="service-item__duration">30 ou 60 min</p></div></div>
 		<p class="service-item__desc">Dynamisant et revitalisant, idéal pour les sportifs et la récupération musculaire.</p>
-		<div class="service-item"><div><p class="service-item__name">Tête — Mains — Pieds</p><p class="service-item__duration">30 ou 60 min</p></div></div>
+		<div class="service-item"><div><p class="service-item__name">Tête - Mains - Pieds</p><p class="service-item__duration">30 ou 60 min</p></div></div>
 		<div class="service-item"><div><p class="service-item__name">Harmonisation des énergies</p><p class="service-item__duration">60 ou 90 min</p></div></div>
-		<div class="service-item"><div><p class="service-item__name">Massage femme enceinte</p><p class="service-item__duration">30 ou 60 min — 4e au 8e mois</p></div></div>
-		<div class="service-item"><div><p class="service-item__name">Massage douceur enfant</p><p class="service-item__duration">5 à 14 ans — accompagné en cabine</p></div></div>
-		<div class="service-item"><div><p class="service-item__name">Rituel Océan Relax</p><p class="service-item__duration">60 ou 90 min — à partir de 15 ans</p></div></div>
+		<div class="service-item"><div><p class="service-item__name">Massage femme enceinte</p><p class="service-item__duration">30 ou 60 min - 4e au 8e mois</p></div></div>
+		<div class="service-item"><div><p class="service-item__name">Massage douceur enfant</p><p class="service-item__duration">5 à 14 ans - accompagné en cabine</p></div></div>
+		<div class="service-item"><div><p class="service-item__name">Rituel Océan Relax</p><p class="service-item__duration">60 ou 90 min - à partir de 15 ans</p></div></div>
 		<p class="service-item__desc">30 min d'hydromassage + massage manuel personnalisé de 30 ou 60 min.</p>
 	</div>
 	<h2>Tarifs</h2>

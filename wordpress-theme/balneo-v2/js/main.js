@@ -1,6 +1,16 @@
 (function () {
   'use strict';
 
+  // L'ancre d'évitement est également utilisable sur les anciens contenus.
+  var mainContent = document.querySelector('main');
+  if (mainContent) {
+    if (!document.getElementById('contenu-principal')) mainContent.id = 'contenu-principal';
+    mainContent.setAttribute('tabindex', '-1');
+    document.querySelectorAll('.skip-link').forEach(function (link) {
+      link.addEventListener('click', function () { mainContent.focus(); });
+    });
+  }
+
   // Ouverture et fermeture de la navigation mobile.
   const navToggle = document.querySelector('.nav-toggle');
   const mainNav = document.querySelector('.main-nav');
@@ -153,6 +163,20 @@
   var storageKey = 'balneo-saved-items';
   var savedItems = [];
   try { savedItems = JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch (e) { savedItems = []; }
+  var safeUrl = function (value) {
+    try {
+      var url = new URL(value, window.location.href);
+      return /^https?:$/.test(url.protocol) && url.origin === window.location.origin ? url.href : '';
+    } catch (error) { return ''; }
+  };
+  savedItems = Array.isArray(savedItems) ? savedItems.filter(function (item) {
+    return item && typeof item.title === 'string' && typeof item.url === 'string' && safeUrl(item.url);
+  }).slice(0, 100) : [];
+  var escapeHtml = function (value) {
+    return String(value).replace(/[&<>"']/g, function (character) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
+    });
+  };
 
   var iconSearch = '<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>';
   var iconHeart = '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
@@ -182,11 +206,12 @@
   var overlay = document.createElement('div');
   overlay.className = 'site-panel';
   overlay.setAttribute('aria-hidden', 'true');
-  overlay.innerHTML = '<div class="site-panel__dialog" role="dialog" aria-modal="true"><button class="site-panel__close" type="button" aria-label="Fermer">' + iconClose + '</button><div class="site-panel__content"></div></div>';
+  overlay.innerHTML = '<div class="site-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="site-panel-title" tabindex="-1"><button class="site-panel__close" type="button" aria-label="Fermer">' + iconClose + '</button><div class="site-panel__content"></div></div>';
   document.body.appendChild(overlay);
   var panelContent = overlay.querySelector('.site-panel__content');
   var panelClose = overlay.querySelector('.site-panel__close');
   var lastPanelTrigger = null;
+  var inertElements = [];
 
   var floatingTooltip = document.createElement('div');
   floatingTooltip.className = 'floating-tooltip';
@@ -224,24 +249,46 @@
 
   var closePanel = function () {
     overlay.classList.remove('is-open');
-    overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('panel-open');
+    inertElements.forEach(function (element) { element.inert = false; });
+    inertElements = [];
     if (lastPanelTrigger) lastPanelTrigger.focus();
+    overlay.setAttribute('aria-hidden', 'true');
   };
 
   var openPanel = function (trigger, html) {
     lastPanelTrigger = trigger;
     panelContent.innerHTML = html;
+    var title = panelContent.querySelector('h2');
+    if (title) title.id = 'site-panel-title';
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.classList.add('panel-open');
+    Array.from(document.body.children).forEach(function (element) {
+      if (element !== overlay && !element.inert && !/^(SCRIPT|STYLE|LINK)$/.test(element.tagName)) {
+        element.inert = true;
+        inertElements.push(element);
+      }
+    });
     var firstField = panelContent.querySelector('input, a, button');
-    if (firstField) firstField.focus();
+    (firstField || panelClose).focus();
+    window.requestAnimationFrame(function () {
+      if (overlay.classList.contains('is-open') && !overlay.contains(document.activeElement)) (firstField || panelClose).focus();
+    });
   };
 
   panelClose.addEventListener('click', closePanel);
   overlay.addEventListener('click', function (event) { if (event.target === overlay) closePanel(); });
   document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closePanel(); });
+  overlay.addEventListener('keydown', function (event) {
+    if (event.key !== 'Tab') return;
+    var controls = Array.from(overlay.querySelectorAll('button, input, a[href], [tabindex="0"]'))
+      .filter(function (element) { return !element.disabled && !element.closest('[hidden]'); });
+    var first = controls[0];
+    var last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
 
   var searchEntries = [
     ['Espace For.Me, sport et fitness', '/salle-de-sport/'],
@@ -265,15 +312,40 @@
     ['Contact', '/contact/']
   ];
   var pathPrefix = '';
+  var searchSynonyms = {
+    'balneo': 'piscine bassins bains sauna hammam detente enfants mineurs',
+    'salle-de-sport': 'for me forme musculation fitness cardio gym',
+    'bebes-nageurs': 'bebe tout petit enfant eau',
+    'parc-ete': 'piscine toboggan famille enfant ete',
+    'natation': 'apprendre nager piscine cours enfant adulte',
+    'massages': 'soin detente relaxation cadeau',
+    'horaires': 'heure ouverture fermeture planning calendrier',
+    'tarifs': 'prix cout abonnement entree billet'
+  };
+  var normalizeSearch = function (value) {
+    return String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr').replace(/[^a-z0-9]+/g, ' ').trim();
+  };
+  if (Array.isArray(window.BALNEO_SEARCH)) {
+    searchEntries = window.BALNEO_SEARCH.filter(function (entry) {
+      return Array.isArray(entry) && typeof entry[0] === 'string' && typeof entry[1] === 'string' && safeUrl(entry[1]);
+    });
+  }
 
   searchTool.addEventListener('click', function () {
     openPanel(searchTool, '<p class="section__label">Je recherche</p><h2>Que souhaitez-vous trouver ?</h2><label class="search-box"><span class="sr-only">Votre recherche</span><input type="search" placeholder="Balnéo, massage, piscine…" autocomplete="off">' + iconSearch + '</label><div class="search-results" aria-live="polite"></div>');
     var input = panelContent.querySelector('input');
     var results = panelContent.querySelector('.search-results');
     var renderResults = function () {
-      var query = input.value.trim().toLocaleLowerCase('fr');
-      var matches = searchEntries.filter(function (entry) { return !query || entry[0].toLocaleLowerCase('fr').indexOf(query) !== -1; });
-      results.innerHTML = matches.length ? matches.map(function (entry) { return '<a href="' + pathPrefix + entry[1] + '"><span>' + entry[0] + '</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>'; }).join('') : '<p>Aucun résultat. Essayez un autre terme.</p>';
+      var terms = normalizeSearch(input.value).split(' ').filter(Boolean);
+      var matches = searchEntries.filter(function (entry) {
+        var slug = (entry[1].split('/').filter(Boolean).pop() || '').replace('.html', '');
+        var text = normalizeSearch(entry[0] + ' ' + (entry[2] || '') + ' ' + (searchSynonyms[slug] || ''));
+        return terms.every(function (term) { return text.indexOf(term) !== -1; });
+      });
+      results.innerHTML = matches.length ? matches.map(function (entry) {
+        var href = safeUrl(pathPrefix + entry[1]);
+        return '<a href="' + escapeHtml(href) + '"><span>' + escapeHtml(entry[0]) + '</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>';
+      }).join('') : '<p>Aucun résultat. Essayez un autre terme.</p>';
     };
     input.addEventListener('input', renderResults);
     renderResults();
@@ -307,7 +379,8 @@
 
   var renderSavedPanel = function () {
     var cards = savedItems.length ? '<div class="saved-list">' + savedItems.map(function (item) {
-      return '<article class="saved-item">' + (item.image ? '<img src="' + item.image + '" alt="">' : '') + '<div><a href="' + item.url + '">' + item.title + '</a><button type="button" data-remove-saved="' + item.url + '">Retirer</button></div></article>';
+      var image = typeof item.image === 'string' ? safeUrl(item.image) : '';
+      return '<article class="saved-item">' + (image ? '<img src="' + escapeHtml(image) + '" alt="">' : '') + '<div><a href="' + escapeHtml(safeUrl(item.url)) + '">' + escapeHtml(item.title) + '</a><button type="button" data-remove-saved="' + escapeHtml(item.url) + '">Retirer</button></div></article>';
     }).join('') + '</div>' : '<p class="saved-empty">Vous n’avez encore rien enregistré. Utilisez les cœurs présents sur les pages et les vignettes.</p>';
     openPanel(savedTool, '<p class="section__label">À retrouver plus tard</p><h2>Mes favoris <span>(' + savedItems.length + ')</span></h2>' + cards);
     panelContent.querySelectorAll('[data-remove-saved]').forEach(function (button) {
@@ -322,7 +395,7 @@
   savedTool.addEventListener('click', renderSavedPanel);
 
   var addSaveButton = function (host, url, title, image, variant) {
-    if (!host || !url || !title || !image) throw new Error('Données de favori incomplètes.');
+    if (!host || !url || !title || !image) return;
     if (host.querySelector(':scope > .save-button')) return;
     var isInsideLink = host.tagName === 'A';
     var button = document.createElement(isInsideLink ? 'span' : 'button');
@@ -454,6 +527,13 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!track || !slides.length || !tabs.length) return;
+    var rotationStopped = reduceMotion;
+    var isHovered = false;
+    var pointerPauseAction = null;
+    var pauseButton = document.createElement('button');
+    pauseButton.type = 'button';
+    pauseButton.className = 'seasonal-pause';
+    seasonal.querySelector('.seasonal-slider').prepend(pauseButton);
 
     if ('IntersectionObserver' in window) {
       var seasonalVisibilityObserver = new IntersectionObserver(function (entries) {
@@ -488,21 +568,38 @@
 
     var resetSeasonAutoplay = function () {
       window.clearInterval(seasonTimer);
-      if (!reduceMotion) {
+      pauseButton.textContent = rotationStopped ? 'Reprendre le défilement' : 'Mettre en pause';
+      if (!rotationStopped && !isHovered && !document.hidden) {
         seasonTimer = window.setInterval(function () {
           showSeason(seasonIndex + 1);
         }, 6000);
       }
     };
+    pauseButton.addEventListener('pointerdown', function () { pointerPauseAction = !rotationStopped; });
+    pauseButton.addEventListener('pointercancel', function () { pointerPauseAction = null; });
+    pauseButton.addEventListener('pointerleave', function () { pointerPauseAction = null; });
+    pauseButton.addEventListener('click', function () {
+      rotationStopped = pointerPauseAction === null ? !rotationStopped : pointerPauseAction;
+      pointerPauseAction = null;
+      resetSeasonAutoplay();
+    });
+    seasonal.addEventListener('focusin', function (event) {
+      if (!seasonal.contains(event.relatedTarget)) { rotationStopped = true; resetSeasonAutoplay(); }
+    });
+    seasonal.addEventListener('mouseenter', function () { isHovered = true; resetSeasonAutoplay(); });
+    seasonal.addEventListener('mouseleave', function () { isHovered = false; resetSeasonAutoplay(); });
+    document.addEventListener('visibilitychange', resetSeasonAutoplay);
 
     tabs.forEach(function (tab, index) {
       tab.addEventListener('click', function () {
+        rotationStopped = true;
         showSeason(index);
         resetSeasonAutoplay();
       });
       tab.addEventListener('keydown', function (event) {
         if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
         event.preventDefault();
+        rotationStopped = true;
         var nextIndex = event.key === 'ArrowRight' ? seasonIndex + 1 : seasonIndex - 1;
         showSeason(nextIndex);
         tabs[seasonIndex].focus();

@@ -33,7 +33,7 @@ function header(root, isHome) {
       </div>
     </div>
     <div class="site-header__inner">
-      <a href="${p}/index.html" class="site-logo" aria-label="Accueil — Espace Balnéo Gruissan">
+      <a href="${p}/index.html" class="site-logo" aria-label="Accueil - Espace Balnéo Gruissan">
         ${logoNav(p)}
       </a>
       <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -145,7 +145,7 @@ ${isHome ? '<a class="cta-orb" href="https://gruissan-balneo.horanet.com/" targe
         </nav>
       </div>
       <div class="footer-bottom">
-        <span>&reg; D.B.G — Espace Balnéo de Gruissan</span>
+        <span>&reg; D.B.G - Espace Balnéo de Gruissan</span>
         <span>Photos : J.B. Roubinet</span>
       </div>
     </div>
@@ -218,7 +218,7 @@ function contactSection(root) {
           </div>
           <div class="contact-info__item">
             <p class="contact-info__label">Adresse</p>
-            <p class="contact-info__value">Avenue des Bains — 11430 Gruissan</p>
+            <p class="contact-info__value">Avenue des Bains - 11430 Gruissan</p>
           </div>
         </div>
         <div>
@@ -246,8 +246,8 @@ function contactSection(root) {
 const pages = {};
 
 // ACCUEIL
-pages['index.html'] = page('Accueil', 'Espace Balnéo de Gruissan — bien-être, piscine, activités aquatiques et salle de sport à Gruissan.', `
-${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 juin au dimanche 30 août inclus, les mineurs sont admis toute la journée en Balnéo.')}
+pages['index.html'] = page('Accueil', 'Espace Balnéo de Gruissan - bien-être, piscine, activités aquatiques et salle de sport à Gruissan.', `
+${infoBanner('<a href="pages/horaires.html"><strong>Horaires et accès des mineurs :</strong> consultez le programme de votre journée.</a>')}
 
 <main>
   <section class="hero">
@@ -265,7 +265,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
       </div>
     </div>
     <div class="hero-seals" role="group" aria-label="Informations saison 2026">
-      <div class="brand-seal brand-seal--open"><strong>Ouvert</strong><span>7j/7</span></div>
+      <div class="brand-seal brand-seal--open"><strong>For.Me</strong><span>7j/7</span></div>
     </div>
     <a class="hero__scroll" href="#welcome"><span></span>Découvrir</a>
   </section>
@@ -393,7 +393,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
   <section class="section news-section">
     <div class="container">
       <div class="section-heading fade-in">
-        <div><p class="section__label">En ce moment</p><h2 class="display-title">Les nouvelles de la Balnéo</h2></div>
+        <div><p class="section__label">Le journal</p><h2 class="display-title">Les nouvelles de la Balnéo</h2></div>
         <a href="pages/actualites.html" class="text-link">Toutes les actualités <span>→</span></a>
       </div>
       <div class="news-grid">
@@ -438,7 +438,7 @@ ${infoBanner('<strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 j
 </main>`, false, true);
 
 // BALNEO
-pages['pages/balneo.html'] = page('Balnéo', 'Accès à la balnéo sans réservation — tarifs, espaces et abonnements.', `
+pages['pages/balneo.html'] = page('Balnéo', 'Accès à la balnéo sans réservation - tarifs, espaces et abonnements.', `
 ${infoBanner('<strong>Période estivale :</strong> toute entrée Balnéo (10h–19h) donne accès au parc aqualudique (11h–18h) selon la durée choisie.')}
 <main>
 ${pageHero('Espace bien-être', 'Accès à la Balnéo sans réservation', '../assets/photos/balneo-188.jpg')}
@@ -450,7 +450,7 @@ ${pageHero('Espace bien-être', 'Accès à la Balnéo sans réservation', '../as
         <li>Shorts et jupes de bain interdits</li>
         <li>Les enfants de moins de 18 ans doivent être accompagnés par un adulte en balnéo. Les enfants de moins de 3 ans ont accès uniquement aux trois alvéoles thématiques</li>
         <li>Les saunas et le hammam sont accessibles à partir de 16 ans</li>
-        <li>Cheveux longs attachés — serviettes non fournies</li>
+        <li>Cheveux longs attachés - serviettes non fournies</li>
         <li>Évacuation des bassins 1/4 d'heure avant la fermeture</li>
         <li>En cas d'orage, les bassins extérieurs peuvent être fermés</li>
         <li>Moyens de paiement : espèces, CB, chèques ANCV (format papier)</li>
@@ -479,7 +479,7 @@ ${pageHero('Espace bien-être', 'Accès à la Balnéo sans réservation', '../as
     </table></div>
 
     <p>Avec l'entrée Balnéo, accès au bassin de nage de 25m aux horaires d'ouverture de celui-ci.</p>
-    <p>Carte 10 entrées 2h30 : 180 € — Carte 20 entrées 2h30 : 350 € — Carte de 10 heures (nominative) : 105 €</p>
+    <p>Carte 10 entrées 2h30 : 180 € - Carte 20 entrées 2h30 : 350 € - Carte de 10 heures (nominative) : 105 €</p>
     <p>Pour l'achat d'1 entrée Balnéo : accès à l'espace Forme (même jour) : 6 €</p>
 
     <h2>Abonnements</h2>
@@ -524,7 +524,7 @@ ${ctaBand('Achetez votre entrée Balnéo en ligne')}
 </main>`);
 
 // MASSAGES
-pages['pages/massages.html'] = page('Massages', 'Carte des massages bien-être — réservation sur rendez-vous.', `
+pages['pages/massages.html'] = page('Massages', 'Carte des massages bien-être - réservation sur rendez-vous.', `
 <main>
 ${pageHero('Soins bien-être', 'Massages', '../assets/photos/balneo-73.jpg')}
 <section class="section section--light">
@@ -544,11 +544,11 @@ ${pageHero('Soins bien-être', 'Massages', '../assets/photos/balneo-73.jpg')}
       <p class="service-item__desc">Massage profondément relaxant associant gestes lents, fluides et enveloppants à des manœuvres plus profondes.</p>
       <div class="service-item"><div><p class="service-item__name">Tonique et décontractant</p><p class="service-item__duration">30 ou 60 min</p></div></div>
       <p class="service-item__desc">Dynamisant et revitalisant, idéal pour les sportifs et la récupération musculaire.</p>
-      <div class="service-item"><div><p class="service-item__name">Tête — Mains — Pieds</p><p class="service-item__duration">30 ou 60 min</p></div></div>
+      <div class="service-item"><div><p class="service-item__name">Tête - Mains - Pieds</p><p class="service-item__duration">30 ou 60 min</p></div></div>
       <div class="service-item"><div><p class="service-item__name">Harmonisation des énergies</p><p class="service-item__duration">60 ou 90 min</p></div></div>
-      <div class="service-item"><div><p class="service-item__name">Massage femme enceinte</p><p class="service-item__duration">30 ou 60 min — 4e au 8e mois</p></div></div>
-      <div class="service-item"><div><p class="service-item__name">Massage douceur enfant</p><p class="service-item__duration">5 à 14 ans — accompagné en cabine</p></div></div>
-      <div class="service-item"><div><p class="service-item__name">Rituel Océan Relax</p><p class="service-item__duration">60 ou 90 min — à partir de 15 ans</p></div></div>
+      <div class="service-item"><div><p class="service-item__name">Massage femme enceinte</p><p class="service-item__duration">30 ou 60 min - 4e au 8e mois</p></div></div>
+      <div class="service-item"><div><p class="service-item__name">Massage douceur enfant</p><p class="service-item__duration">5 à 14 ans - accompagné en cabine</p></div></div>
+      <div class="service-item"><div><p class="service-item__name">Rituel Océan Relax</p><p class="service-item__duration">60 ou 90 min - à partir de 15 ans</p></div></div>
       <p class="service-item__desc">30 min d'hydromassage + massage manuel personnalisé de 30 ou 60 min.</p>
     </div>
     <h2>Tarifs</h2>
@@ -584,7 +584,7 @@ ${pageHero('Soins bien-être', 'Hydromassages', '../assets/photos/balneo-188.jpg
     <div class="info-box">
       <p class="info-box__title">Bon à savoir</p>
       <ul>
-        <li>À partir de 15 ans — sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
+        <li>À partir de 15 ans - sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
         <li>Arriver 20 min avant pour prendre une douche</li>
       </ul>
     </div>
@@ -620,7 +620,7 @@ ${pageHero('Soins bien-être', 'Soins du visage', '../assets/photos/dsc-0930.jpg
     <div class="info-box">
       <p class="info-box__title">Bon à savoir</p>
       <ul>
-        <li>À partir de 15 ans — sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
+        <li>À partir de 15 ans - sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
         <li>Soin femme enceinte : entre le 4e et le 8e mois, 60 min uniquement</li>
       </ul>
     </div>
@@ -644,7 +644,7 @@ ${pageHero('Soins bien-être', 'Fauteuils massants', '../assets/photos/balneo-73
     <div class="info-box">
       <p class="info-box__title">Bon à savoir</p>
       <ul>
-        <li>À partir de 15 ans — sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
+        <li>À partir de 15 ans - sur rendez-vous au <a href="tel:+33468756050">04 68 75 60 50</a></li>
         <li>Contre-indication : grossesse</li>
       </ul>
     </div>
@@ -669,7 +669,7 @@ ${pageHero('Aquatique', 'Piscine', '../assets/photos/balneo-60.jpg')}
         <li>Shorts et jupes de bain interdits</li>
         <li>Enfants de moins de 12 ans accompagnés par un adulte</li>
         <li>Enfants de moins de 3 ans : pataugeoire uniquement</li>
-        <li>Cheveux longs attachés — serviettes non fournies</li>
+        <li>Cheveux longs attachés - serviettes non fournies</li>
         <li>Évacuation des bassins 1/4 d'heure avant la fermeture</li>
         <li>Paiement : espèces, CB, chèques ANCV</li>
       </ul>
@@ -678,7 +678,7 @@ ${pageHero('Aquatique', 'Piscine', '../assets/photos/balneo-60.jpg')}
     <div class="table-wrap"><table>
       <tr><th></th><th>Adultes (14 ans +)</th><th>Enfants (3 à - de 14 ans)</th></tr>
       <tr><td>Tarif</td><td>6 €</td><td>4 €</td></tr>
-      <tr><td>Carte 10 entrées</td><td>55 €</td><td>—</td></tr>
+      <tr><td>Carte 10 entrées</td><td>55 €</td><td>-</td></tr>
       <tr><td>Abonnement 6 mois</td><td colspan="2">121 €</td></tr>
       <tr><td>Abonnement 12 mois (-1 mois vidange)</td><td colspan="2">220 €</td></tr>
     </table></div>
@@ -695,7 +695,7 @@ ${ctaBand('Achetez vos entrées en ligne')}
 </main>`);
 
 // SALLE DE SPORT
-pages['pages/salle-de-sport.html'] = page('Salle For.Me', 'Salle de cardio-musculation Technogym — tarifs et abonnements.', `
+pages['pages/salle-de-sport.html'] = page('Salle For.Me', 'Salle de cardio-musculation Technogym - tarifs et abonnements.', `
 <main>
 ${pageHero('For.Me', 'S\'entraîner / Se dépasser', '../assets/photos/balneo-37.jpg')}
 <section class="section section--light">
@@ -721,7 +721,7 @@ ${pageHero('For.Me', 'S\'entraîner / Se dépasser', '../assets/photos/balneo-37
     </table></div>
     <h2>Abonnements composés</h2>
     <h3>Piscine + Salle (1 personne)</h3>
-    <p>6 mois : 254 € — 12 mois (-1 mois vidange) : 485 €</p>
+    <p>6 mois : 254 € - 12 mois (-1 mois vidange) : 485 €</p>
     <h3>Balnéo + Piscine + Salle</h3>
     <p>Remise 50 % sur activités aquatiques et tarifs préférentiels sur massages.</p>
     <div class="table-wrap"><table>
@@ -735,13 +735,13 @@ ${ctaBand('Achetez vos abonnements en ligne')}
 </main>`);
 
 // PARC ETE
-pages['pages/parc-ete.html'] = page('Parc été', 'Parc aqualudique — toboggans, rivière, pataugeoires. Ouvert juillet-août.', `
+pages['pages/parc-ete.html'] = page('Parc été', 'Parc aqualudique - toboggans, rivière, pataugeoires. Ouvert juillet-août.', `
 <main>
 ${pageHero('Parc aqualudique', 'Parc été', '../assets/photos/parc-aquatique.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p><strong>Ouvert uniquement juillet et août, 7j/7 de 11h00 à 18h00.</strong><br>
-    Ouverture le 27 juin 2026 à 11h00 — Fermeture le 30 août 2026 à 18h00.</p>
+    Ouverture le 27 juin 2026 à 11h00 - Fermeture le 30 août 2026 à 18h00.</p>
     <div class="info-box">
       <p class="info-box__title">Côté pratique</p>
       <ul>
@@ -771,7 +771,7 @@ ${ctaBand('Achetez vos billets parc été en ligne')}
 </main>`);
 
 // ACTIVITES ANNEE ADULTES
-pages['pages/activites-annee-adultes.html'] = page('Activités adultes', 'Aquagym, aquabike, aquapalmes et circuit aquatraining — réservation obligatoire.', `
+pages['pages/activites-annee-adultes.html'] = page('Activités adultes', 'Aquagym, aquabike, aquapalmes et circuit aquatraining - réservation obligatoire.', `
 <main>
 ${pageHero('Activités à l\'année', 'Activités adultes', '../assets/photos/aquagym.jpg')}
 <section class="section section--light">
@@ -784,21 +784,21 @@ ${pageHero('Activités à l\'année', 'Activités adultes', '../assets/photos/aq
     <h3>Circuit training aquatique (45 min)</h3>
     <p>Renforcement musculaire généralisé et cardio-respiratoire, très ludique.</p>
     <h3>Aquagym (45 min)</h3>
-    <p>Travail cardio, abdos, jambes, cuisses, fessiers, buste — cours dynamiques adaptables.</p>
+    <p>Travail cardio, abdos, jambes, cuisses, fessiers, buste - cours dynamiques adaptables.</p>
     <h3>Aquapalmes (45 min)</h3>
     <p>Inspiré de la natation synchronisée, renforcement abdominal et galbe de la silhouette.</p>
     <h2>Tarifs</h2>
     <h3>Aquabike et Aquatraining</h3>
-    <p>1 séance : 11 € — 12 séances : 121 € (1 an) — 24 séances : 231 € (1 an)</p>
+    <p>1 séance : 11 € - 12 séances : 121 € (1 an) - 24 séances : 231 € (1 an)</p>
     <h3>Aquagym et Aquapalmes</h3>
-    <p>1 séance : 9 € — 5 séances : 41 € (1 mois) — 10 séances : 81 € (1 an) — Trimestre : 105 € (non commercialisé en été)</p>
+    <p>1 séance : 9 € - 5 séances : 41 € (1 mois) - 10 séances : 81 € (1 an) - Trimestre : 105 € (non commercialisé en été)</p>
     <p><a href="activites-annee-bebe-jardin.html">Bébés nageurs &amp; Jardin aquatique</a> · <a href="activites-annee-natation.html">Cours de natation</a></p>
   </div>
 </section>
 </main>`);
 
 // ACTIVITES ANNEE BEBE JARDIN
-pages['pages/activites-annee-bebe-jardin.html'] = page('Bébés nageurs & Jardin aquatique', 'Cours pour les 5 mois à 5 ans — réservation obligatoire.', `
+pages['pages/activites-annee-bebe-jardin.html'] = page('Bébés nageurs & Jardin aquatique', 'Cours pour les 5 mois à 5 ans - réservation obligatoire.', `
 <main>
 ${pageHero('Activités à l\'année', 'Bébés nageurs &amp; Jardin aquatique', '../assets/photos/bebe-nageur.jpg')}
 <section class="section section--light">
@@ -818,7 +818,7 @@ ${pageHero('Activités à l\'année', 'Bébés nageurs &amp; Jardin aquatique', 
 </main>`);
 
 // ACTIVITES ANNEE NATATION
-pages['pages/activites-annee-natation.html'] = page('Cours de natation', 'Cours enfants, ados et adultes — apprentissage au perfectionnement.', `
+pages['pages/activites-annee-natation.html'] = page('Cours de natation', 'Cours enfants, ados et adultes - apprentissage au perfectionnement.', `
 <main>
 ${pageHero('Activités à l\'année', 'Cours de natation', '../assets/photos/gruissan-050.jpg')}
 <section class="section section--light">
@@ -830,8 +830,8 @@ ${pageHero('Activités à l\'année', 'Cours de natation', '../assets/photos/gru
     <h2>Tarifs</h2>
     <div class="table-wrap"><table>
       <tr><th>Formule</th><th>Adultes</th><th>Enfants / ados</th></tr>
-      <tr><td>Carte 10 séances (1 an)</td><td>126 €</td><td>—</td></tr>
-      <tr><td>Carte 20 séances (1 an)</td><td>238 €</td><td>—</td></tr>
+      <tr><td>Carte 10 séances (1 an)</td><td>126 €</td><td>-</td></tr>
+      <tr><td>Carte 20 séances (1 an)</td><td>238 €</td><td>-</td></tr>
       <tr><td>Abonnement annuel (sept.–juin) + piscine + parc été</td><td>295 €</td><td>185 €</td></tr>
     </table></div>
     <p>Stages d'une semaine (lundi–vendredi) pendant Pâques (zone C) et vacances d'été.</p>
@@ -855,13 +855,13 @@ ${pageHero('Activités été', 'Activités adultes', '../assets/photos/aquagym.j
 </main>`);
 
 // ACTIVITES ETE STAGES
-pages['pages/activites-ete-stages.html'] = page('Stages de natation été', 'Stages enfants 5 jours consécutifs — inscriptions ouvertes.', `
+pages['pages/activites-ete-stages.html'] = page('Stages de natation été', 'Stages enfants 5 jours consécutifs - inscriptions ouvertes.', `
 <main>
 ${pageHero('Activités été', 'Stages de natation enfants', '../assets/photos/stage-enfant.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <p><strong>Inscriptions au <a href="tel:+33468756050">04 68 75 60 50</a></strong></p>
-    <p>Du 06/07 au 28/08/2026 — stages de 5 séances consécutives du lundi au vendredi, enfants à partir de 5 ans révolus. 8 enfants maximum par groupe.</p>
+    <p>Du 06/07 au 28/08/2026 - stages de 5 séances consécutives du lundi au vendredi, enfants à partir de 5 ans révolus. 8 enfants maximum par groupe.</p>
     <div class="table-wrap"><table>
       <tr><th>Niveau</th><th>Horaires</th></tr>
       <tr><td>Niveau 1</td><td>9h–9h45 ou 11h–11h45</td></tr>
@@ -916,7 +916,7 @@ ${pageHero('Pratiquer', 'Aquagym', '../assets/photos/aquagym.jpg')}
     <p>Un cours aquatique dynamique de 45 minutes pour travailler le cardio, les abdominaux, les jambes, les cuisses, les fessiers et le buste, avec des exercices adaptables au niveau de chacun.</p>
     <div class="info-box"><p class="info-box__title">Côté pratique</p><ul><li>Réservation obligatoire au <a href="tel:+33468756050">04 68 75 60 50</a></li><li>Shorts et jupes de bain interdits</li><li>Pas de cours les jours fériés, sauf programme estival</li><li>Pendant les vacances de la zone C : aquagym le mardi à 9h45</li></ul></div>
     <h2>Tarifs</h2>
-    <div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>9 €</td></tr><tr><td>5 séances — validité 1 mois</td><td>41 €</td></tr><tr><td>10 séances — validité 1 an</td><td>81 €</td></tr><tr><td>Trimestre — hors été</td><td>105 €</td></tr></table></div>
+    <div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>9 €</td></tr><tr><td>5 séances - validité 1 mois</td><td>41 €</td></tr><tr><td>10 séances - validité 1 an</td><td>81 €</td></tr><tr><td>Trimestre - hors été</td><td>105 €</td></tr></table></div>
     <p><a href="aquabike.html">Découvrir aussi l'Aquabike →</a></p>
   </div>
 </section>
@@ -932,7 +932,7 @@ ${pageHero('Pratiquer', 'Aquabike', '../assets/photos/balneo-37.jpg')}
     <p>À mi-chemin entre l'aquagym et le vélo en salle, l'Aquabike associe travail cardio et renforcement musculaire sur un vélo immergé, en petit groupe.</p>
     <div class="info-box"><p class="info-box__title">Côté pratique</p><ul><li>Séance de 45 minutes</li><li>Réservation obligatoire au <a href="tel:+33468756050">04 68 75 60 50</a></li><li>Shorts et jupes de bain interdits</li><li>Pas de cours les jours fériés, sauf programme estival</li></ul></div>
     <h2>Tarifs</h2>
-    <div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>11 €</td></tr><tr><td>12 séances — validité 1 an</td><td>121 €</td></tr><tr><td>24 séances — validité 1 an</td><td>231 €</td></tr></table></div>
+    <div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>11 €</td></tr><tr><td>12 séances - validité 1 an</td><td>121 €</td></tr><tr><td>24 séances - validité 1 an</td><td>231 €</td></tr></table></div>
     <p><a href="aquagym.html">Découvrir aussi l'Aquagym →</a></p>
   </div>
 </section>
@@ -947,7 +947,7 @@ ${pageHero('Pratiquer en famille', 'Bébés nageurs', '../assets/photos/bebe-nag
   <div class="container content-block fade-in">
     <p>Un premier contact avec l'eau à 32°C, en famille et sous le regard de nos maîtres-nageurs. La séance permet au tout-petit d'explorer le milieu aquatique à son rythme.</p>
     <div class="info-box"><p class="info-box__title">Côté pratique</p><ul><li>Pour les enfants de 5 à 36 mois</li><li>Le dimanche de 9h15 à 10h00</li><li>Vaccinations à jour et certificat médical de non contre-indication</li><li>1 parent accompagnateur minimum, 2 maximum</li><li>Réservation au <a href="tel:+33468756050">04 68 75 60 50</a></li></ul></div>
-    <h2>Tarifs</h2><p>1 séance : <strong>9 € par parent accompagnateur</strong> — gratuit pour l'enfant.<br>Carte 10 séances : <strong>81 €</strong>, valable 1 an.</p>
+    <h2>Tarifs</h2><p>1 séance : <strong>9 € par parent accompagnateur</strong> - gratuit pour l'enfant.<br>Carte 10 séances : <strong>81 €</strong>, valable 1 an.</p>
   </div>
 </section>
 </main>`);
@@ -961,7 +961,7 @@ ${pageHero('Pratiquer', 'Natation', '../assets/photos/stage-enfant.jpg')}
     <p>De l'apprentissage au perfectionnement, les cours sont accessibles dès 5 ans avec des groupes adaptés au niveau des enfants, des adolescents et des adultes.</p>
     <div class="info-box"><p class="info-box__title">Côté pratique</p><ul><li>Réservation au <a href="tel:+33468756050">04 68 75 60 50</a></li><li>Shorts et jupes de bain interdits</li><li>Bonnet de bain conseillé</li><li>Pas de cours pendant les vacances scolaires et les jours fériés, hors stages annoncés</li></ul></div>
     <h2>Cours à l'année</h2><p>Niveaux enfants : Cranquettes, Hippocampes, Dorades, Dauphins, Requins et Orques/Ados. Deux niveaux adultes sont proposés : perfectionnement et coaching.</p>
-    <div class="table-wrap"><table><tr><th>Formule</th><th>Adultes</th><th>Enfants / ados</th></tr><tr><td>Carte 10 séances — 1 an</td><td>126 €</td><td>—</td></tr><tr><td>Carte 20 séances — 1 an</td><td>238 €</td><td>—</td></tr><tr><td>Abonnement annuel septembre–juin</td><td>295 €</td><td>185 €</td></tr></table></div>
+    <div class="table-wrap"><table><tr><th>Formule</th><th>Adultes</th><th>Enfants / ados</th></tr><tr><td>Carte 10 séances - 1 an</td><td>126 €</td><td>-</td></tr><tr><td>Carte 20 séances - 1 an</td><td>238 €</td><td>-</td></tr><tr><td>Abonnement annuel septembre–juin</td><td>295 €</td><td>185 €</td></tr></table></div>
     <h2>Stages</h2><p>Des stages de cinq séances consécutives sont proposés pendant les vacances de Pâques et d'été, pour les enfants à partir de 5 ans révolus. Consultez les actualités ou contactez l'accueil pour les prochaines dates.</p>
   </div>
 </section>
@@ -991,7 +991,7 @@ pages['pages/tarifs.html'] = page('Tarifs', 'Tarifs des espaces et activités de
 ${pageHero('Préparer', 'Tarifs', '../assets/photos/gruissan-050.jpg')}
 <section class="section section--light"><div class="container content-block fade-in">
   <p>Cette page rassemble les principaux tarifs. Les cartes détaillées et les conditions propres à chaque activité restent disponibles dans les pages correspondantes.</p>
-  <h2>Espace Balnéo</h2><div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>Entrée 2h30 — 6 ans et plus</td><td>23 €</td></tr><tr><td>Entrée 2h30 — 3 à moins de 6 ans</td><td>11 €</td></tr><tr><td>Pass sans limite de temps — 6 ans et plus</td><td>29 €</td></tr><tr><td>Dernière heure</td><td>11 €</td></tr></table></div><p><a href="balneo.html">Voir tous les tarifs Balnéo et abonnements →</a></p>
+  <h2>Espace Balnéo</h2><div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>Entrée 2h30 - 6 ans et plus</td><td>23 €</td></tr><tr><td>Entrée 2h30 - 3 à moins de 6 ans</td><td>11 €</td></tr><tr><td>Pass sans limite de temps - 6 ans et plus</td><td>29 €</td></tr><tr><td>Dernière heure</td><td>11 €</td></tr></table></div><p><a href="balneo.html">Voir tous les tarifs Balnéo et abonnements →</a></p>
   <h2>Activités</h2><div class="table-wrap"><table><tr><th>Activité</th><th>À partir de</th></tr><tr><td>Aquagym</td><td>9 € la séance</td></tr><tr><td>Aquabike</td><td>11 € la séance</td></tr><tr><td>Bébés nageurs</td><td>9 € par parent accompagnateur</td></tr><tr><td>Natation adultes</td><td>126 € les 10 séances</td></tr></table></div>
   <h2>Autres univers</h2><div class="link-grid"><a class="link-card" href="salle-de-sport.html"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i><h2>Espace For.Me</h2><p>Séances et abonnements.</p><span>Voir les tarifs →</span></a><a class="link-card" href="massages.html"><i class="fa-solid fa-spa" aria-hidden="true"></i><h2>Massages</h2><p>Prestations avec ou sans Balnéo.</p><span>Voir la carte →</span></a><a class="link-card" href="parc-ete.html"><i class="fa-solid fa-water-ladder" aria-hidden="true"></i><h2>Parc été</h2><p>Pass journée et tarifs enfants.</p><span>Voir les tarifs →</span></a></div>
   <p><a class="btn btn--filled" href="https://gruissan-balneo.horanet.com/" target="_blank" rel="noopener">Billetterie en ligne<i class="fa-solid fa-ticket" aria-hidden="true"></i></a></p>
@@ -1123,7 +1123,7 @@ ${pageHero('Informations', 'Actualités', '../assets/photos/dsc-0451.jpg')}
 function articlePage(title, date, img, content) {
   return page(title, content.replace(/<[^>]+>/g,'').slice(0,150), `
 <main>
-${pageHero('Actualité — ' + date, title, img)}
+${pageHero('Actualité - ' + date, title, img)}
 <section class="section section--light"><div class="container content-block fade-in">${content}
 <p style="margin-top:var(--space-lg)"><a href="actualites.html" class="btn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Toutes les actualités</a></p>
 </div></section></main>`);
@@ -1136,7 +1136,7 @@ pages['pages/article-parc-ete.html'] = articlePage('Ouverture du parc été', '3
 
 pages['pages/article-stages-natation.html'] = articlePage('Stages de natation enfants été', '1 juin', '../assets/photos/stage-enfant.jpg', `
 <p>Inscriptions ouvertes ! Du 06/07 au 28/08/2026, stages de 5 séances consécutives du lundi au vendredi, pour les enfants à partir de 5 ans révolus.</p>
-<p>Niveau 1 : 9h à 9h45 ou 11h à 11h45 — Niveau 2 : 10h à 10h45. 8 enfants maximum par groupe.</p>
+<p>Niveau 1 : 9h à 9h45 ou 11h à 11h45 - Niveau 2 : 10h à 10h45. 8 enfants maximum par groupe.</p>
 <p>Avant de réserver, contactez-nous au <a href="tel:+33468756050">04 68 75 60 50</a>.</p>
 <p><a href="natation.html">Voir les cours et stages de natation →</a></p>`);
 
@@ -1158,7 +1158,7 @@ ${pageHero('Nous contacter', 'Contact', '../assets/photos/gruissan-050.jpg')}
       <p class="contact-info__label" style="margin-top:var(--space-md)">E-mail</p>
       <p><a href="mailto:espace.balneoludique@gruissan-mediterranee.com">espace.balneoludique@gruissan-mediterranee.com</a></p>
       <p class="contact-info__label" style="margin-top:var(--space-md)">Adresse</p>
-      <p>Avenue des Bains — 11430 Gruissan</p>
+      <p>Avenue des Bains - 11430 Gruissan</p>
     </div>
     <a href="https://gruissan-balneo.horanet.com/" class="btn btn--filled" target="_blank" rel="noopener">Billetterie en ligne<i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
   </div>
@@ -1177,7 +1177,7 @@ ${pageHero('Informations légales', 'Règlement intérieur', '../assets/photos/d
     <ul>
       <li>Se conformer scrupuleusement aux consignes du personnel</li>
       <li>Shorts et jupes de bain interdits dans l'ensemble de l'établissement</li>
-      <li>Cheveux longs attachés — serviettes non fournies</li>
+      <li>Cheveux longs attachés - serviettes non fournies</li>
       <li>Évacuation des bassins 1/4 d'heure avant la fermeture</li>
     </ul>
     <h2>Massages et soins bien-être</h2>
@@ -1198,20 +1198,22 @@ ${pageHero('Informations légales', 'Règlement intérieur', '../assets/photos/d
 </main>`);
 
 // MENTIONS LEGALES
-pages['pages/mentions-legales.html'] = page('Mentions légales', 'Mentions légales — Espace Balnéo de Gruissan.', `
+pages['pages/mentions-legales.html'] = page('Mentions légales', 'Mentions légales - Espace Balnéo de Gruissan.', `
 <main>
 ${pageHero('Informations légales', 'Mentions légales', '../assets/photos/gruissan-050.jpg')}
 <section class="section section--light">
   <div class="container content-block fade-in">
     <h2>Éditeur du site</h2>
-    <p>Espace Balnéoludique de Gruissan<br>Avenue des Bains — 11430 Gruissan<br>Téléphone : 04 68 75 60 50<br>E-mail : espace.balneoludique@gruissan-mediterranee.com</p>
+    <p>Office de tourisme de Gruissan<br>80 boulevard du Pech Maynaud, 11430 Gruissan.</p>
+    <p>Espace Balnéoludique de Gruissan<br>Avenue des Bains - 11430 Gruissan<br>Téléphone : 04 68 75 60 50<br>E-mail : espace.balneoludique@gruissan-mediterranee.com</p>
+    <p>Responsable de publication : Mathias Szanto.</p>
     <h2>Hébergement</h2>
-    <p>Les coordonnées complètes de l’hébergeur doivent être renseignées par l’éditeur du site avant la mise en production.</p>
+    <p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.<br>Téléphone : 1007 depuis la France ou +33 9 72 10 10 07 depuis l’étranger.<br><a href="https://www.ovhcloud.com/fr/terms-and-conditions/" target="_blank" rel="noopener noreferrer">Informations légales de l’hébergeur</a></p>
     <h2>Propriété intellectuelle</h2>
     <p>L'ensemble du contenu de ce site (textes, images, graphismes) est la propriété de l'Espace Balnéoludique de Gruissan ou de ses partenaires. Toute reproduction est interdite sans autorisation préalable.</p>
-    <p>Photos : J.B. Roubinet — utilisées avec autorisation.</p>
+    <p>Photos : J.B. Roubinet - utilisées avec autorisation.</p>
     <h2>Crédits</h2>
-    <p>&reg; D.B.G — Espace Balnéo de Gruissan</p>
+    <p>&reg; D.B.G - Espace Balnéo de Gruissan</p>
   </div>
 </section>
 </main>`);
@@ -1224,16 +1226,16 @@ ${pageHero('Informations légales', 'Données personnelles', '../assets/photos/g
   <div class="container content-block fade-in">
     <p>Conformément à la loi Informatique et Libertés modifiée et au Règlement général sur la protection des données (RGPD), vous disposez notamment de droits d’accès, de rectification, d’effacement, de limitation et d’opposition lorsque ceux-ci s’appliquent.</p>
     <h2>Responsable du traitement</h2>
-    <p>Le directeur de l'Espace Balnéoludique de Gruissan.<br>Pour exercer vos droits : espace.balneoludique@gruissan-mediterranee.com</p>
+    <p>Office de tourisme de Gruissan, 80 boulevard du Pech Maynaud, 11430 Gruissan, pour l’Espace Balnéoludique.<br>Pour exercer vos droits : espace.balneoludique@gruissan-mediterranee.com</p>
     <h2>Données collectées</h2>
-    <p>Les données collectées via le formulaire d’inscription à la newsletter (prénom, nom, e-mail et, facultativement, code postal et ville) servent uniquement à l’envoi des actualités de l’Espace Balnéo. Le traitement repose sur votre consentement et les données sont accessibles aux seules personnes habilitées.</p>
+    <p>Le formulaire permet de demander une inscription à la newsletter. Votre prénom, nom, adresse e-mail et, si vous les renseignez, code postal et ville sont enregistrés dans WordPress avec la date et le texte du consentement. L’équipe habilitée de l’Espace Balnéo traite ensuite votre demande. Cette collecte repose sur votre consentement ; elle n’entraîne pas à elle seule l’ajout automatique à une liste de diffusion.</p>
     <h2>Durée et retrait du consentement</h2>
-    <p>Les données sont conservées jusqu’au retrait de votre consentement, sous réserve des obligations légales applicables. Vous pouvez vous désinscrire ou exercer vos droits en écrivant à l’adresse indiquée ci-dessus. Vous pouvez également introduire une réclamation auprès de la CNIL.</p>
+    <p>La demande est conservée dans l’administration pendant 90 jours, puis placée dans la corbeille WordPress avant sa suppression selon le délai de cette corbeille. Vous pouvez retirer votre demande ou votre consentement à tout moment en écrivant à l’adresse indiquée ci-dessus. Les informations de l’éventuel abonnement vous sont communiquées lors de sa prise en charge par l’équipe. Vous pouvez également introduire une réclamation auprès de la CNIL.</p>
     <h2>Vidéosurveillance</h2>
     <p>L'espace For.Me est placé sous vidéosurveillance. Les enregistrements sont conservés 30 jours maximum, puis automatiquement effacés.</p>
     <h2>Cookies</h2>
     <p>Avec votre accord, le site utilise Google Analytics pour mesurer sa fréquentation et Google Ads pour mesurer l’efficacité et personnaliser les campagnes publicitaires. Ces services Google ne sont chargés qu’après votre consentement.</p>
-    <p>Vous pouvez accepter, refuser ou personnaliser ces traceurs depuis le panneau de consentement. Le btn « Gérer mes cookies », disponible sur toutes les pages, permet de modifier ou retirer votre choix à tout moment.</p>
+    <p>Vous pouvez accepter, refuser ou personnaliser ces traceurs depuis le panneau de consentement. Le bouton « Gérer mes cookies », disponible sur toutes les pages, permet de modifier ou retirer votre choix à tout moment. Votre choix est mémorisé pendant six mois. Les favoris sont conservés dans votre navigateur et peuvent être retirés depuis « Mes favoris ».</p>
     <p><a href="reglement.html">Règlement intérieur →</a></p>
   </div>
 </section>
@@ -1265,4 +1267,4 @@ Object.entries(pages).forEach(([file, html]) => {
   fs.writeFileSync(dest, html, 'utf8');
   console.log('Written:', file);
 });
-console.log('Done —', Object.keys(pages).length, 'pages');
+console.log('Done -', Object.keys(pages).length, 'pages');

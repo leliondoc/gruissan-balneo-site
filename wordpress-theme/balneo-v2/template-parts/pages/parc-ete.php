@@ -21,7 +21,7 @@
 <section class="section section--light">
 	<div class="container content-block fade-in">
 	<p><strong>Ouvert uniquement juillet et août, 7j/7 de 11h00 à 18h00.</strong><br>
-	Ouverture le 27 juin 2026 à 11h00 — Fermeture le 30 août 2026 à 18h00.</p>
+	Ouverture le 27 juin 2026 à 11h00 - Fermeture le 30 août 2026 à 18h00.</p>
 	<div class="info-box">
 		<p class="info-box__title">Côté pratique</p>
 		<ul>

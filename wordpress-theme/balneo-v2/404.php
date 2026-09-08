@@ -7,7 +7,7 @@
 
 get_header();
 ?>
-<main class="section">
+<main id="contenu-principal" tabindex="-1" class="section entry-content--standard">
 	<div class="container entry-content" style="padding-block:var(--space-2xl);text-align:center">
 		<p class="section__label"><?php esc_html_e( 'Erreur 404', 'balneo-v2' ); ?></p>
 		<h1><?php esc_html_e( 'Cette page n’existe pas', 'balneo-v2' ); ?></h1>

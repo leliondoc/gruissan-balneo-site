@@ -33,12 +33,13 @@
 
   function readConsent() {
     try {
-      var stored = window.localStorage.getItem(storageKey);
+      var stored;
+      try { stored = window.localStorage.getItem(storageKey); }
+      catch (storageError) { stored = window.sessionStorage.getItem(storageKey); }
       if (!stored) return null;
       var consent = JSON.parse(stored);
       if (!consent || consent.version !== 1 || !consent.savedAt) return null;
-      if (Date.now() - Number(consent.savedAt) > consentLifetime) {
-        window.localStorage.removeItem(storageKey);
+      if (!Number.isFinite(Number(consent.savedAt)) || Number(consent.savedAt) > Date.now() || Date.now() - Number(consent.savedAt) > consentLifetime) {
         return null;
       }
       return {
@@ -61,7 +62,8 @@
     try {
       window.localStorage.setItem(storageKey, JSON.stringify(consent));
     } catch (error) {
-      // Le choix reste appliqué pour la page courante si le stockage est indisponible.
+      try { window.sessionStorage.setItem(storageKey, JSON.stringify(consent)); }
+      catch (sessionError) { /* Sans stockage, le prochain chargement demandera de nouveau un accord. */ }
     }
     return consent;
   }
@@ -142,11 +144,11 @@
       '        <span class="cookie-consent__status">Toujours actifs</span>',
       '      </div>',
       '      <label class="cookie-consent__setting" for="consentement-analytics">',
-      '        <span><strong>Mesure d’audience</strong><small>Google Analytics — statistiques de fréquentation.</small></span>',
+      '        <span><strong>Mesure d’audience</strong><small>Google Analytics - statistiques de fréquentation.</small></span>',
       '        <span class="cookie-consent__toggle"><input id="consentement-analytics" type="checkbox" data-consent-analytics><i aria-hidden="true"></i></span>',
       '      </label>',
       '      <label class="cookie-consent__setting" for="consentement-publicite">',
-      '        <span><strong>Publicité</strong><small>Google Ads — mesure et personnalisation des campagnes.</small></span>',
+      '        <span><strong>Publicité</strong><small>Google Ads - mesure et personnalisation des campagnes.</small></span>',
       '        <span class="cookie-consent__toggle"><input id="consentement-publicite" type="checkbox" data-consent-ads><i aria-hidden="true"></i></span>',
       '      </label>',
       '    </div>',
@@ -229,7 +231,17 @@
     }
 
     function save(selection) {
+      var withdrawing = googleTagRequested && storedConsent &&
+        ((storedConsent.analytics && !selection.analytics) || (storedConsent.ads && !selection.ads));
       storedConsent = writeConsent(selection);
+      if (withdrawing) {
+        // Un tag déjà exécuté ne peut pas être déchargé. Le nouveau document
+        // n'initialisera que les catégories qui restent autorisées.
+        window['ga-disable-' + ga4Id] = true;
+        clearGoogleCookies();
+        window.location.reload();
+        return;
+      }
       applyConsent(storedConsent);
       document.documentElement.classList.add('consent-saved');
       closeBanner();

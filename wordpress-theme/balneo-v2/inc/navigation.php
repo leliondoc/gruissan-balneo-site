@@ -113,7 +113,7 @@ function balneo_v2_site_logo( string $context = 'header' ): void {
 	$class   = 'footer' === $context ? 'footer-wordmark' : 'site-logo';
 	$logo_id = (int) get_theme_mod( 'custom_logo' );
 	?>
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php esc_attr_e( 'Accueil — Espace Balnéo Gruissan', 'balneo-v2' ); ?>">
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php esc_attr_e( 'Accueil - Espace Balnéo Gruissan', 'balneo-v2' ); ?>">
 		<?php
 		if ( $logo_id ) {
 			echo wp_get_attachment_image(

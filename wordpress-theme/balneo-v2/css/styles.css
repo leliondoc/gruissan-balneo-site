@@ -77,6 +77,11 @@ body {
 }
 body.menu-open { overflow: hidden; }
 body.panel-open { overflow: hidden; }
+/* Réserve une colonne aux raccourcis fixes sans masquer les contenus. */
+@media (min-width: 761px) {
+  body { padding-left: 70px; }
+  body .site-header, body.is-home .info-banner { left: 70px; }
+}
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
@@ -96,6 +101,10 @@ p + p { margin-top: 1rem; }
   transition: transform .15s ease;
 }
 .skip-link:focus { transform: translateY(0); }
+main[tabindex="-1"]:focus { outline: none; }
+.seasonal-pause { position: absolute; z-index: 5; top: 1rem; left: 1rem; min-height: 44px; padding: .5rem 1rem; border: 1px solid var(--ink); border-radius: 4px; color: var(--ink); background: var(--white); cursor: pointer; }
+.seasonal-pause:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+.entry-content--standard { padding-top: calc(var(--header-height) + var(--utility-height) + 3rem); }
 
 .container { width: min(100% - 3rem, var(--max-width)); margin-inline: auto; }
 .media-fill { position: relative; overflow: hidden; }
@@ -643,7 +652,7 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 .footer-nav a:hover { color: var(--white); }
 .footer-bottom { padding-top: 1.3rem; display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line-light); color: rgba(255,255,255,.38); font-size: .66rem; }
 
-/* Consentement Google — carte compacte non modale inspirée de l’ergonomie Axeptio. */
+/* Consentement Google - carte compacte non modale inspirée de l’ergonomie Axeptio. */
 .cookie-consent[hidden] { display: none; }
 .cookie-consent { position: fixed; inset: 0; z-index: 10000; pointer-events: none; }
 .cookie-consent__card { position: absolute; left: 1rem; bottom: 1rem; width: min(420px, calc(100% - 2rem)); max-height: calc(100dvh - 2rem); padding: 2.55rem 1.3rem 1rem; overflow-y: auto; border: 1px solid rgba(0,152,133,.55); border-radius: 20px 20px 20px 6px; color: var(--ink); background: var(--white); box-shadow: 0 16px 44px rgba(1,52,75,.22); opacity: 0; pointer-events: auto; transform: translate3d(0,18px,0) scale(.98); transition: opacity .3s ease, transform .3s cubic-bezier(.22,1,.36,1); }
@@ -763,7 +772,8 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .nav-toggle { display: block; }
   .site-tools { margin-left: auto; }
   .main-nav { position: fixed; inset: 0; z-index: 101; height: 100vh; height: 100dvh; padding: 7.5rem 1.5rem 2rem; contain: layout paint; display: block; overflow-y: auto; color: var(--ink); background: var(--green-light); backface-visibility: hidden; will-change: transform; transform: translate3d(100%,0,0); transition: transform var(--transition); }
-  .main-nav.open { transform: translate3d(0,0,0); }
+  .main-nav { visibility: hidden; }
+  .main-nav.open { visibility: visible; transform: translate3d(0,0,0); }
   .main-nav > li { display: block; height: auto; border-bottom: 1px solid var(--line); }
   .main-nav > li > a, .main-nav > li > .nav-link { width: 100%; height: auto; min-height: 62px; padding: 0 0 0 2.6rem; justify-content: space-between; color: var(--ink); font-size: .75rem; text-align: left; }
   .main-nav__icon { top: 50%; left: .2rem; width: 24px; height: 24px; font-size: 1.2rem; transform: translate3d(0,-50%,0); }

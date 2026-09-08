@@ -13,7 +13,7 @@
 	</div>
 	<div class="page-hero__veil"></div>
 	<div class="page-hero__content">
-		<p class="page-hero__label">Actualité — 1 avril</p>
+		<p class="page-hero__label">Actualité - 1 avril</p>
 		<h1 class="page-hero__title">Réouverture de la rivière extérieure</h1>
 		<span class="title-rule" aria-hidden="true"></span>
 	</div>

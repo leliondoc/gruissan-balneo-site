@@ -13,7 +13,7 @@
 	</div>
 	<div class="page-hero__veil"></div>
 	<div class="page-hero__content">
-		<p class="page-hero__label">Actualité — 3 juin</p>
+		<p class="page-hero__label">Actualité - 3 juin</p>
 		<h1 class="page-hero__title">Ouverture du parc été</h1>
 		<span class="title-rule" aria-hidden="true"></span>
 	</div>

@@ -15,12 +15,16 @@ while ( have_posts() ) {
 	$slug = get_post_field( 'post_name', get_the_ID() );
 
 	if ( '' !== trim( (string) get_the_content() ) ) {
-		the_content();
+		if ( function_exists( 'balneo_v2_render_page_content' ) ) {
+			balneo_v2_render_page_content();
+		} else {
+			the_content();
+		}
 	} elseif ( $slug && file_exists( get_theme_file_path( '/template-parts/pages/' . $slug . '.php' ) ) ) {
 		get_template_part( 'template-parts/pages/' . $slug );
 	} else {
 		?>
-		<main class="section">
+		<main id="contenu-principal" tabindex="-1" class="section entry-content--standard">
 			<article class="container entry-content">
 				<h1><?php the_title(); ?></h1>
 				<?php the_content(); ?>

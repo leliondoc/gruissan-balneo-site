@@ -38,7 +38,7 @@
 		</nav>
 		</div>
 		<div class="footer-bottom">
-		<span><?php esc_html_e( '® D.B.G — Espace Balnéo de Gruissan', 'balneo-v2' ); ?></span>
+		<span><?php esc_html_e( '® D.B.G - Espace Balnéo de Gruissan', 'balneo-v2' ); ?></span>
 		<span><?php esc_html_e( 'Photos : J.B. Roubinet', 'balneo-v2' ); ?></span>
 		</div>
 	</div>

@@ -123,7 +123,8 @@ assert(aiDiscoveryPhp.includes('llms.txt'), 'Résumé éditorial pour assistants
 const formsPhp = read('inc/forms.php');
 assert(formsPhp.includes('wp_verify_nonce'), 'Protection CSRF du formulaire absente.');
 assert(formsPhp.includes("name=\"consentement\""), 'Consentement explicite à la newsletter absent.');
-assert(formsPhp.includes('set_transient'), 'Limitation anti-abus du formulaire absente.');
+assert(formsPhp.includes('balneo_v2_store_newsletter_request'), 'Enregistrement de la demande absent.');
+assert(read('inc/newsletter.php').includes('balneo_v2_newsletter_rate_slot'), 'Limitation anti-abus absente.');
 assert(formsPhp.includes('wp_validate_redirect'), 'Validation de la redirection du formulaire absente.');
 
 const analyticsPhp = read('inc/analytics.php');
@@ -208,8 +209,8 @@ assert(contentMigration.includes("'3.0.0'"), 'La migration vers le schéma Guten
 
 const pagePhp = read('page.php');
 const frontPagePhp = read('front-page.php');
-assert(pagePhp.includes('the_content();'), 'Les pages ne rendent pas le contenu WordPress.');
-assert(frontPagePhp.includes('the_content();'), 'L’accueil ne rend pas le contenu WordPress.');
+assert(pagePhp.includes('balneo_v2_render_page_content();'), 'Les pages ne rendent pas le contenu WordPress.');
+assert(frontPagePhp.includes('balneo_v2_render_page_content();'), 'L’accueil ne rend pas le contenu WordPress.');
 
 if (failures.length) {
   console.error(`Audit WordPress échoué (${failures.length}) :`);

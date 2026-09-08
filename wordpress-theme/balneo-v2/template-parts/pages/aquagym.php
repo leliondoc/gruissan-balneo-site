@@ -23,7 +23,7 @@
 	<p>Un cours aquatique dynamique de 45 minutes pour travailler le cardio, les abdominaux, les jambes, les cuisses, les fessiers et le buste, avec des exercices adaptables au niveau de chacun.</p>
 	<div class="info-box"><p class="info-box__title">Côté pratique</p><ul><li>Réservation obligatoire au <a href="tel:+33468756050">04 68 75 60 50</a></li><li>Shorts et jupes de bain interdits</li><li>Pas de cours les jours fériés, sauf programme estival</li><li>Pendant les vacances de la zone C : aquagym le mardi à 9h45</li></ul></div>
 	<h2>Tarifs</h2>
-	<div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>9 €</td></tr><tr><td>5 séances — validité 1 mois</td><td>41 €</td></tr><tr><td>10 séances — validité 1 an</td><td>81 €</td></tr><tr><td>Trimestre — hors été</td><td>105 €</td></tr></table></div>
+	<div class="table-wrap"><table><tr><th>Formule</th><th>Tarif</th></tr><tr><td>1 séance</td><td>9 €</td></tr><tr><td>5 séances - validité 1 mois</td><td>41 €</td></tr><tr><td>10 séances - validité 1 an</td><td>81 €</td></tr><tr><td>Trimestre - hors été</td><td>105 €</td></tr></table></div>
 	<p><a href="<?php echo esc_url( home_url( '/aquabike/' ) ); ?>">Découvrir aussi l'Aquabike →</a></p>
 	</div>
 </section>

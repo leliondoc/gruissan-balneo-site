@@ -7,7 +7,7 @@
 
 ?>
 <div class="info-banner">
-	<div class="container"><span class="info-banner__message"><strong>Accès des mineurs à la Balnéo :</strong> du samedi 27 juin au dimanche 30 août inclus, les mineurs sont admis toute la journée en Balnéo.</span>
+	<div class="container"><span class="info-banner__message"><a href="<?php echo esc_url( home_url( '/horaires/' ) ); ?>"><strong>Horaires et accès des mineurs :</strong> consultez le programme de votre journée.</a></span>
 		<button class="info-banner__close" type="button" aria-label="Fermer">&times;</button>
 	</div>
 	</div>
@@ -28,7 +28,7 @@
 		</div>
 	</div>
 	<div class="hero-seals" role="group" aria-label="Informations saison 2026">
-		<div class="brand-seal brand-seal--open"><strong>Ouvert</strong><span>7j/7</span></div>
+		<div class="brand-seal brand-seal--open"><strong>For.Me</strong><span>7j/7</span></div>
 	</div>
 	<a class="hero__scroll" href="#welcome"><span></span>Découvrir</a>
 	</section>
@@ -156,7 +156,7 @@
 	<section class="section news-section">
 	<div class="container">
 		<div class="section-heading fade-in">
-		<div><p class="section__label">En ce moment</p><h2 class="display-title">Les nouvelles de la Balnéo</h2></div>
+		<div><p class="section__label">Le journal</p><h2 class="display-title">Les nouvelles de la Balnéo</h2></div>
 		<a href="<?php echo esc_url( home_url( '/actualites/' ) ); ?>" class="text-link">Toutes les actualités <span>→</span></a>
 		</div>
 		<div class="news-grid">
@@ -215,7 +215,7 @@
 			</div>
 			<div class="contact-info__item">
 			<p class="contact-info__label">Adresse</p>
-			<p class="contact-info__value">Avenue des Bains — 11430 Gruissan</p>
+			<p class="contact-info__value">Avenue des Bains - 11430 Gruissan</p>
 			</div>
 		</div>
 		<div>
