@@ -76,24 +76,17 @@ for (const saved of [{ unexpected: true }, [
 {
   const { dom, w, d, timers } = page();
   const section = d.querySelector('[data-seasonal]');
-  const pause = section.querySelector('.seasonal-pause');
+  assert.equal(section.querySelector('.seasonal-pause'), null);
   assert.equal(timers.size, 1);
   section.dispatchEvent(new w.Event('mouseenter'));
   assert.equal(timers.size, 0);
   section.dispatchEvent(new w.Event('mouseleave'));
   assert.equal(timers.size, 1);
-  pause.dispatchEvent(new w.Event('pointerdown'));
-  pause.focus();
-  pause.click();
-  assert.equal(timers.size, 0, 'Le premier clic doit arrêter le défilement même quand il déplace le focus');
-  assert.match(pause.textContent, /Reprendre/);
-  pause.click();
-  assert.equal(timers.size, 1);
   d.querySelector('.site-tool--search').focus();
   section.querySelector('.seasonal-tab.is-active').focus();
   assert.equal(timers.size, 0, 'Entrer au clavier dans le carrousel arrête la rotation');
   section.dispatchEvent(new w.Event('mouseleave'));
-  assert.equal(timers.size, 0, 'La reprise nécessite une action explicite après un focus');
+  assert.equal(timers.size, 0, 'Sortir le pointeur ne relance pas la rotation après une interaction clavier');
   dom.window.close();
 }
 {

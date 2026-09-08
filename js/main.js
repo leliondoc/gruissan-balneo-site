@@ -506,11 +506,6 @@
     if (!track || !slides.length || !tabs.length) return;
     var rotationStopped = reduceMotion;
     var isHovered = false;
-    var pointerPauseAction = null;
-    var pauseButton = document.createElement('button');
-    pauseButton.type = 'button';
-    pauseButton.className = 'seasonal-pause';
-    seasonal.querySelector('.seasonal-slider').prepend(pauseButton);
 
     if ('IntersectionObserver' in window) {
       var seasonalVisibilityObserver = new IntersectionObserver(function (entries) {
@@ -545,21 +540,12 @@
 
     var resetSeasonAutoplay = function () {
       window.clearInterval(seasonTimer);
-      pauseButton.textContent = rotationStopped ? 'Reprendre le défilement' : 'Mettre en pause';
       if (!rotationStopped && !isHovered && !document.hidden) {
         seasonTimer = window.setInterval(function () {
           showSeason(seasonIndex + 1);
         }, 6000);
       }
     };
-    pauseButton.addEventListener('pointerdown', function () { pointerPauseAction = !rotationStopped; });
-    pauseButton.addEventListener('pointercancel', function () { pointerPauseAction = null; });
-    pauseButton.addEventListener('pointerleave', function () { pointerPauseAction = null; });
-    pauseButton.addEventListener('click', function () {
-      rotationStopped = pointerPauseAction === null ? !rotationStopped : pointerPauseAction;
-      pointerPauseAction = null;
-      resetSeasonAutoplay();
-    });
     seasonal.addEventListener('focusin', function (event) {
       if (!seasonal.contains(event.relatedTarget)) { rotationStopped = true; resetSeasonAutoplay(); }
     });

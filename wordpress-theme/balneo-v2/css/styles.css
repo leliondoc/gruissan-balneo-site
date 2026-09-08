@@ -97,8 +97,6 @@ p + p { margin-top: 1rem; }
 }
 .skip-link:focus { transform: translateY(0); }
 main[tabindex="-1"]:focus { outline: none; }
-.seasonal-pause { position: absolute; z-index: 5; top: 1rem; left: 1rem; min-height: 44px; padding: .5rem 1rem; border: 1px solid var(--ink); border-radius: 4px; color: var(--ink); background: var(--white); cursor: pointer; }
-.seasonal-pause:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .entry-content--standard { padding-top: calc(var(--header-height) + var(--utility-height) + 3rem); }
 
 .container { width: min(100% - 3rem, var(--max-width)); margin-inline: auto; }
@@ -462,6 +460,7 @@ body.admin-bar.is-home .info-banner { top: calc(var(--utility-height) + var(--he
 /* Neutralise uniquement dans le slider les espacements automatiques ajoutés par Gutenberg. */
 .seasonal-section > .seasonal-slider,
 .seasonal-section > .seasonal-tabs,
+.seasonal-slider > .seasonal-slider__track,
 .seasonal-slider__track > .seasonal-slide,
 .seasonal-slide > .seasonal-slide__veil,
 .seasonal-slide > .seasonal-slide__content,
@@ -814,7 +813,6 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
 @media (min-width: 761px) {
   .container, .hero__content, .page-hero__content, .quick-access, .seasonal-slide__content { max-width: calc(100% - 140px); }
   .experience-card--large .experience-card__content { padding-left: 70px; }
-  .seasonal-pause { left: 70px; }
 }
 @media (min-width: 761px) and (max-width: 1080px) {
   .experience-card:nth-child(2) .experience-card__content, .experience-card--wide .experience-card__content, .manifesto__content { padding-left: 70px; }
