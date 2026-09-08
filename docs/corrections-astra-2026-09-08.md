@@ -9,7 +9,7 @@ Périmètre : thème Balnéo V2 1.6.0 et contenus de `balneov2.gruissan-balneo.c
 - Newsletter : demandes privées dans WordPress, validation stricte, preuve datée du consentement, détection des doublons, confirmation fondée sur l’enregistrement. La notification ne contient pas les données du visiteur et son échec ne perd pas la demande. Limites atomiques par IP, e-mail et plafond global, sans conserver leurs valeurs en clair dans les compteurs.
 - Accessibilité : cible d’évitement dans le HTML WordPress, titre et zone principale pour les pages ordinaires, dialogues nommés avec confinement du focus et fond inerte, arrêt et reprise explicites du carrousel. Navigation mobile fermée retirée du parcours clavier.
 - Recherche : index des pages et articles publiés non protégés, titres et textes Gutenberg, normalisation des accents et synonymes. URLs et textes des résultats et favoris validés et échappés.
-- Affichage : espace réservé à la barre latérale sur ordinateur, suppression de son chevauchement avec le contenu.
+- Affichage : textes espacés de la barre latérale sur ordinateur, avec des fonds pleine largeur. Le décalage global de 70 pixels ajouté lors du premier audit a été retiré à la demande du responsable.
 - Cookies : après retrait d’une catégorie précédemment autorisée, rechargement pour repartir sans ses tags. Dates de consentement invalides ou expirées refusées.
 - Sécurité : éditeurs PHP WordPress désactivés via les capacités du thème, en-têtes défensifs complétés. La CSP limite les objets, les cadres, la base des liens et les destinations de formulaires. Elle ne constitue pas une CSP stricte avec nonces de scripts. HSTS limité à cet hôte, durée d’un jour, sans préchargement ni propagation aux sous-domaines.
 - Maintenance : sources et fichiers générés synchronisés, version 1.6.0, tests supplémentaires exécutés avant le déploiement SFTP. Les nouveaux appels restent compatibles pendant une livraison de fichiers progressive.
@@ -49,3 +49,12 @@ Les corrections ont été publiées avec les commits `2622c56`, `228596e` et `8e
 - GitHub a exécuté avec succès les tests du formulaire, des contenus publics, de l’interface, du consentement, du planning, des assets et du déploiement, ainsi que PHPCS, l’audit WordPress, la syntaxe PHP et les audits de dépendances npm et Composer. Le contrôle local de syntaxe couvre 57 fichiers PHP du thème et du plugin. Une reconstruction isolée a également confirmé la cohérence des sources et des fichiers générés.
 
 La réception effective des mails, l’intégration dans l’outil de diffusion, un paiement réel et les vérifications d’hébergement énumérées plus haut restent à valider. Les contrôles effectués ne permettent pas d’affirmer une sécurité absolue ni une conformité juridique certifiée.
+
+## Ajustement de l’accueil après retour visuel
+
+- Suppression de la bande claire à gauche : aucun espacement sur le corps de la page ou décalage de l’en-tête. Une marge intérieure protège les textes de la barre de raccourcis.
+- Les blocs marqués `fade-in` sont visibles dès le rendu CSS. Leur affichage ne dépend plus du JavaScript, du défilement ni d’une transition de 520 ms.
+- La police manuscrite utilise un texte de remplacement visible pendant son chargement.
+- Le préchargement de la photo principale reprend le même `srcset` et la même largeur que l’image affichée. Il ne force plus le fichier de 479 320 octets lorsque le navigateur choisit une variante de 70 348 ou 154 754 octets.
+- Les anciens blocs images sans stratégie explicite utilisent le chargement différé ; les images prioritaires restent immédiates. Les réglages éditoriaux explicites sont conservés.
+- Aperçu vérifié à 1280, 800 et 390 pixels, sans débordement horizontal. À 1280 et 800 pixels, le fond commence à 0, les titres à 70 et la barre se termine à 54 pixels. Aucun des blocs de contenu ne reste masqué. Contrôles de l’interface, des assets, du thème WordPress et PHPCS réussis.

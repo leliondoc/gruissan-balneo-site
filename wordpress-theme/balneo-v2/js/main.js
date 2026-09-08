@@ -491,29 +491,6 @@
     prependContextIcon(duration, 'fa-clock');
   });
 
-  // Apparition progressive au défilement.
-  var fadeEls = document.querySelectorAll('.fade-in');
-  if (fadeEls.length && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-animating');
-          window.requestAnimationFrame(function () {
-            entry.target.classList.add('visible');
-          });
-          entry.target.addEventListener('transitionend', function () {
-            entry.target.classList.remove('is-animating');
-          }, { once: true });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    fadeEls.forEach(function (el) { observer.observe(el); });
-  } else {
-    fadeEls.forEach(function (el) { el.classList.add('visible'); });
-  }
-
   // Suggestions saisonnières.
   document.querySelectorAll('[data-seasonal]').forEach(function (seasonal) {
     var track = seasonal.querySelector('.seasonal-slider__track');

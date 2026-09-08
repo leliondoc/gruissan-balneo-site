@@ -65,7 +65,7 @@ msgstr ""
 msgid "Balnéo le %1$s : %2$s. %3$s"
 msgstr ""
 
-#: inc/newsletter.php:172
+#: inc/newsletter.php:179
 msgid "Cette demande ne déclenche pas d’inscription automatique. Après traitement dans votre outil de newsletter, placez-la dans la corbeille. Les demandes sont conservées ici pendant 90 jours au maximum."
 msgstr ""
 
@@ -85,11 +85,11 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: inc/newsletter.php:159
+#: inc/newsletter.php:166
 msgid "Demande à traiter par l’équipe"
 msgstr ""
 
-#: inc/newsletter.php:136 inc/newsletter.php:19
+#: inc/newsletter.php:143 inc/newsletter.php:19
 msgid "Demande newsletter"
 msgstr ""
 
@@ -181,7 +181,7 @@ msgstr ""
 msgid "L’inscription n’a pas pu être envoyée. Vérifiez votre adresse e-mail ou réessayez."
 msgstr ""
 
-#: inc/newsletter.php:188
+#: inc/newsletter.php:195
 msgid "La notification par e-mail a échoué. La demande est bien enregistrée."
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Nos coordonnées"
 msgstr ""
 
-#: inc/newsletter.php:152
+#: inc/newsletter.php:159
 msgid "Nouvelle demande newsletter Balnéo"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "Tarifs"
 msgstr ""
 
-#: inc/newsletter.php:152
+#: inc/newsletter.php:159
 msgid "Une demande est à traiter dans WordPress :"
 msgstr ""
 

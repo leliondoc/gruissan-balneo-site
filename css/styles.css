@@ -11,7 +11,7 @@
   src: url('../assets/fonts/BrandonSmithStamp.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -77,11 +77,6 @@ body {
 }
 body.menu-open { overflow: hidden; }
 body.panel-open { overflow: hidden; }
-/* Réserve une colonne aux raccourcis fixes sans masquer les contenus. */
-@media (min-width: 761px) {
-  body { padding-left: 70px; }
-  body .site-header, body.is-home .info-banner { left: 70px; }
-}
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
@@ -724,9 +719,8 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .footer-cookie-manager { font-size: .9rem; text-align: center; }
 }
 
-.fade-in { opacity: 0; transform: translate3d(0,18px,0); transition: opacity .52s ease, transform .52s ease; }
-.fade-in.is-animating { will-change: opacity, transform; }
-.fade-in.visible { opacity: 1; transform: translate3d(0,0,0); }
+/* Les contenus sont lisibles dès le rendu, même avant le JavaScript. */
+.fade-in { opacity: 1; transform: none; }
 
 /* Lisibilité sur les écrans larges. */
 @media (min-width: 1280px) {
@@ -814,6 +808,16 @@ a.link-card:hover p, a.link-card:hover span { color: inherit; }
   .manifesto { grid-template-columns: 1fr; }
   .manifesto__photo { min-height: 560px; }
   .manifesto::before { left: 50%; right: auto; top: calc(560px - 36px); width: 180px; height: 72px; transform: translateX(-50%) rotate(90deg); }
+}
+
+/* Garde les textes à distance des raccourcis, avec des fonds pleine largeur. */
+@media (min-width: 761px) {
+  .container, .hero__content, .page-hero__content, .quick-access, .seasonal-slide__content { max-width: calc(100% - 140px); }
+  .experience-card--large .experience-card__content { padding-left: 70px; }
+  .seasonal-pause { left: 70px; }
+}
+@media (min-width: 761px) and (max-width: 1080px) {
+  .experience-card:nth-child(2) .experience-card__content, .experience-card--wide .experience-card__content, .manifesto__content { padding-left: 70px; }
 }
 
 @media (max-width: 760px) {

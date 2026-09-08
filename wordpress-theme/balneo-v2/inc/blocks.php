@@ -231,9 +231,13 @@ function balneo_v2_render_rich_text_block( array $attributes ): string {
  * @return string
  */
 function balneo_v2_render_image_block( array $attributes ): string {
-	$html_attributes        = isset( $attributes['htmlAttributes'] ) && is_array( $attributes['htmlAttributes'] ) ? $attributes['htmlAttributes'] : array();
-	$html_attributes['src'] = isset( $attributes['src'] ) ? (string) $attributes['src'] : '';
-	$html_attributes['alt'] = isset( $attributes['alt'] ) ? (string) $attributes['alt'] : '';
+	$html_attributes             = isset( $attributes['htmlAttributes'] ) && is_array( $attributes['htmlAttributes'] ) ? $attributes['htmlAttributes'] : array();
+	$html_attributes['src']      = isset( $attributes['src'] ) ? (string) $attributes['src'] : '';
+	$html_attributes['alt']      = isset( $attributes['alt'] ) ? (string) $attributes['alt'] : '';
+	$html_attributes['decoding'] = 'async';
+	if ( empty( $html_attributes['loading'] ) ) {
+		$html_attributes['loading'] = 'high' === ( $html_attributes['fetchpriority'] ?? '' ) ? 'eager' : 'lazy';
+	}
 
 	if ( empty( $html_attributes['srcset'] ) && str_contains( $html_attributes['src'], '/assets/photos/' ) ) {
 		$srcset = balneo_v2_theme_image_srcset( wp_basename( (string) wp_parse_url( $html_attributes['src'], PHP_URL_PATH ) ) );

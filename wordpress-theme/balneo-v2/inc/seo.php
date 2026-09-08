@@ -552,8 +552,9 @@ function balneo_v2_seo_preload_hero(): void {
 		return;
 	}
 	printf(
-		'<link rel="preload" as="image" href="%s" type="image/webp" fetchpriority="high">' . "\n",
-		esc_url( balneo_v2_seo_image_url( $page['image'] ) )
+		'<link rel="preload" as="image" href="%s" imagesrcset="%s" imagesizes="100vw" type="image/webp" fetchpriority="high">' . "\n",
+		esc_url( balneo_v2_seo_image_url( $page['image'] ) ),
+		esc_attr( balneo_v2_theme_image_srcset( $page['image'] ) )
 	);
 }
 add_action( 'wp_head', 'balneo_v2_seo_preload_hero', 2 );
